@@ -1,8 +1,18 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+import { executeQuery } from "../lib/datocms";
+import { LocalesQuery } from "../utils/query";
+
+const {
+  site: { locales },
+} = await executeQuery(LocalesQuery);
 ---
 
-<Layout pageTitle="Benvenuto" locale="it">
-  <Welcome />
-</Layout>
+<html lang="en">
+  <head>
+    <meta http-equiv="refresh" content={`0; url=/${locales[0]}/`} />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to /{locales[0]}...</p>
+  </body>
+</html>

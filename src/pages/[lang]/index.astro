@@ -1,0 +1,28 @@
+---
+import Welcome from "../../components/Welcome.astro";
+import Layout from "../../layouts/Layout.astro";
+import { executeQuery } from "../../lib/datocms";
+import { LocalesQuery } from "../../utils/query";
+
+export async function getStaticPaths() {
+  const {
+    site: { locales },
+  } = await executeQuery(LocalesQuery);
+  return locales.map((lang) => ({
+    params: {
+      lang,
+    },
+  }));
+}
+
+const { lang } = Astro.params;
+---
+
+<Layout pageTitle={`[${lang.toUpperCase()}] DTD template`} locale={lang}>
+  <Welcome
+    category="Titolo occhiello"
+    title="Titolo della sezione"
+    description="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+    cta="Azione primaria"
+  />
+</Layout>
