@@ -6,13 +6,21 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_API_TOKEN\"'",
+    "generate-output": "gql.tada generate output",
+    "tada-doctor": "gql-tada doctor",
+    "tada-check": "gql-tada check"
   },
   "dependencies": {
+    "@datocms/cda-client": "^0.2.7",
     "astro": "^5.12.3",
-    "bootstrap-italia": "^2.16.0"
+    "bootstrap-italia": "^2.16.0",
+    "gql.tada": "^1.8.12"
   },
   "devDependencies": {
-    "sass-embedded": "^1.89.2"
+    "dotenv-cli": "^10.0.0",
+    "sass-embedded": "^1.89.2",
+    "typescript": "^5.9.2"
   }
 }
