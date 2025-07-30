@@ -1,67 +1,22 @@
----
-import background from "../assets/background.svg";
----
-
-<div id="container">
-  <img id="background" src={background.src} alt="" fetchpriority="high" />
-  <main>
-    <section id="hero">
-      <h1>Hello World!!!</h1>
-      <p>this is a test</p>
-    </section>
-  </main>
-</div>
-
-<style>
-  #background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    filter: blur(100px);
-  }
-
-  #container {
-    font-family:
-      Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
-      sans-serif;
-    height: 100%;
-  }
-
-  main {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  #hero {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    justify-content: center;
-    padding: 16px;
-  }
-
-  h1 {
-    font-size: 22px;
-    margin-top: 0.25em;
-  }
-
-  @media screen and (max-width: 768px) {
-    #container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #hero {
-      display: block;
-      padding-top: 10%;
-    }
-
-    h1 {
-      line-height: 1.5;
-    }
-  }
-</style>
+<section class="it-hero-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="it-hero-text-wrapper bg-dark">
+          <span class="it-category">Titolo occhiello</span>
+          <h1>Titolo della sezione</h1>
+          <p class="d-none d-lg-block">
+            Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper
+            dignissim cras. Dictum sit amet justo donec enim diam vulputate ut.
+            Eu nisl nunc mi ipsum faucibus.
+          </p>
+          <div class="it-btn-container">
+            <a class="btn btn-sm btn-outline-primary" href="#"
+              >Azione primaria
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.12.3"
+    "astro": "^5.12.3",
+    "bootstrap-italia": "^2.16.0"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.89.2"
   }
 }
