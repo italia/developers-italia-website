@@ -10,7 +10,9 @@
     "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_API_TOKEN\"'",
     "generate-output": "gql.tada generate output",
     "tada-doctor": "gql-tada doctor",
-    "tada-check": "gql-tada check"
+    "tada-check": "gql-tada check",
+    "prepare": "husky",
+    "format": "prettier . --write --ignore-unknown"
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.5",
@@ -21,7 +23,13 @@
   },
   "devDependencies": {
     "dotenv-cli": "^10.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.89.2",
     "typescript": "^5.9.2"
+  },
+  "lint-staged": {
+    "**/*": "prettier . --write --ignore-unknown"
   }
 }
