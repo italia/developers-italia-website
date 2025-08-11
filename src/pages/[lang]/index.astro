@@ -19,6 +19,6 @@ const { lang } = Astro.params;
 const random = Math.round(Math.random() * 100);
 ---
 
-<Layout pageTitle={`[${lang.toUpperCase()}] DTD template`} locale={lang}>
+<Layout locale={lang}>
   <Welcome cta=`Hello world static ${random}` />
 </Layout>

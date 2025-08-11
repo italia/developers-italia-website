@@ -1,0 +1,41 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { executeQuery } from "../../../lib/datocms";
+import { AllPagesSlugQuery, PageBySlugQuery } from "../../../utils/query";
+import type { SiteLocale } from "../../../graphql/types";
+
+export async function getStaticPaths() {
+  type PathItem = {
+    params: {
+      slug: string;
+      lang: SiteLocale;
+    };
+  };
+
+  const slugsResponse = await executeQuery(AllPagesSlugQuery);
+
+  return slugsResponse.allPages
+    .flatMap(
+      (slug) =>
+        slug.allSlugLocales?.map((slugLocale) => ({
+          params: {
+            slug: slugLocale.value,
+            lang: slugLocale.locale,
+          },
+        })) ?? [],
+    )
+    .filter((path): path is PathItem => !!path.params.lang);
+}
+
+const { lang, slug } = Astro.params;
+
+const response = await executeQuery(PageBySlugQuery, {
+  variables: { slug: slug, locale: lang },
+});
+
+const page = response.page;
+---
+
+<Layout locale={lang} pageSeo={page?.seo}>
+  <h1>{page?.title}</h1>
+</Layout>

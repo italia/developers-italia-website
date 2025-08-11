@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev": "dotenv -c -- bash -c 'astro dev'",
+    "build": "dotenv -c -- bash -c 'astro build'",
+    "preview": "dotenv -c -- bash -c 'astro preview'",
+    "astro": "dotenv -c -- bash -c 'astro'",
     "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_API_TOKEN\"'",
     "generate-output": "gql.tada generate output",
     "tada-doctor": "gql-tada doctor",
@@ -15,7 +15,9 @@
     "format": "prettier . --write --ignore-unknown"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.4.2",
     "@astrojs/vercel": "^8.2.5",
+    "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
     "astro": "^5.12.3",
     "bootstrap-italia": "^2.16.0",
