@@ -4,13 +4,13 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 function jwtToken() {
   return jwt.sign(
     { enabled: true },
-    process.env.SIGNED_COOKIE_JWT_SECRET as string,
+    import.meta.env.SIGNED_COOKIE_JWT_SECRET as string,
   );
 }
 
 export function enableDraftMode(context: APIContext) {
   context.cookies.set(
-    process.env.DRAFT_MODE_COOKIE_NAME as string,
+    import.meta.env.DRAFT_MODE_COOKIE_NAME as string,
     jwtToken(),
     {
       path: "/",
@@ -23,7 +23,7 @@ export function enableDraftMode(context: APIContext) {
 }
 
 export function disableDraftMode(context: APIContext) {
-  context.cookies.delete(process.env.DRAFT_MODE_COOKIE_NAME as string, {
+  context.cookies.delete(import.meta.env.DRAFT_MODE_COOKIE_NAME as string, {
     path: "/",
     sameSite: "none",
     httpOnly: false,
@@ -38,7 +38,7 @@ export function isDraftModeEnabled(
   const cookies =
     "cookies" in contextOrCookies ? contextOrCookies.cookies : contextOrCookies;
 
-  const cookie = cookies.get(process.env.DRAFT_MODE_COOKIE_NAME as string);
+  const cookie = cookies.get(import.meta.env.DRAFT_MODE_COOKIE_NAME as string);
 
   if (!cookie) {
     return false;
@@ -47,7 +47,7 @@ export function isDraftModeEnabled(
   try {
     const payload = jwt.verify(
       cookie.value,
-      process.env.SIGNED_COOKIE_JWT_SECRET as string,
+      import.meta.env.SIGNED_COOKIE_JWT_SECRET as string,
     ) as JwtPayload;
 
     return payload.enabled as boolean;

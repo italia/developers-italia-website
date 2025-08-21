@@ -15,7 +15,7 @@ export const GET: APIRoute = (event) => {
   const redirectUrl = url.searchParams.get("url") || "/";
 
   try {
-    if (token !== process.env.SECRET_API_TOKEN) {
+    if (token !== import.meta.env.SECRET_API_TOKEN) {
       return invalidRequestResponse("Invalid token", 401);
     }
 

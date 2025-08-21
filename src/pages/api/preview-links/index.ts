@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ url, request }) => {
   try {
     const token = url.searchParams.get("token");
 
-    if (token !== process.env.SECRET_API_TOKEN) {
+    if (token !== import.meta.env.SECRET_API_TOKEN) {
       return invalidRequestResponse("Invalid token", 401);
     }
 
