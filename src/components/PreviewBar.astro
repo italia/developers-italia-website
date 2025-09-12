@@ -1,0 +1,18 @@
+---
+type Props = {
+  redirectUrl: string;
+};
+
+const { redirectUrl } = Astro.props;
+---
+
+<div
+  class="text-xs primary-bg-c2 text-black d-flex flex-row justify-content-center align-items-center"
+>
+  <span>This page is showing draft content.</span>
+  <a
+    href={`/api/draft-mode/disable?url=${encodeURIComponent(redirectUrl)}`}
+    class="btn btn-xs btn-link"
+    role="button">Click here to exit preview mode</a
+  >
+</div>

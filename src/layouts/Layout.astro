@@ -6,14 +6,19 @@ import bsi from "bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?url";
 import { Seo, type TitleMetaLinkTag } from "@datocms/astro";
 import { SiteMetaTagsQuery } from "../utils/query";
 import { executeQuery } from "../lib/datocms";
+import { isDraftModeEnabled } from "../lib/draftMode";
+import PreviewBar from "../components/PreviewBar.astro";
 
 type Props = {
   locale: string;
   pageSeo?: TitleMetaLinkTag[];
+  redirectUrl?: string;
 };
 
-const { locale, pageSeo = [] } = Astro.props;
+const { locale, pageSeo = [], redirectUrl } = Astro.props;
 const result = await executeQuery(SiteMetaTagsQuery);
+
+const isShowingPreviewBar = isDraftModeEnabled(Astro.cookies) && redirectUrl;
 ---
 
 <html lang={locale}>
@@ -30,6 +35,7 @@ const result = await executeQuery(SiteMetaTagsQuery);
     />
   </head>
   <body>
+    {isShowingPreviewBar && <PreviewBar redirectUrl={redirectUrl} />}
     <Header />
     <main>
       <slot />

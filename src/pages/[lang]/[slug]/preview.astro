@@ -1,0 +1,42 @@
+---
+import type { TitleMetaLinkTag } from "@datocms/astro";
+import Layout from "../../../layouts/Layout.astro";
+import { executeQuery } from "../../../lib/datocms";
+import { PageBySlugQuery } from "../../../utils/query";
+import type { SiteLocale } from "../../../graphql/types";
+import { isDraftModeEnabled } from "../../../lib/draftMode";
+import DraftModeQueryListener from "../../../components/DraftModeQueryListener.astro";
+
+export const prerender = false;
+
+const draftModeEnabled = isDraftModeEnabled(Astro.cookies);
+if (!draftModeEnabled) {
+  return Astro.redirect("/");
+}
+
+const { lang, slug } = Astro.params;
+
+const response = await executeQuery(PageBySlugQuery, {
+  variables: { slug: slug!, locale: lang as SiteLocale },
+  includeDrafts: true,
+});
+
+const page = response.page;
+
+const redirectUrl =
+  typeof lang === "string" && typeof slug === "string"
+    ? `/${lang}/${slug}`
+    : "/";
+---
+
+<Layout
+  redirectUrl={redirectUrl}
+  locale={lang!}
+  pageSeo={page?.seo as TitleMetaLinkTag[]}
+>
+  <h1>{page?.title}</h1>
+</Layout>
+<DraftModeQueryListener
+  query={PageBySlugQuery}
+  variables={{ slug: slug!, locale: lang as SiteLocale }}
+/>

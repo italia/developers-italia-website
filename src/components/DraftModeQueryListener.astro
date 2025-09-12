@@ -1,0 +1,16 @@
+---
+import { QueryListener } from "@datocms/astro";
+import type { TypedDocumentNode } from "@datocms/cda-client";
+
+type Props<QueryResult, QueryVariables> = {
+  query: string | TypedDocumentNode<QueryResult, QueryVariables>;
+  variables?: QueryVariables;
+};
+---
+
+<QueryListener
+  {...Astro.props}
+  token={import.meta.env.DATOCMS_DRAFT_API_TOKEN}
+  excludeInvalid
+  includeDrafts
+/>

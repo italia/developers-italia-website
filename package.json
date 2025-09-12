@@ -19,11 +19,14 @@
     "@astrojs/vercel": "^8.2.5",
     "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
+    "@datocms/cma-client": "^5.0.1",
     "astro": "^5.12.3",
     "bootstrap-italia": "^2.16.0",
-    "gql.tada": "^1.8.12"
+    "gql.tada": "^1.8.12",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "dotenv-cli": "^10.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
