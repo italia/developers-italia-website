@@ -5,6 +5,7 @@ import {
   json,
   withCORS,
 } from "../../../utils/apiUtils";
+import { generateWebsiteUrl } from "../../../utils/generateWebsiteUrl";
 
 export const prerender = false;
 
@@ -31,7 +32,7 @@ export const POST: APIRoute = async ({ url, request }) => {
     }
 
     const { item, locale } = await request.json();
-    const recordUrl = `/${locale}/${item.attributes.slug[locale]}`;
+    const recordUrl = generateWebsiteUrl(item, locale);
 
     const response: WebPreviewsResponse = { previewLinks: [] };
 
