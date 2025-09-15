@@ -10,6 +10,8 @@
         "schema": "./src/graphql/schema.graphql",
         "tadaOutputLocation": "./src/graphql/graphql-env.d.ts"
       }
-    ]
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
