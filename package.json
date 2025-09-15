@@ -22,6 +22,7 @@
     "@datocms/cma-client": "^5.0.1",
     "astro": "^5.12.3",
     "bootstrap-italia": "^2.16.0",
+    "dataviz-components": "^0.2.0",
     "gql.tada": "^1.8.12",
     "jsonwebtoken": "^9.0.2"
   },
