@@ -1,11 +1,6 @@
-import {
-  RenderChart,
-  type FieldDataType,
-  // DataTable,
-  // type MatrixType,
-} from "dataviz-components";
+import { RenderChart, type FieldDataType } from "dataviz-components";
 
-export const BarChart = () => {
+export const ExampleBarChart = () => {
   const sampleData: FieldDataType = {
     dataSource: "",
     id: "cm92sqeed00036c5hqlqdm0xb",
@@ -75,7 +70,7 @@ export const BarChart = () => {
         6842179,
       ],
       ["1.4.3 Adozione PagoPA e AppIO", 103323916, 114533452, 290142632],
-      ["1.4.4 Adozione identit�� digitale", 55370000, 70083459, 80546541],
+      ["1.4.4 Adozione identità digitale", 55370000, 70083459, 80546541],
       [
         "1.4.5 Digitalizzazione degli avvisi pubblici",
         99546827,

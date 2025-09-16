@@ -1,11 +1,6 @@
-import {
-  RenderChart,
-  type FieldDataType,
-  // DataTable,
-  // type MatrixType,
-} from "dataviz-components";
+import { RenderChart, type FieldDataType } from "dataviz-components";
 
-export const LineChart = () => {
+export const ExampleLineChart = () => {
   const sampleData: FieldDataType = {
     id: "cm2w17md9000113laexq0h432",
     name: "PA-Digitale2026 - Accessi Area Riservata",
@@ -113,12 +108,7 @@ export const LineChart = () => {
 
   return (
     <div>
-      <RenderChart
-        {...(sampleData as FieldDataType)}
-        // getPicture={() => console.log("getPicture")}
-        // getInstance={(instance) => console.log("getInstance", instance)}
-      />
-      {/* <DataTable data={sampleData.data as MatrixType} /> */}
+      <RenderChart {...(sampleData as FieldDataType)} />
     </div>
   );
 };
