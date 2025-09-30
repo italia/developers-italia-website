@@ -4,7 +4,7 @@ import type { introspection_types } from "./graphql-env";
 export type SiteLocale = introspection_types["SiteLocale"]["enumValues"];
 
 export type SettingsKpiRecord = {
-  title?: string;
+  title: string;
   subtitle?: string;
   selectKpi?: KpiItemType[];
 };
