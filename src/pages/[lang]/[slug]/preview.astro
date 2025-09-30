@@ -3,12 +3,16 @@ import type { TitleMetaLinkTag } from "@datocms/astro";
 import Layout from "../../../layouts/Layout.astro";
 import { executeQuery } from "../../../lib/datocms";
 import { PageBySlugQuery } from "../../../utils/query";
-import type { SiteLocale } from "../../../graphql/types";
+import type {
+  SettingsChartRecord,
+  SettingsKpiRecord,
+  SiteLocale,
+} from "../../../graphql/types";
 import { isDraftModeEnabled } from "../../../lib/draftMode";
 import DraftModeQueryListener from "../../../components/DraftModeQueryListener.astro";
-import type { FieldDataType } from "dataviz-components";
 import { Chart } from "../../../components/charts/Chart";
 import Loader from "../../../components/Loader.astro";
+import { Kpi } from "../../../components/charts/Kpi";
 
 export const prerender = false;
 
@@ -25,7 +29,8 @@ const response = await executeQuery(PageBySlugQuery, {
 });
 
 const page = response.page;
-const chartData = page?.chartData as FieldDataType | undefined;
+const chart = page?.chart as SettingsChartRecord | undefined;
+const kpi = page?.kpi as SettingsKpiRecord | undefined;
 const redirectUrl =
   typeof lang === "string" && typeof slug === "string"
     ? `/${lang}/${slug}`
@@ -38,9 +43,10 @@ const redirectUrl =
   pageSeo={page?.seo as TitleMetaLinkTag[]}
 >
   <h1>{page?.title}</h1>
+  {kpi && <Kpi data={kpi} />}
   {
-    chartData?.data?.length && (
-      <Chart client:only="react" data={chartData}>
+    chart && (
+      <Chart client:only="react" data={chart}>
         <div slot="fallback">
           <Loader />
         </div>
