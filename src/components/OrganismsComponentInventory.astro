@@ -1,0 +1,507 @@
+---
+import {
+  accordionItems,
+  breadcrumbItems,
+  cardItems,
+  channelItems,
+  dataStatisticsItems,
+  image,
+  listItems,
+  menuItems,
+  newsItems,
+  sidebarItems,
+  tabsItems,
+  useCaseItems,
+} from "../utils/mock";
+import { Breadcrumb } from "./molecules/Breadcrumb";
+import { DataSection } from "./organisms/DataSection";
+import { FAQSection } from "./organisms/FAQSection";
+import { Footer } from "./organisms/Footer";
+import { Header } from "./organisms/Header";
+import { Hero, HeroCompactImage, HeroFullHeightImage } from "./organisms/Hero";
+import { Sidebar } from "./organisms/Sidebar";
+import { SupportChannelsSection } from "./organisms/SupportChannelsSection";
+import { SupportCTASection } from "./organisms/SupportCTASection";
+import { TextAndAccordions } from "./organisms/TextAndAccordions";
+import { TextAndImage } from "./organisms/TextAndImage";
+import { TextAndStatistics } from "./organisms/TextAndStatistics";
+import { TextAndUseCase } from "./organisms/TextAndUseCase";
+import { UpdateTabSection } from "./organisms/UpdateTabSection";
+---
+
+<h2 class="mb-4">Organisms</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Data section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <DataSection
+          highlights={{
+            title: "Risultati raggiunti ",
+            paragraph:
+              "L’adozione del Cloud nella Pubblica Amministrazione è in costante crescita. Attraverso i progetti finanziati dal PNRR e le iniziative locali, ogni regione sta contribuendo alla modernizzazione dei servizi pubblici digitali.",
+            image: image,
+            cards: [
+              {
+                title:
+                  "PA e enti pubblici che hanno già avviato la migrazione al cloud",
+                description: "70.000 +",
+              },
+              {
+                title:
+                  "PA e enti pubblici che hanno già avviato la migrazione al cloud",
+                description: "70.000 +",
+              },
+              {
+                title:
+                  "PA e enti pubblici che hanno già avviato la migrazione al cloud",
+                description: "70.000 +",
+              },
+            ],
+          }}
+          panel={{
+            title: "Distribuzione dei progetti sul territorio",
+            paragraph: "Il numero di progetti Cloud divisi per regione.",
+          }}
+          result={{
+            items: listItems,
+            title: "L’esperienza delle regioni ",
+            label: "in evidenza",
+            paragraph:
+              "Alcune regioni hanno sviluppato progetti cloud nella PA che offrono modelli operativi replicabili. Queste esperienze sono a disposizione di tutte le amministrazioni e contribuiscono a una diffusione più uniforme della Strategia Cloud Italia sul territorio.",
+            news: [
+              {
+                linkTo: "#",
+                title: "Nasce l’Innovation Hub di Polo Strategico Nazionale",
+                description:
+                  "Al via un ecosistema collaborativo per accelerare la trasformazione digitale della Pubblica Amministrazione",
+                image: image,
+              },
+            ],
+          }}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>FAQ section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <FAQSection
+          title="Domande frequenti"
+          accordion={{
+            id: "FAQ",
+            items: accordionItems,
+            variant: "background-active",
+          }}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Footer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">
+        <Footer
+          brand={{
+            title: "Nome dipartimento",
+            description: "è un progetto di",
+            logos: [
+              {
+                icon: "it-team-digitale",
+                label: "Dipertimento di trasformazione digitale",
+                linkTo: "#",
+              },
+              {
+                icon: "it-team-digitale",
+                label: "Dipertimento di trasformazione digitale",
+                linkTo: "#",
+              },
+            ],
+          }}
+          topics={{
+            title: "Parliamo di",
+            items: [
+              {
+                label: "Sviluppo interfaccia",
+                visuallyHidden: "link",
+                linkTo: "#",
+              },
+              {
+                label: "Sviluppo interfaccia",
+                visuallyHidden: "link",
+                linkTo: "#",
+              },
+            ],
+          }}
+          utilities={[
+            {
+              title: "Community",
+              items: [
+                {
+                  label: "Forum italia",
+                  ariaLabel: "link",
+                  icon: "it-designers-italia",
+                  linkTo: "#",
+                },
+                {
+                  label: "Slack",
+                  ariaLabel: "link",
+                  icon: "it-slack",
+                  linkTo: "#",
+                },
+                {
+                  label: "Github",
+                  ariaLabel: "link",
+                  icon: "it-github",
+                  linkTo: "#",
+                },
+              ],
+            },
+          ]}
+          smallPrints={{
+            labelVisualHidden: "Sezione link utili",
+            links: [
+              { label: "Media Policy", linkTo: "#" },
+              { label: "Note legali", linkTo: "#" },
+            ],
+          }}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <Header
+          slimContent="Nome dipartimento"
+          brandTitle="Cloud Italia"
+          brandTagLine="Il cloud della Pubblica Amministrazione"
+          menuItems={menuItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Hero</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default</td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <Hero
+          category="Titolo occhiello"
+          title="Titolo della sezione"
+          paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
+          image={image}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <Hero
+          title="Titolo della sezione"
+          paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
+          size="small"
+          image={image}
+        >
+          <Breadcrumb
+            ariaLabel="Percorso di navigazione"
+            slot="category"
+            items={breadcrumbItems}
+          />
+        </Hero>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Extra Small</td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <Hero
+          title="Titolo della sezione"
+          paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
+          size="xsmall"
+          image={image}
+        >
+          <Breadcrumb
+            ariaLabel="Percorso di navigazione"
+            slot="category"
+            items={breadcrumbItems}
+          /></Hero
+        >
+      </td>
+    </tr>
+
+    <tr>
+      <td>Extra Small Full Height Image</td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <HeroFullHeightImage
+          title="Titolo della sezione"
+          paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
+          image={image}
+          size="xsmall"
+          ><Breadcrumb
+            ariaLabel="Percorso di navigazione"
+            slot="category"
+            items={breadcrumbItems}
+          /></HeroFullHeightImage
+        >
+      </td>
+    </tr>
+    <tr>
+      <td>Extra Small Compact Image</td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <HeroCompactImage
+          category="Titolo occhiello"
+          title="Titolo della sezione"
+          paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
+          image={image}
+          size="xsmall"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Sidebar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">
+        <Sidebar
+          id="sidebar"
+          ariaLabel="Apri/chiudi sidebar"
+          header="Usare il cloud"
+          openLabel="Menu di navigazione"
+          closeLabel="Chiudi"
+          items={sidebarItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Support Channels section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <SupportChannelsSection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          channels={channelItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Support CTA section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <SupportCTASection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          labelButton="azione"
+          variant="default"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-0">
+        <SupportCTASection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          labelButton="azione"
+          variant="lighter"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Text And Accordions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <TextAndAccordions
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          labelAccordion="In evidenza"
+          accordion={{ id: "FAQ", items: accordionItems }}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Text And Image</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default</td>
+      <td class="p-0">
+        <TextAndImage
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          labelButton="Azione primaria"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Big</td>
+      <td class="p-0">
+        <TextAndImage
+          variant="big"
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>With box</td>
+      <td class="p-0">
+        <TextAndImage
+          variant="withBox"
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          cards={cardItems}
+          labelCards="In evidenza"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Text And Statistics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <TextAndStatistics
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          labelButton="Azione primaria"
+          dataStatistics={dataStatisticsItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Text And UseCase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <TextAndUseCase
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          labelButton="Azione primaria"
+          labelUseCases="in evidenza"
+          useCases={useCaseItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Update Tab section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-0">
+        <UpdateTabSection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          tabs={tabsItems}
+          news={newsItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>

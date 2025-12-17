@@ -1,0 +1,430 @@
+---
+import {
+  accordionItems,
+  breadcrumbItems,
+  image,
+  linkListItems,
+  listItems,
+  listItemsDefault,
+  tabsItems,
+  topicItems,
+} from "../utils/mock";
+import { Accordion } from "./molecules/Accordion";
+import { Breadcrumb } from "./molecules/Breadcrumb";
+import { Callout } from "./molecules/Callout";
+import { CardEditorialInline } from "./molecules/CardEditorialInline";
+import { CardEditorialNews } from "./molecules/CardEditorialNews";
+import { CardEditorialWithIcon } from "./molecules/CardEditorialWithIcon";
+import { CardInfoAndService } from "./molecules/CardInfoAndService";
+import { CardPresentationBanner } from "./molecules/CardPresentationBanner";
+import { DataContainer } from "./molecules/DataContainer";
+import { List } from "./molecules/List";
+import { QuickLinkCard } from "./molecules/QuickLinkCard";
+import { StatisticsBox } from "./molecules/StatisticsBox";
+import { Tabs } from "./molecules/Tabs";
+import { TextContainer } from "./molecules/TextContainer";
+import { Topics } from "./molecules/Topics";
+import { UseCaseCard } from "./molecules/UseCaseCard";
+---
+
+<h2 class="mb-4">Molecules</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Accordion</th>
+      <th>Header filled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3"> Deafult </td>
+      <td class="p-3">
+        <Accordion id="accordion" items={accordionItems} />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3"> Background active </td>
+      <td class="p-3">
+        <Accordion
+          id="accordion"
+          items={accordionItems}
+          variant="background-active"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Breadcrumb</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3"> Primary background </td>
+      <td class="bg-primary p-3">
+        <Breadcrumb
+          ariaLabel="Percorso di navigazione"
+          items={breadcrumbItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Callout</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3"> Light background </td>
+      <td class="p-3">
+        <Callout
+          visuallyHidden="Informazione importante"
+          title="Note a riguardo"
+          paragraph="Quisque ex eros, pellentesque vitae enim sed, pharetra tempus dolor. Donec eu nibh ac lacus luctus pellentesque. Duis interdum scelerisque magna nec malesuada."
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Card Editorial News</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Standard</td>
+      <td class="bg-primary p-3">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
+            <CardEditorialNews
+              linkTo="#"
+              title="Titolo contenuto editoriale"
+              description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
+              category="Articolo"
+              image={image}
+              dateTime="2022-04-05"
+              formatDate="05/04/2022"
+              action="innovazione.gov.it"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Without footer</td>
+      <td class="bg-primary p-3">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
+            <CardEditorialNews
+              linkTo="#"
+              title="Titolo contenuto editoriale"
+              description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
+              image={image}
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>With Icon</td>
+      <td class="bg-primary p-3">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
+            <CardEditorialWithIcon
+              title="Titolo contenuto editoriale"
+              description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
+              icon="1"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Inline</td>
+      <td class="bg-primary p-3">
+        <div class="row">
+          <div class="col-12 mb-3 mb-md-4">
+            <CardEditorialInline
+              linkTo="#"
+              image={image}
+              title="Titolo contenuto editoriale"
+              description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
+              category="Articolo"
+              dateTime="2022-04-05"
+              formatDate="05/04/2022"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Card info and service</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Standard</td>
+      <td class="p-3">
+        <div class="row">
+          <div class="col-12 mb-3 mb-md-4">
+            <CardInfoAndService
+              title="PA digitale 2026"
+              linkTo="#"
+              description="Accedi all’area riservata per iniziare la classificazione."
+              icon="it-external-link"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Card Presentation Banner</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Standard</td>
+      <td class="bg-primary p-3">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
+            <CardPresentationBanner
+              linkTo="#"
+              title="Titolo contenuto editoriale"
+              description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
+              icon="it-github"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Data container</th>
+      <th>Standard</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Dark background</td>
+      <td class="bg-dark p-3"
+        ><DataContainer
+          title="Numero di PA che hanno migrato al Cloud "
+          info="70.000 +"
+          contentIcon="1"
+        /></td
+      >
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>List Item</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Small</td>
+      <td class="p-3">
+        <List items={listItems} variant="small" />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Default</td>
+      <td class="p-3">
+        <List items={listItemsDefault} />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Quick link card</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3"> Light background </td>
+      <td class="p-3">
+        <QuickLinkCard
+          title="Titolo sezione link rapidi"
+          links={linkListItems}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Statistics box</th>
+      <th>Standard</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Light background</td>
+      <td class="p-3">
+        <div class="col-12 col-md-4 col-lg-4 mb-3 mb-md-4">
+          <StatisticsBox
+            title="PA e enti pubblici che hanno già avviato la migrazione al cloud"
+            description="70.000 +"
+          />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Tabs</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Light background</td>
+      <td class="p-3"><Tabs id="exampleTabs" items={tabsItems} /> </td>
+    </tr>
+    <tr>
+      <td class="p-3">Primary background</td>
+      <td class="p-3"
+        ><Tabs id="exampleTabs" variant="dark" items={tabsItems} />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Topics</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Light background</td>
+      <td class="p-3"
+        ><Topics title="Argomenti correlati" topics={topicItems} />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Text container</th>
+      <th>Standard</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Light background</td>
+      <td class="p-3"
+        ><TextContainer
+          title="Titolo della sezione"
+          paragraph="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+          labelButton="Azione primaria"
+        /></td
+      >
+    </tr>
+    <tr>
+      <td class="p-3">Dark background</td>
+      <td class="bg-dark p-3"
+        ><TextContainer
+          title="Titolo della sezione"
+          paragraph="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+          labelButton="Azione primaria"
+          variant="dark"
+        /></td
+      >
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Use Case Card</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-3">Default</td>
+      <td class="p-3">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
+            <UseCaseCard
+              title="Titolo use Case"
+              image={image}
+              paragraph="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+              linkTo="#"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Big</td>
+      <td class="p-3">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <UseCaseCard
+              title="Titolo use Case"
+              image={image}
+              paragraph="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+              linkTo="#"
+              listTopics={{
+                title: "Argomenti correlati",
+                topics: topicItems,
+              }}
+              description="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus."
+              descriptionTitle="Argomenti trattati"
+              variant="big"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
