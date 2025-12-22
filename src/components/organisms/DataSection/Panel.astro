@@ -2,10 +2,11 @@
 import { Chart } from "@components/charts/Chart";
 import Loader from "@components/Loader.astro";
 import type { PanelProps } from "./types";
+import { Link } from "@components/atoms/Link";
 
 type Props = PanelProps;
 
-const { title, paragraph, chart } = Astro.props;
+const { title, paragraph, chart, externalLink } = Astro.props;
 ---
 
 <div class="row align-items-top justify-content-between mb-5">
@@ -21,6 +22,17 @@ const { title, paragraph, chart } = Astro.props;
             <Loader />
           </div>
         </Chart>
+      )
+    }
+    {
+      externalLink && (
+        <Link
+          label={externalLink.label}
+          titleIcon={externalLink.titleIcon}
+          icon={externalLink.icon}
+          linkTo={externalLink.linkTo}
+          openInNewTab={true}
+        />
       )
     }
   </div>

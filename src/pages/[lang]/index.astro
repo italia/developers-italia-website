@@ -1,5 +1,5 @@
 ---
-import TemplatePage from "@components/template/TemplatePage.astro";
+import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
 import type { HomepageModelContentFragmentType } from "@graphql/templateFragments";
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
@@ -26,12 +26,9 @@ const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
   variables: { locale: lang },
 });
 
-const template = homepage?.content as HomepageModelContentFragmentType[];
+const content = homepage?.content as HomepageModelContentFragmentType[];
 ---
 
-<Layout locale={lang}>
-  <TemplatePage
-    template={template}
-    sitename={globalSetting?.siteName || "Home"}
-  />
+<Layout locale={lang} pageSeo={homepage?.seo}>
+  <PageAdapter content={content} sitename={globalSetting?.siteName || "Home"} />
 </Layout>

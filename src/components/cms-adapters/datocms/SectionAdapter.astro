@@ -10,6 +10,7 @@ import AccordionAdapter from "./AccordionAdapter.astro";
 import ImageContainerAdapter from "./ImageContainerAdapter.astro";
 import StatisticAdapter from "./StatisticAdapter.astro";
 import UseCasesAdapter from "./UseCasesAdapter.astro";
+import { AdditionalContent } from "@components/organisms/AdditionalContent";
 
 type Props = {
   block: SectionFragmentType;
@@ -17,6 +18,7 @@ type Props = {
 
 const { block } = Astro.props;
 
+const additionalContent = block.additionalContent;
 const leftBlock = block.left;
 const rightBlock = block.right;
 
@@ -26,6 +28,11 @@ const variantTextContainer =
     : block.background === "primary"
       ? "primary"
       : "light";
+
+const variantAdditionalContent =
+  block.background === "dark" || block.background === "primary"
+    ? "light"
+    : undefined;
 ---
 
 <SplitContent
@@ -42,6 +49,7 @@ const variantTextContainer =
     labelButton={leftBlock.cta?.label}
     linkTo={leftBlock.cta?.linkTo.slug}
   />
+
   <Fragment slot="right">
     {
       (() => {
@@ -60,4 +68,14 @@ const variantTextContainer =
       })()
     }
   </Fragment>
+
+  {
+    additionalContent && (
+      <AdditionalContent
+        variant={variantAdditionalContent}
+        content={additionalContent.content}
+        title={additionalContent.title || undefined}
+      />
+    )
+  }
 </SplitContent>

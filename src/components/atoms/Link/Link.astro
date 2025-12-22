@@ -3,12 +3,22 @@ import type { LinkProps } from "./types";
 
 type Props = LinkProps;
 
-const { label, titleIcon, icon, linkTo, disabled } = Astro.props;
+const {
+  label,
+  titleIcon,
+  icon,
+  linkTo,
+  disabled,
+  openInNewTab = false,
+} = Astro.props;
+
 const finalHref = disabled ? undefined : linkTo;
 const ariaDisabled = disabled ? "true" : "false";
+const target = openInNewTab ? "_blank" : "_self";
+const rel = openInNewTab ? "noopener noreferrer" : undefined;
 ---
 
-<a href={finalHref} aria-disabled={ariaDisabled}>
+<a href={finalHref} aria-disabled={ariaDisabled} target={target} rel={rel}>
   <span class="list-item-title-icon-wrapper">
     <span class="fw-semibold">{label}</span>
     {

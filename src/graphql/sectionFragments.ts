@@ -1,14 +1,22 @@
 import {
   AccordionBlockFragment,
+  AccordionFragment,
+  AdditionalContentFragment,
+  CardEditorialNewsFragment,
   ChannelFragment,
+  ChartFragment,
+  ExternalLinkFragment,
   ImageBlockFragment,
   ImageFragment,
+  ListItemFragment,
   MenuItemFragment,
   NewsTabFragment,
   StatisticBlockFragment,
+  StatisticsBoxFragment,
   StoryTabFragment,
   TextBlockFragment,
   UseCaseBlockFragment,
+  UseCaseFragment,
 } from "@graphql/commonFragments";
 import { graphql, type FragmentOf } from "@graphql/graphql";
 
@@ -83,6 +91,9 @@ export const SectionFragment = graphql(
       columnRightSize
       background
       alignItems
+      additionalContent {
+        ...AdditionalContentFragment
+      }
       left {
         ... on RecordInterface {
           id
@@ -113,6 +124,7 @@ export const SectionFragment = graphql(
     }
   `,
   [
+    AdditionalContentFragment,
     TextBlockFragment,
     UseCaseBlockFragment,
     StatisticBlockFragment,
@@ -140,3 +152,116 @@ export const HeaderFragment = graphql(
 );
 
 export type HeaderFragmentType = FragmentOf<typeof HeaderFragment>;
+
+export const FaqSectionRecordFragment = graphql(
+  `
+    fragment FaqSectionRecordFragment on FaqSectionRecord @_unmask {
+      id
+      title
+      accordion {
+        ...AccordionFragment
+      }
+    }
+  `,
+  [AccordionFragment],
+);
+
+export type FaqSectionRecordFragmentType = FragmentOf<
+  typeof FaqSectionRecordFragment
+>;
+
+export const HighlightsFragment = graphql(
+  `
+    fragment HighlightsFragment on HighlightRecord @_unmask {
+      id
+      title
+      paragraph(markdown: true)
+      cards {
+        ...StatisticsBoxFragment
+      }
+      image {
+        ...ImageFragment
+      }
+    }
+  `,
+  [StatisticsBoxFragment, ImageFragment],
+);
+
+export type HighlightsFragmentType = FragmentOf<typeof HighlightsFragment>;
+
+export const PanelFragment = graphql(
+  `
+    fragment PanelFragment on PanelRecord @_unmask {
+      id
+      paragraph
+      title
+      chart {
+        ...ChartFragment
+      }
+      externalLink {
+        ...ExternalLinkFragment
+      }
+    }
+  `,
+  [ChartFragment, ExternalLinkFragment],
+);
+
+export type PanelFragmentType = FragmentOf<typeof PanelFragment>;
+
+export const ResultFragment = graphql(
+  `
+    fragment ResultFragment on ResultRecord @_unmask {
+      id
+      title
+      paragraph
+      label
+      items {
+        ...ListItemFragment
+      }
+      news {
+        ...CardEditorialNewsFragment
+      }
+    }
+  `,
+  [ListItemFragment, CardEditorialNewsFragment],
+);
+
+export type ResultFragmentType = FragmentOf<typeof ResultFragment>;
+
+export const DataSectionRecordFragment = graphql(
+  `
+    fragment DataSectionRecordFragment on DataSectionRecord @_unmask {
+      id
+      highlights {
+        ...HighlightsFragment
+      }
+      panel {
+        ...PanelFragment
+      }
+      result {
+        ...ResultFragment
+      }
+    }
+  `,
+  [HighlightsFragment, PanelFragment, ResultFragment],
+);
+
+export type DataSectionRecordFragmentType = FragmentOf<
+  typeof DataSectionRecordFragment
+>;
+
+export const UseCaseContainerFragment = graphql(
+  `
+    fragment UseCaseContainerFragment on UseCaseContainerRecord @_unmask {
+      id
+      useCases {
+        ...UseCaseFragment
+      }
+    }
+  `,
+  [UseCaseFragment],
+);
+
+export type UseCaseContainerFragmentType = FragmentOf<
+  typeof UseCaseContainerFragment
+>;

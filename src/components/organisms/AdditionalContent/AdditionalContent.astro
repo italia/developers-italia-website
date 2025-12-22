@@ -1,0 +1,26 @@
+---
+import { CardEditorialWithIcon } from "@components/molecules/CardEditorialWithIcon";
+import type { AdditionalContentProps } from "./types";
+
+type Props = AdditionalContentProps;
+
+const { title, content, variant = "dark" } = Astro.props;
+const textLabelColorClass = variant === "light" ? "text-white" : undefined;
+---
+
+<div class="row align-item-center justify-content-between pt-5">
+  {
+    title && (
+      <p class={`fw-semibold fs-6 text-uppercase ${textLabelColorClass}`}>
+        {title}
+      </p>
+    )
+  }
+  {
+    content.map((card) => (
+      <div class="col-12 col-md-6 mb-3 mb-md-4 col-lg-4">
+        <CardEditorialWithIcon {...card} />
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,26 @@
+---
+import type { UseCaseContainerFragmentType } from "../../../graphql/sectionFragments";
+import UseCaseContainer from "../../organisms/UseCaseContainer/UseCaseContainer.astro";
+
+type Props = {
+  block: UseCaseContainerFragmentType;
+};
+
+const { block } = Astro.props as Props;
+const useCases = block.useCases.map((useCase) => {
+  return {
+    title: useCase.title,
+    paragraph: useCase.paragraph,
+    linkTo: "#",
+    image: useCase.image,
+    listTopics: {
+      title: useCase.listTopics?.title || undefined,
+      topics: useCase.listTopics?.listTopics.map((topic) => topic.label) || [],
+    },
+    descriptionTitle: useCase.descriptionTitle || undefined,
+    description: useCase.description || undefined,
+  };
+});
+---
+
+<UseCaseContainer useCases={useCases} />

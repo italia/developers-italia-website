@@ -1,0 +1,19 @@
+---
+import type { FaqSectionRecordFragmentType } from "../../../graphql/sectionFragments";
+import type { VariantAccordionProps } from "../../molecules/Accordion/types";
+import { FAQSection } from "../../organisms/FAQSection";
+
+type Props = {
+  block: FaqSectionRecordFragmentType;
+};
+
+const { block } = Astro.props as Props;
+---
+
+<FAQSection
+  title={block.title}
+  accordion={{
+    ...block.accordion,
+    variant: block.accordion.variant as VariantAccordionProps,
+  }}
+/>

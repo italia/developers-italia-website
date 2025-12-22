@@ -1,20 +1,28 @@
 ---
-import type { HomepageModelContentFragmentType } from "@graphql/templateFragments";
 import HeroAdapter from "@components/cms-adapters/datocms/HeroAdapter.astro";
 import NewsFeedAdapter from "@components/cms-adapters/datocms/NewsFeedAdapter.astro";
 import SectionAdapter from "@components/cms-adapters/datocms/SectionAdapter.astro";
 import SupportChannelsSectionAdapter from "@components/cms-adapters/datocms/SupportChannelsSectionAdapter.astro";
+import DataSectionAdapter from "@components/cms-adapters/datocms/DataSectionAdapter.astro";
+import FAQSectionAdapter from "@components/cms-adapters/datocms/FAQSectionAdapter.astro";
+import type {
+  HomepageModelContentFragmentType,
+  PageContentFragmentType,
+} from "@graphql/templateFragments";
+import UseCaseContainerAdapter from "./UseCaseContainerAdapter.astro";
+
+type ContentType = HomepageModelContentFragmentType | PageContentFragmentType;
 
 type Props = {
-  template: HomepageModelContentFragmentType[];
+  content: ContentType[];
   sitename: string;
 };
 
-const { template, sitename } = Astro.props;
+const { content, sitename } = Astro.props;
 ---
 
 {
-  template.map((block) => {
+  content.map((block) => {
     switch (block.componentName) {
       case "HeroRecord":
         return <HeroAdapter block={block} sitename={sitename} />;
@@ -24,6 +32,12 @@ const { template, sitename } = Astro.props;
         return <SupportChannelsSectionAdapter block={block} />;
       case "SectionRecord":
         return <SectionAdapter block={block} />;
+      case "FaqSectionRecord":
+        return <FAQSectionAdapter block={block} />;
+      case "DataSectionRecord":
+        return <DataSectionAdapter block={block} />;
+      case "UseCaseContainerRecord":
+        return <UseCaseContainerAdapter block={block} />;
       default:
         return null;
     }

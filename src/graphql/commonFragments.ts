@@ -311,6 +311,7 @@ export const AccordionFragment = graphql(`
       body
       header
     }
+    variant
   }
 `);
 
@@ -345,3 +346,76 @@ export const MenuItemFragment = graphql(`
 `);
 
 export type MenuItemFragmentType = FragmentOf<typeof MenuItemFragment>;
+
+export const StatisticsBoxFragment = graphql(`
+  fragment StatisticsBoxFragment on StatisticsBoxRecord @_unmask {
+    id
+    title
+    description
+  }
+`);
+
+export type StatisticsBoxFragmentType = FragmentOf<
+  typeof StatisticsBoxFragment
+>;
+
+export const CardEditorialNewsFragment = graphql(
+  `
+    fragment CardEditorialNewsFragment on CardEditorialNewsRecord @_unmask {
+      id
+      title
+      image {
+        ...ImageFragment
+      }
+      footerLink
+      description
+      date
+      category
+    }
+  `,
+  [ImageFragment],
+);
+
+export type CardEditorialNewsFragmentType = FragmentOf<
+  typeof CardEditorialNewsFragment
+>;
+
+export const ListItemFragment = graphql(`
+  fragment ListItemFragment on ListItemRecord @_unmask {
+    id
+    paragraph
+    title
+  }
+`);
+
+export type ListItemFragmentType = FragmentOf<typeof ListItemFragment>;
+
+export const ExternalLinkFragment = graphql(`
+  fragment ExternalLinkFragment on ExternalLinkRecord @_unmask {
+    id
+    url
+    titleIcon
+    label
+    icon
+    description
+  }
+`);
+
+export type ExternalLinkFragmentType = FragmentOf<typeof ExternalLinkFragment>;
+
+export const AdditionalContentFragment = graphql(`
+  fragment AdditionalContentFragment on ListContentRecord @_unmask {
+    id
+    title
+    content {
+      id
+      title
+      icon
+      description
+    }
+  }
+`);
+
+export type AdditionalContentFragmentType = FragmentOf<
+  typeof AdditionalContentFragment
+>;

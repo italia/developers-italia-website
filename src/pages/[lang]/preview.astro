@@ -1,7 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
-import { GlobalSettingsQuery, PageBySlugQuery } from "@utils/query";
+import {
+  GlobalSettingsQuery,
+  HomepageQuery,
+  PageBySlugQuery,
+} from "@utils/query";
 import { isDraftModeEnabled } from "@lib/draftMode";
 import DraftModeQueryListener from "@components/DraftModeQueryListener.astro";
 import type { PageContentFragmentType } from "@graphql/templateFragments";
@@ -17,12 +21,12 @@ if (!draftModeEnabled) {
 const { slug } = Astro.params;
 const { lang } = Astro.locals;
 
-const { page } = await executeQuery(PageBySlugQuery, {
+const { homepage } = await executeQuery(HomepageQuery, {
   variables: { slug: slug!, locale: lang },
   includeDrafts: true,
 });
 
-const content = page?.content as PageContentFragmentType[];
+const content = homepage?.content as PageContentFragmentType[];
 
 const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
   variables: { locale: lang },
@@ -34,7 +38,7 @@ const redirectUrl =
     : "/";
 ---
 
-<Layout redirectUrl={redirectUrl} locale={lang} pageSeo={page?.seo}>
+<Layout redirectUrl={redirectUrl} locale={lang} pageSeo={homepage?.seo}>
   <PageAdapter content={content} sitename={globalSetting?.siteName || "Home"} />
 </Layout>
 <DraftModeQueryListener
