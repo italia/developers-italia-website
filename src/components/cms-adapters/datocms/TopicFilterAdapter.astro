@@ -1,0 +1,38 @@
+---
+import { TopicFilter } from "@components/organisms/TopicFilter";
+import type { ContentCollectionProps } from "@components/organisms/TopicFilter/types";
+import type { TopicFilterFragmentType } from "@graphql/sectionFragments";
+
+type Props = {
+  block: TopicFilterFragmentType;
+};
+
+const { block } = Astro.props;
+
+const contentCollection: ContentCollectionProps[] = block.content.map(
+  (content) => {
+    return {
+      title: content.title,
+      topicSlug: content.content[0].topic.label,
+      paragraph: content.paragraph,
+      items: content.content.map((item) => {
+        return {
+          title: item.title,
+          description: item.abstract,
+          image: item.image,
+          linkTo: "#",
+          category: item.topic.label,
+        };
+      }),
+    };
+  },
+);
+---
+
+<TopicFilter
+  title={block.title}
+  filterTitle={block.titleFilter}
+  labelForAll={block.labelForAll}
+  paragraph={block.paragraph}
+  contentCollection={contentCollection}
+/>

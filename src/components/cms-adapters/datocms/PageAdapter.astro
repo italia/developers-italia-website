@@ -9,7 +9,8 @@ import type {
   HomepageModelContentFragmentType,
   PageContentFragmentType,
 } from "@graphql/templateFragments";
-import UseCaseContainerAdapter from "./UseCaseContainerAdapter.astro";
+import UseCaseContainerAdapter from "@components/cms-adapters/datocms/UseCaseContainerAdapter.astro";
+import TopicFilterAdapter from "@components/cms-adapters/datocms/TopicFilterAdapter.astro";
 
 type ContentType = HomepageModelContentFragmentType | PageContentFragmentType;
 
@@ -38,6 +39,8 @@ const { content, sitename } = Astro.props;
         return <DataSectionAdapter block={block} />;
       case "UseCaseContainerRecord":
         return <UseCaseContainerAdapter block={block} />;
+      case "TopicFilterRecord":
+        return <TopicFilterAdapter block={block} />;
       default:
         return null;
     }

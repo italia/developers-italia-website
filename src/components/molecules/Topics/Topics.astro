@@ -3,7 +3,14 @@ import { Chip } from "@components/atoms/Chip";
 import type { TopicsProps } from "./types";
 
 type Props = TopicsProps;
-const { title, topics, variant = "row" } = Astro.props;
+const {
+  title,
+  topics,
+  variant = "row",
+  variantChip = "primary",
+  sizeChip = "large",
+  disabled = true,
+} = Astro.props;
 ---
 
 <div
@@ -18,14 +25,17 @@ const { title, topics, variant = "row" } = Astro.props;
       </span>
     )
   }
-  <ul
-    class=`it-list d-flex mb-0 ${variant === "column" ? "flex-column" : ""}`
-    aria-label="Argomenti correlati:"
-  >
+  <ul class="it-list d-flex mb-0 flex-wrap" aria-label="Argomenti correlati:">
     {
       topics.map((topic) => (
         <li class="list-item border-bottom-0 me-3 mt-1">
-          <Chip visuallyHidden="" disabled label={topic} size="large" />
+          <Chip
+            visuallyHidden=""
+            disabled={disabled}
+            label={topic}
+            size={sizeChip}
+            variant={variantChip}
+          />
         </li>
       ))
     }

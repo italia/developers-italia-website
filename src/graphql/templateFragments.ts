@@ -6,6 +6,7 @@ import {
   NewsFeedFragment,
   SectionFragment,
   SupportChannelsSectionFragment,
+  TopicFilterFragment,
   UseCaseContainerFragment,
 } from "@graphql/sectionFragments";
 
@@ -71,6 +72,9 @@ export const PageContentFragment = graphql(
       ... on UseCaseContainerRecord {
         ...UseCaseContainerFragment
       }
+      ... on TopicFilterRecord {
+        ...TopicFilterFragment
+      }
     }
   `,
   [
@@ -81,6 +85,7 @@ export const PageContentFragment = graphql(
     FaqSectionRecordFragment,
     DataSectionRecordFragment,
     UseCaseContainerFragment,
+    TopicFilterFragment,
   ],
 );
 

@@ -8,6 +8,7 @@ import {
   ExternalLinkFragment,
   ImageBlockFragment,
   ImageFragment,
+  ListCollectionFragment,
   ListItemFragment,
   MenuItemFragment,
   NewsTabFragment,
@@ -265,3 +266,21 @@ export const UseCaseContainerFragment = graphql(
 export type UseCaseContainerFragmentType = FragmentOf<
   typeof UseCaseContainerFragment
 >;
+
+export const TopicFilterFragment = graphql(
+  `
+    fragment TopicFilterFragment on TopicFilterRecord @_unmask {
+      id
+      title
+      titleFilter
+      paragraph
+      labelForAll
+      content {
+        ...ListCollectionFragment
+      }
+    }
+  `,
+  [ListCollectionFragment],
+);
+
+export type TopicFilterFragmentType = FragmentOf<typeof TopicFilterFragment>;

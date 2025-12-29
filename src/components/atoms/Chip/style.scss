@@ -1,37 +1,51 @@
 @use "bootstrap-italia/src/scss/bootstrap-italia" as *;
 
-.chip.chip-outline-white {
-  background-color: transparent;
-  border-color: $white;
-  text-decoration: none;
-}
+.chip {
+  &.chip-outline-white,
+  &.chip-simple {
+    text-decoration: none;
+  }
 
-.chip.chip-simple {
-  text-decoration: none;
-}
+  &.chip-outline-white {
+    background-color: transparent;
+    border-color: $white;
 
-.chip.chip-outline-white:hover {
-  border: 1px solid $white;
-  background: $primary-a10;
-}
+    .chip-label {
+      color: $white;
+    }
 
-.chip.chip-outline-white:active {
-  background: $white;
-}
+    &:hover {
+      border: 1px solid $white;
+      background-color: $primary-a10;
+    }
 
-.chip.chip-outline-white .chip-label {
-  color: $white;
-}
+    &:active {
+      background-color: $white;
 
-.chip.chip-outline-white .chip-label:active {
-  color: $primary-a10;
-}
+      .chip-label {
+        color: $primary-a10;
+      }
+    }
 
-.chip.chip-outline-white.chip-disabled {
-  border: 1px solid $gray-border;
-  background: $gray-100;
-}
+    &.chip-disabled {
+      border: 1px solid $gray-border;
+      background-color: $gray-100;
 
-.chip.chip-outline-white.chip-disabled .chip-label {
-  color: $color-text-secondary;
+      .chip-label {
+        color: $color-text-secondary;
+      }
+    }
+  }
+
+  &.chip-primary {
+    background-color: $white;
+
+    &.active {
+      background-color: $primary;
+
+      .chip-label {
+        color: $white;
+      }
+    }
+  }
 }

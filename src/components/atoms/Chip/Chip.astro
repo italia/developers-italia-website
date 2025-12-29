@@ -36,7 +36,7 @@ const className = `chip chip-simple ${chipVariant} ${disabledClass} ${sizeClass}
   @import "./style.scss";
 </style>
 
-<button disabled class={className}>
+<button disabled={disabled} class={className}>
   <span class="visually-hidden">{visuallyHidden}</span>
   <span class="chip-label">{label}</span>
 </button>
