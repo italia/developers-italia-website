@@ -1,6 +1,6 @@
 export type SidebarProps = {
   id: string;
-  header: string;
+  header?: string;
   openLabel: string;
   closeLabel: string;
   ariaLabel: string;
@@ -11,6 +11,7 @@ export type SidebarItemFirstLevelProps = {
   idAccordion: string;
   label: string;
   items: SidebarItemSecondLevelProps[];
+  isOpen: boolean;
 };
 
 export type SidebarItemSecondLevelProps = {

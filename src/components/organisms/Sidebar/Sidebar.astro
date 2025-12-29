@@ -7,49 +7,44 @@ type Props = SidebarProps;
 const { id, header, openLabel, closeLabel, ariaLabel, items } = Astro.props;
 ---
 
-<div
-  class="col-12 col-lg-3 px-lg-0 pb-lg-5 position-sticky"
-  style="z-index: 1000;"
+<nav
+  class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side border-end-0"
+  data-bs-navscroll
 >
-  <nav
-    class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side"
-    data-bs-navscroll
+  <button
+    class="custom-navbar-toggler"
+    type="button"
+    aria-controls={id}
+    aria-label={ariaLabel}
+    data-bs-toggle="navbarcollapsible"
+    data-bs-target="#navbarNav"
   >
-    <button
-      class="custom-navbar-toggler"
-      type="button"
-      aria-controls={id}
-      aria-label={ariaLabel}
-      data-bs-toggle="navbarcollapsible"
-      data-bs-target="#navbarNav"
-    >
-      <span class="it-list"></span>
-      <svg role="img" class="icon icon-sm icon-primary align-middle">
-        <use href="/bsi-svg/sprites.svg#it-chevron-right"></use>
-      </svg>{openLabel}
-    </button>
-    <div class="navbar-collapsable" id="navbarNav" tabindex="-1">
-      <div class="close-div visually-hidden">
-        <button class="btn close-menu" type="button">
-          <span class="it-close"></span>{closeLabel}
-        </button>
-      </div>
-      <div class="inline-menu menu-wrapper" tabindex="-1">
-        <button type="button" class="it-back-button btn w-100 text-start">
-          <svg class="icon icon-sm icon-primary align-top">
-            <use
-              href="/bsi-svg/sprites.svg#it-chevron-left"
-              xlink:href="/bsi-svg/sprites.svg#it-chevron-left"></use>
-          </svg>
-          <span>{closeLabel}</span>
-        </button>
-        <div class="link-list-wrapper">
-          <h3>{header}</h3>
-          <ul class="link-list">
-            {items.map((item) => <SidebarItemFirstLevel {...item} />)}
-          </ul>
-        </div>
+    <span class="it-list"></span>
+    <svg role="img" class="icon icon-sm icon-primary align-middle">
+      <use href="/bsi-svg/sprites.svg#it-chevron-right"></use>
+    </svg>{openLabel}
+  </button>
+  <div class="navbar-collapsable" id="navbarNav" tabindex="-1">
+    <div class="close-div visually-hidden">
+      <button class="btn close-menu" type="button">
+        <span class="it-close"></span>{closeLabel}
+      </button>
+    </div>
+    <div class="inline-menu menu-wrapper py-80" tabindex="-1">
+      <button type="button" class="it-back-button btn w-100 text-start">
+        <svg class="icon icon-sm icon-primary align-top">
+          <use
+            href="/bsi-svg/sprites.svg#it-chevron-left"
+            xlink:href="/bsi-svg/sprites.svg#it-chevron-left"></use>
+        </svg>
+        <span>{closeLabel}</span>
+      </button>
+      <div class="link-list-wrapper">
+        <h3>{header}</h3>
+        <ul class="link-list">
+          {items.map((item) => <SidebarItemFirstLevel {...item} />)}
+        </ul>
       </div>
     </div>
-  </nav>
-</div>
+  </div>
+</nav>

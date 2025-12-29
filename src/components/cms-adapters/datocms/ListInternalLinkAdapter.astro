@@ -1,0 +1,27 @@
+---
+import type {
+  CalloutFragmentType,
+  ListInternalLinkFragmentType,
+} from "../../../graphql/commonFragments";
+import { Callout } from "../../molecules/Callout";
+import { ListInternalLink } from "../../molecules/ListInternalLink";
+
+type DatoRecord = ListInternalLinkFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+
+const links = block.links.map((link) => ({
+  linkTo: "#",
+  label: link.label,
+  icon: link.icon || undefined,
+}));
+---
+
+<ListInternalLink links={links} />

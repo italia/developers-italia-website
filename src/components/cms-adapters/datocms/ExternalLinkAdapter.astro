@@ -1,0 +1,26 @@
+---
+import type { ExternalLinkFragmentType } from "../../../graphql/commonFragments";
+import { CardInfoAndService } from "../../molecules/CardInfoAndService";
+
+type DatoRecord = ExternalLinkFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+
+if (!block.description || !block.icon || !block.label || !block.url) {
+  return null;
+}
+---
+
+<CardInfoAndService
+  title={block.label}
+  linkTo={block.url}
+  icon={block.icon}
+  description={block.description}
+/>

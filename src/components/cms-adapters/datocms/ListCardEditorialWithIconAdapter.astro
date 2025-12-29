@@ -1,0 +1,20 @@
+---
+import type { CardEditorialWithIconFragmentType } from "../../../graphql/commonFragments";
+import { ListCardEditorialWithIcon } from "../../molecules/ListCardEditorialWithIcon";
+
+type DatoRecord = {
+  cards: CardEditorialWithIconFragmentType[];
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+
+const cardsData = block?.cards || [];
+---
+
+<ListCardEditorialWithIcon cards={cardsData} />

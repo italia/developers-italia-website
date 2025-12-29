@@ -1,0 +1,20 @@
+---
+import type { TopicsBlockFragmentType } from "../../../graphql/commonFragments";
+import { Topics } from "../../molecules/Topics";
+
+type DatoRecord = TopicsBlockFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+---
+
+<Topics
+  title={block.title || undefined}
+  topics={block.listTopics.map((topic) => topic.label)}
+/>

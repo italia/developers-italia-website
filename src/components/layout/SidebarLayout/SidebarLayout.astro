@@ -1,0 +1,26 @@
+---
+import ArticleAdapter from "@components/cms-adapters/datocms/ArticleAdapter.astro";
+import SidebarAdapter from "@components/cms-adapters/datocms/SidebarAdapter.astro";
+import type { SidebarFragmentType } from "@graphql/commonFragments";
+import type { ArticleContentFragmentType } from "@graphql/templateFragments";
+
+type Props = {
+  sidebar: SidebarFragmentType;
+  content: ArticleContentFragmentType;
+};
+
+const { sidebar, content } = Astro.props;
+---
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-12 col-lg-4 px-lg-0 pb-lg-5 menu-column border-end position-sticky"
+    >
+      <SidebarAdapter sidebar={sidebar} />
+    </div>
+    <div class="col-12 col-lg-7 px-lg-0 content-column">
+      <ArticleAdapter content={content} />
+    </div>
+  </div>
+</div>

@@ -4,16 +4,16 @@ import type { SidebarItemFirstLevelProps } from "./types";
 
 type Props = SidebarItemFirstLevelProps;
 
-const { idAccordion, label, items } = Astro.props;
+const { idAccordion, label, items, isOpen } = Astro.props;
 ---
 
 <li>
   <a
-    class="list-item large medium right-icon"
+    class=`list-item large medium right-icon  ${isOpen && "show"}`
     href={`#collapse_${idAccordion}`}
     role="button"
     data-bs-toggle="collapse"
-    aria-expanded="false"
+    aria-expanded={isOpen}
     aria-controls={`collapse_${idAccordion}`}
   >
     <span class="list-item-title-icon-wrapper">
@@ -23,7 +23,10 @@ const { idAccordion, label, items } = Astro.props;
       >
     </span>
   </a>
-  <ul class="link-sublist collapse" id={`collapse_${idAccordion}`}>
+  <ul
+    class=`link-sublist collapse ${isOpen && "show"}`
+    id={`collapse_${idAccordion}`}
+  >
     {items.map((item) => <SidebarItemSecondLevel {...item} />)}
   </ul>
 </li>

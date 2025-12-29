@@ -1,0 +1,23 @@
+---
+import { Sidebar } from "@components/organisms/Sidebar";
+import type { SidebarFragmentType } from "@graphql/commonFragments";
+import { createMenuSidebar } from "@utils/createMenuSidebarHelper";
+
+type Props = {
+  sidebar: SidebarFragmentType;
+};
+
+const { sidebar } = Astro.props;
+const currentPathname = Astro.url.pathname.replace(/\/$/, "");
+
+const sidebarItems = createMenuSidebar(sidebar.menu, currentPathname);
+---
+
+<Sidebar
+  id={sidebar.id}
+  header={sidebar.headerLabel || undefined}
+  ariaLabel="Apri/chiudi sidebar"
+  openLabel={sidebar.openLabel}
+  closeLabel={sidebar.closeLabel}
+  items={sidebarItems}
+/>

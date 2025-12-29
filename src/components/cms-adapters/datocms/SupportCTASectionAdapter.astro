@@ -1,0 +1,23 @@
+---
+import type { SupportCTASectionFragmentType } from "../../../graphql/commonFragments";
+import { SupportCTASection } from "../../organisms/SupportCTASection";
+
+type DatoRecord = SupportCTASectionFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+---
+
+<SupportCTASection
+  title={block.title}
+  paragraph={block.paragraph}
+  image={block.image}
+  size="small"
+  variant="lighter"
+/>

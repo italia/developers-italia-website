@@ -1,0 +1,21 @@
+---
+import type { CalloutFragmentType } from "../../../graphql/commonFragments";
+import { Callout } from "../../molecules/Callout";
+
+type DatoRecord = CalloutFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+---
+
+<Callout
+  title={block.title}
+  paragraph={block.paragraph}
+  visuallyHidden={block.visuallyHidden || undefined}
+/>

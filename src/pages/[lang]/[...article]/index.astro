@@ -1,0 +1,63 @@
+---
+import { SidebarLayout } from "@components/layout/SidebarLayout";
+import type { TitleMetaLinkTag } from "@datocms/astro";
+import type {
+  SidebarFragmentType,
+  TagFragmentType,
+} from "@graphql/commonFragments";
+import type { ArticleContentFragmentType } from "@graphql/templateFragments";
+import type { SiteLocale } from "@graphql/types";
+import Layout from "@layouts/Layout.astro";
+import { executeQuery } from "@lib/datocms";
+import { buildFullPath } from "@utils/pathHelper";
+import { AllArticlesQuery, SidebarQuery } from "@utils/query";
+
+export async function getStaticPaths() {
+  type PathItem = {
+    params: {
+      article: string;
+      lang: SiteLocale;
+    };
+    props: {
+      seo: TagFragmentType[];
+      content: ArticleContentFragmentType;
+    };
+  };
+
+  const response = await executeQuery(AllArticlesQuery);
+  if (!response.allArticles) {
+    return [];
+  }
+
+  return response.allArticles
+    ?.flatMap((article) =>
+      article.locales.map((lang) => ({
+        params: {
+          article: buildFullPath(article, lang, response.allArticles),
+          lang: lang,
+        },
+        props: {
+          content: article.allContentLocales?.find(
+            (contentLocale) => contentLocale.locale === lang,
+          )?.value,
+        },
+      })),
+    )
+    .filter((path): path is PathItem => !!path.params.lang);
+}
+
+const { lang } = Astro.params;
+const { seo, content } = Astro.props;
+
+const { sidebarForArticle } = await executeQuery(SidebarQuery, {
+  variables: { locale: lang },
+});
+
+if (!sidebarForArticle) {
+  return;
+}
+---
+
+<Layout locale={lang} pageSeo={seo}>
+  <SidebarLayout sidebar={sidebarForArticle} content={content} />
+</Layout>

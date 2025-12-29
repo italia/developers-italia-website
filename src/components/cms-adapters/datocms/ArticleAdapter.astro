@@ -1,0 +1,35 @@
+---
+import { SectionContainer } from "@components/organisms/SectionContainer";
+import { StructuredText } from "@datocms/astro";
+import type { ArticleContentFragmentType } from "@graphql/templateFragments";
+import ListCardEditorialWithIconAdapter from "@components/cms-adapters/datocms/ListCardEditorialWithIconAdapter.astro";
+import OrderedListAdapter from "@components/cms-adapters/datocms/OrderedListAdapter.astro";
+import ExternalLinkAdapter from "@components/cms-adapters/datocms/ExternalLinkAdapter.astro";
+import CalloutAdapter from "@components/cms-adapters/datocms/CalloutAdapter.astro";
+import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
+import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
+import ListInternalLinkAdapter from "@components/cms-adapters/datocms/ListInternalLinkAdapter.astro";
+import TopicsAdapter from "@components/cms-adapters/datocms/TopicsAdapter.astro";
+
+type Props = {
+  content: ArticleContentFragmentType;
+};
+
+const { content } = Astro.props;
+---
+
+<SectionContainer className="ps-5">
+  <StructuredText
+    data={content}
+    blockComponents={{
+      ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
+      ExternalLinkRecord: ExternalLinkAdapter,
+      OrderedListRecord: OrderedListAdapter,
+      CalloutRecord: CalloutAdapter,
+      QuickLinkCardRecord: QuickLinkCardAdapter,
+      SupportCtaSectionRecord: SupportCTASectionAdapter,
+      ListInternalLinkRecord: ListInternalLinkAdapter,
+      TopicsBlockRecord: TopicsAdapter,
+    }}
+  />
+</SectionContainer>

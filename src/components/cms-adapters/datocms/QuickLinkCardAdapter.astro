@@ -1,0 +1,24 @@
+---
+import type { QuickLinkCardFragmentType } from "../../../graphql/commonFragments";
+import { QuickLinkCard } from "../../molecules/QuickLinkCard";
+
+type DatoRecord = QuickLinkCardFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props as Props;
+
+const links = block.links.map((link) => ({
+  linkTo: link.url,
+  label: link.label,
+  icon: link.icon || undefined,
+  titleIcon: link.titleIcon || undefined,
+}));
+---
+
+<QuickLinkCard title={block.title} links={links} />
