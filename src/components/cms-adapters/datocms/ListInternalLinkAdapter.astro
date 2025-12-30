@@ -1,9 +1,6 @@
 ---
-import type {
-  CalloutFragmentType,
-  ListInternalLinkFragmentType,
-} from "../../../graphql/commonFragments";
-import { Callout } from "../../molecules/Callout";
+import { linkResolver } from "@data/linkMap";
+import type { ListInternalLinkFragmentType } from "../../../graphql/commonFragments";
 import { ListInternalLink } from "../../molecules/ListInternalLink";
 
 type DatoRecord = ListInternalLinkFragmentType & {
@@ -16,9 +13,9 @@ type Props = {
 };
 
 const { block } = Astro.props as Props;
-
+const { lang } = Astro.locals;
 const links = block.links.map((link) => ({
-  linkTo: "#",
+  linkTo: linkResolver(link.linkTo.id, lang),
   label: link.label,
   icon: link.icon || undefined,
 }));

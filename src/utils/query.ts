@@ -6,6 +6,8 @@ import {
 } from "@graphql/commonFragments";
 import {
   AllArticlesFragment,
+  AllArticlesSlugFragment,
+  AllPagesSlugFragment,
   HomepageModelContentFragment,
   PageContentFragment,
 } from "@graphql/templateFragments";
@@ -120,4 +122,22 @@ export const SidebarQuery = graphql(
     }
   `,
   [SidebarFragment],
+);
+
+export const AllLinkQuery = graphql(
+  `
+    query AllLinks {
+      allPages {
+        ...AllPagesSlugFragment
+      }
+      allArticles {
+        ...AllArticlesSlugFragment
+      }
+      homepage {
+        id
+        locales: _locales
+      }
+    }
+  `,
+  [AllArticlesSlugFragment, AllPagesSlugFragment],
 );

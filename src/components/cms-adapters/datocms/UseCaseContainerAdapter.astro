@@ -1,4 +1,5 @@
 ---
+import { linkResolver } from "@data/linkMap";
 import type { UseCaseContainerFragmentType } from "../../../graphql/sectionFragments";
 import UseCaseContainer from "../../organisms/UseCaseContainer/UseCaseContainer.astro";
 
@@ -6,12 +7,14 @@ type Props = {
   block: UseCaseContainerFragmentType;
 };
 
-const { block } = Astro.props as Props;
+const { block } = Astro.props;
+const { lang } = Astro.locals;
+
 const useCases = block.useCases.map((useCase) => {
   return {
     title: useCase.title,
     paragraph: useCase.paragraph,
-    linkTo: "#",
+    linkTo: linkResolver(useCase.pointsTo.id, lang),
     image: useCase.image,
     listTopics: {
       title: useCase.listTopics?.title || undefined,

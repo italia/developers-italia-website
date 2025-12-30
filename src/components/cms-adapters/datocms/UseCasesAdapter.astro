@@ -1,18 +1,20 @@
 ---
 import type { UseCaseBlockFragmentType } from "@graphql/commonFragments";
 import UseCases from "@components/molecules/UseCases/UseCases.astro";
+import { linkResolver } from "@data/linkMap";
 
 type Props = {
   block: UseCaseBlockFragmentType;
 };
 
 const { block } = Astro.props;
+const { lang } = Astro.locals;
 
 const usecases = block.useCases.map((usecase) => {
   return {
     title: usecase.title,
     paragraph: usecase.paragraph,
-    linkTo: usecase.pointsTo.slug,
+    linkTo: linkResolver(usecase.pointsTo.id, lang),
     image: usecase.image,
   };
 });

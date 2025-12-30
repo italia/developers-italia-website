@@ -1,4 +1,5 @@
 import type { MenuItemsProps } from "@components/organisms/Header/types";
+import { linkResolver } from "@data/linkMap";
 import type { MenuItemFragmentType } from "@graphql/commonFragments";
 import type { SiteLocale } from "@graphql/types";
 
@@ -15,18 +16,11 @@ export function createMenu(
 
   return datoItems.map((item) => {
     const lang = currentLocale;
-    const pageSlug = item.pointsTo?.slug;
-
-    let finalHref: string;
-    if (!pageSlug || pageSlug === "") {
-      finalHref = `/${lang}`;
-    } else {
-      finalHref = `/${lang}/${pageSlug}`;
-    }
+    const pageId = item.pointsTo.id;
+    let finalHref = linkResolver(pageId, lang);
 
     const normalizedMenuHref = finalHref.replace(/\/$/, "");
-
-    const isActive = normalizedMenuHref === normalizedCurrentPath;
+    const isActive = normalizedCurrentPath.startsWith(normalizedMenuHref);
 
     return {
       id: item.id,

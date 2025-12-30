@@ -1,6 +1,7 @@
 ---
 import { TopicFilter } from "@components/organisms/TopicFilter";
 import type { ContentCollectionProps } from "@components/organisms/TopicFilter/types";
+import { linkResolver } from "@data/linkMap";
 import type { TopicFilterFragmentType } from "@graphql/sectionFragments";
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 };
 
 const { block } = Astro.props;
+const { lang } = Astro.locals;
 
 const contentCollection: ContentCollectionProps[] = block.content.map(
   (content) => {
@@ -20,7 +22,7 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
           title: item.title,
           description: item.abstract,
           image: item.image,
-          linkTo: "#",
+          linkTo: linkResolver(item.id, lang),
           category: item.topic.label,
         };
       }),

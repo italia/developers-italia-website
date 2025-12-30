@@ -9,8 +9,8 @@ type Props = {
 
 const { sidebar } = Astro.props;
 const currentPathname = Astro.url.pathname.replace(/\/$/, "");
-
-const sidebarItems = createMenuSidebar(sidebar.menu, currentPathname);
+const { lang } = Astro.locals;
+const sidebarItems = createMenuSidebar(sidebar.menu, currentPathname, lang);
 ---
 
 <Sidebar

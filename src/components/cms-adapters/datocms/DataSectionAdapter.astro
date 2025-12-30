@@ -1,4 +1,5 @@
 ---
+import { linkResolver } from "@data/linkMap";
 import type { DataSectionRecordFragmentType } from "../../../graphql/sectionFragments";
 import { DataSection } from "../../organisms/DataSection";
 
@@ -6,7 +7,9 @@ type Props = {
   block: DataSectionRecordFragmentType;
 };
 
-const { block } = Astro.props as Props;
+const { block } = Astro.props;
+const { lang } = Astro.locals;
+
 const highlights = {
   ...block.highlights,
   image: block.highlights.image,
@@ -30,7 +33,7 @@ const newsResult = [
     title: block.result.useCase.title,
     description: block.result.useCase.paragraph,
     image: block.result.useCase.image,
-    linkTo: "#",
+    linkTo: linkResolver(block.result.useCase.pointsTo.id, lang),
   },
 ];
 ---

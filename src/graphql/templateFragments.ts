@@ -159,20 +159,11 @@ export type ArticleContentFragmentType = FragmentOf<
   typeof ArticleContentFragment
 >;
 
-export const AllArticlesFragment = graphql(
+export const AllArticlesSlugFragment = graphql(
   `
-    fragment AllArticlesFragment on ArticleRecord @_unmask {
+    fragment AllArticlesSlugFragment on ArticleRecord @_unmask {
       id
       locales: _locales
-      seo: _seoMetaTags {
-        ...TagFragment
-      }
-      allContentLocales: _allContentLocales {
-        locale
-        value {
-          ...ArticleContentFragment
-        }
-      }
       allSlugLocales: _allSlugLocales {
         ...LocaleFragment
       }
@@ -187,7 +178,49 @@ export const AllArticlesFragment = graphql(
       }
     }
   `,
-  [LocaleFragment, TagFragment, ArticleContentFragment],
+  [LocaleFragment],
+);
+
+export type AllArticlesSlugFragmentType = FragmentOf<
+  typeof AllArticlesSlugFragment
+>;
+
+export const AllPagesSlugFragment = graphql(
+  `
+    fragment AllPagesSlugFragment on PageRecord @_unmask {
+      id
+      allSlugLocales: _allSlugLocales {
+        ...LocaleFragment
+      }
+    }
+  `,
+  [LocaleFragment],
+);
+
+export type AllPagesSlugFragmentType = FragmentOf<typeof AllPagesSlugFragment>;
+
+export const AllArticlesFragment = graphql(
+  `
+    fragment AllArticlesFragment on ArticleRecord @_unmask {
+      id
+      seo: _seoMetaTags {
+        ...TagFragment
+      }
+      allContentLocales: _allContentLocales {
+        locale
+        value {
+          ...ArticleContentFragment
+        }
+      }
+      ...AllArticlesSlugFragment
+    }
+  `,
+  [
+    LocaleFragment,
+    TagFragment,
+    ArticleContentFragment,
+    AllArticlesSlugFragment,
+  ],
 );
 
 export type AllArticlesFragmentType = FragmentOf<typeof AllArticlesFragment>;

@@ -11,6 +11,7 @@ import ImageContainerAdapter from "./ImageContainerAdapter.astro";
 import StatisticAdapter from "./StatisticAdapter.astro";
 import UseCasesAdapter from "./UseCasesAdapter.astro";
 import { AdditionalContent } from "@components/organisms/AdditionalContent";
+import { linkResolver } from "@data/linkMap";
 
 type Props = {
   block: SectionFragmentType;
@@ -33,6 +34,8 @@ const variantAdditionalContent =
   block.background === "dark" || block.background === "primary"
     ? "light"
     : undefined;
+
+const { lang } = Astro.locals;
 ---
 
 <SplitContent
@@ -47,7 +50,7 @@ const variantAdditionalContent =
     paragraph={leftBlock.paragraph}
     variant={variantTextContainer}
     labelButton={leftBlock.cta?.label}
-    linkTo={leftBlock.cta?.linkTo.slug}
+    linkTo={linkResolver(leftBlock.cta?.linkTo.id, lang)}
   />
 
   <Fragment slot="right">

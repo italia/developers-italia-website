@@ -1,4 +1,4 @@
-import type { AllArticlesFragmentType } from "@graphql/templateFragments";
+import type { AllArticlesSlugFragmentType } from "@graphql/templateFragments";
 import type { SiteLocale } from "../graphql/types";
 
 interface HasSlugLocales {
@@ -11,16 +11,16 @@ interface HasSlugLocales {
 }
 
 export function buildFullPath(
-  article: AllArticlesFragmentType,
+  article: AllArticlesSlugFragmentType,
   locale: SiteLocale,
-  allArticles: AllArticlesFragmentType[],
+  allArticles: AllArticlesSlugFragmentType[],
 ) {
   const segments = [];
 
   const getSlug = (item: HasSlugLocales | null | undefined) =>
     item?.allSlugLocales?.find((s) => s.locale === locale)?.value;
 
-  let current: AllArticlesFragmentType | null = article;
+  let current: AllArticlesSlugFragmentType | null = article;
 
   while (current) {
     const slug = getSlug(current);

@@ -3,7 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "generate:links": "bun ./src/scripts/generate-link-map.ts",
+    "predev": "bun run generate:links",
     "dev": "dotenv -c -- bash -c 'astro dev'",
+    "prebuild": "bun run generate:links",
     "build": "dotenv -c -- bash -c 'astro build'",
     "preview": "dotenv -c -- bash -c 'astro preview'",
     "astro": "dotenv -c -- bash -c 'astro'",

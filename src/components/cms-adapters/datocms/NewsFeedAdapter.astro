@@ -1,12 +1,14 @@
 ---
 import type { NewsFeedFragmentType } from "@graphql/sectionFragments";
 import { NewsFeed } from "@components/organisms/NewsFeed";
+import { linkResolver } from "@data/linkMap";
 
 type Props = {
   block: NewsFeedFragmentType;
 };
 
 const { block } = Astro.props;
+const { lang } = Astro.locals;
 ---
 
 <NewsFeed
@@ -37,7 +39,7 @@ const { block } = Astro.props;
           news: tab.news.map((n) => ({
             title: n.title,
             image: n.image,
-            linkTo: `/${n.slug}`,
+            linkTo: linkResolver(n.id, lang),
             category: n.category,
             dateTime: n.dateOfPublication,
           })),

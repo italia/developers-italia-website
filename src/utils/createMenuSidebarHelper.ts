@@ -1,9 +1,12 @@
 import type { SidebarItemFirstLevelProps } from "@components/organisms/Sidebar/types";
+import { linkResolver } from "@data/linkMap";
 import type { SidebarMenuFragmentType } from "@graphql/commonFragments";
+import type { SiteLocale } from "@graphql/types";
 
 export function createMenuSidebar(
   datoItems: SidebarMenuFragmentType[],
   currentPathname: string,
+  locale: SiteLocale,
 ): SidebarItemFirstLevelProps[] {
   if (!datoItems || datoItems.length === 0) {
     return [];
@@ -11,10 +14,10 @@ export function createMenuSidebar(
 
   return datoItems.map((firstLevel) => {
     const items = firstLevel.menu.map((secondLevel) => {
-      const slug = secondLevel.pointsTo.slug;
-      const linkTo = `/${slug}`;
+      const pageId = secondLevel.pointsTo.id;
+      const linkTo = linkResolver(pageId, locale);
 
-      const isActive = currentPathname.endsWith(slug);
+      const isActive = currentPathname.endsWith(linkTo);
 
       return {
         id: secondLevel.id,
