@@ -9,6 +9,7 @@ const {
   title,
   paragraph,
   labelButton,
+  linkTo,
   image,
   variant = "lighter",
   size = "default",
@@ -32,6 +33,7 @@ const backgroundColorClass = backgroundColor[variant];
           title={title}
           paragraph={paragraph}
           labelButton={labelButton}
+          linkTo={linkTo}
         />
       </div>
       <div class={`${size === "small" ? "col-lg-3" : "col-lg-5"} col-12`}>

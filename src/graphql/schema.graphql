@@ -1021,7 +1021,7 @@ type HighlightRecord implements RecordInterface {
   title: String!
 }
 
-union HomepageModelContentField = HeroRecord | NewsFeedRecord | SectionRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord
+union HomepageModelContentField = HeroRecord | NewsFeedRecord | SectionRecord | SupportChannelsSectionRecord
 
 type HomepageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -5357,6 +5357,7 @@ type ResultRecord implements RecordInterface {
   news: CardEditorialNewsRecord!
   paragraph: String!
   title: String!
+  useCase: UseCaseRecord!
 }
 
 union SectionModelRightField = AccordionBlockRecord | ImageBlockRecord | StatisticBlockRecord | UseCaseBlockRecord
@@ -5483,7 +5484,7 @@ type SettingsKpiRecordMultiLocaleField {
   value: SettingsKpiRecord
 }
 
-"""Record of type Sidebar for article (sidebar_for_article)"""
+"""Record of type Sidebar for articles (sidebar_for_article)"""
 type SidebarForArticleRecord implements RecordInterface {
   _allCloseLabelLocales(
     """
@@ -5934,6 +5935,8 @@ type SupportChannelsSectionRecord implements RecordInterface {
   variant: String
 }
 
+union SupportCtaSectionModelCtaField = ExternalLinkRecord | InternalLinkRecord
+
 """Block of type 💁 Support CTA section (support_cta_section)"""
 type SupportCtaSectionRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -5954,9 +5957,12 @@ type SupportCtaSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  background: String
+  cta: SupportCtaSectionModelCtaField
   id: ItemId!
   image: FileField!
   paragraph: String!
+  size: String
   title: String!
 }
 
@@ -6735,7 +6741,7 @@ type UseCaseRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String!
-  pointsTo: PageRecord!
+  pointsTo: ArticleRecord!
   title: String!
 }
 

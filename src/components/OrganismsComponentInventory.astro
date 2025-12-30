@@ -353,21 +353,50 @@ import { NewsFeed } from "@components/organisms/NewsFeed";
   <thead>
     <tr>
       <th>Support CTA section</th>
+      <th>Variant</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td>Default</td>
       <td class="p-0">
         <SupportCTASection
           title="Cos’è il cloud e perché è importante?"
           paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
           image={image}
           labelButton="azione"
+          linkTo="#"
           variant="default"
         />
       </td>
     </tr>
     <tr>
+      <td>Default lighter</td>
+      <td class="p-0">
+        <SupportCTASection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          variant="lighter"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Small</td>
+      <td class="p-0">
+        <SupportCTASection
+          title="Cos’è il cloud e perché è importante?"
+          paragraph="Il cloud è alla base della modernizzazione della Pubblica Amministrazione. Permette di erogare servizi digitali più sicuri, scalabili e sostenibili, migliorando la gestione dei dati e semplificando il lavoro di enti e fornitori. "
+          image={image}
+          labelButton="azione"
+          linkTo="#"
+          variant="default"
+          size="small"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Small lighter</td>
       <td class="p-0">
         <SupportCTASection
           title="Cos’è il cloud e perché è importante?"
@@ -375,6 +404,7 @@ import { NewsFeed } from "@components/organisms/NewsFeed";
           image={image}
           labelButton="azione"
           variant="lighter"
+          size="small"
         />
       </td>
     </tr>

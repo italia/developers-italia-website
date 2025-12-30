@@ -339,9 +339,30 @@ import { UseCaseCard } from "@components/molecules/UseCaseCard";
   </thead>
   <tbody>
     <tr>
-      <td class="p-3">Light background</td>
+      <td class="p-3">Row</td>
       <td class="p-3"
         ><Topics title="Argomenti correlati" topics={topicItems} />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Column</td>
+      <td class="p-3"
+        ><Topics
+          title="Argomenti correlati"
+          topics={topicItems}
+          variant="column"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Column</td>
+      <td class="p-3"
+        ><Topics
+          title="Argomenti correlati"
+          disabled={false}
+          topics={topicItems}
+          variant="column"
+        />
       </td>
     </tr>
   </tbody>

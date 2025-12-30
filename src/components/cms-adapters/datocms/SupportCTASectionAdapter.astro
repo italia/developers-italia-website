@@ -1,6 +1,10 @@
 ---
-import type { SupportCTASectionFragmentType } from "../../../graphql/commonFragments";
+import type { SupportCTASectionFragmentType } from "@graphql/sectionFragments";
 import { SupportCTASection } from "../../organisms/SupportCTASection";
+import type {
+  SupportCTASectionSizeProps,
+  SupportCTASectionVariantProps,
+} from "@components/organisms/SupportCTASection/types";
 
 type DatoRecord = SupportCTASectionFragmentType & {
   __typename: string;
@@ -8,16 +12,44 @@ type DatoRecord = SupportCTASectionFragmentType & {
 };
 
 type Props = {
-  block: DatoRecord;
+  block: DatoRecord | SupportCTASectionFragmentType;
 };
 
-const { block } = Astro.props as Props;
+const { block } = Astro.props;
+
+const getCtaFields = () => {
+  const cta = block.cta;
+
+  if (!cta) return { labelButton: undefined, linkTo: undefined };
+
+  switch (cta.componentName) {
+    case "ExternalLinkRecord":
+      return {
+        labelButton: cta.label,
+        linkTo: cta.url,
+      };
+    case "InternalLinkRecord":
+      return {
+        labelButton: cta.label,
+        linkTo: cta.linkTo?.slug,
+      };
+    default:
+      return {
+        labelButton: undefined,
+        linkTo: undefined,
+      };
+  }
+};
+
+const { labelButton, linkTo } = getCtaFields();
 ---
 
 <SupportCTASection
   title={block.title}
   paragraph={block.paragraph}
   image={block.image}
-  size="small"
-  variant="lighter"
+  size={block.size as SupportCTASectionSizeProps}
+  variant={block.background as SupportCTASectionVariantProps}
+  labelButton={labelButton}
+  linkTo={linkTo}
 />

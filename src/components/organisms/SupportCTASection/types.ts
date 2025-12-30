@@ -4,6 +4,7 @@ export type SupportCTASectionProps = {
   title: string;
   paragraph: string;
   labelButton?: string;
+  linkTo?: string;
   image: ImageProps;
   variant?: SupportCTASectionVariantProps;
   size?: SupportCTASectionSizeProps;

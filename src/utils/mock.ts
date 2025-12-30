@@ -5,6 +5,7 @@ import type { CardPresentationBannerProps } from "@components/molecules/CardPres
 import type { DataContainerProps } from "@components/molecules/DataContainer/types";
 import type { ListItemProps } from "@components/molecules/List/types";
 import type { UseCaseCardProps } from "@components/molecules/UseCaseCard/types";
+import type { SidebarItemFirstLevelProps } from "@components/organisms/Sidebar/types";
 
 export const accordionItems = [
   {
@@ -61,10 +62,11 @@ export const breadcrumbItems = [
   },
 ];
 
-export const sidebarItems = [
+export const sidebarItems: SidebarItemFirstLevelProps[] = [
   {
     idAccordion: "1",
     label: "Link List 1",
+    isOpen: true,
     items: [
       { id: "1", label: "lista 1.1", linkTo: "#", active: true },
       { id: "2", label: "lista 1.2", linkTo: "#", active: false },
@@ -74,6 +76,7 @@ export const sidebarItems = [
   {
     idAccordion: "2",
     label: "Link List 2",
+    isOpen: false,
     items: [
       { id: "1", label: "lista 2.1", linkTo: "#", active: false },
       { id: "2", label: "lista 2.2", linkTo: "#", active: false },
@@ -83,6 +86,7 @@ export const sidebarItems = [
   {
     idAccordion: "3",
     label: "Link List 3",
+    isOpen: false,
     items: [
       { id: "1", label: "lista 3.1", linkTo: "#", active: false },
       { id: "2", label: "lista 3.2", linkTo: "#", active: false },
@@ -167,7 +171,6 @@ export const newsItems: CardEditorialNewsProps[] = [
     category: "Articolo",
     image,
     dateTime: "2022-04-05",
-    formatDate: "05/04/2022",
     action: "innovazione.gov.it",
   },
   {
@@ -178,7 +181,6 @@ export const newsItems: CardEditorialNewsProps[] = [
     category: "Articolo",
     image,
     dateTime: "2022-04-05",
-    formatDate: "05/04/2022",
     action: "innovazione.gov.it",
   },
   {
@@ -189,7 +191,6 @@ export const newsItems: CardEditorialNewsProps[] = [
     category: "Articolo",
     image,
     dateTime: "2022-04-05",
-    formatDate: "05/04/2022",
     action: "innovazione.gov.it",
   },
   {
@@ -200,7 +201,6 @@ export const newsItems: CardEditorialNewsProps[] = [
     category: "Articolo",
     image,
     dateTime: "2022-04-05",
-    formatDate: "05/04/2022",
     action: "innovazione.gov.it",
   },
 ];

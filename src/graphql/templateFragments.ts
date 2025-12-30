@@ -8,6 +8,7 @@ import {
   SupportChannelsSectionFragment,
   TopicFilterFragment,
   UseCaseContainerFragment,
+  SupportCTASectionFragment,
 } from "@graphql/sectionFragments";
 import {
   CalloutFragment,
@@ -17,7 +18,6 @@ import {
   LocaleFragment,
   OrderedListFragment,
   QuickLinkCardFragment,
-  SupportCTASectionFragment,
   TagFragment,
   TopicsBlockFragment,
 } from "./commonFragments";
@@ -87,6 +87,9 @@ export const PageContentFragment = graphql(
       ... on TopicFilterRecord {
         ...TopicFilterFragment
       }
+      ... on SupportCtaSectionRecord {
+        ...SupportCTASectionFragment
+      }
     }
   `,
   [
@@ -98,6 +101,7 @@ export const PageContentFragment = graphql(
     DataSectionRecordFragment,
     UseCaseContainerFragment,
     TopicFilterFragment,
+    SupportCTASectionFragment,
   ],
 );
 

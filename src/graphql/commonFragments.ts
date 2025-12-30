@@ -99,24 +99,6 @@ export const KpiFragment = graphql(`
 
 export type KpiFragmentType = FragmentOf<typeof KpiFragment>;
 
-export const SupportCTASectionFragment = graphql(
-  `
-    fragment SupportCTASectionFragment on SupportCtaSectionRecord @_unmask {
-      id
-      title
-      paragraph
-      image {
-        ...ImageFragment
-      }
-    }
-  `,
-  [ImageFragment],
-);
-
-export type SupportCTASectionFragmentType = FragmentOf<
-  typeof SupportCTASectionFragment
->;
-
 export const UseCaseFragment = graphql(
   `
     fragment UseCaseFragment on UseCaseRecord @_unmask {

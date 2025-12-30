@@ -1,6 +1,16 @@
 @use "bootstrap-italia/src/scss/bootstrap-italia" as *;
 
 .chip {
+  &.chip-disabled {
+    border: 1px solid $gray-border;
+    pointer-events: none;
+    background-color: $gray-100;
+
+    .chip-label {
+      color: $color-text-secondary;
+    }
+  }
+
   &.chip-outline-white,
   &.chip-simple {
     text-decoration: none;
@@ -24,15 +34,6 @@
 
       .chip-label {
         color: $primary-a10;
-      }
-    }
-
-    &.chip-disabled {
-      border: 1px solid $gray-border;
-      background-color: $gray-100;
-
-      .chip-label {
-        color: $color-text-secondary;
       }
     }
   }

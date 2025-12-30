@@ -9,11 +9,7 @@ type Props = SupportChannelSectionProps;
 const { title, paragraph, channels, variant = "default" } = Astro.props;
 ---
 
-<SplitContent
-  background={variant === "lighter" ? "lighter" : "default"}
-  leftColumns={5}
-  alignItems="top"
->
+<SplitContent background={variant} leftColumns={5} alignItems="top">
   <TextContainer slot="left" title={title} paragraph={paragraph} />
   <div class="row pt-4">
     {

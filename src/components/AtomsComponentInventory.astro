@@ -87,6 +87,7 @@ import { Link } from "@components/atoms/Link";
       <th>Standard</th>
       <th>Outline white</th>
       <th>Disabled</th>
+      <th>Active</th>
     </tr>
   </thead>
   <tbody>
@@ -97,23 +98,27 @@ import { Link } from "@components/atoms/Link";
           visuallyHidden="Argomento"
           label="Informazione"
           variant="primary"
-        /></td
-      >
+        />
+      </td>
       <td class="p-3">
         <Chip
           visuallyHidden="Argomento"
           label="Informazione"
           variant="standard"
-        /></td
-      >
+        />
+      </td>
       <td class="p-3"> </td>
       <td class="p-3">
+        <Chip disabled={true} visuallyHidden="Argomento" label="Informazione" />
+      </td>
+      <td class="p-3">
         <Chip
-          disabled={true}
+          active={true}
           visuallyHidden="Argomento"
           label="Informazione"
-        /></td
-      >
+          variant="primary"
+        />
+      </td>
     </tr>
     <tr>
       <td class="p-3">Dark background</td>
@@ -124,8 +129,8 @@ import { Link } from "@components/atoms/Link";
           label="Informazione"
           variant="standard"
           linkTo="#"
-        /></td
-      >
+        />
+      </td>
       <td class="bg-dark p-3">
         <ChipLink
           visuallyHidden="Argomento"
@@ -133,8 +138,8 @@ import { Link } from "@components/atoms/Link";
           label="Informazione"
           variant="outline-white"
           linkTo="#"
-        /></td
-      >
+        />
+      </td>
       <td class="bg-dark p-3">
         <ChipLink
           disabled={true}
@@ -142,8 +147,9 @@ import { Link } from "@components/atoms/Link";
           label="Informazione"
           variant="outline-white"
           linkTo="#"
-        /></td
-      >
+        />
+      </td>
+      <td class="bg-dark p-3"> </td>
     </tr>
   </tbody>
 </table>

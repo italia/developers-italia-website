@@ -35,4 +35,14 @@ export const initFilters = () => {
       btn.classList.add("active");
     });
   });
+
+  const defaultBtn = Array.from(buttons).find(
+    (b) =>
+      b.querySelector(".chip-label")?.textContent?.toLowerCase().trim() ===
+      labelForAll,
+  );
+
+  if (defaultBtn) {
+    defaultBtn.click();
+  }
 };
