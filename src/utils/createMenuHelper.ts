@@ -1,32 +1,47 @@
-import type { MenuItemsProps } from "@components/organisms/Header/types";
+import type {
+  HeaderNavbarProps,
+  MenuItemProps,
+} from "@components/organisms/Header/types";
 import { linkResolver } from "@data/linkMap";
 import type { MenuItemFragmentType } from "@graphql/commonFragments";
 import type { SiteLocale } from "@graphql/types";
 
+function menuItemAdapter(
+  item: MenuItemFragmentType,
+  currentPath: string,
+  locale: SiteLocale,
+): MenuItemProps {
+  const pageId = item.pointsTo.id;
+  const finalHref = linkResolver(pageId, locale);
+
+  const normalizedCurrent = currentPath.replace(/\/$/, "") || "/";
+  const normalizedMenu = finalHref.replace(/\/$/, "") || "/";
+
+  const isActive =
+    normalizedMenu === "/"
+      ? normalizedCurrent === "/"
+      : normalizedCurrent.startsWith(normalizedMenu);
+
+  return {
+    id: item.id,
+    title: item.title,
+    url: finalHref,
+    active: isActive,
+  };
+}
+
 export function createMenu(
-  datoItems: MenuItemFragmentType[],
+  mainItems: MenuItemFragmentType[] = [],
+  secondaryItems: MenuItemFragmentType[] = [],
   currentPathname: string,
   currentLocale: SiteLocale,
-): MenuItemsProps[] {
-  if (!datoItems || datoItems.length === 0) {
-    return [];
-  }
-
-  const normalizedCurrentPath = currentPathname.replace(/\/$/, "");
-
-  return datoItems.map((item) => {
-    const lang = currentLocale;
-    const pageId = item.pointsTo.id;
-    let finalHref = linkResolver(pageId, lang);
-
-    const normalizedMenuHref = finalHref.replace(/\/$/, "");
-    const isActive = normalizedCurrentPath.startsWith(normalizedMenuHref);
-
-    return {
-      id: item.id,
-      title: item.title,
-      url: finalHref,
-      active: isActive,
-    };
-  });
+): HeaderNavbarProps {
+  return {
+    left: mainItems.map((item) =>
+      menuItemAdapter(item, currentPathname, currentLocale),
+    ),
+    right: secondaryItems.map((item) =>
+      menuItemAdapter(item, currentPathname, currentLocale),
+    ),
+  };
 }

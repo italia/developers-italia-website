@@ -1,4 +1,5 @@
 ---
+import MenuItem from "./MenuItem.astro";
 import type { HeaderCentralProps } from "./types";
 
 type Props = HeaderCentralProps;
@@ -59,27 +60,19 @@ const { brandTitle, brandTagLine, menuItems, linkBackHome } = Astro.props;
                   >
                 </button>
               </div>
-              <div class="menu-wrapper">
+              <div class="menu-wrapper justify-content-lg-between">
                 <ul class="navbar-nav">
-                  {
-                    menuItems.map((menuItem) => {
-                      return (
-                        <li
-                          class={`nav-item ${menuItem.active ? "active" : ""}`}
-                          id={menuItem.id}
-                        >
-                          <a
-                            class={`nav-link 
-                                ${menuItem.active ? "active" : ""}`}
-                            href={menuItem.url}
-                          >
-                            {menuItem.title}
-                          </a>
-                        </li>
-                      );
-                    })
-                  }
+                  {menuItems.left.map((menuItem) => <MenuItem {...menuItem} />)}
                 </ul>
+                {
+                  menuItems.right && (
+                    <ul class="navbar-nav">
+                      {menuItems.right.map((menuItem) => (
+                        <MenuItem {...menuItem} />
+                      ))}
+                    </ul>
+                  )
+                }
               </div>
             </div>
           </nav>

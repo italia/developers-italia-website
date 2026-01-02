@@ -40,13 +40,16 @@ const { page } = await executeQuery(PageBySlugQuery, {
   variables: { slug: slug, locale: lang },
 });
 
-const content = page?.content as PageContentFragmentType[];
+if (!page) return;
+const content = page.content as PageContentFragmentType[];
 
 const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
   variables: { locale: lang },
 });
+
+Astro.locals.recordId = page.id;
 ---
 
-<Layout locale={lang} pageSeo={page?.seo}>
+<Layout pageSeo={page?.seo}>
   <PageAdapter content={content} sitename={globalSetting?.siteName || "Home"} />
 </Layout>

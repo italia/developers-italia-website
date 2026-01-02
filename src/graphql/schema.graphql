@@ -3526,6 +3526,12 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [MenuItemRecordListListNonNullMultiLocaleField!]
+  _allNavigationBarSecondaryLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [MenuItemRecordListListNonNullMultiLocaleField!]
   _allOrganizationLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -3597,6 +3603,15 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [MenuItemRecord!]!
+  navigationBarSecondary(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [MenuItemRecord!]!
   organization(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3626,6 +3641,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
+  topicLink: [InternalLinkRecord!]!
   topicTitle(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

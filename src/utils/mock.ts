@@ -282,9 +282,12 @@ export const linkListItems = [
   },
 ];
 
-export const menuItems = [
-  { id: "1", title: "Home", url: "#", active: false },
-  { id: "2", title: "Link 1", url: "#", active: true },
-  { id: "3", title: "Link 2", url: "#", active: false },
-  { id: "4", title: "Link 3", url: "#", active: false },
-];
+export const menuItems = {
+  left: [
+    { id: "1", title: "Home", url: "#", active: false },
+    { id: "2", title: "Link 1", url: "#", active: true },
+    { id: "3", title: "Link 2", url: "#", active: false },
+    { id: "4", title: "Link 3", url: "#", active: false },
+  ],
+  right: [{ id: "3", title: "Insight", url: "#", active: false }],
+};

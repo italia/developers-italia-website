@@ -11,7 +11,7 @@ import {
   HomepageModelContentFragment,
   PageContentFragment,
 } from "@graphql/templateFragments";
-import { HeaderFragment } from "@graphql/sectionFragments";
+import { FooterFragment, HeaderFragment } from "@graphql/sectionFragments";
 
 export const LocalesQuery = graphql(`
   query Locales {
@@ -42,21 +42,26 @@ export const GlobalSettingsQuery = graphql(`
   }
 `);
 
-export const HeaderQuery = graphql(
+export const LayoutQuery = graphql(
   `
     query Layout($locale: SiteLocale!) {
       layout(locale: $locale) {
+        ...FooterFragment
         ...HeaderFragment
+      }
+      homepage(locale: $locale) {
+        id
       }
     }
   `,
-  [HeaderFragment],
+  [FooterFragment, HeaderFragment],
 );
 
 export const HomepageQuery = graphql(
   `
     query HomepageQuery($locale: SiteLocale!) {
       homepage(locale: $locale) {
+        id
         title
         seo: _seoMetaTags(locale: $locale) {
           ...TagFragment

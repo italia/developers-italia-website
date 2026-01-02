@@ -1,0 +1,63 @@
+---
+import { linkMap, type RecordId } from "@data/linkMap";
+
+type Props = {
+  locales: string[];
+};
+
+const { locales } = Astro.props;
+const { lang: currentLocale, recordId: currentRecordId } = Astro.locals;
+
+const getTranslatedHref = (targetLocale: string) => {
+  if (currentRecordId && linkMap[currentRecordId as RecordId]) {
+    return (
+      (linkMap[currentRecordId as RecordId] as any)[targetLocale] ||
+      `/${targetLocale}`
+    );
+  }
+  return `/${targetLocale}`;
+};
+---
+
+<div class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <span class="visually-hidden">Selezione lingua: lingua selezionata</span>
+    <span>{currentLocale}</span>
+    <svg class="icon d-none d-lg-block"
+      ><use href="/bsi-svg/sprites.svg#it-expand"></use></svg
+    >
+  </a>
+  <div class="dropdown-menu">
+    <div class="row">
+      <div class="col-12">
+        <div class="link-list-wrapper">
+          <ul class="link-list">
+            {
+              locales.map((locale) => (
+                <li>
+                  <a
+                    class={`dropdown-item list-item ${locale === currentLocale ? "active" : ""}`}
+                    href={getTranslatedHref(locale)}
+                  >
+                    <span>
+                      <span>{locale.toUpperCase()}</span>
+                      {locale === currentLocale && (
+                        <span class="visually-hidden">selezionata</span>
+                      )}
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

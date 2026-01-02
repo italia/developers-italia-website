@@ -5,15 +5,22 @@ import type { HeaderProps } from "./types";
 
 type Props = HeaderProps;
 
-const { slimContent, brandTitle, brandTagLine, menuItems } = Astro.props;
+const {
+  slimContent,
+  locales,
+  brandTitle,
+  brandTagLine,
+  menuItems,
+  linkBackHome,
+} = Astro.props;
 ---
 
 <header class="it-header-wrapper shadow-sm">
-  <HeaderSlim slimContent={slimContent} linkTo={"#"} />
+  <HeaderSlim slimContent={slimContent} linkTo={"#"} locales={locales} />
   <HeaderCentral
     brandTitle={brandTitle}
     brandTagLine={brandTagLine}
     menuItems={menuItems}
-    linkBackHome="#"
+    linkBackHome={linkBackHome}
   />
 </header>

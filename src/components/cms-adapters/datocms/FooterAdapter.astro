@@ -1,0 +1,72 @@
+---
+import type { FooterFragmentType } from "@graphql/sectionFragments";
+import { Footer } from "@components/organisms/Footer";
+import { linkResolver } from "@data/linkMap";
+
+type Props = FooterFragmentType;
+
+const {
+  heading,
+  organizations,
+  topicTitle,
+  topicLink,
+  utilityTitle,
+  utility,
+  smallPrint,
+} = Astro.props;
+
+const { lang } = Astro.locals;
+
+const logos = organizations.map((org) => {
+  return {
+    icon: org.icon || undefined,
+    label: org.label,
+    linkTo: org.url,
+  };
+});
+
+const topicItems = topicLink.map((link) => {
+  return {
+    label: link.label,
+    visuallyHidden: "link",
+    linkTo: linkResolver(link.linkTo.id, lang),
+  };
+});
+
+const utilities = utility.map((util) => {
+  return {
+    label: util.label,
+    ariaLabel: "link",
+    icon: util.icon || undefined,
+    linkTo: util.url,
+  };
+});
+
+const smallPrints = smallPrint.map((link) => {
+  return {
+    label: link.label,
+    linkTo: link.url,
+  };
+});
+---
+
+<Footer
+  brand={{
+    heading: heading,
+    logos: logos,
+  }}
+  topics={{
+    title: topicTitle,
+    items: topicItems,
+  }}
+  utilities={[
+    {
+      title: utilityTitle,
+      items: utilities,
+    },
+  ]}
+  smallPrints={{
+    labelVisualHidden: "Sezione link utili",
+    links: smallPrints,
+  }}
+/>

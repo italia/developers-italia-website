@@ -1,10 +1,6 @@
 ---
 import { SidebarLayout } from "@components/layout/SidebarLayout";
-import type { TitleMetaLinkTag } from "@datocms/astro";
-import type {
-  SidebarFragmentType,
-  TagFragmentType,
-} from "@graphql/commonFragments";
+import type { TagFragmentType } from "@graphql/commonFragments";
 import type { ArticleContentFragmentType } from "@graphql/templateFragments";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
@@ -21,6 +17,7 @@ export async function getStaticPaths() {
     props: {
       seo: TagFragmentType[];
       content: ArticleContentFragmentType;
+      id: string;
     };
   };
 
@@ -37,6 +34,7 @@ export async function getStaticPaths() {
           lang: lang,
         },
         props: {
+          id: article.id,
           content: article.allContentLocales?.find(
             (contentLocale) => contentLocale.locale === lang,
           )?.value,
@@ -47,7 +45,7 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const { seo, content } = Astro.props;
+const { seo, content, id } = Astro.props;
 
 const { sidebarForArticle } = await executeQuery(SidebarQuery, {
   variables: { locale: lang },
@@ -56,8 +54,10 @@ const { sidebarForArticle } = await executeQuery(SidebarQuery, {
 if (!sidebarForArticle) {
   return;
 }
+
+Astro.locals.recordId = id;
 ---
 
-<Layout locale={lang} pageSeo={seo}>
+<Layout pageSeo={seo}>
   <SidebarLayout sidebar={sidebarForArticle} content={content} />
 </Layout>

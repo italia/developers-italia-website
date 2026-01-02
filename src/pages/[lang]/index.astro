@@ -22,13 +22,16 @@ const { homepage } = await executeQuery(HomepageQuery, {
   variables: { locale: lang },
 });
 
+if (!homepage) return;
+
 const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
   variables: { locale: lang },
 });
 
-const content = homepage?.content as HomepageModelContentFragmentType[];
+const content = homepage.content;
+Astro.locals.recordId = homepage.id;
 ---
 
-<Layout locale={lang} pageSeo={homepage?.seo}>
+<Layout pageSeo={homepage?.seo}>
   <PageAdapter content={content} sitename={globalSetting?.siteName || "Home"} />
 </Layout>

@@ -2,36 +2,57 @@
 import "../styles/global.scss";
 import bsi from "bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?url";
 import { Seo, type TitleMetaLinkTag } from "@datocms/astro";
-import { HeaderQuery, SiteMetaTagsQuery } from "@utils/query";
+import { LayoutQuery, SiteMetaTagsQuery } from "@utils/query";
 import { executeQuery } from "@lib/datocms";
 import { isDraftModeEnabled } from "@lib/draftMode";
 import PreviewBar from "@components/PreviewBar.astro";
-import { Footer } from "@components/organisms/Footer";
-import type { HeaderFragmentType } from "@graphql/sectionFragments";
-import type { SiteLocale } from "@graphql/types";
 import HeaderAdapter from "@components/cms-adapters/datocms/HeaderAdapter.astro";
+import FooterAdapter from "@components/cms-adapters/datocms/FooterAdapter.astro";
+import type {
+  FooterFragmentType,
+  HeaderFragmentType,
+} from "@graphql/sectionFragments";
 
 type Props = {
-  locale: string;
   pageSeo?: TitleMetaLinkTag[];
   redirectUrl?: string;
 };
 
-const { locale, pageSeo = [], redirectUrl } = Astro.props;
-const currentUrl = Astro.url.pathname;
+const { pageSeo = [], redirectUrl } = Astro.props;
+
+const { lang } = Astro.locals;
 
 const result = await executeQuery(SiteMetaTagsQuery);
 
-const header = await executeQuery(HeaderQuery, {
-  variables: { locale: locale as SiteLocale },
+const { layout, homepage } = await executeQuery(LayoutQuery, {
+  variables: { locale: lang },
 });
 
-const headerLayout = header.layout as HeaderFragmentType;
+if (!layout) return;
+
+const headerLayout: HeaderFragmentType = {
+  tagline: layout.tagline,
+  organization: layout.organization,
+  siteName: layout.siteName,
+  mainNavigation: layout.mainNavigation,
+  secondaryNavigation: layout.secondaryNavigation,
+  locales: layout.locales,
+};
+
+const footerLayout: FooterFragmentType = {
+  heading: layout.heading,
+  organizations: layout.organizations,
+  topicTitle: layout.topicTitle,
+  topicLink: layout.topicLink,
+  utilityTitle: layout.utilityTitle,
+  utility: layout.utility,
+  smallPrint: layout.smallPrint,
+};
 
 const isShowingPreviewBar = isDraftModeEnabled(Astro.cookies) && redirectUrl;
 ---
 
-<html lang={locale}>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -50,79 +71,11 @@ const isShowingPreviewBar = isDraftModeEnabled(Astro.cookies) && redirectUrl;
   </head>
   <body>
     {isShowingPreviewBar && <PreviewBar redirectUrl={redirectUrl} />}
-    <HeaderAdapter
-      {...headerLayout}
-      currentUrl={currentUrl}
-      currentLocale={locale as SiteLocale}
-    />
+    <HeaderAdapter {...headerLayout} homeRecordId={homepage?.id} />
     <main>
       <slot />
     </main>
-    <Footer
-      brand={{
-        title: "Nome dipartimento",
-        description: "è un progetto di",
-        logos: [
-          {
-            icon: "it-team-digitale",
-            label: "Dipertimento di trasformazione digitale",
-            linkTo: "#",
-          },
-          {
-            icon: "it-team-digitale",
-            label: "Dipertimento di trasformazione digitale",
-            linkTo: "#",
-          },
-        ],
-      }}
-      topics={{
-        title: "Parliamo di",
-        items: [
-          {
-            label: "Sviluppo interfaccia",
-            visuallyHidden: "link",
-            linkTo: "#",
-          },
-          {
-            label: "Sviluppo interfaccia",
-            visuallyHidden: "link",
-            linkTo: "#",
-          },
-        ],
-      }}
-      utilities={[
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Forum italia",
-              ariaLabel: "link",
-              icon: "it-designers-italia",
-              linkTo: "#",
-            },
-            {
-              label: "Slack",
-              ariaLabel: "link",
-              icon: "it-slack",
-              linkTo: "#",
-            },
-            {
-              label: "Github",
-              ariaLabel: "link",
-              icon: "it-github",
-              linkTo: "#",
-            },
-          ],
-        },
-      ]}
-      smallPrints={{
-        labelVisualHidden: "Sezione link utili",
-        links: [
-          { label: "Media Policy", linkTo: "#" },
-          { label: "Note legali", linkTo: "#" },
-        ],
-      }}
-    />
+    <FooterAdapter {...footerLayout} />
   </body>
 </html>
 <script src={bsi}></script>

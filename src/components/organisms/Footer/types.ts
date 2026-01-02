@@ -2,8 +2,8 @@ import type { ChipLinkProps } from "@components/atoms/Chip/types";
 import type { LinkProps } from "@components/atoms/Link/types";
 
 export type FooterLogoProps = {
-  icon: string;
   label: string;
+  icon?: string;
   linkTo: string;
   ariaLabel?: string;
 };
@@ -14,8 +14,7 @@ export type FooterSmallPrintsProps = {
 };
 
 export type FooterBrandProps = {
-  title: string;
-  description: string;
+  heading: string;
   logos: FooterLogoProps[];
 };
 

@@ -1,0 +1,13 @@
+---
+import type { MenuItemProps } from "./types";
+
+type Props = MenuItemProps;
+
+const { active, id, url, title } = Astro.props;
+---
+
+<li class={`nav-item ${active ? "active" : ""}`} id={id}>
+  <a class={`nav-link ${active ? "active" : ""}`} href={url}>
+    {title}
+  </a>
+</li>

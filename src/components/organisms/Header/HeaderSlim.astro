@@ -1,10 +1,13 @@
 ---
+import LanguageSelector from "./LanguageSelector.astro";
+
 type Props = {
   slimContent: string;
   linkTo: string;
+  locales: string[];
 };
 
-const { slimContent, linkTo } = Astro.props;
+const { slimContent, linkTo, locales } = Astro.props;
 ---
 
 <div class="it-header-slim-wrapper theme-light">
@@ -31,6 +34,9 @@ const { slimContent, linkTo } = Astro.props;
                 >
               </a>
             </nav>
+          </div>
+          <div class="it-header-slim-right-zone">
+            <LanguageSelector locales={locales} />
           </div>
         </div>
       </div>
