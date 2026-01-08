@@ -23,3 +23,13 @@ body {
 .it-hero-wrapper .it-hero-text-wrapper p {
   font-family: "Titillium Web", Geneva, Tahoma, sans-serif !important;
 }
+
+.structured-text-container .container > * + :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 3rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.structured-text-container .container > section {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}

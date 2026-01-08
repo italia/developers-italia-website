@@ -23,11 +23,11 @@ const backgroundColor = {
 const backgroundColorClass = backgroundColor[variant];
 ---
 
-<section class={backgroundColorClass}>
+<section
+  class={`${backgroundColorClass} ${size === "small" ? "rounded-2" : ""}`}
+>
   <div class={`container py-5  ${size === "small" ? "px-5" : ""}`}>
-    <div
-      class={`row align-items-center justify-content-between ${size === "small" ? "rounded-2" : ""}`}
-    >
+    <div class={`row align-items-center justify-content-between `}>
       <div class={`${size === "small" ? "col-lg-9" : "col-lg-7"} col-12`}>
         <TextContainer
           title={title}

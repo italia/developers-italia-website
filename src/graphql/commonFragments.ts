@@ -388,7 +388,7 @@ export const ExternalLinkFragment = graphql(`
 export type ExternalLinkFragmentType = FragmentOf<typeof ExternalLinkFragment>;
 
 export const AdditionalContentFragment = graphql(`
-  fragment AdditionalContentFragment on ListContentRecord @_unmask {
+  fragment AdditionalContentFragment on AdditionalContentRecord @_unmask {
     id
     title
     content {
@@ -447,13 +447,17 @@ export const ListCardEditorialWithIconFragment = graphql(
   `
     fragment ListCardEditorialWithIconFragment on ListCardEditorialWithIconRecord
     @_unmask {
-      cards {
+      items {
         ...CardEditorialWithIconFragment
       }
     }
   `,
   [CardEditorialWithIconFragment],
 );
+
+export type ListCardEditorialWithIconFragmentType = FragmentOf<
+  typeof ListCardEditorialWithIconFragment
+>;
 
 export const OrderedListFragment = graphql(`
   fragment OrderedListFragment on OrderedListRecord @_unmask {

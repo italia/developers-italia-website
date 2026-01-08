@@ -1,4 +1,4 @@
-"""Block of type Accordion block (accordion_block)"""
+"""Block of type 🪗 Accordion block (accordion_block)"""
 type AccordionBlockRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -106,7 +106,32 @@ type AccordionRecord implements RecordInterface {
   variant: String!
 }
 
-union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ListCardEditorialWithIconRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
+"""Block of type Additional content (additional_content)"""
+type AdditionalContentRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  content: [CardEditorialWithIconRecord!]!
+  id: ItemId!
+  title: String
+}
+
+union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListCardEditorialWithIconRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type ArticleModelContentField {
   blocks: [ArticleModelContentBlocksField!]!
@@ -266,6 +291,34 @@ type ArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
+  ): String!
+}
+
+"""Block of type 🗨️ Blockquote (blockquote)"""
+type BlockquoteRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  author: String!
+  id: ItemId!
+  paragraph(
+    """Process content as markdown"""
+    markdown: Boolean
   ): String!
 }
 
@@ -1095,6 +1148,80 @@ type HomepageRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
+}
+
+"""Block of type Icon list block (icon_list_block)"""
+type IconListBlockRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  items: IconListRecord
+  title: String
+}
+
+"""Block of type Icon list item (icon_list_item)"""
+type IconListItemRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  icon: String!
+  id: ItemId!
+  label: String!
+}
+
+"""Block of type Icon list (icon_list)"""
+type IconListRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  items: [IconListItemRecord!]!
 }
 
 """Block of type 🖼️ Image block (image_block)"""
@@ -3760,6 +3887,30 @@ input LinkFilter {
   exists: BooleanType
 }
 
+"""Block of type List blockquote (list_blockquote)"""
+type ListBlockquoteRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  items: [BlockquoteRecord!]!
+}
+
 """
 Block of type 🗃️ List card editorial with icon (list_card_editorial_with_icon)
 """
@@ -3782,8 +3933,32 @@ type ListCardEditorialWithIconRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  cards: [CardEditorialWithIconRecord!]!
   id: ItemId!
+  items: [CardEditorialWithIconRecord!]!
+}
+
+"""Block of type List card info (list_card_info)"""
+type ListCardInfoRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  items: [ListItemRecord!]!
 }
 
 """Block of type List collection (list_collection)"""
@@ -3813,31 +3988,6 @@ type ListCollectionRecord implements RecordInterface {
     markdown: Boolean
   ): String
   title: String!
-}
-
-"""Block of type List content (list_content)"""
-type ListContentRecord implements RecordInterface {
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  content: [CardEditorialWithIconRecord!]!
-  id: ItemId!
-  title: String
 }
 
 """Block of type 🖇️ List internal link (list_internal_link)"""
@@ -5454,9 +5604,9 @@ type ResultRecord implements RecordInterface {
   useCase: UseCaseRecord!
 }
 
-union SectionModelRightField = AccordionBlockRecord | ImageBlockRecord | StatisticBlockRecord | UseCaseBlockRecord
+union SectionModelRightField = AccordionBlockRecord | IconListBlockRecord | ImageBlockRecord | StatisticBlockRecord | UseCaseBlockRecord
 
-"""Block of type Section (section)"""
+"""Block of type 📋 Section (section)"""
 type SectionRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -5476,7 +5626,7 @@ type SectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  additionalContent: ListContentRecord
+  additionalContent: AdditionalContentRecord
   alignItems: String
   background: String
   columnLeftSize: IntType!
@@ -6037,14 +6187,16 @@ input StructuredTextFilter {
   exists: BooleanType
 }
 
+union StructuredTextModelContentBlocksField = CalloutRecord | ListBlockquoteRecord | ListCardInfoRecord | OrderedListRecord
+
 type StructuredTextModelContentField {
-  blocks: [CalloutRecord!]!
+  blocks: [StructuredTextModelContentBlocksField!]!
   inlineBlocks: [String!]!
   links: [String!]!
   value: JsonField!
 }
 
-"""Block of type Structured text (structured_text)"""
+"""Block of type 📝 Structured text (structured_text)"""
 type StructuredTextRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -6188,7 +6340,7 @@ input TextFilter {
   exists: BooleanType
 }
 
-"""Block of type Topic filter (topic_filter)"""
+"""Block of type 🔖 Topic filter (topic_filter)"""
 type TopicFilterRecord implements RecordInterface {
   _createdAt: DateTime!
 

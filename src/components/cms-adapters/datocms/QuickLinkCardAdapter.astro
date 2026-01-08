@@ -15,8 +15,8 @@ const { block } = Astro.props as Props;
 
 const links = block.links.map((link) => ({
   linkTo: link.url,
-  label: link.label,
-  icon: link.icon || undefined,
+  text: link.label,
+  iconRight: link.icon || undefined,
   titleIcon: link.titleIcon || undefined,
 }));
 ---
