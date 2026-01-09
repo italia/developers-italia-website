@@ -4,6 +4,7 @@ export type GenericListProps = {
   size?: GenericListSizeProps;
   variant?: GenericListVariantProps;
   bordered?: boolean;
+  titleSize?: GenericListTitleSizeProps;
 };
 
 export type GenericListItemProps = {
@@ -17,3 +18,4 @@ export type GenericListItemProps = {
 
 export type GenericListSizeProps = "default" | "bold" | "small";
 export type GenericListVariantProps = "light" | "dark";
+export type GenericListTitleSizeProps = "default" | "large";

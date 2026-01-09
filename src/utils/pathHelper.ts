@@ -1,8 +1,8 @@
 import type {
   AllArticlesSlugFragmentType,
   AllInsightsSlugFragmentType,
-  AllPagesSlugFragmentType,
   AllStoryItemsSlugFragmentType,
+  AllWebinarItemsSlugFragmentType,
 } from "@graphql/slugFragments";
 import type { SiteLocale } from "../graphql/types";
 
@@ -31,7 +31,8 @@ const getTitle = (item: HasLocales, locale: string) =>
 type RoutableRecord =
   | AllArticlesSlugFragmentType
   | AllInsightsSlugFragmentType
-  | AllStoryItemsSlugFragmentType;
+  | AllStoryItemsSlugFragmentType
+  | AllWebinarItemsSlugFragmentType;
 
 export function resolveRoutePath(
   record: RoutableRecord,

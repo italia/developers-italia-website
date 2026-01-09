@@ -4,15 +4,17 @@ import type {
   SectionAlignItems,
   SectionBackground,
 } from "@components/layout/SplitContent/SplitContent.astro";
-import { TextContainer } from "@components/molecules/TextContainer";
 import type { SectionFragmentType } from "@graphql/sectionFragments";
 import AccordionAdapter from "@components/cms-adapters/datocms/AccordionAdapter.astro";
 import ImageContainerAdapter from "@components/cms-adapters/datocms/ImageContainerAdapter.astro";
 import StatisticAdapter from "@components/cms-adapters/datocms/StatisticAdapter.astro";
 import UseCasesAdapter from "@components/cms-adapters/datocms/UseCasesAdapter.astro";
 import { AdditionalContent } from "@components/organisms/AdditionalContent";
-import { linkResolver } from "@data/linkMap";
+import FeatureListAdapter from "@components/cms-adapters/datocms/FeatureListAdapter.astro";
+import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
 import IconListAdapter from "@components/cms-adapters/datocms/IconListAdapter.astro";
+import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
+import AuthorListAdapter from "@components/cms-adapters/datocms/AuthorListAdapter.astro";
 
 type Props = {
   block: SectionFragmentType;
@@ -35,8 +37,6 @@ const variantAdditionalContent =
   block.background === "dark" || block.background === "primary"
     ? "light"
     : undefined;
-
-const { lang } = Astro.locals;
 ---
 
 <SplitContent
@@ -45,14 +45,25 @@ const { lang } = Astro.locals;
   alignItems={block.alignItems as SectionAlignItems}
   background={block.background as SectionBackground}
 >
-  <TextContainer
-    slot="left"
-    title={leftBlock.title}
-    paragraph={leftBlock.paragraph}
-    variant={variantTextContainer}
-    labelButton={leftBlock.cta?.label}
-    linkTo={linkResolver(leftBlock.cta?.linkTo.id, lang)}
-  />
+  <Fragment slot="left">
+    {
+      (() => {
+        switch (leftBlock.componentName) {
+          case "TextBlockRecord":
+            return (
+              <TextContainerAdapter
+                block={leftBlock}
+                variant={variantTextContainer}
+              />
+            );
+          case "FeatureListBlockRecord":
+            return <FeatureListAdapter block={leftBlock} />;
+          default:
+            return;
+        }
+      })()
+    }
+  </Fragment>
 
   <Fragment slot="right">
     {
@@ -68,6 +79,10 @@ const { lang } = Astro.locals;
             return <AccordionAdapter block={rightBlock} />;
           case "IconListBlockRecord":
             return <IconListAdapter block={rightBlock} />;
+          case "QuickLinkCardRecord":
+            return <QuickLinkCardAdapter block={rightBlock} />;
+          case "AuthorListRecord":
+            return <AuthorListAdapter block={rightBlock} />;
           default:
             return;
         }

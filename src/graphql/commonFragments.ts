@@ -594,3 +594,41 @@ export const IconListBlockFragment = graphql(`
 export type IconListBlockFragmentType = FragmentOf<
   typeof IconListBlockFragment
 >;
+
+export const FeatureListBlockFragment = graphql(`
+  fragment FeatureListBlockFragment on FeatureListBlockRecord @_unmask {
+    id
+    title
+    items {
+      items {
+        title
+        paragraph
+        id
+      }
+    }
+  }
+`);
+
+export type FeatureListBlockFragmentType = FragmentOf<
+  typeof FeatureListBlockFragment
+>;
+
+export const AuthorListFragment = graphql(
+  `
+    fragment AuthorListFragment on AuthorListRecord @_unmask {
+      id
+      title
+      authors {
+        id
+        name
+        photo {
+          ...ImageFragment
+        }
+        role
+      }
+    }
+  `,
+  [ImageFragment],
+);
+
+export type AuthorListFragmentType = FragmentOf<typeof AuthorListFragment>;

@@ -11,6 +11,6 @@ export type TopicFilterProps = {
 export type ContentCollectionProps = {
   topicSlug: string;
   title: string;
-  paragraph: string;
+  paragraph?: string;
   items: CardEditorialNewsProps[];
 };

@@ -1,0 +1,35 @@
+---
+import { ActionCard } from "@components/molecules/ActionCard";
+import type { ActionCardFragmentType } from "@graphql/sectionFragments";
+import { SectionContainer } from "@components/organisms/SectionContainer";
+import { formatAssetInfo } from "@utils/formatAssetInfo";
+
+type Props = {
+  block: ActionCardFragmentType;
+};
+
+const { block } = Astro.props;
+
+const downloadUrl = block.cta.doc
+  ? `${block.cta.doc.url}?dl=${block.cta.doc.filename}.${block.cta.doc.format}`
+  : "#";
+
+const cta = {
+  label: `${block.cta.label} ${formatAssetInfo(block.cta.doc.size, block.cta.doc.format)}`,
+  url: downloadUrl,
+};
+---
+
+<SectionContainer className="lightgrey-bg-a3">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <ActionCard
+        title={block.title}
+        paragraph={block.paragraph}
+        category={block.category || undefined}
+        cta={cta}
+        labelButton={block.readMoreLabel}
+      />
+    </div>
+  </div>
+</SectionContainer>

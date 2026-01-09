@@ -2,10 +2,12 @@ import {
   AccordionBlockFragment,
   AccordionFragment,
   AdditionalContentFragment,
+  AuthorListFragment,
   CalloutFragment,
   ChannelFragment,
   ChartFragment,
   ExternalLinkFragment,
+  FeatureListBlockFragment,
   IconListBlockFragment,
   ImageBlockFragment,
   ImageFragment,
@@ -17,6 +19,7 @@ import {
   MenuItemFragment,
   NewsTabFragment,
   OrderedListFragment,
+  QuickLinkCardFragment,
   StatisticBlockFragment,
   StatisticsBoxFragment,
   StoryTabFragment,
@@ -108,6 +111,9 @@ export const SectionFragment = graphql(
         ... on TextBlockRecord {
           ...TextBlockFragment
         }
+        ... on FeatureListBlockRecord {
+          ...FeatureListBlockFragment
+        }
       }
       right {
         ... on RecordInterface {
@@ -129,6 +135,12 @@ export const SectionFragment = graphql(
         ... on IconListBlockRecord {
           ...IconListBlockFragment
         }
+        ... on QuickLinkCardRecord {
+          ...QuickLinkCardFragment
+        }
+        ... on AuthorListRecord {
+          ...AuthorListFragment
+        }
       }
     }
   `,
@@ -140,6 +152,9 @@ export const SectionFragment = graphql(
     ImageBlockFragment,
     AccordionBlockFragment,
     IconListBlockFragment,
+    QuickLinkCardFragment,
+    FeatureListBlockFragment,
+    AuthorListFragment,
   ],
 );
 
@@ -401,3 +416,25 @@ export const StructuredTextFragment = graphql(
 export type StructuredTextFragmentType = FragmentOf<
   typeof StructuredTextFragment
 >;
+
+export const ActionCardFragment = graphql(`
+  fragment ActionCardFragment on ActionCardRecord @_unmask {
+    id
+    title
+    paragraph(markdown: true)
+    category
+    cta {
+      id
+      label
+      doc {
+        size
+        format
+        url
+        filename
+      }
+    }
+    readMoreLabel
+  }
+`);
+
+export type ActionCardFragmentType = FragmentOf<typeof ActionCardFragment>;

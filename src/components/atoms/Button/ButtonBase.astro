@@ -1,0 +1,19 @@
+---
+type Props = {
+  label: string;
+  icon?: string;
+  colorIcon: string;
+};
+const { label, icon, colorIcon } = Astro.props;
+---
+
+<span>
+  {label}
+</span>
+{
+  icon && (
+    <svg class={`icon icon-sm ${colorIcon}`}>
+      <use href={`/bsi-svg/sprites.svg#${icon}`} />
+    </svg>
+  )
+}

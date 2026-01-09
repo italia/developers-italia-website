@@ -1,13 +1,9 @@
 ---
 import { ButtonLink } from "@components/atoms/Button";
+import type { TextContainerProps } from "./types";
 
-type Props = {
-  title: string;
-  paragraph: string;
-  variant?: "light" | "dark" | "primary";
-  labelButton?: string;
-  linkTo?: string;
-};
+type Props = TextContainerProps;
+
 const {
   title,
   paragraph,
@@ -15,8 +11,10 @@ const {
   linkTo,
   variant = "light",
 } = Astro.props;
+
 const colorClass =
   variant === "dark" || variant === "primary" ? "text-white" : "";
+
 const variantButton =
   variant === "primary"
     ? "outline-light"

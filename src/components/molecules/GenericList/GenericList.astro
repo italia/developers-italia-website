@@ -4,14 +4,28 @@ import type { GenericListProps } from "./types";
 
 type Props = GenericListProps;
 
-const { label, items, variant, size, bordered } = Astro.props;
+const {
+  label,
+  items,
+  variant,
+  size,
+  bordered,
+  titleSize = "default",
+} = Astro.props;
 ---
 
 <style>
   @import "./style.scss";
 </style>
 
-{label && <p class="fw-semibold fs-6 text-uppercase">{label}</p>}
+{
+  label && titleSize === "large" ? (
+    <h2 class="mb-3">{label}</h2>
+  ) : (
+    <p class="fw-semibold fs-6 text-uppercase">{label}</p>
+  )
+}
+
 <div class="it-list-wrapper">
   <ul class="it-list">
     {

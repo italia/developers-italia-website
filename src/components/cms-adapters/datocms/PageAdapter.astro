@@ -10,18 +10,21 @@ import type {
   InsightContentFragmentType,
   PageContentFragmentType,
   StoryContentFragmentType,
+  WebinarContentFragmentType,
 } from "@graphql/templateFragments";
 import UseCaseContainerAdapter from "@components/cms-adapters/datocms/UseCaseContainerAdapter.astro";
 import TopicFilterAdapter from "@components/cms-adapters/datocms/TopicFilterAdapter.astro";
 import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
 import StructuredTextAdapter from "@components/cms-adapters/datocms/StructuredTextAdapter.astro";
 import ListCollectionAdapter from "@components/cms-adapters/datocms/ListCollectionAdapter.astro";
+import ActionCardAdapter from "@components/cms-adapters/datocms/ActionCardAdapter.astro";
 
 type ContentType =
   | HomepageModelContentFragmentType
   | PageContentFragmentType
   | InsightContentFragmentType
-  | StoryContentFragmentType;
+  | StoryContentFragmentType
+  | WebinarContentFragmentType;
 
 type Props = {
   content: ContentType[];
@@ -55,6 +58,8 @@ const { content } = Astro.props;
         return <StructuredTextAdapter block={block.textContent} />;
       case "ListCollectionRecord":
         return <ListCollectionAdapter block={block} />;
+      case "ActionCardRecord":
+        return <ActionCardAdapter block={block} />;
       default:
         return null;
     }

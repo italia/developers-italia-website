@@ -1,16 +1,19 @@
 ---
 import { Badge } from "@components/atoms/Badge";
-import { Button } from "@components/atoms/Button";
+import { Button, ButtonLink } from "@components/atoms/Button";
 
 type Props = {
   title: string;
   paragraph: string;
-  category: string;
-  ctaLabel: string;
+  category?: string;
+  cta: {
+    label: string;
+    url: string;
+  };
   labelButton: string;
 };
 
-const { title, paragraph, category, ctaLabel, labelButton } = Astro.props;
+const { title, paragraph, category, cta, labelButton } = Astro.props;
 ---
 
 <style>
@@ -21,10 +24,15 @@ const { title, paragraph, category, ctaLabel, labelButton } = Astro.props;
   <div class="row justify-content-between align-items-top mb-5">
     <div class="col-6">
       <h2>{title}</h2>
-      <Badge variant="primary" label={category} />
+      {category && <Badge variant="primary" label={category} />}
     </div>
     <div class="col-6 text-end">
-      <Button label={ctaLabel} />
+      <ButtonLink
+        download
+        linkTo={cta.url}
+        label={cta.label}
+        icon="it-download"
+      />
     </div>
   </div>
   <div
@@ -33,14 +41,13 @@ const { title, paragraph, category, ctaLabel, labelButton } = Astro.props;
     set:html={paragraph}
   />
   <div class="it-card-footer border-0 m-auto" aria-label="Espandi">
-    <button id="toggle-btn" class="btn btn-icon text-primary text-uppercase"
-      ><span>
-        {labelButton}
-      </span>
-      <svg class="icon icon-sm icon-primary">
-        <use href="/bsi-svg/sprites.svg#it-plus"></use>
-      </svg>
-    </button>
+    <Button
+      id="toggle-btn"
+      label={labelButton}
+      variant="link"
+      size="small"
+      icon="it-plus"
+    />
   </div>
 
   <script>
@@ -55,7 +62,7 @@ const { title, paragraph, category, ctaLabel, labelButton } = Astro.props;
           if (!isExpanded) {
             content.classList.remove("content-collapsed");
             content.classList.add("content-expanded");
-            btn.classList.add("visually-hidden");
+            btn.classList.add("d-none");
           }
         });
       }

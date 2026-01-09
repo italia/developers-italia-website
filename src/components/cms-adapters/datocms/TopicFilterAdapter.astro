@@ -16,7 +16,7 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
     return {
       title: content.title,
       topicSlug: content.content[0].topic.label,
-      paragraph: content.paragraph,
+      paragraph: content.paragraph || undefined,
       items: content.content.map((item) => {
         return {
           title: item.title,

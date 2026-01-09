@@ -1,0 +1,27 @@
+---
+import type { FeatureListBlockFragmentType } from "@graphql/commonFragments";
+import { GenericList } from "@components/molecules/GenericList";
+import type { GenericListItemProps } from "@components/molecules/GenericList/types";
+
+type Props = {
+  block: FeatureListBlockFragmentType;
+};
+
+const { block } = Astro.props;
+
+const items: GenericListItemProps[] =
+  block.items?.items.map((item) => {
+    return {
+      text: item.title,
+      subtext: item.paragraph,
+    };
+  }) || [];
+---
+
+<GenericList
+  items={items}
+  bordered={true}
+  label={block.title}
+  size="default"
+  titleSize="large"
+/>

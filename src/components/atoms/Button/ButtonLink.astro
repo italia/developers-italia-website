@@ -1,28 +1,32 @@
 ---
-type Props = {
-  label: string;
-  linkTo: string;
-  variant?: "light" | "dark" | "outline-light" | "outline-dark";
-  size?: "mini" | "small" | "large";
-};
-const { label, linkTo, variant = "light", size = "large" } = Astro.props;
+import ButtonBase from "./ButtonBase.astro";
+import { getButtonClasses } from "./helper";
+import type { ButtonLinkProps } from "./types";
 
-const sizeMap = {
-  mini: "btn-xs",
-  small: "btn-sm",
-  large: "btn-lg",
-};
-const sizeClass = sizeMap[size];
+type Props = ButtonLinkProps;
 
-const variantMap = {
-  light: "btn-primary",
-  "outline-light": "btn-outline-primary",
-  dark: "btn-light text-primary",
-  "outline-dark": "border border-2 text-white border-white",
-};
+const {
+  label,
+  linkTo,
+  variant = "light",
+  size = "large",
+  download,
+  openInNewTab = false,
+  icon,
+} = Astro.props;
 
-const btnVariant = variantMap[variant];
-const className = `btn ${btnVariant} ${sizeClass}`;
+const { className, colorIcon } = getButtonClasses(variant, size, !!icon);
+
+const target = openInNewTab ? "_blank" : "_self";
+const rel = openInNewTab ? "noopener noreferrer" : undefined;
 ---
 
-<a class={className} href={linkTo}>{label}</a>
+<a
+  class={className}
+  href={linkTo}
+  download={download}
+  rel={rel}
+  target={target}
+>
+  <ButtonBase label={label} icon={icon} colorIcon={colorIcon} />
+</a>

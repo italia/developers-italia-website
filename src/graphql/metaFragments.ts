@@ -81,3 +81,17 @@ export const StoryItemLocalesFragment = graphql(
   `,
   [LocaleFragment],
 );
+
+export const WebinarItemLocalesFragment = graphql(
+  `
+    fragment WebinarItemLocalesFragment on WebinarItemRecord @_unmask {
+      allSlugLocales: _allSlugLocales {
+        ...LocaleFragment
+      }
+      allTitleLocales: _allTitleLocales {
+        ...LocaleFragment
+      }
+    }
+  `,
+  [LocaleFragment],
+);

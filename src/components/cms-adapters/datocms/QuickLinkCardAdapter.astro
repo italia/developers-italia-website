@@ -8,7 +8,7 @@ type DatoRecord = QuickLinkCardFragmentType & {
 };
 
 type Props = {
-  block: DatoRecord;
+  block: DatoRecord | QuickLinkCardFragmentType;
 };
 
 const { block } = Astro.props;

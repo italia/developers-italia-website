@@ -8,6 +8,7 @@ import {
   AllArticlesFragment,
   AllInsightsFragment,
   AllStoryItemsFragment,
+  AllWebinarItemsFragment,
   HomepageModelContentFragment,
   PageContentFragment,
 } from "@graphql/templateFragments";
@@ -17,6 +18,7 @@ import {
   AllInsightsSlugFragment,
   AllPagesSlugFragment,
   AllStoryItemsSlugFragment,
+  AllWebinarItemsSlugFragment,
 } from "@graphql/slugFragments";
 
 export const LocalesQuery = graphql(`
@@ -150,6 +152,9 @@ export const AllLinkQuery = graphql(
       allStoryItems {
         ...AllStoryItemsSlugFragment
       }
+      allWebinarItems {
+        ...AllWebinarItemsSlugFragment
+      }
       homepage {
         id
         locales: _locales
@@ -164,6 +169,7 @@ export const AllLinkQuery = graphql(
     AllPagesSlugFragment,
     AllInsightsSlugFragment,
     AllStoryItemsSlugFragment,
+    AllWebinarItemsSlugFragment,
     LocaleFragment,
   ],
 );
@@ -188,4 +194,15 @@ export const AllStoryItemsQuery = graphql(
     }
   `,
   [AllStoryItemsFragment],
+);
+
+export const AllWebinarItemsQuery = graphql(
+  `
+    query allWebinarItems {
+      allWebinarItems {
+        ...AllWebinarItemsFragment
+      }
+    }
+  `,
+  [AllWebinarItemsFragment],
 );

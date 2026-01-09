@@ -1,0 +1,55 @@
+---
+import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import type { TagFragmentType } from "@graphql/commonFragments";
+import type { WebinarContentFragmentType } from "@graphql/templateFragments";
+import type { SiteLocale } from "@graphql/types";
+import Layout from "@layouts/Layout.astro";
+import { executeQuery } from "@lib/datocms";
+import { resolveRoutePath } from "@utils/pathHelper";
+import { AllWebinarItemsQuery } from "@utils/query";
+
+export async function getStaticPaths() {
+  type PathItem = {
+    params: {
+      webinar: string;
+      lang: SiteLocale;
+    };
+    props: {
+      seo: TagFragmentType[];
+      content: WebinarContentFragmentType[];
+      id: string;
+    };
+  };
+
+  const response = await executeQuery(AllWebinarItemsQuery);
+  if (!response.allWebinarItems) {
+    return [];
+  }
+
+  return response.allWebinarItems
+    ?.flatMap((webinar) =>
+      webinar.locales.map((lang) => ({
+        params: {
+          webinar: resolveRoutePath(webinar, lang).fullPath,
+          lang: lang,
+        },
+        props: {
+          id: webinar.id,
+          content: webinar.allContentLocales?.find(
+            (contentLocale) => contentLocale.locale === lang,
+          )?.value,
+        },
+      })),
+    )
+    .filter((path): path is PathItem => !!path.params.lang);
+}
+
+const { lang } = Astro.params;
+const { seo, content, id } = Astro.props;
+
+Astro.locals.recordId = id;
+---
+
+<Layout pageSeo={seo}>
+  <PageAdapter content={content} />
+</Layout>

@@ -1,0 +1,22 @@
+---
+import type { TextBlockFragmentType } from "@graphql/commonFragments";
+import { linkResolver } from "@data/linkMap";
+import { TextContainer } from "@components/molecules/TextContainer";
+import type { TextContainerVariant } from "@components/molecules/TextContainer/types";
+
+type Props = {
+  block: TextBlockFragmentType;
+  variant: TextContainerVariant;
+};
+
+const { block, variant } = Astro.props;
+const { lang } = Astro.locals;
+---
+
+<TextContainer
+  title={block.title}
+  paragraph={block.paragraph}
+  variant={variant}
+  labelButton={block.cta?.label}
+  linkTo={linkResolver(block.cta?.linkTo.id, lang)}
+/>

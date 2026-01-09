@@ -5,6 +5,7 @@ import {
   NewsPageLocalesFragment,
   PageLocalesFragment,
   StoryItemLocalesFragment,
+  WebinarItemLocalesFragment,
 } from "@graphql/metaFragments";
 import { LocaleFragment } from "@graphql/commonFragments";
 
@@ -90,4 +91,35 @@ export const AllStoryItemsSlugFragment = graphql(
 
 export type AllStoryItemsSlugFragmentType = FragmentOf<
   typeof AllStoryItemsSlugFragment
+>;
+
+export const AllWebinarItemsSlugFragment = graphql(
+  `
+    fragment AllWebinarItemsSlugFragment on WebinarItemRecord @_unmask {
+      id
+      locales: _locales
+      ...WebinarItemLocalesFragment
+      parentPage {
+        ... on RecordInterface {
+          id
+        }
+        ... on NewsPageRecord {
+          ...NewsPageLocalesFragment
+        }
+        ... on PageRecord {
+          ...PageLocalesFragment
+        }
+      }
+    }
+  `,
+  [
+    LocaleFragment,
+    PageLocalesFragment,
+    NewsPageLocalesFragment,
+    WebinarItemLocalesFragment,
+  ],
+);
+
+export type AllWebinarItemsSlugFragmentType = FragmentOf<
+  typeof AllWebinarItemsSlugFragment
 >;

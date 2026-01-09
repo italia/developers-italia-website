@@ -1,0 +1,21 @@
+---
+import type { AuthorListFragmentType } from "@graphql/commonFragments";
+import { GenericList } from "@components/molecules/GenericList";
+import type { GenericListItemProps } from "@components/molecules/GenericList/types";
+
+type Props = {
+  block: AuthorListFragmentType;
+};
+
+const { block } = Astro.props;
+
+const items: GenericListItemProps[] =
+  block.authors?.map((item) => {
+    return {
+      text: `${item.name}, ${item.role}`,
+      avatar: item.photo.url,
+    };
+  }) || [];
+---
+
+<GenericList items={items} label={block.title || undefined} size="bold" />

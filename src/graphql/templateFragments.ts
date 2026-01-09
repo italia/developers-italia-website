@@ -10,6 +10,7 @@ import {
   UseCaseContainerFragment,
   SupportCTASectionFragment,
   StructuredTextFragment,
+  ActionCardFragment,
 } from "@graphql/sectionFragments";
 import {
   CalloutFragment,
@@ -26,6 +27,7 @@ import {
   AllArticlesSlugFragment,
   AllInsightsSlugFragment,
   AllStoryItemsSlugFragment,
+  AllWebinarItemsSlugFragment,
 } from "@graphql/slugFragments";
 
 export const HomepageModelContentFragment = graphql(
@@ -298,4 +300,52 @@ export const AllStoryItemsFragment = graphql(
 
 export type AllStoryItemsFragmentType = FragmentOf<
   typeof AllStoryItemsFragment
+>;
+
+export const WebinarContentFragment = graphql(
+  `
+    fragment WebinarContentFragment on WebinarItemModelContentField @_unmask {
+      ... on RecordInterface {
+        id
+        componentName: __typename
+      }
+      ... on HeroRecord {
+        ...HeroFragment
+      }
+      ... on SectionRecord {
+        ...SectionFragment
+      }
+      ... on ActionCardRecord {
+        ...ActionCardFragment
+      }
+    }
+  `,
+  [HeroFragment, SectionFragment, ActionCardFragment],
+);
+
+export type WebinarContentFragmentType = FragmentOf<
+  typeof WebinarContentFragment
+>;
+
+export const AllWebinarItemsFragment = graphql(
+  `
+    fragment AllWebinarItemsFragment on WebinarItemRecord @_unmask {
+      id
+      seo: _seoMetaTags {
+        ...TagFragment
+      }
+      allContentLocales: _allContentLocales {
+        locale
+        value {
+          ...WebinarContentFragment
+        }
+      }
+      ...AllWebinarItemsSlugFragment
+    }
+  `,
+  [TagFragment, WebinarContentFragment, AllWebinarItemsSlugFragment],
+);
+
+export type AllWebinarItemsFragmentType = FragmentOf<
+  typeof AllWebinarItemsFragment
 >;
