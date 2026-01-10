@@ -19,6 +19,7 @@ import {
   AllPagesSlugFragment,
   AllStoryItemsSlugFragment,
   AllWebinarItemsSlugFragment,
+  HomepageFragment,
 } from "@graphql/slugFragments";
 
 export const LocalesQuery = graphql(`
@@ -156,11 +157,7 @@ export const AllLinkQuery = graphql(
         ...AllWebinarItemsSlugFragment
       }
       homepage {
-        id
-        locales: _locales
-        allTitleLocales: _allTitleLocales {
-          ...LocaleFragment
-        }
+        ...HomepageFragment
       }
     }
   `,
@@ -170,6 +167,7 @@ export const AllLinkQuery = graphql(
     AllInsightsSlugFragment,
     AllStoryItemsSlugFragment,
     AllWebinarItemsSlugFragment,
+    HomepageFragment,
     LocaleFragment,
   ],
 );

@@ -1,5 +1,5 @@
 import type { SidebarItemFirstLevelProps } from "@components/organisms/Sidebar/types";
-import { linkResolver } from "@data/linkMap";
+import { linkResolver } from "@utils/linkResolver";
 import type { SidebarMenuFragmentType } from "@graphql/commonFragments";
 import type { SiteLocale } from "@graphql/types";
 

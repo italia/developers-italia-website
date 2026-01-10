@@ -1,8 +1,9 @@
-import type {
-  AllArticlesSlugFragmentType,
-  AllInsightsSlugFragmentType,
-  AllStoryItemsSlugFragmentType,
-  AllWebinarItemsSlugFragmentType,
+import {
+  type AllArticlesSlugFragmentType,
+  type AllInsightsSlugFragmentType,
+  type AllPagesSlugFragmentType,
+  type AllStoryItemsSlugFragmentType,
+  type AllWebinarItemsSlugFragmentType,
 } from "@graphql/slugFragments";
 import type { SiteLocale } from "../graphql/types";
 
@@ -28,16 +29,17 @@ const getSlug = (item: HasLocales, locale: string) =>
 const getTitle = (item: HasLocales, locale: string) =>
   item?.allTitleLocales?.find((t) => t.locale === locale)?.value || "No title";
 
-type RoutableRecord =
+export type RoutableRecord =
   | AllArticlesSlugFragmentType
   | AllInsightsSlugFragmentType
   | AllStoryItemsSlugFragmentType
-  | AllWebinarItemsSlugFragmentType;
+  | AllWebinarItemsSlugFragmentType
+  | AllPagesSlugFragmentType;
 
 export function resolveRoutePath(
   record: RoutableRecord,
   locale: SiteLocale,
-  allArticles: AllArticlesSlugFragmentType[] = [],
+  allRecords: RoutableRecord[],
 ) {
   const steps: Step[] = [];
 
@@ -60,7 +62,7 @@ export function resolveRoutePath(
 
     if ("parent" in current && current.parent?.id) {
       const parentId: string = current.parent.id;
-      current = allArticles.find((a) => a.id === parentId) || null;
+      current = allRecords?.find((record) => record.id === parentId) || null;
       continue;
     }
 

@@ -35,6 +35,7 @@ export const AllPagesSlugFragment = graphql(
   `
     fragment AllPagesSlugFragment on PageRecord @_unmask {
       id
+      locales: _locales
       ...PageLocalesFragment
     }
   `,
@@ -123,3 +124,18 @@ export const AllWebinarItemsSlugFragment = graphql(
 export type AllWebinarItemsSlugFragmentType = FragmentOf<
   typeof AllWebinarItemsSlugFragment
 >;
+
+export const HomepageFragment = graphql(
+  `
+    fragment HomepageFragment on HomepageRecord @_unmask {
+      id
+      locales: _locales
+      allTitleLocales: _allTitleLocales {
+        ...LocaleFragment
+      }
+    }
+  `,
+  [LocaleFragment],
+);
+
+export type HomepageFragmentType = FragmentOf<typeof HomepageFragment>;

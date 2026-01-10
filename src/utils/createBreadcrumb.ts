@@ -1,5 +1,5 @@
-import { getBreadcrumbs, linkResolver } from "@data/linkMap";
 import type { SiteLocale } from "@graphql/types";
+import { getBreadcrumbs, linkResolver } from "@utils/linkResolver";
 
 export function createBreadcrumb(id: string, locale: SiteLocale) {
   const steps = getBreadcrumbs(id, locale);

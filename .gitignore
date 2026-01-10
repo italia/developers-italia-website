@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 .vercel
 
-src/data/linkMap.ts
+src/data/*

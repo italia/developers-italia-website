@@ -1,20 +1,21 @@
+import type { HomepageFragmentType } from "@graphql/slugFragments";
 import type { SiteLocale } from "@graphql/types";
 import { executeQuery } from "@lib/datocms";
-import { resolveRoutePath } from "@utils/pathHelper";
+import { resolveRoutePath, type RoutableRecord } from "@utils/pathHelper";
 import { AllLinkQuery } from "@utils/query";
 import fs from "fs";
 import path from "path";
 
-const OUTPUT_PATH = "src/data/linkMap.ts";
+const OUTPUT_PATH = "src/data/linkMap.json";
 
-interface HasTitles {
+type HasTitles = {
   allTitleLocales:
     | {
         locale: SiteLocale | null;
         value: string;
       }[]
     | null;
-}
+};
 
 type BreadcrumbStep = {
   title: string;
@@ -30,204 +31,72 @@ type LocaleMap = Record<SiteLocale, PageRouteInfo>;
 
 type SiteMap = Record<string, LocaleMap>;
 
+const getTitle = (item: HasTitles, locale: string) =>
+  item?.allTitleLocales?.find((t) => t.locale === locale)?.value || "No title";
+
+const processItems = <T extends RoutableRecord>(
+  items: T[],
+  linkMap: SiteMap,
+  home: HomepageFragmentType | null,
+) => {
+  items?.forEach((item) => {
+    linkMap[item.id] = {} as LocaleMap;
+
+    item.locales.forEach((locale) => {
+      const { fullPath, steps } = resolveRoutePath(item, locale, items);
+      const prefix = `/${locale}`;
+
+      linkMap[item.id][locale] = {
+        path: `${prefix}/${fullPath}`,
+        breadcrumb: [],
+      };
+
+      if (home) {
+        linkMap[item.id][locale].breadcrumb.push({
+          title: getTitle(home, locale),
+          id: home.id,
+        });
+      }
+
+      linkMap[item.id][locale].breadcrumb.push(
+        ...steps.map((step: any) => ({
+          title: step.title,
+          id: step.id,
+        })),
+      );
+    });
+  });
+};
+
 async function run() {
   console.log("Link map generation...");
   const data = await executeQuery(AllLinkQuery);
 
-  const getTitle = (item: HasTitles, locale: string) =>
-    item?.allTitleLocales?.find((t) => t.locale === locale)?.value ||
-    "No title";
-
   const linkMap: SiteMap = {};
 
   const home = data.homepage;
+
   if (home) {
     linkMap[home.id] = {} as LocaleMap;
     home.locales.forEach((locale) => {
-      linkMap[home.id][locale] = {} as PageRouteInfo;
-      linkMap[home.id][locale].path = `/${locale}`;
+      linkMap[home.id][locale] = {
+        path: `/${locale}`,
+        breadcrumb: [],
+      };
     });
   }
 
-  data.allPages?.forEach((page) => {
-    linkMap[page.id] = {} as LocaleMap;
-    page.allSlugLocales?.forEach((item) => {
-      const prefix = `/${item.locale}`;
-      const slug = `/${item.value}`;
-      if (!item.locale) return;
-      linkMap[page.id][item.locale] = {} as PageRouteInfo;
-      linkMap[page.id][item.locale].path = `${prefix}${slug}`;
-      if (home) {
-        linkMap[page.id][item.locale].breadcrumb = [
-          {
-            title: getTitle(home, item.locale),
-            id: home.id,
-          },
-        ];
-      }
-      linkMap[page.id][item.locale].breadcrumb.push({
-        title: getTitle(page, item.locale),
-        id: page.id,
-      });
-    });
-  });
-
-  data.allArticles?.forEach((article) => {
-    linkMap[article.id] = {} as LocaleMap;
-    article.locales.forEach((locale) => {
-      const { fullPath, steps } = resolveRoutePath(
-        article,
-        locale,
-        data.allArticles,
-      );
-      const prefix = `/${locale}`;
-      linkMap[article.id][locale] = {} as PageRouteInfo;
-      linkMap[article.id][locale].path = `${prefix}/${fullPath}`;
-      if (home) {
-        linkMap[article.id][locale].breadcrumb = [
-          {
-            title: getTitle(home, locale),
-            id: home.id,
-          },
-        ];
-      }
-      linkMap[article.id][locale].breadcrumb.push(
-        ...steps.map((step) => {
-          return {
-            title: step.title,
-            id: step.id,
-          };
-        }),
-      );
-    });
-  });
-
-  data.allInsights?.forEach((insight) => {
-    linkMap[insight.id] = {} as LocaleMap;
-    insight.locales.forEach((locale) => {
-      const { fullPath, steps } = resolveRoutePath(insight, locale);
-      const prefix = `/${locale}`;
-      linkMap[insight.id][locale] = {} as PageRouteInfo;
-      linkMap[insight.id][locale].path = `${prefix}/${fullPath}`;
-      if (home) {
-        linkMap[insight.id][locale].breadcrumb = [
-          {
-            title: getTitle(home, locale),
-            id: home.id,
-          },
-        ];
-      }
-      linkMap[insight.id][locale].breadcrumb.push(
-        ...steps.map((step) => {
-          return {
-            title: step.title,
-            id: step.id,
-          };
-        }),
-      );
-    });
-  });
-
-  data.allStoryItems?.forEach((story) => {
-    linkMap[story.id] = {} as LocaleMap;
-    story.locales.forEach((locale) => {
-      const { fullPath, steps } = resolveRoutePath(story, locale);
-      const prefix = `/${locale}`;
-      linkMap[story.id][locale] = {} as PageRouteInfo;
-      linkMap[story.id][locale].path = `${prefix}/${fullPath}`;
-      if (home) {
-        linkMap[story.id][locale].breadcrumb = [
-          {
-            title: getTitle(home, locale),
-            id: home.id,
-          },
-        ];
-      }
-      linkMap[story.id][locale].breadcrumb.push(
-        ...steps.map((step) => {
-          return {
-            title: step.title,
-            id: step.id,
-          };
-        }),
-      );
-    });
-  });
-
-  data.allWebinarItems?.forEach((webinar) => {
-    linkMap[webinar.id] = {} as LocaleMap;
-    webinar.locales.forEach((locale) => {
-      const { fullPath, steps } = resolveRoutePath(webinar, locale);
-      const prefix = `/${locale}`;
-      linkMap[webinar.id][locale] = {} as PageRouteInfo;
-      linkMap[webinar.id][locale].path = `${prefix}/${fullPath}`;
-      if (home) {
-        linkMap[webinar.id][locale].breadcrumb = [
-          {
-            title: getTitle(home, locale),
-            id: home.id,
-          },
-        ];
-      }
-      linkMap[webinar.id][locale].breadcrumb.push(
-        ...steps.map((step) => {
-          return {
-            title: step.title,
-            id: step.id,
-          };
-        }),
-      );
-    });
-  });
-
-  const fileContent = `/**
-* THIS FILE IS AUTOMATICALLY GENERATED
-* DO NOT EDIT MANUALLY.
-* * To update this file, run: "bun run generate:links"
-* This map is generated from DatoCMS data during the build process.
-*/
-
-import type { SiteLocale } from "@graphql/types";
-
-export type BreadcrumbStep = {
-  title: string;
-  id: string;
-};
-
-export type PageRouteInfo = {
-  path: string;
-  breadcrumb?: BreadcrumbStep[];
-};
-
-export type LocaleMap = Partial<Record<SiteLocale, PageRouteInfo>>;
-
-export type SiteMap = Record<string, LocaleMap>;
-
-export const linkMap: SiteMap = ${JSON.stringify(linkMap, null, 2)};
-
-export type LinkMap = typeof linkMap;
-export type RecordId = keyof LinkMap;
-
-export function linkResolver(id: string | undefined, locale: string): string {
-  if (!id || !(id in linkMap)) {
-    return '#';
-  }
-  return linkMap[id as RecordId][locale as SiteLocale]?.path || '#';
-}
-
-export function getBreadcrumbs(id: string  | undefined, locale: string) {
-  if (!id || !(id in linkMap)) {
-    return [];
-  }
-  return linkMap[id as RecordId][locale as SiteLocale]?.breadcrumb || [];
-}
-`;
+  processItems(data.allPages, linkMap, home);
+  processItems(data.allArticles, linkMap, home);
+  processItems(data.allInsights, linkMap, home);
+  processItems(data.allStoryItems, linkMap, home);
+  processItems(data.allWebinarItems, linkMap, home);
 
   const fullOutputPath = path.resolve(OUTPUT_PATH);
   if (!fs.existsSync(path.dirname(fullOutputPath)))
     fs.mkdirSync(path.dirname(fullOutputPath), { recursive: true });
 
-  fs.writeFileSync(fullOutputPath, fileContent);
+  fs.writeFileSync(fullOutputPath, JSON.stringify(linkMap, null, 2));
   console.log(`Link Map successfully generated at: ${OUTPUT_PATH}`);
 }
 
