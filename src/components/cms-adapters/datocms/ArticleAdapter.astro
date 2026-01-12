@@ -1,39 +1,20 @@
 ---
 import { SectionContainer } from "@components/organisms/SectionContainer";
-import { StructuredText } from "@datocms/astro";
 import type { ArticleContentFragmentType } from "@graphql/templateFragments";
-import ListCardEditorialWithIconAdapter from "@components/cms-adapters/datocms/ListCardEditorialWithIconAdapter.astro";
-import OrderedListAdapter from "@components/cms-adapters/datocms/OrderedListAdapter.astro";
-import ExternalLinkAdapter from "@components/cms-adapters/datocms/ExternalLinkAdapter.astro";
-import CalloutAdapter from "@components/cms-adapters/datocms/CalloutAdapter.astro";
-import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
-import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
-import ListInternalLinkAdapter from "@components/cms-adapters/datocms/ListInternalLinkAdapter.astro";
-import TopicsAdapter from "@components/cms-adapters/datocms/TopicsAdapter.astro";
-import RelatedArticleAdapter from "@components/cms-adapters/datocms/RelatedArticleAdapter.astro";
-import ImageContainerAdapter from "@components/cms-adapters/datocms/ImageContainerAdapter.astro";
+import { Breadcrumb } from "@components/molecules/Breadcrumb";
+import { createBreadcrumb } from "@utils/createBreadcrumb";
+import StructuredTextAdapter from "@components/cms-adapters/datocms/StructuredTextAdapter.astro";
 
 type Props = {
   content: ArticleContentFragmentType;
 };
 
 const { content } = Astro.props;
+const { recordId, lang } = Astro.locals;
+const breadcrumbItems = createBreadcrumb(recordId, lang);
 ---
 
 <SectionContainer className="ps-5 structured-text-container">
-  <StructuredText
-    data={content}
-    blockComponents={{
-      ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
-      ExternalLinkRecord: ExternalLinkAdapter,
-      OrderedListRecord: OrderedListAdapter,
-      CalloutRecord: CalloutAdapter,
-      QuickLinkCardRecord: QuickLinkCardAdapter,
-      SupportCtaSectionRecord: SupportCTASectionAdapter,
-      ListInternalLinkRecord: ListInternalLinkAdapter,
-      TopicsBlockRecord: TopicsAdapter,
-      RelatedArticleRecord: RelatedArticleAdapter,
-      ImageBlockRecord: ImageContainerAdapter,
-    }}
-  />
+  <Breadcrumb items={breadcrumbItems} ariaLabel="Breadbrumb" />
+  <StructuredTextAdapter block={content} />
 </SectionContainer>

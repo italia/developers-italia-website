@@ -15,7 +15,7 @@ import type {
 import UseCaseContainerAdapter from "@components/cms-adapters/datocms/UseCaseContainerAdapter.astro";
 import TopicFilterAdapter from "@components/cms-adapters/datocms/TopicFilterAdapter.astro";
 import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
-import StructuredTextAdapter from "@components/cms-adapters/datocms/StructuredTextAdapter.astro";
+import StructuredTextBlockAdapter from "@components/cms-adapters/datocms/StructuredTextBlockAdapter.astro";
 import ListCollectionAdapter from "@components/cms-adapters/datocms/ListCollectionAdapter.astro";
 import ActionCardAdapter from "@components/cms-adapters/datocms/ActionCardAdapter.astro";
 
@@ -55,7 +55,7 @@ const { content } = Astro.props;
       case "SupportCtaSectionRecord":
         return <SupportCTASectionAdapter block={block} />;
       case "StructuredTextRecord":
-        return <StructuredTextAdapter block={block.textContent} />;
+        return <StructuredTextBlockAdapter block={block.textContent} />;
       case "ListCollectionRecord":
         return <ListCollectionAdapter block={block} />;
       case "ActionCardRecord":

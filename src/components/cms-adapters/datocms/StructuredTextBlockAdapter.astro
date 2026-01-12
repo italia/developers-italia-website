@@ -1,0 +1,15 @@
+---
+import { SectionContainer } from "@components/organisms/SectionContainer";
+import type { StructuredTextFragmentType } from "@graphql/sectionFragments";
+import StructuredTextAdapter from "@components/cms-adapters/datocms/StructuredTextAdapter.astro";
+
+type Props = {
+  block: StructuredTextFragmentType;
+};
+
+const { block } = Astro.props;
+---
+
+<SectionContainer className="col-8 structured-text-container m-auto">
+  <StructuredTextAdapter block={block} />
+</SectionContainer>

@@ -14,12 +14,10 @@ const { sidebar, content } = Astro.props;
 
 <div class="container">
   <div class="row">
-    <div
-      class="col-12 col-lg-4 px-lg-0 pb-lg-5 menu-column border-end position-sticky"
-    >
+    <div class="col-12 col-lg-4 px-lg-0 pb-lg-5 border-end position-sticky">
       <SidebarAdapter sidebar={sidebar} />
     </div>
-    <div class="col-12 col-lg-7 px-lg-0 content-column">
+    <div class="col-12 col-lg-7 px-lg-0">
       <ArticleAdapter content={content} />
     </div>
   </div>

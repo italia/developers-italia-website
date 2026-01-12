@@ -1,5 +1,4 @@
 ---
-import { SectionContainer } from "@components/organisms/SectionContainer";
 import { StructuredText } from "@datocms/astro";
 import ListCardEditorialWithIconAdapter from "@components/cms-adapters/datocms/ListCardEditorialWithIconAdapter.astro";
 import OrderedListAdapter from "@components/cms-adapters/datocms/OrderedListAdapter.astro";
@@ -12,28 +11,31 @@ import TopicsAdapter from "@components/cms-adapters/datocms/TopicsAdapter.astro"
 import ListCardInfoAdapter from "@components/cms-adapters/datocms/ListCardInfoAdapter.astro";
 import ListBlockquoteAdapter from "@components/cms-adapters/datocms/ListBlockquoteAdapter.astro";
 import type { StructuredTextFragmentType } from "@graphql/sectionFragments";
+import ImageContainerAdapter from "@components/cms-adapters/datocms/ImageContainerAdapter.astro";
+import RelatedArticleAdapter from "@components/cms-adapters/datocms/RelatedArticleAdapter.astro";
+import type { ArticleContentFragmentType } from "@graphql/templateFragments";
 
 type Props = {
-  block: StructuredTextFragmentType;
+  block: StructuredTextFragmentType | ArticleContentFragmentType;
 };
 
 const { block } = Astro.props;
 ---
 
-<SectionContainer className="ps-5 structured-text-container">
-  <StructuredText
-    data={block}
-    blockComponents={{
-      ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
-      ExternalLinkRecord: ExternalLinkAdapter,
-      OrderedListRecord: OrderedListAdapter,
-      CalloutRecord: CalloutAdapter,
-      QuickLinkCardRecord: QuickLinkCardAdapter,
-      SupportCtaSectionRecord: SupportCTASectionAdapter,
-      ListInternalLinkRecord: ListInternalLinkAdapter,
-      TopicsBlockRecord: TopicsAdapter,
-      ListCardInfoRecord: ListCardInfoAdapter,
-      ListBlockquoteRecord: ListBlockquoteAdapter,
-    }}
-  />
-</SectionContainer>
+<StructuredText
+  data={block}
+  blockComponents={{
+    ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
+    ExternalLinkRecord: ExternalLinkAdapter,
+    OrderedListRecord: OrderedListAdapter,
+    CalloutRecord: CalloutAdapter,
+    QuickLinkCardRecord: QuickLinkCardAdapter,
+    SupportCtaSectionRecord: SupportCTASectionAdapter,
+    ListInternalLinkRecord: ListInternalLinkAdapter,
+    TopicsBlockRecord: TopicsAdapter,
+    ListCardInfoRecord: ListCardInfoAdapter,
+    ListBlockquoteRecord: ListBlockquoteAdapter,
+    RelatedArticleRecord: RelatedArticleAdapter,
+    ImageBlockRecord: ImageContainerAdapter,
+  }}
+/>

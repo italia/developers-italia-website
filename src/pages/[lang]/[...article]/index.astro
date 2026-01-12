@@ -1,5 +1,5 @@
 ---
-import { SidebarLayout } from "@components/layout/SidebarLayout";
+import SidebarLayoutAdapter from "@components/cms-adapters/datocms/SidebarLayoutAdapter.astro";
 import type { TagFragmentType } from "@graphql/commonFragments";
 import type { ArticleContentFragmentType } from "@graphql/templateFragments";
 import type { SiteLocale } from "@graphql/types";
@@ -60,5 +60,5 @@ Astro.locals.recordId = id;
 ---
 
 <Layout pageSeo={seo}>
-  <SidebarLayout sidebar={sidebarForArticle} content={content} />
+  <SidebarLayoutAdapter sidebar={sidebarForArticle} content={content} />
 </Layout>
