@@ -1,4 +1,5 @@
 ---
+import { Icon } from "@components/atoms/Icon";
 import type { CardPresentationBannerProps } from "./types";
 
 type Props = CardPresentationBannerProps;
@@ -13,9 +14,7 @@ const { title, description, icon, linkTo } = Astro.props;
     <a href={linkTo}>{title}</a>
   </h3>
   <div class="it-card-banner-icon-wrapper">
-    <svg class="icon icon-primary icon-xl" aria-hidden="true"
-      ><use href=`/bsi-svg/sprites.svg#${icon}`></use></svg
-    >
+    <Icon icon={icon} className="text-primary icon-xl" />
   </div>
   <div class="it-card-body">
     <p class="it-card-text">{description}</p>

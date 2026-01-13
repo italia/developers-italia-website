@@ -1,0 +1,19 @@
+.number-container {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: #79ece8;
+}
+
+.number-container.icon-text {
+  color: #036;
+  font-family: "Titillium Web";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}

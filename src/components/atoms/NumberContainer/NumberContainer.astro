@@ -1,0 +1,14 @@
+---
+type Props = {
+  content: string;
+};
+const { content } = Astro.props;
+---
+
+<style>
+  @import "./style.scss";
+</style>
+
+<div class="number-container icon-text">
+  {content}
+</div>

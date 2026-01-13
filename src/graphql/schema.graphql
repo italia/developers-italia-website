@@ -609,6 +609,32 @@ input BooleanFilter {
 """Represents `true` or `false` values."""
 scalar BooleanType
 
+"""Block of type 🏢 Brand (brand)"""
+type BrandRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  icon: FileField!
+  id: ItemId!
+  label: String!
+  url: String!
+}
+
 """Block of type ⚠️ Callout (callout)"""
 type CalloutRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -662,7 +688,7 @@ type CardEditorialWithIconRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String!
-  icon: String!
+  icon: FileField!
   id: ItemId!
   title: String!
 }
@@ -876,7 +902,7 @@ type ChannelRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   description: String!
-  icon: String!
+  icon: FileField!
   id: ItemId!
   title: String!
 }
@@ -1033,7 +1059,7 @@ type DataContainerRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  contentIcon: String!
+  icon: FileField!
   id: ItemId!
   info: String!
   title: String!
@@ -4311,6 +4337,7 @@ type LayoutRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String!
   id: ItemId!
+  logo: FileField!
   navigationBar(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4338,7 +4365,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  organizations: [ExternalLinkRecord!]!
+  organizations: [BrandRecord!]!
   siteName(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4368,7 +4395,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  utility: [ExternalLinkRecord!]!
+  utility: [BrandRecord!]!
   utilityTitle(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

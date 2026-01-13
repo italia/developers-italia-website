@@ -1,4 +1,5 @@
 ---
+import { Icon } from "@components/atoms/Icon";
 import type { FooterLogoProps } from "./types";
 
 type Props = FooterLogoProps;
@@ -7,8 +8,6 @@ const { icon, label, linkTo } = Astro.props;
 ---
 
 <a href={linkTo} target="_blank" rel="noreferrer" class="d-block">
-  <svg class="icon icon-white me-3" aria-hidden="true"
-    ><use href=`/bsi-svg/sprites.svg#${icon}`></use></svg
-  >
+  {icon && <Icon icon={icon} className="text-white me-3" />}
   {label}
 </a>

@@ -16,6 +16,7 @@ const {
   secondaryNavigation,
   locales,
   homeRecordId,
+  logo,
 } = Astro.props;
 
 const { lang } = Astro.locals;
@@ -35,5 +36,6 @@ const menuItems = createMenu(
   slimContent={tagline}
   menuItems={menuItems}
   locales={locales}
+  logo={logo.url}
   linkBackHome={linkResolver(homeRecordId, lang)}
 />

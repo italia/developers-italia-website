@@ -33,3 +33,15 @@ body {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
 }
+
+.dynamic-icon {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon-url);
+  mask-image: var(--icon-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  mask-position: center;
+}

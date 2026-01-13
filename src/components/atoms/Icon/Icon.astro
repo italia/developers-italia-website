@@ -1,0 +1,11 @@
+---
+type Props = {
+  className: string;
+  icon: string;
+};
+
+const { className, icon } = Astro.props;
+---
+
+<span class=`dynamic-icon icon ${className}` style=`--icon-url: url(${icon});`>
+</span>

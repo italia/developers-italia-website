@@ -1,12 +1,22 @@
 ---
 import type { StatisticBlockFragmentType } from "@graphql/commonFragments";
 import { Statistics } from "@components/molecules/Statistics";
+import type { DataContainerProps } from "@components/molecules/DataContainer/types";
+import { timerMessage } from "node_modules/astro/dist/core/logger/core";
 
 type Props = {
   block: StatisticBlockFragmentType;
 };
 
 const { block } = Astro.props;
+
+const items: DataContainerProps[] = block.statistics.map((item) => {
+  return {
+    info: item.info,
+    title: item.title,
+    contentIcon: item.icon.url,
+  };
+});
 ---
 
-<Statistics items={block.statistics} />
+<Statistics items={items} />

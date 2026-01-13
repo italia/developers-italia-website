@@ -42,6 +42,18 @@ export const InternalLinkFragment = graphql(`
 `);
 export type InternalLinkFragmentType = FragmentOf<typeof InternalLinkFragment>;
 
+export const BrandFragment = graphql(`
+  fragment BrandFragment on BrandRecord @_unmask {
+    id
+    icon {
+      url
+    }
+    label
+    url
+  }
+`);
+export type BrandFragmentType = FragmentOf<typeof BrandFragment>;
+
 export const TopicsBlockFragment = graphql(`
   fragment TopicsBlockFragment on TopicsBlockRecord @_unmask {
     id
@@ -230,7 +242,9 @@ export const ChannelFragment = graphql(`
   fragment ChannelFragment on ChannelRecord @_unmask {
     id
     title
-    icon
+    icon {
+      url
+    }
     description
   }
 `);
@@ -271,7 +285,9 @@ export type UseCaseBlockFragmentType = FragmentOf<typeof UseCaseBlockFragment>;
 export const DataContainerFragment = graphql(`
   fragment DataContainerFragment on DataContainerRecord @_unmask {
     id
-    contentIcon
+    icon {
+      url
+    }
     info
     title
   }
@@ -411,18 +427,34 @@ export const DownloadLinkFragment = graphql(`
 
 export type DownloadLinkFragmentType = FragmentOf<typeof DownloadLinkFragment>;
 
-export const AdditionalContentFragment = graphql(`
-  fragment AdditionalContentFragment on AdditionalContentRecord @_unmask {
+export const CardEditorialWithIconFragment = graphql(`
+  fragment CardEditorialWithIconFragment on CardEditorialWithIconRecord
+  @_unmask {
     id
     title
-    content {
-      id
-      title
-      icon
-      description
+    icon {
+      url
     }
+    description
   }
 `);
+
+export type CardEditorialWithIconFragmentType = FragmentOf<
+  typeof CardEditorialWithIconFragment
+>;
+
+export const AdditionalContentFragment = graphql(
+  `
+    fragment AdditionalContentFragment on AdditionalContentRecord @_unmask {
+      id
+      title
+      content {
+        ...CardEditorialWithIconFragment
+      }
+    }
+  `,
+  [CardEditorialWithIconFragment],
+);
 
 export type AdditionalContentFragmentType = FragmentOf<
   typeof AdditionalContentFragment
@@ -451,20 +483,6 @@ export const ListCollectionFragment = graphql(
 
 export type ListCollectionFragmentType = FragmentOf<
   typeof ListCollectionFragment
->;
-
-export const CardEditorialWithIconFragment = graphql(`
-  fragment CardEditorialWithIconFragment on CardEditorialWithIconRecord
-  @_unmask {
-    id
-    title
-    icon
-    description
-  }
-`);
-
-export type CardEditorialWithIconFragmentType = FragmentOf<
-  typeof CardEditorialWithIconFragment
 >;
 
 export const ListCardEditorialWithIconFragment = graphql(

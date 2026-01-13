@@ -1,9 +1,5 @@
 ---
 import { SplitContent } from "@components/layout/SplitContent";
-import type {
-  SectionAlignItems,
-  SectionBackground,
-} from "@components/layout/SplitContent/SplitContent.astro";
 import type { SectionFragmentType } from "@graphql/sectionFragments";
 import AccordionAdapter from "@components/cms-adapters/datocms/AccordionAdapter.astro";
 import ImageContainerAdapter from "@components/cms-adapters/datocms/ImageContainerAdapter.astro";
@@ -15,6 +11,11 @@ import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainer
 import IconListAdapter from "@components/cms-adapters/datocms/IconListAdapter.astro";
 import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
 import AuthorListAdapter from "@components/cms-adapters/datocms/AuthorListAdapter.astro";
+import type {
+  SectionAlignItems,
+  SectionBackground,
+} from "@components/layout/SplitContent/types";
+import type { AdditionalContentProps } from "@components/organisms/AdditionalContent/types";
 
 type Props = {
   block: SectionFragmentType;
@@ -22,7 +23,6 @@ type Props = {
 
 const { block } = Astro.props;
 
-const additionalContent = block.additionalContent;
 const leftBlock = block.left;
 const rightBlock = block.right;
 
@@ -37,6 +37,8 @@ const variantAdditionalContent =
   block.background === "dark" || block.background === "primary"
     ? "light"
     : undefined;
+
+const additionalContent = block.additionalContent;
 ---
 
 <SplitContent
@@ -93,9 +95,15 @@ const variantAdditionalContent =
   {
     additionalContent && (
       <AdditionalContent
-        variant={variantAdditionalContent}
-        content={additionalContent.content}
         title={additionalContent.title || undefined}
+        content={additionalContent.content.map((item) => {
+          return {
+            title: item.title,
+            description: item.description,
+            icon: item.icon.url,
+          };
+        })}
+        variant={variantAdditionalContent}
       />
     )
   }

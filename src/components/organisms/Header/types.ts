@@ -5,6 +5,7 @@ export type HeaderProps = {
   locales: string[];
   menuItems: HeaderNavbarProps;
   linkBackHome: string;
+  logo: string;
 };
 
 export type MenuItemProps = {
@@ -24,4 +25,5 @@ export type HeaderCentralProps = {
   brandTagLine: string;
   menuItems: HeaderNavbarProps;
   linkBackHome: string;
+  logo: string;
 };

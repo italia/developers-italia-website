@@ -19,7 +19,7 @@ const { lang } = Astro.locals;
 
 const logos = organizations.map((org) => {
   return {
-    icon: org.icon || undefined,
+    icon: org.icon.url || undefined,
     label: org.label,
     linkTo: org.url,
   };
@@ -37,7 +37,7 @@ const utilities = utility.map((util) => {
   return {
     label: util.label,
     ariaLabel: "link",
-    icon: util.icon || undefined,
+    icon: util.icon.url || undefined,
     linkTo: util.url,
   };
 });

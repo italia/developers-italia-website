@@ -1,10 +1,11 @@
 ---
+import { Icon } from "@components/atoms/Icon";
 import MenuItem from "./MenuItem.astro";
 import type { HeaderCentralProps } from "./types";
 
 type Props = HeaderCentralProps;
 
-const { brandTitle, brandTagLine, menuItems, linkBackHome } = Astro.props;
+const { brandTitle, brandTagLine, menuItems, linkBackHome, logo } = Astro.props;
 ---
 
 <div class="it-nav-wrapper">
@@ -15,9 +16,7 @@ const { brandTitle, brandTagLine, menuItems, linkBackHome } = Astro.props;
           <div class="it-header-center-content-wrapper">
             <div class="it-brand-wrapper">
               <a href={linkBackHome}>
-                <svg class="icon" aria-hidden="true"
-                  ><use href="/bsi-svg/sprites.svg#it-pa"></use></svg
-                >
+                <Icon icon={logo} className="text-primary" />
                 <div class="it-brand-text">
                   <div class="it-brand-title">{brandTitle}</div>
                   <div class="it-brand-tagline d-none d-md-block">

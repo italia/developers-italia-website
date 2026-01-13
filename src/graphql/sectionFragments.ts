@@ -4,6 +4,7 @@ import {
   AdditionalContentFragment,
   ArticleCardPreviewFragment,
   AuthorListFragment,
+  BrandFragment,
   CalloutFragment,
   ChannelFragment,
   ChartFragment,
@@ -174,6 +175,9 @@ export const HeaderFragment = graphql(
         ... on MenuItemRecord {
           ...MenuItemFragment
         }
+      }
+      logo {
+        url
       }
       tagline
       organization
@@ -353,10 +357,7 @@ export const FooterFragment = graphql(
     fragment FooterFragment on LayoutRecord @_unmask {
       heading(markdown: true)
       organizations {
-        id
-        icon
-        label
-        url
+        ...BrandFragment
       }
       topicTitle
       topicLink {
@@ -368,10 +369,7 @@ export const FooterFragment = graphql(
       }
       utilityTitle
       utility {
-        id
-        url
-        label
-        icon
+        ...BrandFragment
       }
       smallPrint {
         ... on RecordInterface {
@@ -387,7 +385,7 @@ export const FooterFragment = graphql(
       }
     }
   `,
-  [ExternalLinkFragment, InternalLinkFragment],
+  [ExternalLinkFragment, InternalLinkFragment, BrandFragment],
 );
 
 export type FooterFragmentType = FragmentOf<typeof FooterFragment>;
