@@ -1,0 +1,96 @@
+---
+import { SplitContent } from "@components/layout/SplitContent";
+import { TabContent, Tabs } from "@components/molecules/Tabs";
+import {
+  mapNewsToCardEditorialNewsProps,
+  mapStoryToCardEditorialInlineMiniProps,
+  mapWebinarToCardEditorialNewsProps,
+  mapResourceToResourceProps,
+} from "@utils/mappers";
+import { getCollection } from "astro:content";
+import { PaginatedCollection } from "@components/react/PaginatedCollection/PaginatedCollection";
+import type { CardEditorialNewsProps } from "@components/react/CardEditorialNews";
+import type { ResourceProps } from "@components/react/Resource";
+import type { CardEditorialInlineMiniProps } from "@components/react/CardEditorialInlineMini/CardEditorialInlineMini";
+
+type PageNewsTab = {
+  title: string;
+  paragraph: string;
+  filterTitle: string;
+  labelForAll: string;
+  newsPageTabType: string;
+  elementPerPage?: number;
+};
+
+type UpdateTabSectionProps = {
+  id: string;
+  tabs: PageNewsTab[];
+};
+
+type Props = UpdateTabSectionProps;
+
+const { id, tabs = [] } = Astro.props;
+const { lang } = Astro.locals;
+
+const tabsItems = tabs.map((tab, index) => ({
+  id: `tab-${id}-${index}`,
+  label: tab.title,
+  active: index === 0,
+}));
+
+const news = await getCollection("news");
+const stories = await getCollection("stories");
+const webinars = await getCollection("webinars");
+const resources = await getCollection("resources");
+
+type ElementType = "news" | "story" | "webinar" | "resource";
+function isValidTabType(val: string): val is ElementType {
+  return (
+    val === "news" || val === "story" || val === "webinar" || val === "resource"
+  );
+}
+
+const collectionMap: Record<
+  ElementType,
+  (ResourceProps | CardEditorialNewsProps | CardEditorialInlineMiniProps)[]
+> = {
+  news: news.map((n) => mapNewsToCardEditorialNewsProps(n.data, lang)),
+  story: stories.map((s) =>
+    mapStoryToCardEditorialInlineMiniProps(s.data, lang),
+  ),
+  webinar: webinars.map((w) =>
+    mapWebinarToCardEditorialNewsProps(w.data, lang),
+  ),
+  resource: resources.map((r) => mapResourceToResourceProps(r.data)),
+};
+
+function getCollectionItems(type: string) {
+  return collectionMap[type as ElementType] || [];
+}
+---
+
+<SplitContent leftColumns={5} alignItems="top">
+  <div class="row">
+    <Tabs id={id} items={tabsItems}>
+      {
+        tabs.map((tab, index) => {
+          const tabType = tab.newsPageTabType;
+          if (!isValidTabType(tabType)) return null;
+
+          const items = getCollectionItems(tabType);
+
+          return (
+            <TabContent tab={tabsItems[index]}>
+              <PaginatedCollection
+                client:load
+                {...tab}
+                items={items as any}
+                newsPageTabType={tabType}
+              />
+            </TabContent>
+          );
+        })
+      }
+    </Tabs>
+  </div>
+</SplitContent>

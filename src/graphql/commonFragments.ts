@@ -128,7 +128,9 @@ export const NewsItemFragment = graphql(
       id
       title
       paragraph
-      category
+      topic {
+        label
+      }
       dateOfPublication
       link
       image {
@@ -140,6 +142,27 @@ export const NewsItemFragment = graphql(
 );
 
 export type NewsItemFragmentType = FragmentOf<typeof NewsItemFragment>;
+
+export const WebinarItemFragment = graphql(
+  `
+    fragment WebinarItemFragment on WebinarItemRecord @_unmask {
+      id
+      title
+      paragraph
+      topic {
+        label
+      }
+      date
+      image {
+        ...ImageFragment
+      }
+      slug
+    }
+  `,
+  [ImageFragment],
+);
+
+export type WebinarItemFragmentType = FragmentOf<typeof WebinarItemFragment>;
 
 export const NewsTabFragment = graphql(
   `
@@ -167,7 +190,9 @@ export const StoryItemFragment = graphql(
     fragment StoryItemFragment on StoryItemRecord @_unmask {
       id
       title
-      category
+      topic {
+        label
+      }
       dateOfPublication
       slug
       image {
@@ -323,8 +348,12 @@ export const MenuItemFragment = graphql(`
     id
     title
     pointsTo {
-      id
-      slug
+      ... on CatalogueRecord {
+        id
+      }
+      ... on PageRecord {
+        id
+      }
     }
   }
 `);
@@ -365,6 +394,22 @@ export const ExternalLinkFragment = graphql(`
 `);
 
 export type ExternalLinkFragmentType = FragmentOf<typeof ExternalLinkFragment>;
+
+export const DownloadLinkFragment = graphql(`
+  fragment DownloadLinkFragment on DownloadLinkRecord @_unmask {
+    id
+    label
+    description
+    doc {
+      size
+      format
+      url
+      filename
+    }
+  }
+`);
+
+export type DownloadLinkFragmentType = FragmentOf<typeof DownloadLinkFragment>;
 
 export const AdditionalContentFragment = graphql(`
   fragment AdditionalContentFragment on AdditionalContentRecord @_unmask {
@@ -682,3 +727,32 @@ export const RelatedArticleFragment = graphql(
 export type RelatedArticleFragmentType = FragmentOf<
   typeof RelatedArticleFragment
 >;
+
+export const ResourceFragment = graphql(
+  `
+    fragment ResourceFragment on ResourceRecord @_unmask {
+      id
+      macroTopic {
+        label
+      }
+      category {
+        label
+      }
+      resource {
+        ... on RecordInterface {
+          id
+          componentName: __typename
+        }
+        ... on ExternalLinkRecord {
+          ...ExternalLinkFragment
+        }
+        ... on DownloadLinkRecord {
+          ...DownloadLinkFragment
+        }
+      }
+    }
+  `,
+  [ExternalLinkFragment, DownloadLinkFragment],
+);
+
+export type ResourceFragmentType = FragmentOf<typeof ResourceFragment>;

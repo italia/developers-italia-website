@@ -8,13 +8,19 @@ const { id, items, variant = "light" } = Astro.props;
 <style>
   @import "./style.scss";
 </style>
-<ul
-  class=`nav nav-tabs ${variant==="dark" ? "bg-primary" : ""}`
-  id={`tabs-${id}`}
-  role="tablist"
->
-  {items.map((item) => <TabsItem {...item} />)}
-</ul>
+{
+  items.length > 1 && (
+    <ul
+      class={`nav nav-tabs mb-5 ${variant === "dark" ? "bg-primary" : ""}`}
+      id={`tabs-${id}`}
+      role="tablist"
+    >
+      {items.map((item) => (
+        <TabsItem {...item} />
+      ))}
+    </ul>
+  )
+}
 <div class="tab-content" id=`tabs-${id}-content`>
   <slot />
 </div>

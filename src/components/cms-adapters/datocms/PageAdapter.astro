@@ -8,6 +8,7 @@ import FAQSectionAdapter from "@components/cms-adapters/datocms/FAQSectionAdapte
 import type {
   HomepageModelContentFragmentType,
   InsightContentFragmentType,
+  CatalogueContentFragmentType,
   PageContentFragmentType,
   StoryContentFragmentType,
   WebinarContentFragmentType,
@@ -17,12 +18,14 @@ import TopicFilterAdapter from "@components/cms-adapters/datocms/TopicFilterAdap
 import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
 import StructuredTextBlockAdapter from "@components/cms-adapters/datocms/StructuredTextBlockAdapter.astro";
 import ListCollectionAdapter from "@components/cms-adapters/datocms/ListCollectionAdapter.astro";
+import CatalogueFeedAdapter from "@components/cms-adapters/datocms/CatalogueFeedAdapter.astro";
 import ActionCardAdapter from "@components/cms-adapters/datocms/ActionCardAdapter.astro";
 
 type ContentType =
   | HomepageModelContentFragmentType
   | PageContentFragmentType
   | InsightContentFragmentType
+  | CatalogueContentFragmentType
   | StoryContentFragmentType
   | WebinarContentFragmentType;
 
@@ -58,6 +61,8 @@ const { content } = Astro.props;
         return <StructuredTextBlockAdapter block={block.textContent} />;
       case "ListCollectionRecord":
         return <ListCollectionAdapter block={block} />;
+      case "CatalogueFeedRecord":
+        return <CatalogueFeedAdapter block={block} />;
       case "ActionCardRecord":
         return <ActionCardAdapter block={block} />;
       default:

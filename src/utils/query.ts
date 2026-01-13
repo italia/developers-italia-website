@@ -3,6 +3,10 @@ import {
   TagFragment,
   LocaleFragment,
   SidebarFragment,
+  NewsItemFragment,
+  StoryItemFragment,
+  WebinarItemFragment,
+  ResourceFragment,
 } from "@graphql/commonFragments";
 import {
   AllArticlesFragment,
@@ -10,11 +14,13 @@ import {
   AllStoryItemsFragment,
   AllWebinarItemsFragment,
   HomepageModelContentFragment,
+  CatalogueContentFragment,
   PageContentFragment,
 } from "@graphql/templateFragments";
 import { FooterFragment, HeaderFragment } from "@graphql/sectionFragments";
 import {
   AllArticlesSlugFragment,
+  AllCataloguesSlugFragment,
   AllInsightsSlugFragment,
   AllPagesSlugFragment,
   AllStoryItemsSlugFragment,
@@ -156,6 +162,12 @@ export const AllLinkQuery = graphql(
       allWebinarItems {
         ...AllWebinarItemsSlugFragment
       }
+      allWebinarItems {
+        ...AllWebinarItemsSlugFragment
+      }
+      allCatalogues {
+        ...AllCataloguesSlugFragment
+      }
       homepage {
         ...HomepageFragment
       }
@@ -167,6 +179,7 @@ export const AllLinkQuery = graphql(
     AllInsightsSlugFragment,
     AllStoryItemsSlugFragment,
     AllWebinarItemsSlugFragment,
+    AllCataloguesSlugFragment,
     HomepageFragment,
     LocaleFragment,
   ],
@@ -181,6 +194,60 @@ export const AllInsightsQuery = graphql(
     }
   `,
   [AllInsightsFragment],
+);
+
+export const AllCataloguesQuery = graphql(
+  `
+    query AllCatalogues {
+      allCatalogues {
+        id
+        locales: _locales
+        allSlugLocales: _allSlugLocales {
+          ...LocaleFragment
+        }
+        allContentLocales: _allContentLocales {
+          locale
+          value {
+            ...CatalogueContentFragment
+          }
+        }
+      }
+    }
+  `,
+  [CatalogueContentFragment, LocaleFragment],
+);
+
+export const AllNewsQuery = graphql(
+  `
+    query AllNews {
+      allNewsItems {
+        ...NewsItemFragment
+      }
+    }
+  `,
+  [NewsItemFragment],
+);
+
+export const AllStoryQuery = graphql(
+  `
+    query AllStory {
+      allStoryItems {
+        ...StoryItemFragment
+      }
+    }
+  `,
+  [StoryItemFragment],
+);
+
+export const AllWebinarQuery = graphql(
+  `
+    query AllWebinar {
+      allWebinarItems {
+        ...WebinarItemFragment
+      }
+    }
+  `,
+  [WebinarItemFragment],
 );
 
 export const AllStoryItemsQuery = graphql(
@@ -203,4 +270,15 @@ export const AllWebinarItemsQuery = graphql(
     }
   `,
   [AllWebinarItemsFragment],
+);
+
+export const AllResourcesQuery = graphql(
+  `
+    query AllResources {
+      allResources {
+        ...ResourceFragment
+      }
+    }
+  `,
+  [ResourceFragment],
 );

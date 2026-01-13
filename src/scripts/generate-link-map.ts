@@ -91,6 +91,7 @@ async function run() {
   processItems(data.allInsights, linkMap, home);
   processItems(data.allStoryItems, linkMap, home);
   processItems(data.allWebinarItems, linkMap, home);
+  processItems(data.allCatalogues, linkMap, home);
 
   const fullOutputPath = path.resolve(OUTPUT_PATH);
   if (!fs.existsSync(path.dirname(fullOutputPath)))

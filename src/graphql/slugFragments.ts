@@ -2,7 +2,7 @@ import { graphql, type FragmentOf } from "@graphql/graphql";
 import {
   ArticleLocalesFragment,
   InsightLocalesFragment,
-  NewsPageLocalesFragment,
+  CatalogueLocalesFragment,
   PageLocalesFragment,
   StoryItemLocalesFragment,
   WebinarItemLocalesFragment,
@@ -73,8 +73,8 @@ export const AllStoryItemsSlugFragment = graphql(
         ... on RecordInterface {
           id
         }
-        ... on NewsPageRecord {
-          ...NewsPageLocalesFragment
+        ... on CatalogueRecord {
+          ...CatalogueLocalesFragment
         }
         ... on PageRecord {
           ...PageLocalesFragment
@@ -85,7 +85,7 @@ export const AllStoryItemsSlugFragment = graphql(
   [
     LocaleFragment,
     PageLocalesFragment,
-    NewsPageLocalesFragment,
+    CatalogueLocalesFragment,
     StoryItemLocalesFragment,
   ],
 );
@@ -104,8 +104,8 @@ export const AllWebinarItemsSlugFragment = graphql(
         ... on RecordInterface {
           id
         }
-        ... on NewsPageRecord {
-          ...NewsPageLocalesFragment
+        ... on CatalogueRecord {
+          ...CatalogueLocalesFragment
         }
         ... on PageRecord {
           ...PageLocalesFragment
@@ -116,13 +116,33 @@ export const AllWebinarItemsSlugFragment = graphql(
   [
     LocaleFragment,
     PageLocalesFragment,
-    NewsPageLocalesFragment,
+    CatalogueLocalesFragment,
     WebinarItemLocalesFragment,
   ],
 );
 
 export type AllWebinarItemsSlugFragmentType = FragmentOf<
   typeof AllWebinarItemsSlugFragment
+>;
+
+export const AllCataloguesSlugFragment = graphql(
+  `
+    fragment AllCataloguesSlugFragment on CatalogueRecord @_unmask {
+      id
+      locales: _locales
+      ...CatalogueLocalesFragment
+    }
+  `,
+  [
+    LocaleFragment,
+    PageLocalesFragment,
+    CatalogueLocalesFragment,
+    CatalogueLocalesFragment,
+  ],
+);
+
+export type AllCataloguesSlugFragmentType = FragmentOf<
+  typeof AllCataloguesSlugFragment
 >;
 
 export const HomepageFragment = graphql(

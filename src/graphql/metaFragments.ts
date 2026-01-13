@@ -26,9 +26,9 @@ export const PageLocalesFragment = graphql(
   [LocaleFragment],
 );
 
-export const NewsPageLocalesFragment = graphql(
+export const CatalogueLocalesFragment = graphql(
   `
-    fragment NewsPageLocalesFragment on NewsPageRecord @_unmask {
+    fragment CatalogueLocalesFragment on CatalogueRecord @_unmask {
       allSlugLocales: _allSlugLocales {
         ...LocaleFragment
       }

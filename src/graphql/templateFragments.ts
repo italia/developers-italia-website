@@ -4,6 +4,7 @@ import {
   FaqSectionRecordFragment,
   HeroFragment,
   NewsFeedFragment,
+  CatalogueFeedFragment,
   SectionFragment,
   SupportChannelsSectionFragment,
   TopicFilterFragment,
@@ -254,6 +255,28 @@ export const AllInsightsFragment = graphql(
 );
 
 export type AllInsightsFragmentType = FragmentOf<typeof AllInsightsFragment>;
+
+export const CatalogueContentFragment = graphql(
+  `
+    fragment CatalogueContentFragment on CatalogueModelContentField @_unmask {
+      ... on RecordInterface {
+        id
+        componentName: __typename
+      }
+      ... on HeroRecord {
+        ...HeroFragment
+      }
+      ... on CatalogueFeedRecord {
+        ...CatalogueFeedFragment
+      }
+    }
+  `,
+  [HeroFragment, CatalogueFeedFragment],
+);
+
+export type CatalogueContentFragmentType = FragmentOf<
+  typeof CatalogueContentFragment
+>;
 
 export const StoryContentFragment = graphql(
   `

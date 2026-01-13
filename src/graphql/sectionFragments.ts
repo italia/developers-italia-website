@@ -7,6 +7,7 @@ import {
   CalloutFragment,
   ChannelFragment,
   ChartFragment,
+  DownloadLinkFragment,
   ExternalLinkFragment,
   FeatureListBlockFragment,
   IconListBlockFragment,
@@ -417,24 +418,39 @@ export type StructuredTextFragmentType = FragmentOf<
   typeof StructuredTextFragment
 >;
 
-export const ActionCardFragment = graphql(`
-  fragment ActionCardFragment on ActionCardRecord @_unmask {
+export const CatalogueFeedFragment = graphql(`
+  fragment CatalogueFeedFragment on CatalogueFeedRecord @_unmask {
     id
-    title
-    paragraph(markdown: true)
-    category
-    cta {
+    tabs {
+      title
+      paragraph
+      newsPageTabType
+      labelForAll
       id
-      label
-      doc {
-        size
-        format
-        url
-        filename
-      }
+      filterTitle
+      elementPerPage
     }
-    readMoreLabel
   }
 `);
+
+export type CatalogueFeedFragmentType = FragmentOf<
+  typeof CatalogueFeedFragment
+>;
+
+export const ActionCardFragment = graphql(
+  `
+    fragment ActionCardFragment on ActionCardRecord @_unmask {
+      id
+      title
+      paragraph(markdown: true)
+      category
+      cta {
+        ...DownloadLinkFragment
+      }
+      readMoreLabel
+    }
+  `,
+  [DownloadLinkFragment],
+);
 
 export type ActionCardFragmentType = FragmentOf<typeof ActionCardFragment>;
