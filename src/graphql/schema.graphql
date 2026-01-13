@@ -1547,7 +1547,7 @@ type HeroRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   backgroundColor: String
-  backgroundImage: FileField!
+  backgroundImage: FileField
   id: ItemId!
   paragraph(
     """Process content as markdown"""
@@ -4224,6 +4224,8 @@ type LangRecord implements RecordInterface {
   ): String!
 }
 
+union LayoutModelSmallPrintField = ExternalLinkRecord | InternalLinkRecord
+
 """Record of type 🔲 Layout (layout)"""
 type LayoutRecord implements RecordInterface {
   _allHeadingLocales(
@@ -4346,7 +4348,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  smallPrint: [ExternalLinkRecord!]!
+  smallPrint: [LayoutModelSmallPrintField!]!
   tagline(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5242,7 +5244,7 @@ type PageLegacyRecord implements RecordInterface {
   ): String!
 }
 
-union PageModelContentField = DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | SectionRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TopicFilterRecord | UseCaseContainerRecord
+union PageModelContentField = DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | SectionRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TopicFilterRecord | UseCaseContainerRecord
 
 type PageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -7006,7 +7008,6 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  category: StringFilter
   dateOfPublication: DateFilter
   image: FileFilter
   parentPage: LinkFilter
@@ -7036,8 +7037,6 @@ enum StoryItemModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  category_ASC
-  category_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
   title_ASC
@@ -7053,12 +7052,6 @@ type StoryItemModelParentPageFieldMultiLocaleField {
 
 """Record of type 📓 Story item (story_item)"""
 type StoryItemRecord implements RecordInterface {
-  _allCategoryLocales(
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
   _allContentLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7114,15 +7107,6 @@ type StoryItemRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  category(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String!
   content(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

@@ -101,6 +101,11 @@ export const PageContentFragment = graphql(
       ... on SupportCtaSectionRecord {
         ...SupportCTASectionFragment
       }
+      ... on StructuredTextRecord {
+        textContent: content {
+          ...StructuredTextFragment
+        }
+      }
     }
   `,
   [
@@ -113,6 +118,7 @@ export const PageContentFragment = graphql(
     UseCaseContainerFragment,
     TopicFilterFragment,
     SupportCTASectionFragment,
+    StructuredTextFragment,
   ],
 );
 

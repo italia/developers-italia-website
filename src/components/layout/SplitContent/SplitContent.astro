@@ -1,15 +1,8 @@
 ---
 import { SectionContainer } from "@components/organisms/SectionContainer";
+import type { SplitContentProps, SectionBackground } from "./types";
 
-export type SectionBackground = "default" | "primary" | "dark" | "lighter";
-export type SectionAlignItems = "top" | "center";
-
-type Props = {
-  leftColumns?: number;
-  rightColumns?: number;
-  alignItems?: SectionAlignItems;
-  background?: SectionBackground;
-};
+type Props = SplitContentProps;
 
 const {
   leftColumns = 6,

@@ -348,36 +348,47 @@ export type SupportCTASectionFragmentType = FragmentOf<
   typeof SupportCTASectionFragment
 >;
 
-export const FooterFragment = graphql(`
-  fragment FooterFragment on LayoutRecord @_unmask {
-    heading(markdown: true)
-    organizations {
-      id
-      icon
-      label
-      url
-    }
-    topicTitle
-    topicLink {
-      id
-      linkTo {
+export const FooterFragment = graphql(
+  `
+    fragment FooterFragment on LayoutRecord @_unmask {
+      heading(markdown: true)
+      organizations {
         id
+        icon
+        label
+        url
       }
-      label
+      topicTitle
+      topicLink {
+        id
+        linkTo {
+          id
+        }
+        label
+      }
+      utilityTitle
+      utility {
+        id
+        url
+        label
+        icon
+      }
+      smallPrint {
+        ... on RecordInterface {
+          id
+          componentName: __typename
+        }
+        ... on ExternalLinkRecord {
+          ...ExternalLinkFragment
+        }
+        ... on InternalLinkRecord {
+          ...InternalLinkFragment
+        }
+      }
     }
-    utilityTitle
-    utility {
-      id
-      url
-      label
-      icon
-    }
-    smallPrint {
-      label
-      url
-    }
-  }
-`);
+  `,
+  [ExternalLinkFragment, InternalLinkFragment],
+);
 
 export type FooterFragmentType = FragmentOf<typeof FooterFragment>;
 

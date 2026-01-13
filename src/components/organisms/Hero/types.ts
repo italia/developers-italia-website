@@ -1,9 +1,9 @@
 import type { ImageProps } from "@components/atoms/Image/types";
-import type { SectionBackground } from "@components/layout/SplitContent/SplitContent.astro";
+import type { SectionBackground } from "@components/layout/SplitContent/types";
 
 export type HeroProps = {
   title: string;
-  image: ImageProps;
+  image?: ImageProps;
   paragraph?: string;
   showBreadcrumb?: boolean;
   variant?: HeroVariantProps;

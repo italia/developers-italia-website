@@ -43,9 +43,24 @@ const utilities = utility.map((util) => {
 });
 
 const smallPrints = smallPrint.map((link) => {
+  let url = "#";
+
+  switch (link.componentName) {
+    case "ExternalLinkRecord":
+      url = link.url;
+      break;
+
+    case "InternalLinkRecord":
+      url = linkResolver(link.linkTo?.id, lang);
+      break;
+
+    default:
+      break;
+  }
+
   return {
     label: link.label,
-    linkTo: link.url,
+    linkTo: url,
   };
 });
 ---

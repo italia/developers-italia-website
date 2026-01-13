@@ -3,8 +3,8 @@ import type { HeroFragmentType } from "@graphql/sectionFragments";
 import { createBreadcrumb } from "@utils/createBreadcrumb";
 import { Breadcrumb } from "@components/molecules/Breadcrumb";
 import { Hero } from "@components/organisms/Hero";
-import type { SectionBackground } from "@components/layout/SplitContent/SplitContent.astro";
 import type { HeroVariantProps } from "@components/organisms/Hero/types";
+import type { SectionBackground } from "@components/layout/SplitContent/types";
 
 type Props = {
   block: HeroFragmentType;
@@ -20,7 +20,7 @@ const itemsBreadcrumb = createBreadcrumb(recordId, lang);
 <Hero
   title={block.title}
   paragraph={block.paragraph || undefined}
-  image={block.backgroundImage}
+  image={block.backgroundImage || undefined}
   showBreadcrumb={block.showBreadcrumb}
   variant={(block.variant || undefined) as HeroVariantProps}
   backgroundColor={(block.backgroundColor || undefined) as SectionBackground}
