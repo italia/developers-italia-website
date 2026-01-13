@@ -2,7 +2,6 @@
 import type { NewsFeedFragmentType } from "@graphql/sectionFragments";
 import { NewsFeed } from "@components/organisms/NewsFeed";
 import { linkResolver } from "@utils/linkResolver";
-import { mapNewsToCardEditorialNewsProps } from "@utils/mappers";
 
 type Props = {
   block: NewsFeedFragmentType;
@@ -22,7 +21,15 @@ const { lang } = Astro.locals;
         return {
           componentName: "CardEditorialNews",
           title: tab.title,
-          news: tab.news.map((n) => mapNewsToCardEditorialNewsProps(n)),
+          news: tab.news.map((n) => ({
+            title: n.title,
+            description: n.paragraph,
+            image: n.image,
+            linkTo: n.link,
+            category: n.topic.label,
+            dateTime: n.dateOfPublication,
+            action: new URL(n.link).host,
+          })),
         };
 
       case "StoryTabRecord":
@@ -33,7 +40,7 @@ const { lang } = Astro.locals;
             title: n.title,
             image: n.image,
             linkTo: linkResolver(n.id, lang),
-            category: n.category,
+            category: n.topic.label,
             dateTime: n.dateOfPublication,
           })),
         };

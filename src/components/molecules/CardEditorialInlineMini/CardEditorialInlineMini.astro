@@ -39,7 +39,7 @@ const shouldShowFooter = category || dateTime;
         <footer class="it-card-related it-card-footer">
           {category && (
             <div class="it-card-taxonomy">
-              <Chip label={category} visuallyHidden="" />
+              <Chip label={category} visuallyHidden="" disabled />
             </div>
           )}
           {dateTime && <DateTime className="it-card-date" value={dateTime} />}
