@@ -1,4 +1,5 @@
 ---
+import type { CardEditorialWithIconProps } from "@components/molecules/CardEditorialWithIcon/types";
 import { ListCard } from "@components/molecules/ListCard";
 import type { ListCardEditorialWithIconFragmentType } from "@graphql/commonFragments";
 
@@ -13,7 +14,13 @@ type Props = {
 
 const { block } = Astro.props;
 
-const cardsData = block?.items || [];
+const cardsData: CardEditorialWithIconProps[] = block?.items.map((item) => {
+  return {
+    title: item.title,
+    description: item.description,
+    icon: item.icon.url,
+  };
+});
 ---
 
 <ListCard cards={cardsData} type="CardEditorialWithIcon" />

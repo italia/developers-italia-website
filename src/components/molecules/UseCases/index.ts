@@ -1,1 +1,1 @@
-export { default as Statistics } from "./Statistics.astro";
+export { default as UseCases } from "./UseCases.astro";
