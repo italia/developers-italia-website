@@ -12,7 +12,7 @@ import {
   StoryItemByIdQuery,
 } from "@utils/query";
 import type { SiteLocale } from "@graphql/types";
-
+import { linkResolver } from "@utils/linkResolver";
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
 import DraftModeQueryListener from "@components/DraftModeQueryListener.astro";
 import SidebarLayoutAdapter from "@components/cms-adapters/datocms/SidebarLayoutAdapter.astro";
@@ -30,8 +30,6 @@ const slugs = raw.split("/");
 
 const lang = slugs[0];
 Astro.locals.lang = lang;
-
-const slug = slugs[1];
 
 const url = new URL(Astro.request.url);
 const type = url.searchParams.get("type");
@@ -77,10 +75,11 @@ if (dataRecord) {
 
 const content = dataRecord.content;
 
-const redirectUrl =
-  typeof lang === "string" && typeof slug === "string"
-    ? `/${lang}/${slug}`
-    : "/";
+let redirectUrl = "/";
+const slugProduction = linkResolver(id, lang);
+if (slugProduction !== "#") {
+  redirectUrl = slugProduction;
+}
 ---
 
 {

@@ -6,6 +6,8 @@ import { AllLinkQuery } from "@utils/query";
 import fs from "fs";
 import path from "path";
 
+const outputPath = `src/data/linkMap.json`;
+
 type HasTitles = {
   allTitleLocales:
     | {
@@ -66,13 +68,10 @@ const processItems = <T extends RoutableRecord>(
   });
 };
 
-async function generateLinkMap(isPreview: boolean) {
-  const label = isPreview ? "PREVIEW" : "PRODUCTION";
-  const outputPath = `src/data/linkMap${isPreview ? "Preview" : ""}.json`;
+async function generateLinkMap() {
+  console.log(`Generating link map...`);
 
-  console.log(`Generating ${label} link map...`);
-
-  const data = await executeQuery(AllLinkQuery, { includeDrafts: isPreview });
+  const data = await executeQuery(AllLinkQuery);
   const linkMap: SiteMap = {};
   const home = data.homepage;
 
@@ -103,12 +102,12 @@ async function generateLinkMap(isPreview: boolean) {
   }
 
   fs.writeFileSync(fullOutputPath, JSON.stringify(linkMap, null, 2));
-  console.log(`${label} Map successfully generated at: ${outputPath}`);
+  console.log(`Map successfully generated at: ${outputPath}`);
 }
 
 async function run() {
   try {
-    await Promise.all([generateLinkMap(false), generateLinkMap(true)]);
+    await generateLinkMap();
     console.log("All link maps generated successfully.");
   } catch (error) {
     console.error("Error generating link maps:", error);

@@ -6,6 +6,7 @@ import {
   withCORS,
 } from "@utils/apiUtils";
 import { linkResolver } from "@utils/linkResolver";
+import { generateWebsiteUrl } from "@utils/generateWebsiteUrl";
 
 export const prerender = false;
 
@@ -36,7 +37,7 @@ export const POST: APIRoute = async ({ url, request }) => {
       return invalidRequestResponse("Invalid token", 401);
     }
 
-    const recordUrl = linkResolver(id, locale, true);
+    const recordUrl = generateWebsiteUrl(id, item, locale);
 
     const response: WebPreviewsResponse = { previewLinks: [] };
 
