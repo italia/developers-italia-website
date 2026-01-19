@@ -34,14 +34,30 @@ To learn more about the folder structure of an Astro project, refer to [our guid
 
 All commands are run from the root of the project, from a terminal:
 
-| Command               | Action                                           |
-| :-------------------- | :----------------------------------------------- |
-| `bun install`         | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `bun install`          | Installs dependencies                            |
+| `bun staging`          | Starts dev server using `--mode staging`         |
+| `bun production`       | Starts dev server using `--mode production`      |
+| `bun build:staging`    | Build using `--mode staging`                     |
+| `bun build:production` | Build using `--mode production`                  |
+| `bun astro ...`        | Run CLI commands like `astro add`, `astro check` |
+| `bun astro -- --help`  | Get help using the Astro CLI                     |
+| `bun generate-output`  | Generate GraphQL output types                    |
+| `bun tada-doctor`      | Check GraphQL setup with gql-tada                |
+| `bun tada-check`       | Validate GraphQL documents with gql-tada         |
+| `bun format`           | Format files with Prettier                       |
+
+## 🌱 Environment files
+
+Astro (via Vite) loads environment files in this order:
+
+- `./.env` base defaults
+- `./.env.local` local overrides (not committed)
+- `./.env.<mode>` mode-specific values (for example `./.env.staging`, `./.env.production`)
+- `./.env.<mode>.local` local mode-specific overrides
+
+Use `bun staging` or `bun build:staging` to activate `--mode staging`.
 
 ## 👀 Want to learn more?
 
