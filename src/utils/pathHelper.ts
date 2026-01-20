@@ -92,3 +92,7 @@ export function resolveRoutePath(
     steps,
   };
 }
+
+export function removeLang(fullPath: string, lang: string) {
+  return fullPath.replace(new RegExp(`^/${lang}/?`), "").replace(/\/$/, "");
+}

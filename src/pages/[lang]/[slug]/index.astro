@@ -1,11 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
-import { AllPagesSlugQuery, PageBySlugQuery } from "@utils/query";
 import type { SiteLocale } from "@graphql/types";
 
 import type { PageContentFragmentType } from "@graphql/templateFragments";
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import { AllPagesContentQuery, PageSeoQuery } from "@graphql/query/page";
+import type { TagFragmentType } from "@graphql/commonFragments";
+import { linkResolver } from "@utils/linkResolver";
+import { removeLang } from "@utils/pathHelper";
 
 export async function getStaticPaths() {
   type PathItem = {
@@ -13,35 +16,52 @@ export async function getStaticPaths() {
       slug: string;
       lang: SiteLocale;
     };
+    props: {
+      seo: TagFragmentType[];
+      content: PageContentFragmentType[];
+      id: string;
+    };
   };
 
-  const slugsResponse = await executeQuery(AllPagesSlugQuery);
+  const response = await executeQuery(AllPagesContentQuery);
 
-  return slugsResponse.allPages
-    .flatMap(
-      (slug) =>
-        slug.allSlugLocales?.map((slugLocale) => ({
+  const pathsPromises =
+    response.allPages?.flatMap((page) =>
+      page.locales.map(async (lang) => {
+        const seoRes = await executeQuery(PageSeoQuery, {
+          variables: { id: page.id, locale: lang },
+        });
+
+        const fullPath = linkResolver(page.id, lang);
+
+        const slug = removeLang(fullPath, lang);
+
+        return {
           params: {
-            slug: slugLocale.value,
-            lang: slugLocale.locale,
+            slug: slug,
+            lang: lang,
           },
-        })) ?? [],
-    )
-    .filter((path): path is PathItem => !!path.params.lang);
+          props: {
+            seo: seoRes.page?.seo || [],
+            id: page.id,
+            content: page.allContentLocales?.find(
+              (contentLocale) => contentLocale.locale === lang,
+            )?.value,
+          },
+        };
+      }),
+    ) || [];
+
+  const paths = await Promise.all(pathsPromises);
+
+  return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { lang, slug } = Astro.params;
+const { id, content, seo } = Astro.props;
 
-const { page } = await executeQuery(PageBySlugQuery, {
-  variables: { slug: slug, locale: lang },
-});
-
-if (!page) return;
-const content = page.content as PageContentFragmentType[];
-
-Astro.locals.recordId = page.id;
+Astro.locals.recordId = id;
 ---
 
-<Layout pageSeo={page?.seo}>
+<Layout pageSeo={seo}>
   <PageAdapter content={content} />
 </Layout>

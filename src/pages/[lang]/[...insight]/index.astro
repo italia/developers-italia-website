@@ -1,13 +1,16 @@
 ---
-import ArticleAdapter from "@components/cms-adapters/datocms/ArticleAdapter.astro";
-import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
-import type { TagFragmentType } from "@graphql/commonFragments";
-import type { InsightContentFragmentType } from "@graphql/templateFragments";
-import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
-import { resolveRoutePath } from "@utils/pathHelper";
-import { AllInsightsQuery } from "@utils/query";
+import type { SiteLocale } from "@graphql/types";
+import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import type { TagFragmentType } from "@graphql/commonFragments";
+import { linkResolver } from "@utils/linkResolver";
+import type { InsightContentFragmentType } from "@graphql/templateFragments";
+import {
+  AllInsightsContentQuery,
+  InsightSeoQuery,
+} from "@graphql/query/insight";
+import { removeLang } from "@utils/pathHelper";
 
 export async function getStaticPaths() {
   type PathItem = {
@@ -22,31 +25,41 @@ export async function getStaticPaths() {
     };
   };
 
-  const response = await executeQuery(AllInsightsQuery);
-  if (!response.allInsights) {
-    return [];
-  }
+  const response = await executeQuery(AllInsightsContentQuery);
 
-  return response.allInsights
-    ?.flatMap((insight) =>
-      insight.locales.map((lang) => ({
-        params: {
-          insight: resolveRoutePath(insight, lang).fullPath,
-          lang: lang,
-        },
-        props: {
-          id: insight.id,
-          content: insight.allContentLocales?.find(
-            (contentLocale) => contentLocale.locale === lang,
-          )?.value,
-        },
-      })),
-    )
-    .filter((path): path is PathItem => !!path.params.lang);
+  const pathsPromises =
+    response.allInsights?.flatMap((page) =>
+      page.locales.map(async (lang) => {
+        const seoRes = await executeQuery(InsightSeoQuery, {
+          variables: { id: page.id, locale: lang },
+        });
+
+        const fullPath = linkResolver(page.id, lang);
+
+        const slug = removeLang(fullPath, lang);
+
+        return {
+          params: {
+            insight: slug,
+            lang: lang,
+          },
+          props: {
+            seo: seoRes.insight?.seo || [],
+            id: page.id,
+            content: page.allContentLocales?.find(
+              (contentLocale) => contentLocale.locale === lang,
+            )?.value,
+          },
+        };
+      }),
+    ) || [];
+
+  const paths = await Promise.all(pathsPromises);
+
+  return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { lang } = Astro.params;
-const { seo, content, id } = Astro.props;
+const { id, content, seo } = Astro.props;
 
 Astro.locals.recordId = id;
 ---

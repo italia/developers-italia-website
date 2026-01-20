@@ -2,35 +2,35 @@
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
 import type { SiteLocale } from "@graphql/types";
+import type { CatalogueContentFragmentType } from "@graphql/templateFragments";
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
 import type { TagFragmentType } from "@graphql/commonFragments";
 import { linkResolver } from "@utils/linkResolver";
 import {
-  AllWebinarsContentQuery,
-  WebinarSeoQuery,
-} from "@graphql/query/webinar";
-import type { WebinarContentFragmentType } from "@graphql/templateFragments";
+  AllCataloguesContentQuery,
+  CatalogueSeoQuery,
+} from "@graphql/query/catalogue";
 import { removeLang } from "@utils/pathHelper";
 
 export async function getStaticPaths() {
   type PathItem = {
     params: {
-      webinar: string;
+      catalogue: string;
       lang: SiteLocale;
     };
     props: {
       seo: TagFragmentType[];
-      content: WebinarContentFragmentType[];
+      content: CatalogueContentFragmentType[];
       id: string;
     };
   };
 
-  const response = await executeQuery(AllWebinarsContentQuery);
+  const response = await executeQuery(AllCataloguesContentQuery);
 
   const pathsPromises =
-    response.allWebinarItems?.flatMap((page) =>
+    response.allCatalogues?.flatMap((page) =>
       page.locales.map(async (lang) => {
-        const seoRes = await executeQuery(WebinarSeoQuery, {
+        const seoRes = await executeQuery(CatalogueSeoQuery, {
           variables: { id: page.id, locale: lang },
         });
 
@@ -40,11 +40,11 @@ export async function getStaticPaths() {
 
         return {
           params: {
-            webinar: slug,
+            catalogue: slug,
             lang: lang,
           },
           props: {
-            seo: seoRes.webinarItem?.seo || [],
+            seo: seoRes.catalogue?.seo || [],
             id: page.id,
             content: page.allContentLocales?.find(
               (contentLocale) => contentLocale.locale === lang,

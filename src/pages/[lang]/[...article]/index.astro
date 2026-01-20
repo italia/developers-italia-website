@@ -1,11 +1,16 @@
 ---
 import SidebarLayoutAdapter from "@components/cms-adapters/datocms/SidebarLayoutAdapter.astro";
-import type { TagFragmentType } from "@graphql/commonFragments";
+import type {
+  SidebarFragmentType,
+  TagFragmentType,
+} from "@graphql/commonFragments";
+import { ArticleSeoQuery } from "@graphql/query/article";
 import type { ArticleContentFragmentType } from "@graphql/templateFragments";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
-import { resolveRoutePath } from "@utils/pathHelper";
+import { linkResolver } from "@utils/linkResolver";
+import { removeLang } from "@utils/pathHelper";
 import { AllArticlesQuery, SidebarQuery } from "@utils/query";
 
 export async function getStaticPaths() {
@@ -18,47 +23,54 @@ export async function getStaticPaths() {
       seo: TagFragmentType[];
       content: ArticleContentFragmentType;
       id: string;
+      sidebar: SidebarFragmentType;
     };
   };
 
   const response = await executeQuery(AllArticlesQuery);
-  if (!response.allArticles) {
-    return [];
-  }
 
-  return response.allArticles
-    ?.flatMap((article) =>
-      article.locales.map((lang) => ({
-        params: {
-          article: resolveRoutePath(article, lang, response.allArticles)
-            .fullPath,
-          lang: lang,
-        },
-        props: {
-          id: article.id,
-          content: article.allContentLocales?.find(
-            (contentLocale) => contentLocale.locale === lang,
-          )?.value,
-        },
-      })),
-    )
-    .filter((path): path is PathItem => !!path.params.lang);
+  const pathsPromises =
+    response.allArticles?.flatMap((page) =>
+      page.locales.map(async (lang) => {
+        const seoRes = await executeQuery(ArticleSeoQuery, {
+          variables: { id: page.id, locale: lang },
+        });
+
+        const { sidebarForArticle } = await executeQuery(SidebarQuery, {
+          variables: { locale: lang },
+        });
+
+        const fullPath = linkResolver(page.id, lang);
+
+        const slug = removeLang(fullPath, lang);
+
+        return {
+          params: {
+            article: slug,
+            lang: lang,
+          },
+          props: {
+            seo: seoRes.article?.seo || [],
+            id: page.id,
+            sidebar: sidebarForArticle,
+            content: page.allContentLocales?.find(
+              (contentLocale) => contentLocale.locale === lang,
+            )?.value,
+          },
+        };
+      }),
+    ) || [];
+
+  const paths = await Promise.all(pathsPromises);
+
+  return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { lang } = Astro.params;
-const { seo, content, id } = Astro.props;
-
-const { sidebarForArticle } = await executeQuery(SidebarQuery, {
-  variables: { locale: lang },
-});
-
-if (!sidebarForArticle) {
-  return;
-}
+const { seo, content, id, sidebar } = Astro.props;
 
 Astro.locals.recordId = id;
 ---
 
 <Layout pageSeo={seo}>
-  <SidebarLayoutAdapter sidebar={sidebarForArticle} content={content} />
+  <SidebarLayoutAdapter sidebar={sidebar} content={content} />
 </Layout>
