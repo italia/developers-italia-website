@@ -10,10 +10,6 @@ if (!mode || !command) {
 }
 
 const envFile = `.env.${mode}`;
-/* if (!existsSync(envFile)) {
-  console.error(`Missing env file: ${envFile}`);
-  process.exit(1);
-} */
 
 dotenv.config({ path: envFile, override: true });
 
