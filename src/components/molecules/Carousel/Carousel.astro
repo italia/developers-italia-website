@@ -1,5 +1,13 @@
+---
+type Props = {
+  className: string;
+};
+
+const { className } = Astro.props;
+---
+
 <div
-  class="it-carousel-wrapper it-carousel-landscape-abstract splide d-block d-lg-none"
+  class=`it-carousel-wrapper it-carousel-landscape-abstract splide d-block d-lg-none ${className}`
   data-bs-carousel-splide
   data-splide='{"gap":".5rem", "breakpoints":{"768":{"gap":".5rem"}, "992":{"gap":".5rem"}}}'
 >
