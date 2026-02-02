@@ -1,8 +1,8 @@
+import { buildClient, type Client } from "@datocms/cma-client";
 import * as dotenv from "dotenv";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
-import { buildClient, type Client } from "@datocms/cma-client";
 
 dotenv.config({ path: ".env.staging" });
 
@@ -116,8 +116,10 @@ const localeSchemaMigrationsFiles = (): string[] =>
           .sort()
           .reverse();
         bkpEvnvironments.splice(0, BKP_ENV_TO_MAINTAIN);
-        bkpEvnvironments.forEach(
-          async (envId) => await cmaClient.environments.destroy(envId),
+        await Promise.all(
+          bkpEvnvironments.map(async (envId) => {
+            return await cmaClient.environments.destroy(envId);
+          }),
         );
         console.log(`DATOCMS PURGE BACKUP ENVIRONMENTS DONE`);
         process.exit(0);
