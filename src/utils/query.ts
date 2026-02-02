@@ -91,6 +91,7 @@ export const HomepageQuery = graphql(
       homepage(locale: $locale) {
         id
         title
+        publishedAt: _publishedAt
         seo: _seoMetaTags(locale: $locale) {
           ...TagFragment
         }

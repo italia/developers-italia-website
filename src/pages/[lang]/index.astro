@@ -27,6 +27,6 @@ const content = homepage.content;
 Astro.locals.recordId = homepage.id;
 ---
 
-<Layout pageSeo={homepage?.seo}>
+<Layout pageSeo={homepage.seo} datePublished={homepage.publishedAt}>
   <PageAdapter content={content} />
 </Layout>
