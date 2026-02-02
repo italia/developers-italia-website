@@ -172,9 +172,7 @@ export const HeaderFragment = graphql(
           ...MenuItemFragment
         }
       }
-      logo {
-        url
-      }
+      logoSelect
       tagline
       organization
       siteName

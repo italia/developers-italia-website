@@ -13,7 +13,7 @@ const channelItems = block.channels.map((channel) => {
   return {
     title: channel.title,
     description: channel.description,
-    icon: channel.icon.url,
+    icon: channel.iconSelect,
     linkTo: channel.linkTo || "#",
   };
 });

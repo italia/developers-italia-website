@@ -11,7 +11,7 @@ const { block } = Astro.props;
 
 const items: ListWithIconItemProps[] =
   block.items?.items.map((item) => {
-    return { icon: item.icon.url, label: item.label };
+    return { icon: item.iconSelect, label: item.label };
   }) || [];
 ---
 

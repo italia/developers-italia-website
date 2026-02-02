@@ -45,9 +45,7 @@ export type InternalLinkFragmentType = FragmentOf<typeof InternalLinkFragment>;
 export const BrandFragment = graphql(`
   fragment BrandFragment on BrandRecord @_unmask {
     id
-    icon {
-      url
-    }
+    iconSelect
     label
     url
   }
@@ -242,9 +240,7 @@ export const ChannelFragment = graphql(`
   fragment ChannelFragment on ChannelRecord @_unmask {
     id
     title
-    icon {
-      url
-    }
+    iconSelect
     description
     linkTo
   }
@@ -286,9 +282,7 @@ export type UseCaseBlockFragmentType = FragmentOf<typeof UseCaseBlockFragment>;
 export const DataContainerFragment = graphql(`
   fragment DataContainerFragment on DataContainerRecord @_unmask {
     id
-    icon {
-      url
-    }
+    iconSelect
     info
     title
   }
@@ -431,9 +425,7 @@ export const CardEditorialWithIconFragment = graphql(`
   @_unmask {
     id
     title
-    icon {
-      url
-    }
+    iconSelect
     description
   }
 `);
@@ -637,9 +629,7 @@ export const IconListBlockFragment = graphql(`
     items {
       id
       items {
-        icon {
-          url
-        }
+        iconSelect
         label
       }
     }

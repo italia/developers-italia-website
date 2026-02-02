@@ -20,7 +20,7 @@ const {
   secondaryNavigation,
   locales,
   homeRecordId,
-  logo,
+  logoSelect,
   search,
 } = Astro.props;
 
@@ -41,7 +41,7 @@ const menuItems = createMenu(
   slimContent={tagline}
   menuItems={menuItems}
   locales={locales}
-  logo={logo.url}
+  logo={logoSelect}
   search={search && {
     isEnabled: search.isSearchEnabled,
     label: search.searchLabel,

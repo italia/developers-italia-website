@@ -629,7 +629,7 @@ type BrandRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  icon: FileField!
+  iconSelect: String!
   id: ItemId!
   label: String!
   url: String!
@@ -688,7 +688,7 @@ type CardEditorialWithIconRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String!
-  icon: FileField!
+  iconSelect: String!
   id: ItemId!
   title: String!
 }
@@ -902,7 +902,7 @@ type ChannelRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   description: String!
-  icon: FileField!
+  iconSelect: String!
   id: ItemId!
   linkTo: String!
   title: String!
@@ -1060,7 +1060,7 @@ type DataContainerRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  icon: FileField!
+  iconSelect: String!
   id: ItemId!
   info: String!
   title: String!
@@ -1724,7 +1724,7 @@ type IconListItemRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  icon: FileField!
+  iconSelect: String!
   id: ItemId!
   label: String!
 }
@@ -4366,6 +4366,7 @@ type LayoutRecord implements RecordInterface {
   ): String!
   id: ItemId!
   logo: FileField!
+  logoSelect: String!
   navigationBar(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
