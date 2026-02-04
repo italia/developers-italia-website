@@ -1,0 +1,23 @@
+---
+import { Link } from "@components/atoms/Link";
+import ItFiles from "@static/assets/ItFiles.astro";
+import type { CalloutLinkSectionProps } from "./types";
+
+type Props = CalloutLinkSectionProps;
+const { title, paragraph, label, url } = Astro.props;
+---
+
+<section class="lightgrey-bg-a3">
+  <div class="container">
+    <div class="callout note">
+      <div class="callout-inner">
+        <div class="callout-title">
+          <ItFiles />
+          <span class="text">{title}</span>
+        </div>
+        <p>{paragraph}</p>
+        <Link label={label} url={url} />
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,7 +2,9 @@ import {
   CalloutFragment,
   ExternalLinkFragment,
   ImageBlockFragment,
+  ListBlockquoteFragment,
   ListCardEditorialWithIconFragment,
+  ListCardInfoFragment,
   ListCollectionFragment,
   ListInternalLinkFragment,
   OrderedListFragment,
@@ -14,6 +16,7 @@ import {
 import { graphql, type FragmentOf } from "@graphql/graphql";
 import {
   ActionCardFragment,
+  CalloutLinkFragment,
   CatalogueFeedFragment,
   DataSectionRecordFragment,
   FaqSectionRecordFragment,
@@ -190,6 +193,12 @@ export const ArticleContentFragment = graphql(
         ... on ImageBlockRecord {
           ...ImageBlockFragment
         }
+        ... on ListBlockquoteRecord {
+          ...ListBlockquoteFragment
+        }
+        ... on ListCardInfoRecord {
+          ...ListCardInfoFragment
+        }
       }
     }
   `,
@@ -204,6 +213,8 @@ export const ArticleContentFragment = graphql(
     TopicsBlockFragment,
     RelatedArticleFragment,
     ImageBlockFragment,
+    ListBlockquoteFragment,
+    ListCardInfoFragment,
   ],
 );
 
@@ -302,9 +313,12 @@ export const CatalogueContentFragment = graphql(
       ... on CatalogueFeedRecord {
         ...CatalogueFeedFragment
       }
+      ... on CalloutLinkRecord {
+        ...CalloutLinkFragment
+      }
     }
   `,
-  [HeroFragment, CatalogueFeedFragment],
+  [HeroFragment, CatalogueFeedFragment, CalloutLinkFragment],
 );
 
 export type CatalogueContentFragmentType = FragmentOf<

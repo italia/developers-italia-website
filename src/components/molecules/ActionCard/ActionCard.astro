@@ -10,10 +10,12 @@ type Props = {
     label: string;
     url: string;
   };
-  labelButton: string;
+  labelButtonMore: string;
+  labelButtonLess: string;
 };
 
-const { title, paragraph, category, cta, labelButton } = Astro.props;
+const { title, paragraph, category, cta, labelButtonMore, labelButtonLess } =
+  Astro.props;
 ---
 
 <style>
@@ -42,10 +44,16 @@ const { title, paragraph, category, cta, labelButton } = Astro.props;
     class="it-card-body p-0 content-collapsed font-serif"
     set:html={paragraph}
   />
-  <div class="it-card-footer border-0 m-auto" aria-label="Espandi">
+  <div
+    class="it-card-footer border-0 m-auto"
+    id="toggle-container"
+    aria-label="Espandi"
+    data-more={labelButtonMore}
+    data-less={labelButtonLess}
+  >
     <Button
       id="toggle-btn"
-      label={labelButton}
+      label={labelButtonMore}
       variant="link"
       size="small"
       icon="it-plus"
@@ -63,17 +71,40 @@ const { title, paragraph, category, cta, labelButton } = Astro.props;
 
 <script>
   function setupReadMore() {
+    const container = document.getElementById("toggle-container");
+    const labelMore = container?.getAttribute("data-more") || "";
+    const labelLess = container?.getAttribute("data-less") || "";
+    console.log("@@@ span", container);
+
     const btn = document.getElementById("toggle-btn");
     const content = document.getElementById("content-body");
 
     if (btn && content) {
+      const spanText = btn.querySelector("span");
+      const iconUse = btn.querySelector("use");
+      const spritePath = "/bsi-svg/sprites.svg";
+      console.log("btn", btn);
       btn.addEventListener("click", () => {
         const isExpanded = content.classList.contains("content-expanded");
 
-        if (!isExpanded) {
+        if (isExpanded) {
+          // Nascondi
+          content.classList.remove("content-expanded");
+          content.classList.add("content-collapsed");
+          if (spanText) spanText.innerHTML = labelMore;
+          if (iconUse) {
+            iconUse.setAttribute("href", `${spritePath}#it-plus`);
+            iconUse.setAttribute("xlink:href", `${spritePath}#it-plus`);
+          }
+        } else {
+          // Mostra
           content.classList.remove("content-collapsed");
           content.classList.add("content-expanded");
-          btn.classList.add("d-none");
+          if (spanText) spanText.innerHTML = labelLess;
+          if (iconUse) {
+            iconUse.setAttribute("href", `${spritePath}#it-minus`);
+            iconUse.setAttribute("xlink:href", `${spritePath}#it-minus`);
+          }
         }
       });
     }

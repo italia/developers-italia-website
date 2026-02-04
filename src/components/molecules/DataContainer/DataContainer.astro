@@ -10,7 +10,9 @@ const { info, title, contentIcon, variant = "light" } = Astro.props;
 ---
 
 <div>
-  <p class="body-sans-lg fw-semibold text-white">{title}</p>
+  <p class=`body-sans-lg fw-semibold ${variant==="dark" ? "text-white": ""}`>
+    {title}
+  </p>
   <div class="d-flex align-items-center gap-3">
     <IconContainer content={contentIcon} />
     <p class=` h1 align-middle m-0 ${variant==="dark" ? "text-white": ""}`>

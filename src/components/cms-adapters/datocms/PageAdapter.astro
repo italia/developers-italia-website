@@ -1,5 +1,6 @@
 ---
 import ActionCardAdapter from "@components/cms-adapters/datocms/ActionCardAdapter.astro";
+import CalloutLinkAdapter from "@components/cms-adapters/datocms/CalloutLinkAdapter.astro";
 import CatalogueFeedAdapter from "@components/cms-adapters/datocms/CatalogueFeedAdapter.astro";
 import DataSectionAdapter from "@components/cms-adapters/datocms/DataSectionAdapter.astro";
 import FAQSectionAdapter from "@components/cms-adapters/datocms/FAQSectionAdapter.astro";
@@ -68,7 +69,7 @@ const { content, isFontSerif = false } = Astro.props;
       case "TopicFilterRecord":
         return <TopicFilterAdapter block={block} />;
       case "SupportCtaSectionRecord":
-        return <SupportCTASectionAdapter block={block} />;
+        return <SupportCTASectionAdapter block={block} size="default" />;
       case "StructuredTextRecord":
         return (
           <StructuredTextBlockAdapter
@@ -98,6 +99,8 @@ const { content, isFontSerif = false } = Astro.props;
         return <SpeakerAdapter block={block} />;
       case "IntroArticleRecord":
         return <IntroArticleAdapter block={block} />;
+      case "CalloutLinkRecord":
+        return <CalloutLinkAdapter block={block} />;
       default:
         return null;
     }

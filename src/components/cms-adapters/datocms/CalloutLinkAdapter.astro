@@ -1,0 +1,17 @@
+---
+import { CalloutLinkSection } from "@components/organisms/CalloutLinkSection";
+import type { CalloutLinkFragmentType } from "@graphql/sectionFragments";
+
+type Props = {
+  block: CalloutLinkFragmentType;
+};
+
+const { block } = Astro.props;
+---
+
+<CalloutLinkSection
+  title={block.title}
+  paragraph={block.paragraph}
+  label={block.link.label}
+  url={block.link.url}
+/>

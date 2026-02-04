@@ -30,13 +30,13 @@ const { id, header, openLabel, closeLabel, ariaLabel, items } = Astro.props;
         <span class="it-close"></span>{closeLabel}
       </button>
     </div>
-    <div class="inline-menu menu-wrapper py-5 py-lg-80" tabindex="-1">
+    <div class="inline-menu menu-wrapper py-lg-0" tabindex="-1">
       <button type="button" class="it-back-button btn w-100 text-start">
         <ItChevronLeft size="sm" color="primary" class="align-top" />
         <span>{closeLabel}</span>
       </button>
-      <div class="link-list-wrapper">
-        <h3>{header}</h3>
+      <div class="link-list-wrapper py-0 py-lg-80">
+        <h4 class="text-uppercase px-4">{header}</h4>
         <ul class="link-list">
           {items.map((item) => <SidebarItemFirstLevel {...item} />)}
         </ul>

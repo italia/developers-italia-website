@@ -133,6 +133,7 @@ type ActionCardRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String!
+  readLessLabel: String!
   readMoreLabel: String!
   title: String!
 }
@@ -186,7 +187,7 @@ type ArticleListRecord implements RecordInterface {
   relatedArticles: [MenuArticleItemRecord!]!
 }
 
-union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListCardEditorialWithIconRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
+union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type ArticleModelContentField {
   blocks: [ArticleModelContentBlocksField!]!
@@ -636,6 +637,36 @@ type BrandRecord implements RecordInterface {
   url: String!
 }
 
+"""Block of type Note link (callout_link)"""
+type CalloutLinkRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  link: ExternalLinkRecord!
+  paragraph(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String!
+  title: String!
+  visuallyHidden: String
+}
+
 """Block of type Note (callout)"""
 type CalloutRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -718,7 +749,7 @@ type CatalogueFeedRecord implements RecordInterface {
   tabs: [CatalogueTabRecord!]!
 }
 
-union CatalogueModelContentField = CatalogueFeedRecord | HeroRecord
+union CatalogueModelContentField = CalloutLinkRecord | CatalogueFeedRecord | HeroRecord
 
 type CatalogueModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -1616,6 +1647,7 @@ type HeroRecord implements RecordInterface {
   _updatedAt: DateTime!
   backgroundColor: String
   backgroundImage: FileField
+  backgroundImageForMobile: FileField
   id: ItemId!
   paragraph(
     """Process content as markdown"""
@@ -7488,7 +7520,7 @@ input StructuredTextFilter {
   exists: BooleanType
 }
 
-union StructuredTextModelContentBlocksField = CalloutRecord | ListBlockquoteRecord | ListCardInfoRecord | OrderedListRecord
+union StructuredTextModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type StructuredTextModelContentField {
   blocks: [StructuredTextModelContentBlocksField!]!
@@ -7578,7 +7610,6 @@ type SupportCtaSectionRecord implements RecordInterface {
   id: ItemId!
   image: FileField!
   paragraph: String!
-  size: String
   title: String!
 }
 
@@ -7740,6 +7771,7 @@ type TextStatisticRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: String!
   id: ItemId!
   statistics: StatisticBlockRecord!
   text: TextBlockRecord!

@@ -14,9 +14,10 @@ type DatoRecord = SupportCTASectionFragmentType & {
 
 type Props = {
   block: DatoRecord | SupportCTASectionFragmentType;
+  size?: SupportCTASectionSizeProps;
 };
 
-const { block } = Astro.props;
+const { block, size = "small" } = Astro.props;
 const { lang } = Astro.locals;
 
 const getCtaFields = () => {
@@ -50,7 +51,7 @@ const { labelButton, linkTo } = getCtaFields();
   title={block.title}
   paragraph={block.paragraph}
   image={block.image}
-  size={block.size as SupportCTASectionSizeProps}
+  size={size}
   background={block.backgroundColor as SupportCTASectionBackgroundProps}
   labelButton={labelButton}
   linkTo={linkTo}

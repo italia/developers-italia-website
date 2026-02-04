@@ -46,9 +46,13 @@ const backgroundColorClass = backgroundColor[background];
           }
         </div>
       </div>
-      <div class={`${size === "small" ? "col-lg-5" : "col-lg-5"} col-12`}>
+      <div
+        class={`${size === "small" ? "d-none d-lg-block" : ""} col-lg-5  col-12`}
+      >
         <div class="img-container">
-          <div class={`ratio ${size === "small" ? "ratio-1x1" : "ratio-16x9"}`}>
+          <div
+            class={`ratio ${size === "small" ? "ratio-1x1 " : "ratio-16x9"}`}
+          >
             <Image {...image} />
           </div>
         </div>

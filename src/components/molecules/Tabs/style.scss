@@ -1,10 +1,6 @@
 @use "bootstrap-italia/src/scss/bootstrap-italia" as *;
 
 .nav-tabs {
-  .nav-item {
-    min-width: 283px;
-  }
-
   .nav-link:hover {
     text-decoration: underline !important;
   }
