@@ -17,7 +17,7 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const links: GenericListItemProps[] = block.links.map((link) => {
+const links: GenericListItemProps[] = block.linkToResource.map((link) => {
   if (link.componentName === "ResourceRecord") {
     const res = link.resource;
 

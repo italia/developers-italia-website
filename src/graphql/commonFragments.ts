@@ -764,7 +764,7 @@ export const QuickLinkCardFragment = graphql(
     fragment QuickLinkCardFragment on QuickLinkCardRecord @_unmask {
       id
       title
-      links {
+      linkToResource {
         ... on RecordInterface {
           id
           componentName: __typename

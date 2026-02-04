@@ -3,14 +3,21 @@ import { Client } from "@datocms/cli/lib/cma-client-node";
 export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
+  console.log("Destroy fields in existing models/block models");
+
   console.log(
-    'Create Multiple links field "Links" (`links`) in block model "Quick link card" (`quick_link_card`)',
+    'Delete Modular Content (Multiple blocks) field "Links" (`links`) in block model "Quick link card" (`quick_link_card`)',
+  );
+  await client.fields.destroy("O-DOoJTiQf2YrV6qVnroXg");
+
+  console.log(
+    'Create Multiple links field "Links" (`link_to_resource`) in block model "Quick link card" (`quick_link_card`)',
   );
   await client.fields.create("IzWzz4YeQcqJ7J34Xie2xg", {
     id: "WSPI8fC2SbufmqUMUxiCJQ",
     label: "Links",
     field_type: "links",
-    api_key: "links",
+    api_key: "link_to_resource",
     validators: {
       items_item_type: {
         on_publish_with_unpublished_references_strategy: "fail",
@@ -23,17 +30,10 @@ export default async function (client: Client) {
     default_value: null,
   });
 
-  console.log("Destroy fields in existing models/block models");
-
-  console.log(
-    'Delete Modular Content (Multiple blocks) field "Links" (`links`) in block model "Quick link card" (`quick_link_card`)',
-  );
-  await client.fields.destroy("O-DOoJTiQf2YrV6qVnroXg");
-
   console.log("Update existing fields/fieldsets");
 
   console.log(
-    'Update Multiple links field "Links" (`links`) in block model "Quick link card" (`quick_link_card`)',
+    'Update Multiple links field "Links" (`link_to_resource`) in block model "Quick link card" (`quick_link_card`)',
   );
   await client.fields.update("WSPI8fC2SbufmqUMUxiCJQ", { position: 2 });
 
