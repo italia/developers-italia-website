@@ -629,9 +629,10 @@ type BrandRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  iconSelect: String!
+  brandLogo: String!
   id: ItemId!
   label: String!
+  mainLogo: String!
   url: String!
 }
 
@@ -4332,6 +4333,8 @@ type LangRecord implements RecordInterface {
 
 union LayoutModelSmallPrintField = ExternalLinkRecord | InternalLinkRecord
 
+union LayoutModelUtilityField = ExternalLinkRecord | SupportingBrandRecord
+
 """Record of type Layout (layout)"""
 type LayoutRecord implements RecordInterface {
   _allHeadingLocales(
@@ -4417,7 +4420,6 @@ type LayoutRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String!
   id: ItemId!
-  logo: FileField!
   logoSelect: String!
   navigationBar(
     """The locale to use to fetch the field's content"""
@@ -4476,7 +4478,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  utility: [BrandRecord!]!
+  utility: [LayoutModelUtilityField!]!
   utilityTitle(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -7576,6 +7578,32 @@ type SupportCtaSectionRecord implements RecordInterface {
   paragraph: String!
   size: String
   title: String!
+}
+
+"""Block of type Supporting brand (supporting_brand)"""
+type SupportingBrandRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  brandLogo: String!
+  id: ItemId!
+  label: String!
+  url: String!
 }
 
 type Tag {

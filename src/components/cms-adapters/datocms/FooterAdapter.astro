@@ -1,5 +1,7 @@
 ---
+import type { LinkProps } from "@components/atoms/Link/types";
 import { Footer } from "@components/organisms/Footer";
+import type { FooterLogoProps } from "@components/organisms/Footer/types";
 import type { FooterFragmentType } from "@graphql/sectionFragments";
 import { linkResolver } from "@utils/linkResolver";
 
@@ -17,9 +19,10 @@ const {
 
 const { lang } = Astro.locals;
 
-const logos = organizations.map((org) => {
+const logos: FooterLogoProps[] = organizations.map((org) => {
   return {
-    icon: org.iconSelect || undefined,
+    mainLogo: org.mainLogo,
+    brandLogo: org.brandLogo,
     label: org.label,
     linkTo: org.url,
   };
@@ -33,14 +36,23 @@ const topicItems = topicLink.map((link) => {
   };
 });
 
-const utilities = utility.map((util) => {
-  return {
+const socialUtilities: LinkProps[] = utility
+  .filter((util) => util.componentName === "SupportingBrandRecord")
+  .map((util) => ({
     label: util.label,
     ariaLabel: "link",
-    icon: util.iconSelect || undefined,
-    linkTo: util.url,
-  };
-});
+    icon: util.brandLogo,
+    url: util.url,
+  }));
+
+const linkUtilities: LinkProps[] = utility
+  .filter((util) => util.componentName === "ExternalLinkRecord")
+  .map((util) => ({
+    label: util.label,
+    ariaLabel: "link",
+    icon: "it-external-link",
+    url: util.url,
+  }));
 
 const smallPrints = smallPrint.map((link) => {
   const isExternal = link.componentName === "ExternalLinkRecord";
@@ -65,7 +77,8 @@ const smallPrints = smallPrint.map((link) => {
   utilities={[
     {
       title: utilityTitle,
-      items: utilities,
+      socialItems: socialUtilities,
+      linkItems: linkUtilities,
     },
   ]}
   smallPrints={{

@@ -3,7 +3,8 @@ import type { LinkProps } from "@components/atoms/Link/types";
 
 export type FooterLogoProps = {
   label: string;
-  icon?: string;
+  mainLogo: string;
+  brandLogo: string;
   linkTo: string;
   ariaLabel?: string;
 };
@@ -25,5 +26,6 @@ export type FooterTopicsProps = {
 
 export type FooterUtilityProps = {
   title: string;
-  items: FooterLogoProps[];
+  socialItems: LinkProps[];
+  linkItems: LinkProps[];
 };

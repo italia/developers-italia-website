@@ -45,12 +45,25 @@ export type InternalLinkFragmentType = FragmentOf<typeof InternalLinkFragment>;
 export const BrandFragment = graphql(`
   fragment BrandFragment on BrandRecord @_unmask {
     id
-    iconSelect
+    brandLogo
+    mainLogo
     label
     url
   }
 `);
 export type BrandFragmentType = FragmentOf<typeof BrandFragment>;
+
+export const SupportingBrandFragment = graphql(`
+  fragment SupportingBrandFragment on SupportingBrandRecord @_unmask {
+    id
+    brandLogo
+    label
+    url
+  }
+`);
+export type SupportingBrandFragmentType = FragmentOf<
+  typeof SupportingBrandFragment
+>;
 
 export const TopicsBlockFragment = graphql(`
   fragment TopicsBlockFragment on TopicsBlockRecord @_unmask {

@@ -26,6 +26,7 @@ import {
   StatisticBlockFragment,
   StatisticsBoxFragment,
   StoryTabFragment,
+  SupportingBrandFragment,
   TextBlockFragment,
   UseCaseBlockFragment,
 } from "@graphql/commonFragments";
@@ -363,7 +364,16 @@ export const FooterFragment = graphql(
       }
       utilityTitle
       utility {
-        ...BrandFragment
+        ... on RecordInterface {
+          id
+          componentName: __typename
+        }
+        ... on SupportingBrandRecord {
+          ...SupportingBrandFragment
+        }
+        ... on ExternalLinkRecord {
+          ...ExternalLinkFragment
+        }
       }
       smallPrint {
         ... on RecordInterface {
@@ -379,7 +389,12 @@ export const FooterFragment = graphql(
       }
     }
   `,
-  [ExternalLinkFragment, InternalLinkFragment, BrandFragment],
+  [
+    ExternalLinkFragment,
+    InternalLinkFragment,
+    BrandFragment,
+    SupportingBrandFragment,
+  ],
 );
 
 export type FooterFragmentType = FragmentOf<typeof FooterFragment>;

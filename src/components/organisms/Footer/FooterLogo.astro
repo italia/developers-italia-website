@@ -4,15 +4,18 @@ import type { FooterLogoProps } from "./types";
 
 type Props = FooterLogoProps;
 
-const { icon, label, linkTo } = Astro.props;
+const { mainLogo, brandLogo, label, linkTo } = Astro.props;
 ---
 
 <a
   href={linkTo}
   target="_blank"
   rel="noreferrer"
-  class="d-block h6 fw-semibold text-decoration-none"
+  class="d-block h6 fw-semibold text-decoration-none d-flex align-items-center"
 >
-  {icon && <Icon icon={icon} className="text-white me-3 icon-lg" />}
-  {label}
+  {mainLogo && <Icon icon={mainLogo} className="text-white me-3 icon-lg" />}
+  {brandLogo && <Icon icon={brandLogo} className="text-white me-3 icon-lg" />}
+  <div>
+    {label}
+  </div>
 </a>
