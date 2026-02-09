@@ -1838,7 +1838,7 @@ type IconListRecord implements RecordInterface {
   items: [IconListItemRecord!]!
 }
 
-"""Block of type Image block (image_block)"""
+"""Block of type Image thumb single (image_block)"""
 type ImageBlockRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -4548,7 +4548,7 @@ input LinkFilter {
   exists: BooleanType
 }
 
-"""Block of type List blockquote (list_blockquote)"""
+"""Block of type Cards blockquote (list_blockquote)"""
 type ListBlockquoteRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -4573,7 +4573,7 @@ type ListBlockquoteRecord implements RecordInterface {
 }
 
 """
-Block of type List card editorial with icon (list_card_editorial_with_icon)
+Block of type Cards editorial with icon (list_card_editorial_with_icon)
 """
 type ListCardEditorialWithIconRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -4598,7 +4598,7 @@ type ListCardEditorialWithIconRecord implements RecordInterface {
   items: [CardEditorialWithIconRecord!]!
 }
 
-"""Block of type List card info (list_card_info)"""
+"""Block of type Cards info (list_card_info)"""
 type ListCardInfoRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -6304,7 +6304,7 @@ type Query {
 
 union QuickLinkCardModelLinkToResourceField = ArticleRecord | ResourceRecord
 
-"""Block of type Quick link card (quick_link_card)"""
+"""Block of type Resources list (quick_link_card)"""
 type QuickLinkCardRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -6353,7 +6353,7 @@ interface RecordInterface {
 
 union RelatedArticleModelRelatedBlockField = ArticleListRecord | ArticleNavigationRecord
 
-"""Block of type Related article (related_article)"""
+"""Block of type Related list (related_article)"""
 type RelatedArticleRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -7800,6 +7800,7 @@ type TextUseCaseRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: String!
   id: ItemId!
   text: TextBlockRecord!
   useCases: UseCaseBlockRecord!
@@ -7860,7 +7861,7 @@ type TopicRecord implements RecordInterface {
   label: String!
 }
 
-"""Block of type Tags (topics_block)"""
+"""Block of type Metadata content container (topics_block)"""
 type TopicsBlockRecord implements RecordInterface {
   _createdAt: DateTime!
 

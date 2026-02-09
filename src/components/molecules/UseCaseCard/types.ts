@@ -11,6 +11,9 @@ export type UseCaseCardProps = {
   descriptionTitle?: string;
   description?: string;
   variant?: VariantUseCardProps;
+  backgroundColor?: UseCaseCardBackgroundColor;
 };
 
 export type VariantUseCardProps = "default" | "big";
+
+export type UseCaseCardBackgroundColor = "light" | "default";

@@ -14,14 +14,17 @@ const {
   descriptionTitle,
   description,
   variant = "default",
+  backgroundColor = "light",
 } = Astro.props;
+
+const bgClass = backgroundColor === "light" ? "lightgrey-bg-a3" : "white-bg";
 ---
 
 <style>
   @import "./style.scss";
 </style>
 <article
-  class=`it-card it-card-profile ${variant==="big" && "it-card-big"} p-4 rounded shadow-sm border lightgrey-bg-a3 d-none d-lg-block`
+  class=`it-card it-card-profile ${variant==="big" && "it-card-big" } p-4 rounded shadow-sm border ${bgClass} d-none d-lg-block`
 >
   <div class="it-card-profile-header align-items-end p-0 m-0">
     {

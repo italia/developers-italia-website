@@ -2,6 +2,7 @@
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
 import UseCasesAdapter from "@components/cms-adapters/datocms/UseCasesAdapter.astro";
 import { SplitContent } from "@components/layout/SplitContent";
+import type { SectionBackground } from "@components/layout/SplitContent/types";
 import type { TextAndUseCasesFragmentType } from "@graphql/sectionFragments";
 
 type Props = {
@@ -9,13 +10,24 @@ type Props = {
 };
 
 const { block } = Astro.props;
+
+const variantCardContainer =
+  block.backgroundColor === "default" ? "light" : "default";
 ---
 
-<SplitContent rightColumns={6} leftColumns={5} alignItems="top">
+<SplitContent
+  rightColumns={6}
+  leftColumns={5}
+  alignItems="top"
+  background={block.backgroundColor as SectionBackground}
+>
   <Fragment slot="left">
     <TextContainerAdapter block={block.text} variant="light" />
   </Fragment>
   <Fragment slot="right">
-    <UseCasesAdapter block={block.useCases} />
+    <UseCasesAdapter
+      block={block.useCases}
+      backgroundColor={variantCardContainer}
+    />
   </Fragment>
 </SplitContent>

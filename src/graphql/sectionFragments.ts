@@ -620,6 +620,7 @@ export const TextAndUseCasesFragment = graphql(
       useCases {
         ...UseCaseBlockFragment
       }
+      backgroundColor
     }
   `,
   [TextBlockFragment, UseCaseBlockFragment],

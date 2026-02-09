@@ -1,14 +1,18 @@
 ---
-import type { UseCaseBlockFragmentType } from "@graphql/commonFragments";
+import type {
+  UseCaseCardBackgroundColor,
+  UseCaseCardProps,
+} from "@components/molecules/UseCaseCard/types";
 import { UseCases } from "@components/molecules/UseCases";
+import type { UseCaseBlockFragmentType } from "@graphql/commonFragments";
 import { linkResolver } from "@utils/linkResolver";
-import type { UseCaseCardProps } from "@components/molecules/UseCaseCard/types";
 
 type Props = {
   block: UseCaseBlockFragmentType;
+  backgroundColor?: UseCaseCardBackgroundColor;
 };
 
-const { block } = Astro.props;
+const { block, backgroundColor = "light" } = Astro.props;
 const { lang } = Astro.locals;
 
 const usecases: UseCaseCardProps[] = block.useCases.map((usecase) => {
@@ -21,4 +25,8 @@ const usecases: UseCaseCardProps[] = block.useCases.map((usecase) => {
 });
 ---
 
-<UseCases label={block.title} items={usecases} />
+<UseCases
+  label={block.title}
+  items={usecases}
+  backgroundColor={backgroundColor}
+/>
