@@ -1193,7 +1193,7 @@ type DownloadLinkRecord implements RecordInterface {
   label: String!
 }
 
-"""Block of type External link (external_link)"""
+"""Block of type Card info and service (external_link)"""
 type ExternalLinkRecord implements RecordInterface {
   _createdAt: DateTime!
 

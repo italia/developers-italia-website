@@ -22,15 +22,15 @@ type PaginatedCollectionCommonProps = {
 type PaginatedCollectionProps =
   | (PaginatedCollectionCommonProps & {
       items: CardEditorialNewsProps[];
-      newsPageTabType: "news";
+      newsPageTabType: "news_item";
     })
   | (PaginatedCollectionCommonProps & {
       items: CardEditorialInlineMiniProps[];
-      newsPageTabType: "story";
+      newsPageTabType: "story_item";
     })
   | (PaginatedCollectionCommonProps & {
       items: CardEditorialNewsProps[];
-      newsPageTabType: "webinar";
+      newsPageTabType: "webinar_item";
     })
   | (PaginatedCollectionCommonProps & {
       items: ResourceProps[];
@@ -112,19 +112,19 @@ export function PaginatedCollection({
       <ul className="it-card-list row pt-4">
         {paginatedItems.map((n) => (
           <>
-            {newsPageTabType === "news" && (
+            {newsPageTabType === "news_item" && (
               <li className="col-12 col-lg-4 mb-5" key={n.title}>
                 <CardEditorialNews {...(n as CardEditorialNewsProps)} />
               </li>
             )}
-            {newsPageTabType === "story" && (
+            {newsPageTabType === "story_item" && (
               <li className="col-12 col-lg-4 mb-5" key={n.title}>
                 <CardEditorialInlineMini
                   {...(n as CardEditorialInlineMiniProps)}
                 />
               </li>
             )}
-            {newsPageTabType === "webinar" && (
+            {newsPageTabType === "webinar_item" && (
               <li className="col-12 col-lg-4 mb-5" key={n.title}>
                 <CardEditorialNews {...(n as CardEditorialNewsProps)} />
               </li>

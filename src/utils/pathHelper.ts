@@ -20,14 +20,23 @@ type HasLocales = {
         value: string;
       }[]
     | null;
+  allTopicLocales?:
+    | {
+        locale: SiteLocale | null;
+        value: { label: string };
+      }[]
+    | null;
 };
 
-type Step = { id: string; slug: string; title: string };
+type Step = { id: string; slug: string; title: string; category?: string };
 
 const getSlug = (item: HasLocales, locale: string) =>
   item?.allSlugLocales?.find((s) => s.locale === locale)?.value;
 const getTitle = (item: HasLocales, locale: string) =>
   item?.allTitleLocales?.find((t) => t.locale === locale)?.value || "No title";
+
+const getCategory = (item: HasLocales, locale: string) =>
+  item?.allTopicLocales?.find((t) => t.locale === locale)?.value.label;
 
 export type RoutableRecord =
   | AllArticlesSlugFragmentType
@@ -40,6 +49,7 @@ export function resolveRoutePath(
   record: RoutableRecord,
   locale: SiteLocale,
   allRecords?: RoutableRecord[],
+  category?: string,
 ) {
   const steps: Step[] = [];
 
@@ -51,12 +61,14 @@ export function resolveRoutePath(
 
     const slug = getSlug(current, locale);
     const title = getTitle(current, locale);
+    const topic = getCategory(current, locale);
 
     if (slug) {
       steps.unshift({
         id: current.id,
         slug: slug,
         title: title,
+        category: category || topic,
       });
     }
 

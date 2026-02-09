@@ -12,4 +12,8 @@ export type UpdateTabSectionProps = {
   tabs: PageNewsTab[];
 };
 
-export type ElementType = "news" | "story" | "webinar" | "resource";
+export type ElementType =
+  | "news_item"
+  | "story_item"
+  | "webinar_item"
+  | "resource";

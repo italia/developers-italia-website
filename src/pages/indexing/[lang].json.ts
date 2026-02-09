@@ -49,12 +49,14 @@ export const GET: APIRoute = async ({ params }) => {
   const articleCategory = resolveArticleCategory(articles, lang);
   const insightCategory = getCategoryName(insights[0]?.parentPage, lang);
   const storyCategory =
-    getTitleByTypeNews(cataloguesMapCategory, "story") || "";
-  const newsCategory = getTitleByTypeNews(cataloguesMapCategory, "news") || "";
+    getTitleByTypeNews(cataloguesMapCategory, stories[0]?.modelApiKey) || "";
+  const newsCategory =
+    getTitleByTypeNews(cataloguesMapCategory, newsItems[0]?.modelApiKey) || "";
   const webinarCategory =
-    getTitleByTypeNews(cataloguesMapCategory, "webinar") || "";
+    getTitleByTypeNews(cataloguesMapCategory, webinars[0]?.modelApiKey) || "";
   const resourseCategory =
-    getTitleByTypeResourse(cataloguesMapCategory, "resource") || "";
+    getTitleByTypeResourse(cataloguesMapCategory, resourses[0]?.modelApiKey) ||
+    "";
 
   return new Response(
     JSON.stringify([

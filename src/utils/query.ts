@@ -8,6 +8,7 @@ import {
   WebinarItemFragment,
 } from "@graphql/commonFragments";
 import { graphql } from "@graphql/graphql";
+import { CatalogueIndexingFragment } from "@graphql/query/indexing";
 import {
   FooterFragment,
   HeaderFragment,
@@ -189,6 +190,9 @@ export const AllLinkQuery = graphql(
       search {
         ...SearchFragment
       }
+      allCatalogues {
+        ...CatalogueIndexingFragment
+      }
     }
   `,
   [
@@ -200,6 +204,7 @@ export const AllLinkQuery = graphql(
     AllCataloguesSlugFragment,
     HomepageFragment,
     SearchFragment,
+    CatalogueIndexingFragment,
   ],
 );
 

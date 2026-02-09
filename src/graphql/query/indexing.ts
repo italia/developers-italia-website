@@ -104,6 +104,7 @@ export const NewsIndexingFragment = graphql(
   `
     fragment NewsIndexingFragment on NewsItemRecord @_unmask {
       id
+      modelApiKey: _modelApiKey
       allTitleLocales: _allTitleLocales {
         ...LocaleFragment
       }
@@ -156,6 +157,7 @@ export const ResourseIndexingFragment = graphql(
   `
     fragment ResourseIndexingFragment on ResourceRecord @_unmask {
       id
+      modelApiKey: _modelApiKey
       allResourseLocales: _allResourceLocales {
         locale
         value {

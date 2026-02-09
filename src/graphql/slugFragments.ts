@@ -48,6 +48,7 @@ export const AllInsightsSlugFragment = graphql(
   `
     fragment AllInsightsSlugFragment on InsightRecord @_unmask {
       id
+      modelApiKey: _modelApiKey
       locales: _locales
       ...InsightLocalesFragment
       parentPage {
@@ -67,6 +68,7 @@ export const AllStoryItemsSlugFragment = graphql(
   `
     fragment AllStoryItemsSlugFragment on StoryItemRecord @_unmask {
       id
+      modelApiKey: _modelApiKey
       locales: _locales
       ...StoryItemLocalesFragment
       parentPage {
@@ -99,6 +101,7 @@ export const AllWebinarItemsSlugFragment = graphql(
     fragment AllWebinarItemsSlugFragment on WebinarItemRecord @_unmask {
       id
       locales: _locales
+      modelApiKey: _modelApiKey
       ...WebinarItemLocalesFragment
       parentPage {
         ... on RecordInterface {

@@ -47,7 +47,7 @@ if (schemaResult.status !== 0) {
   process.exit(schemaResult.status ?? 1);
 }
 
-const linksResult = spawnSync("bun", ["./src/scripts/generate-link-map.ts"], {
+const linksResult = spawnSync("bun", ["./scripts/generate-link-map.ts"], {
   stdio: "inherit",
   env: process.env,
 });
