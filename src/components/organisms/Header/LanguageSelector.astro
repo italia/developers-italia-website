@@ -11,7 +11,8 @@ const { lang: currentLocale, recordId: currentRecordId } = Astro.locals;
 
 const getTranslatedHref = (targetLocale: string) => {
   if (currentRecordId) {
-    return linkResolver(currentRecordId, targetLocale);
+    const translatedHref = linkResolver(currentRecordId, targetLocale);
+    if (translatedHref !== "#") return translatedHref;
   }
   return `/${targetLocale}`;
 };
