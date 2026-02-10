@@ -9,7 +9,6 @@ import IntroArticleAdapter from "@components/cms-adapters/datocms/IntroArticleAd
 import ListCollectionAdapter from "@components/cms-adapters/datocms/ListCollectionAdapter.astro";
 import NewsFeedAdapter from "@components/cms-adapters/datocms/NewsFeedAdapter.astro";
 import SearchBarAdapter from "@components/cms-adapters/datocms/SearchBarAdapter.astro";
-import SectionAdapter from "@components/cms-adapters/datocms/SectionAdapter.astro";
 import SpeakerAdapter from "@components/cms-adapters/datocms/SpeakerAdapter.astro";
 import StructuredTextBlockAdapter from "@components/cms-adapters/datocms/StructuredTextBlockAdapter.astro";
 import SupportChannelsSectionAdapter from "@components/cms-adapters/datocms/SupportChannelsSectionAdapter.astro";
@@ -58,8 +57,6 @@ const { content, isFontSerif = false } = Astro.props;
         return <NewsFeedAdapter block={block} />;
       case "SupportChannelsSectionRecord":
         return <SupportChannelsSectionAdapter block={block} />;
-      case "SectionRecord":
-        return <SectionAdapter block={block} />;
       case "FaqSectionRecord":
         return <FAQSectionAdapter block={block} />;
       case "DataSectionRecord":

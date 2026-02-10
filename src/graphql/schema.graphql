@@ -187,7 +187,7 @@ type ArticleListRecord implements RecordInterface {
   relatedArticles: [MenuArticleItemRecord!]!
 }
 
-union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
+union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type ArticleModelContentField {
   blocks: [ArticleModelContentBlocksField!]!
@@ -1688,7 +1688,7 @@ type HighlightRecord implements RecordInterface {
   title: String!
 }
 
-union HomepageModelContentField = HeroRecord | NewsFeedRecord | SectionRecord | SupportChannelsSectionRecord | TextImageRecord | TextStatisticRecord | TextUseCaseRecord
+union HomepageModelContentField = HeroRecord | NewsFeedRecord | SupportChannelsSectionRecord | TextImageRecord | TextStatisticRecord | TextUseCaseRecord
 
 type HomepageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -5192,7 +5192,7 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
-union PageModelContentField = DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | SectionRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TopicFilterRecord | UseCaseContainerRecord
+union PageModelContentField = DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TopicFilterRecord | UseCaseContainerRecord
 
 type PageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -7146,7 +7146,7 @@ input StatusFilter {
   notIn: [ItemStatus]
 }
 
-union StoryItemModelContentField = HeroRecord | IntroArticleRecord | SectionRecord | StructuredTextRecord | SupportCtaSectionRecord
+union StoryItemModelContentField = HeroRecord | IntroArticleRecord | StructuredTextRecord | SupportCtaSectionRecord
 
 type StoryItemModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -7521,7 +7521,7 @@ input StructuredTextFilter {
   exists: BooleanType
 }
 
-union StructuredTextModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | ListInternalLinkRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
+union StructuredTextModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type StructuredTextModelContentField {
   blocks: [StructuredTextModelContentBlocksField!]!
@@ -8582,7 +8582,7 @@ type WebinarDescriptionRecord implements RecordInterface {
   text: TextBlockRecord!
 }
 
-union WebinarItemModelContentField = ActionCardRecord | HeroRecord | SectionRecord | SpeakerRecord | WebinarDescriptionRecord
+union WebinarItemModelContentField = ActionCardRecord | HeroRecord | SpeakerRecord | WebinarDescriptionRecord
 
 type WebinarItemModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale

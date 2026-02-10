@@ -19,7 +19,6 @@ import {
   ListCardEditorialWithIconFragment,
   ListCardInfoFragment,
   ListCollectionFragment,
-  ListInternalLinkFragment,
   ListItemFragment,
   MenuItemFragment,
   NewsTabFragment,
@@ -446,9 +445,6 @@ export const StructuredTextFragment = graphql(
         ... on SupportCtaSectionRecord {
           ...SupportCTASectionFragment
         }
-        ... on ListInternalLinkRecord {
-          ...ListInternalLinkFragment
-        }
         ... on TopicsBlockRecord {
           ...TopicsBlockFragment
         }
@@ -465,7 +461,6 @@ export const StructuredTextFragment = graphql(
     CalloutFragment,
     QuickLinkCardFragment,
     SupportCTASectionFragment,
-    ListInternalLinkFragment,
     TopicsBlockFragment,
     ImageBlockFragment,
     ListBlockquoteFragment,

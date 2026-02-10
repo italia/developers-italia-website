@@ -6,7 +6,6 @@ import {
   ListCardEditorialWithIconFragment,
   ListCardInfoFragment,
   ListCollectionFragment,
-  ListInternalLinkFragment,
   OrderedListFragment,
   QuickLinkCardFragment,
   RelatedArticleFragment,
@@ -23,7 +22,6 @@ import {
   HeroFragment,
   IntroArticleFragment,
   NewsFeedFragment,
-  SectionFragment,
   SpeakerFragment,
   StructuredTextFragment,
   SupportChannelsSectionFragment,
@@ -57,9 +55,6 @@ export const HomepageModelContentFragment = graphql(
       ... on NewsFeedRecord {
         ...NewsFeedFragment
       }
-      ... on SectionRecord {
-        ...SectionFragment
-      }
       ... on SupportChannelsSectionRecord {
         ...SupportChannelsSectionFragment
       }
@@ -77,7 +72,6 @@ export const HomepageModelContentFragment = graphql(
   [
     HeroFragment,
     NewsFeedFragment,
-    SectionFragment,
     SupportChannelsSectionFragment,
     TextAndImageFragment,
     TextAndStatisticsFragment,
@@ -101,9 +95,6 @@ export const PageContentFragment = graphql(
       }
       ... on NewsFeedRecord {
         ...NewsFeedFragment
-      }
-      ... on SectionRecord {
-        ...SectionFragment
       }
       ... on SupportChannelsSectionRecord {
         ...SupportChannelsSectionFragment
@@ -139,7 +130,6 @@ export const PageContentFragment = graphql(
   [
     HeroFragment,
     NewsFeedFragment,
-    SectionFragment,
     SupportChannelsSectionFragment,
     FaqSectionRecordFragment,
     DataSectionRecordFragment,
@@ -181,9 +171,6 @@ export const ArticleContentFragment = graphql(
         ... on SupportCtaSectionRecord {
           ...SupportCTASectionFragment
         }
-        ... on ListInternalLinkRecord {
-          ...ListInternalLinkFragment
-        }
         ... on TopicsBlockRecord {
           ...TopicsBlockFragment
         }
@@ -209,7 +196,6 @@ export const ArticleContentFragment = graphql(
     CalloutFragment,
     QuickLinkCardFragment,
     SupportCTASectionFragment,
-    ListInternalLinkFragment,
     TopicsBlockFragment,
     RelatedArticleFragment,
     ImageBlockFragment,
@@ -340,9 +326,6 @@ export const StoryContentFragment = graphql(
           ...StructuredTextFragment
         }
       }
-      ... on SectionRecord {
-        ...SectionFragment
-      }
       ... on SupportCtaSectionRecord {
         ...SupportCTASectionFragment
       }
@@ -355,7 +338,6 @@ export const StoryContentFragment = graphql(
     HeroFragment,
     CalloutFragment,
     StructuredTextFragment,
-    SectionFragment,
     SupportCTASectionFragment,
     IntroArticleFragment,
   ],
@@ -396,9 +378,6 @@ export const WebinarContentFragment = graphql(
       ... on HeroRecord {
         ...HeroFragment
       }
-      ... on SectionRecord {
-        ...SectionFragment
-      }
       ... on ActionCardRecord {
         ...ActionCardFragment
       }
@@ -412,7 +391,6 @@ export const WebinarContentFragment = graphql(
   `,
   [
     HeroFragment,
-    SectionFragment,
     ActionCardFragment,
     SpeakerFragment,
     WebinarDescriptionFragment,
