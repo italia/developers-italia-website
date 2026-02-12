@@ -46,3 +46,11 @@ export const getResources = async (isPreview: boolean) => {
   }
   return await getCollection("resource");
 };
+
+export async function getGlobalSettings(lang: string) {
+  const globalSettingsCollection = await getCollection("global_settings");
+  const globalSettingLocale = globalSettingsCollection.find(
+    (setting) => setting.data.locale === lang,
+  );
+  return globalSettingLocale?.data.value;
+}

@@ -9,10 +9,8 @@ import type {
   HeaderFragmentType,
 } from "@graphql/fragment/sectionFragments";
 import { LayoutQuery } from "@graphql/query/layout";
-import {
-  GlobalSettingsQuery,
-  SiteMetaTagsQuery,
-} from "@graphql/query/settings";
+import { SiteMetaTagsQuery } from "@graphql/query/settings";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import { executeQuery } from "@lib/datocms";
 import { isDraftModeEnabled } from "@lib/draftMode";
 import { type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
@@ -48,10 +46,7 @@ const { layout, homepage, search } = await executeQuery(LayoutQuery, {
   includeDrafts: isPreview,
 });
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-  includeDrafts: isPreview,
-});
+const globalSetting = await getGlobalSettings(lang);
 
 if (!layout) return;
 

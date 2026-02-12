@@ -2,8 +2,7 @@
 import type { ListLinkItemProps } from "@components/molecules/ListLink/types";
 import { QuickLinkCard } from "@components/molecules/QuickLinkCard";
 import type { QuickLinkCardFragmentType } from "@graphql/fragment/commonFragments";
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import { createDownloadUrl } from "@utils/createDownloadUrl";
 import { linkResolver } from "@utils/linkResolver";
 
@@ -19,9 +18,7 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const globalSetting = await getGlobalSettings(lang);
 
 const downloadLabel = globalSetting?.ariaLabelDownloadLink || "Scarica il file";
 const externalLinkLabel =

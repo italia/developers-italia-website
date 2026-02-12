@@ -57,7 +57,11 @@ const shouldShowFooter = category || dateTime;
   {
     action && (
       <div class="it-card-footer" aria-label={ariaLabelCardAction}>
-        <a href={new URL(linkTo).origin} class="it-card-link" target="_blank">
+        <a
+          href={linkTo !== "#" ? new URL(linkTo).origin : "#"}
+          class="it-card-link"
+          target="_blank"
+        >
           {action}
         </a>
       </div>

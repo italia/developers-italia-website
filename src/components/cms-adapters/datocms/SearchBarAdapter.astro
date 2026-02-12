@@ -3,8 +3,7 @@ import Loader from "@components/Loader.astro";
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import { FullTextSearch } from "@components/react/SearchBar";
 import type { SearchBarFragmentType } from "@graphql/fragment/search";
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 
 type Props = {
   block: SearchBarFragmentType;
@@ -13,9 +12,7 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const globalSetting = await getGlobalSettings(lang);
 ---
 
 <SectionContainer className="search-main it-section-bg-light">

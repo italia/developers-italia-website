@@ -1,6 +1,5 @@
-import { GlobalSettingsQuery } from "@graphql/query/settings";
 import type { Document, SiteLocale } from "@graphql/types";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import { Client } from "@opensearch-project/opensearch";
 import dotenv from "dotenv";
 import * as fs from "fs";
@@ -122,9 +121,7 @@ async function runIndexing() {
   for (const file of files) {
     const lang = file.split(".")[0] as SiteLocale;
 
-    const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-      variables: { locale: lang },
-    });
+    const globalSetting = await getGlobalSettings(lang);
     const analyzer = globalSetting?.analyzer || "standard";
 
     const INDEX_NAME = INDEX_NAME_PREFIX + lang;

@@ -4,8 +4,7 @@ import type {
   HeaderFragmentType,
   SearchMenuFragmentType,
 } from "@graphql/fragment/sectionFragments";
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import { createMenu } from "@utils/createMenuHelper";
 import { linkResolver } from "@utils/linkResolver";
 
@@ -36,9 +35,7 @@ const menuItems = createMenu(
   lang,
 );
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const globalSetting = await getGlobalSettings(lang);
 ---
 
 <Header

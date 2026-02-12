@@ -1,6 +1,5 @@
 ---
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import ItArrowRight from "@static/assets/ItArrowRight.astro";
 import ItExternalLink from "@static/assets/ItExternalLink.astro";
 import type { LinkProps } from "./types";
@@ -26,10 +25,8 @@ const rel = openInNewTab ? "noopener noreferrer" : "";
 
 const colorIcon = variant === "dark" ? "white" : "primary";
 
-const { lang } = Astro.locals;
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const lang = Astro.locals.lang || "it";
+const globalSetting = await getGlobalSettings(lang);
 ---
 
 <a

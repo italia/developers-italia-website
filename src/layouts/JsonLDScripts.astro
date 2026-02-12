@@ -1,6 +1,5 @@
 ---
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 import { generateJsonLdScripts } from "@utils/JsonLD/generateScripts";
 import { type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 
@@ -15,9 +14,7 @@ const { lang, recordId } = Astro.locals;
 const siteUrl = Astro.site || process.env.SITE_URL || "";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const globalSetting = await getGlobalSettings(lang);
 
 const siteName = globalSetting?.siteName || "Cloud Italia";
 

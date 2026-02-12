@@ -1,12 +1,9 @@
 ---
-import { GlobalSettingsQuery } from "@graphql/query/settings";
-import { executeQuery } from "@lib/datocms";
+import { getGlobalSettings } from "@lib/dataFetcher";
 
-const { lang } = Astro.locals;
+const lang = Astro.locals.lang || "it";
 
-const { globalSetting } = await executeQuery(GlobalSettingsQuery, {
-  variables: { locale: lang },
-});
+const globalSetting = await getGlobalSettings(lang);
 ---
 
 <div class="container">
