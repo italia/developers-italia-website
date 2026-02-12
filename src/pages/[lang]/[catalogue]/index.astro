@@ -39,9 +39,9 @@ export async function getStaticPaths() {
   const response = await executeQuery(AllCataloguesContentQuery);
 
   const datesRegistry = {
-    news: response.lastNews[0]?.publishedAt,
-    story: response.lastStory[0]?.publishedAt,
-    webinar: response.lastWebinar[0]?.publishedAt,
+    news_item: response.lastNews[0]?.publishedAt,
+    story_item: response.lastStory[0]?.publishedAt,
+    webinar_item: response.lastWebinar[0]?.publishedAt,
     resource: response.lastResourse[0]?.publishedAt,
   };
 

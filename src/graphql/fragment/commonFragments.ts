@@ -181,7 +181,7 @@ export const NewsItemFragment = graphql(
       allLinkLocales: _allLinkLocales {
         ...LocaleFragment
       }
-      publishedAt: _publishedAt
+      publishedAt: dateOfPublication
       image {
         ...ImageFragment
       }
@@ -210,7 +210,7 @@ export const WebinarItemFragment = graphql(
         locale
       }
 
-      publishedAt: _publishedAt
+      publishedAt: date
       image {
         ...ImageFragment
       }
@@ -253,7 +253,7 @@ export const StoryCardFragment = graphql(
         }
         locale
       }
-      publishedAt: _publishedAt
+      publishedAt: dateOfPublication
       image {
         ...ImageFragment
       }
