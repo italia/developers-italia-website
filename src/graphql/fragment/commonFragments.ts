@@ -552,7 +552,6 @@ export const CalloutFragment = graphql(`
     id
     title
     paragraph(markdown: true)
-    visuallyHidden
   }
 `);
 
