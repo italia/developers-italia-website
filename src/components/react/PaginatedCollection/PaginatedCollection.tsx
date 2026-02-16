@@ -64,7 +64,7 @@ export function PaginatedCollection({
     ...Array.from(
       new Set(
         items
-          .map((item) => item.category)
+          .flatMap((item) => item.category)
           .filter((c): c is string => typeof c === "string"),
       ),
     ),
@@ -73,7 +73,7 @@ export function PaginatedCollection({
   const filteredItems =
     selectedCategory === labelForAll
       ? items
-      : items.filter((item) => item.category === selectedCategory);
+      : items.filter((item) => item.category?.includes(selectedCategory));
 
   const totalPages = Math.ceil(filteredItems.length / perPage);
   const start = (page - 1) * perPage;

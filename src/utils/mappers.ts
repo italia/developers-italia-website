@@ -83,8 +83,9 @@ export const mapResourceToResourceProps = (
   return {
     title: resourceContent.label,
     category:
-      resource.allCategoryLocales?.find((t) => t.locale === lang)?.value
-        .label || "",
+      resource.allCategoryLocales
+        ?.find((t) => t.locale === lang)
+        ?.value.map((v) => v.label) || [],
     description: resourceContent.description || "",
     url: url,
     download: isDownload,

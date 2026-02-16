@@ -4702,6 +4702,34 @@ input LinkFilter {
   exists: BooleanType
 }
 
+"""Specifies how to filter Multiple-links fields"""
+input LinksFilter {
+  """
+  Search for records with an exact match. The specified values must be Record IDs
+  """
+  eq: [ItemId]
+
+  """
+  Filter records linked to all of the specified records. The specified values must be Record IDs
+  """
+  allIn: [ItemId]
+
+  """
+  Filter records linked to at least one of the specified records. The specified values must be Record IDs
+  """
+  anyIn: [ItemId]
+
+  """
+  Filter records not linked to any of the specified records. The specified values must be Record IDs
+  """
+  notIn: [ItemId]
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
+}
+
 """Block of type Cards blockquote (list_blockquote)"""
 type ListBlockquoteRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -4949,9 +4977,9 @@ type MacroTopicRecord implements RecordInterface {
   ): String!
 }
 
-type MacroTopicRecordNonNullMultiLocaleField {
+type MacroTopicRecordListListNonNullMultiLocaleField {
   locale: SiteLocale
-  value: MacroTopicRecord!
+  value: [MacroTopicRecord!]!
 }
 
 """Block of type Menu article item (menu_article_item)"""
@@ -6564,7 +6592,7 @@ input ResourceModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  category: LinkFilter
+  category: LinksFilter
   typeResource: LinkFilter
   OR: [ResourceModelFilter]
   AND: [ResourceModelFilter]
@@ -6605,7 +6633,7 @@ type ResourceRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [MacroTopicRecordNonNullMultiLocaleField!]
+  ): [MacroTopicRecordListListNonNullMultiLocaleField!]
   _allResourceLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -6645,7 +6673,7 @@ type ResourceRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): MacroTopicRecord!
+  ): [MacroTopicRecord!]!
   id: ItemId!
   resource(
     """The locale to use to fetch the field's content"""

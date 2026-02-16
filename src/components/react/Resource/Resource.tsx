@@ -1,5 +1,5 @@
 export type ResourceProps = {
-  category: string;
+  category: string[];
   title: string;
   description: string;
   type: string;
