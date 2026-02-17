@@ -39,6 +39,7 @@ export const POST: APIRoute = async ({ url, request }) => {
     const recordUrl = generateWebsiteUrl(id, item, locale);
 
     const response: WebPreviewsResponse = { previewLinks: [] };
+    const origin = import.meta.env.SITE_URL || url.origin;
 
     if (recordUrl) {
       if (item.meta.status !== "published") {
@@ -46,7 +47,7 @@ export const POST: APIRoute = async ({ url, request }) => {
           label: "Draft version",
           url: new URL(
             `/api/draft-mode/enable?url=${recordUrl}&token=${token}&type=${type}&id=${id}`,
-            request.url,
+            origin,
           ).toString(),
         });
       }
@@ -56,7 +57,7 @@ export const POST: APIRoute = async ({ url, request }) => {
           label: "Published version",
           url: new URL(
             `/api/draft-mode/disable?url=${recordUrl}&type=${type}&id=${id}`,
-            request.url,
+            origin,
           ).toString(),
         });
       }
