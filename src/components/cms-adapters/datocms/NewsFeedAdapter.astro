@@ -73,6 +73,13 @@ const globalSetting = await getGlobalSettings(lang);
             ariaLabelCardCategory: globalSetting?.ariaLabelCardCategory,
           })),
         };
+
+      default:
+        return {
+          componentName: "CardEditorialNews",
+          title: tab.title,
+          news: [],
+        };
     }
   })}
 />

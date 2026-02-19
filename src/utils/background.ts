@@ -1,4 +1,5 @@
 export type SectionBackground = "default" | "primary" | "dark" | "lighter";
+export type SectionBackgroundHero = "default" | "primary" | "lighter";
 
 const BACKGROUND_COLOR_MAP: Record<SectionBackground, string> = {
   default: "it-section-bg-default dark",
@@ -7,11 +8,10 @@ const BACKGROUND_COLOR_MAP: Record<SectionBackground, string> = {
   lighter: "it-section-bg-light dark",
 };
 
-const BACKGROUND_HERO_COLOR_MAP: Record<SectionBackground, string> = {
-  default: "it-hero-bg-default dark",
-  primary: "it-hero-bg-primary",
-  dark: "it-hero-bg-dark",
-  lighter: "it-hero-bg-light dark",
+const BACKGROUND_HERO_COLOR_MAP: Record<SectionBackgroundHero, string> = {
+  default: "it-section-bg-default dark",
+  primary: "it-section-bg-primary",
+  lighter: "it-section-bg-light dark",
 };
 
 export const getSectionBgClass = (
@@ -20,6 +20,8 @@ export const getSectionBgClass = (
   return BACKGROUND_COLOR_MAP[bg];
 };
 
-export const getHeroBgClass = (bg: SectionBackground = "default"): string => {
+export const getHeroBgClass = (
+  bg: SectionBackgroundHero = "default",
+): string => {
   return BACKGROUND_HERO_COLOR_MAP[bg];
 };

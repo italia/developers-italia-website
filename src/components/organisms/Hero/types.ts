@@ -1,5 +1,5 @@
 import type { ImageProps } from "@components/atoms/Image/types";
-import type { SectionBackground } from "@utils/background";
+import type { SectionBackgroundHero } from "@utils/background";
 
 export type HeroProps = {
   title: string;
@@ -8,7 +8,7 @@ export type HeroProps = {
   paragraph?: string;
   showBreadcrumb?: boolean;
   variant?: HeroVariantProps;
-  backgroundColor?: SectionBackground;
+  backgroundColor?: SectionBackgroundHero;
   bgClass?: string;
 };
 

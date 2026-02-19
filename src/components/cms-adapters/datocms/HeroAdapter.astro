@@ -3,7 +3,7 @@ import { Breadcrumb } from "@components/molecules/Breadcrumb";
 import { Hero } from "@components/organisms/Hero";
 import type { HeroVariantProps } from "@components/organisms/Hero/types";
 import type { HeroFragmentType } from "@graphql/fragment/sectionFragments";
-import type { SectionBackground } from "@utils/background";
+import type { SectionBackgroundHero } from "@utils/background";
 import { createBreadcrumb } from "@utils/createBreadcrumb";
 
 type Props = {
@@ -37,7 +37,8 @@ const variantTextColorBreadcrumb = () => {
   imageMobile={block.backgroundImageForMobile || undefined}
   showBreadcrumb={block.showBreadcrumb}
   variant={(block.variant || undefined) as HeroVariantProps}
-  backgroundColor={(block.backgroundColor || undefined) as SectionBackground}
+  backgroundColor={(block.backgroundColor ||
+    undefined) as SectionBackgroundHero}
 >
   <Breadcrumb
     ariaLabel="Breadbrumb"

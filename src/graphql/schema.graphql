@@ -4200,6 +4200,7 @@ input InsightTopicModelFilter {
   _status: StatusFilter
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  _locales: LocalesFilter
   label: StringFilter
   OR: [InsightTopicModelFilter]
   AND: [InsightTopicModelFilter]
@@ -4230,12 +4231,19 @@ enum InsightTopicModelOrderBy {
 
 """Record of type Insight topic (insight_topic)"""
 type InsightTopicRecord implements RecordInterface {
+  _allLabelLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
   _editingUrl: String
   _firstPublishedAt: DateTime!
   _isValid: BooleanType!
+  _locales: [SiteLocale!]!
   _modelApiKey: String!
   _publicationScheduledAt: DateTime
   _publishedAt: DateTime!
@@ -4249,7 +4257,15 @@ type InsightTopicRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
+  label(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
 }
 
 type InsightTopicRecordNonNullMultiLocaleField {
