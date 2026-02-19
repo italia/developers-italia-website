@@ -1,0 +1,22 @@
+---
+const waiUrl = import.meta.env.PUBLIC_WAI_URL;
+const siteId = import.meta.env.PUBLIC_WAI_SITE_ID;
+---
+
+<script type="text/javascript" define:vars={{ waiUrl, siteId }}>
+  var _paq = (window._paq = window._paq || []);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function () {
+    var u = `//${waiUrl}/`;
+    _paq.push(["setTrackerUrl", u + "matomo.php"]);
+    _paq.push(["setSiteId", siteId]);
+    var d = document,
+      g = d.createElement("script"),
+      s = d.getElementsByTagName("script")[0];
+    g.type = "text/javascript";
+    g.async = true;
+    g.src = u + "matomo.js";
+    s.parentNode.insertBefore(g, s);
+  })();
+</script>
