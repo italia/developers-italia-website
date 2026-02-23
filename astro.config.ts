@@ -30,6 +30,9 @@ export default defineConfig({
   adapter: netlify({
     imageCDN: false,
   }),
+  redirects: {
+    "/": "/it",
+  },
   vite: {
     resolve: {
       alias: {
