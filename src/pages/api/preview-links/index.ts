@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ url, request }) => {
     const recordUrl = generateWebsiteUrl(id, item, locale);
 
     const response: WebPreviewsResponse = { previewLinks: [] };
-    const origin = import.meta.env.SITE_URL || url.origin;
+    const origin = url.origin;
 
     if (recordUrl) {
       if (item.meta.status !== "published") {
