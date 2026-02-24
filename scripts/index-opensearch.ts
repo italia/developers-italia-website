@@ -2,7 +2,6 @@ import type { Document, SiteLocale } from "@graphql/types";
 import { Client } from "@opensearch-project/opensearch";
 import dotenv from "dotenv";
 import * as fs from "fs";
-import { existsSync } from "node:fs";
 import * as path from "path";
 
 const mode = process.argv[2];
@@ -16,16 +15,13 @@ if (!mode) {
 }
 
 const envFile = `.env.${mode}`;
-if (!existsSync(envFile)) {
-  console.error(`Missing env file: ${envFile}`);
-}
 
 dotenv.config({ path: envFile, override: true });
 
-const HOST = import.meta.env.OPENSEARCH_HOST;
-const USERNAME = import.meta.env.OPENSEARCH_USERNAME;
-const PASSWORD = import.meta.env.OPENSEARCH_PASSWORD;
-const INDEX_NAME_PREFIX = import.meta.env.OPENSEARCH_INDEX_NAME;
+const HOST = process.env.OPENSEARCH_HOST;
+const USERNAME = process.env.OPENSEARCH_USERNAME;
+const PASSWORD = process.env.OPENSEARCH_PASSWORD;
+const INDEX_NAME_PREFIX = process.env.OPENSEARCH_INDEX_NAME;
 const CONTENT_PATH = path.join(process.cwd(), "dist", "indexing");
 
 if (!HOST || !USERNAME || !PASSWORD || !CONTENT_PATH || !INDEX_NAME_PREFIX) {
@@ -104,8 +100,8 @@ async function runIndexing() {
   const client = new Client({
     node: HOST,
     auth: {
-      username: USERNAME,
-      password: PASSWORD,
+      username: USERNAME!,
+      password: PASSWORD!,
     },
   });
 

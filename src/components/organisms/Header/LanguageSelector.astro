@@ -29,7 +29,7 @@ const getTranslatedHref = (targetLocale: string) => {
     id="languagesDropButton"
   >
     <span class="visually-hidden">{ariaLabelLanguageSelector}</span>
-    <span>{currentLocale}</span>
+    <span lang={currentLocale}>{currentLocale}</span>
     <ItExpand class="d-none d-lg-block" />
   </a>
   <div class="dropdown-menu">
@@ -47,6 +47,7 @@ const getTranslatedHref = (targetLocale: string) => {
                   <a
                     class={`dropdown-item list-item ${locale === currentLocale ? "active" : ""}`}
                     href={getTranslatedHref(locale)}
+                    lang={locale}
                   >
                     <span>
                       <span>{locale.toUpperCase()}</span>

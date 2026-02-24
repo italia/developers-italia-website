@@ -15,24 +15,18 @@ import { getCollection } from "astro:content";
 import bsi from "bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?url";
 import "../styles/global.scss";
 import JsonLDScripts from "./JsonLDScripts.astro";
+import SeoHreflang from "./SeoHreflang.astro";
 import WAI from "./WAI.astro";
 
 type Props = {
   pageSeo?: TitleMetaLinkTag[];
   redirectUrl?: string;
-  noIndex?: boolean;
   datePublished?: string;
   jsonLd?: JsonLdPageData;
 };
 
 const isPreview = isDraftModeEnabled(Astro.cookies);
-const {
-  pageSeo = [],
-  redirectUrl,
-  noIndex = false,
-  datePublished,
-  jsonLd,
-} = Astro.props;
+const { pageSeo = [], redirectUrl, datePublished, jsonLd } = Astro.props;
 
 const { lang } = Astro.locals;
 
@@ -80,10 +74,10 @@ const isProd = import.meta.env.PROD;
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <Seo data={[...siteMetaTag.faviconMetaTags, ...pageSeo]} />
     <JsonLDScripts jsonLd={jsonLd} />
     {isProd && <WAI />}
+    <SeoHreflang locales={layout.locales} />
     <link
       href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
       rel="stylesheet"

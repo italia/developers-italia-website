@@ -2,11 +2,28 @@ import { TagFragment } from "@graphql/fragment/commonFragments";
 import { SeoFieldFragment } from "@graphql/fragment/seoFragments";
 import { graphql } from "@graphql/graphql";
 
-// Nota: La Homepage è un record singolo, non serve first: 2500
 export const HomepageSeoQuery = graphql(
   `
     query HomepageSeo($locale: SiteLocale!) {
       homepage(locale: $locale) {
+        id
+        metaTags: _seoMetaTags {
+          ...TagFragment
+        }
+        seo {
+          ...SeoFieldFragment
+        }
+        updatedAt: _updatedAt
+      }
+    }
+  `,
+  [TagFragment, SeoFieldFragment],
+);
+
+export const SearchSeoQuery = graphql(
+  `
+    query SearchSeo($locale: SiteLocale!) {
+      search(locale: $locale) {
         id
         metaTags: _seoMetaTags {
           ...TagFragment

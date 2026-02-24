@@ -27,6 +27,7 @@ import {
   HomepageSeoQuery,
   InsightsSeoQuery,
   PagesSeoQuery,
+  SearchSeoQuery,
   StoriesSeoQuery,
   WebinarsSeoQuery,
 } from "@graphql/query/seo";
@@ -263,6 +264,7 @@ export const globalSeoLoader = async () => {
         pagesRes,
         storiesRes,
         webinarsRes,
+        searchRes,
       ] = await Promise.all([
         executeQuery(HomepageSeoQuery, { variables: { locale } }),
         executeAutoPagingQuery(ArticlesSeoQuery, { variables: { locale } }),
@@ -271,6 +273,7 @@ export const globalSeoLoader = async () => {
         executeAutoPagingQuery(PagesSeoQuery, { variables: { locale } }),
         executeAutoPagingQuery(StoriesSeoQuery, { variables: { locale } }),
         executeAutoPagingQuery(WebinarsSeoQuery, { variables: { locale } }),
+        executeAutoPagingQuery(SearchSeoQuery, { variables: { locale } }),
       ]);
 
       const mapEntry = (record: any) => ({
@@ -290,6 +293,7 @@ export const globalSeoLoader = async () => {
         ...(pagesRes?.allPages?.map(mapEntry) || []),
         ...(storiesRes?.allStoryItems?.map(mapEntry) || []),
         ...(webinarsRes?.allWebinarItems?.map(mapEntry) || []),
+        ...(searchRes?.search ? [mapEntry(searchRes.search)] : []),
       ];
     }),
   );

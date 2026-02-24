@@ -22,6 +22,9 @@ export function SearchBar({
     <form id="searchForm" onSubmit={handleSubmit}>
       <div className="d-flex flex-column align-items-center flex-sm-row w-100">
         <div className="form-group mb-0 flex-grow-1 me-sm-4 w-100">
+          <label className="active" htmlFor="searchInput">
+            {labelButton}
+          </label>
           <input
             type="search"
             className="form-control form-control-lg rounded-0"

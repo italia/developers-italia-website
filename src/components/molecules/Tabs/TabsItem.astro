@@ -9,7 +9,6 @@ const disabledClass = disabled ? "disabled" : "";
 const activeClass = active ? "active" : "";
 const className = `nav-link ${disabledClass} ${activeClass}`;
 
-const ariaCurrent = active ? "page" : undefined;
 const tabIndex = disabled ? "-1" : undefined;
 const ariaDisabled = disabled ? "true" : undefined;
 ---
@@ -17,13 +16,13 @@ const ariaDisabled = disabled ? "true" : undefined;
 <li class="nav-item">
   <a
     class={className}
-    aria-current={ariaCurrent}
     tabindex={tabIndex}
     aria-disabled={ariaDisabled}
     href={`#${id}`}
     role="tab"
     aria-controls={id}
     data-bs-toggle="tab"
+    aria-selected={active}
   >
     {label}
   </a>

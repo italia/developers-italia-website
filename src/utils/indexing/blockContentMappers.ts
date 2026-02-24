@@ -100,7 +100,6 @@ export const getSearchRenderOptions = () => ({
       case DatoBlockModel.ListBlockquote:
         return flattenListBlockquote(record);
       default:
-        console.warn(`Not implemented yet: ${record.__typename}`);
         return "";
     }
   },

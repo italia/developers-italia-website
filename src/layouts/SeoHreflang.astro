@@ -1,0 +1,26 @@
+---
+import type { SiteLocale } from "@graphql/types";
+import { linkResolver } from "@utils/linkResolver";
+
+type Props = {
+  locales: SiteLocale[];
+};
+
+const { locales } = Astro.props;
+const { recordId: currentRecordId } = Astro.locals;
+const baseSite = Astro.site || Astro.url.origin;
+---
+
+<link rel="canonical" href={Astro.url.href} />
+
+{
+  locales.map((t) => {
+    const path = linkResolver(currentRecordId, t);
+    if (!path || path === "#" || path === "") return null;
+    const absoluteUrl = new URL(path, baseSite).href;
+
+    return <link rel="alternate" hreflang={t} href={absoluteUrl} />;
+  })
+}
+
+<link rel="alternate" hreflang="x-default" href={baseSite} />

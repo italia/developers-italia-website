@@ -1,11 +1,12 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import type { TagFragmentType } from "@graphql/fragment/commonFragments";
 import type { SearchPageContentFragmentType } from "@graphql/fragment/search";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { linkResolver } from "@utils/linkResolver";
 import { removeLang } from "@utils/pathHelper";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
   type PathItem = {
@@ -14,6 +15,7 @@ export async function getStaticPaths() {
       lang: SiteLocale;
     };
     props: {
+      seoMeta: TagFragmentType[];
       content: SearchPageContentFragmentType[];
       id: string;
     };
@@ -30,12 +32,19 @@ export async function getStaticPaths() {
 
       const slug = removeLang(fullPath, lang);
 
+      const seoResCollection = await getEntry(
+        "global_seo",
+        `${page.id}_${lang}`,
+      );
+      const seoRes = seoResCollection?.data;
+
       return {
         params: {
           search: slug,
           lang: lang,
         },
         props: {
+          seoMeta: seoRes?.metaTags || [],
           id: page.id,
           content: page.allContentLocales?.find(
             (contentLocale) => contentLocale.locale === lang,
@@ -49,13 +58,13 @@ export async function getStaticPaths() {
   return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { id, content } = Astro.props;
+const { id, content, seoMeta } = Astro.props;
 const { lang } = Astro.params;
 
 Astro.locals.lang = lang;
 Astro.locals.recordId = id;
 ---
 
-<Layout noIndex={true}>
+<Layout pageSeo={seoMeta}>
   <PageAdapter content={content} />
 </Layout>
