@@ -25,7 +25,7 @@ Scrivi una descrizione chiara e concisa di ciò che ti aspettavi accadesse.
 Se applicabile, aggiungi screenshot per aiutare a spiegare il problema.
 
 ### Desktop
-- Sistema operativo: [es. iOS]
+- Sistema operativo: [es. Mac OS]
 - Browser: [es. Chrome, Safari]
 - Versione: [es. 22]
 
