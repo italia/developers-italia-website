@@ -2,7 +2,6 @@ import {
   BrandFragment,
   ExternalLinkFragment,
   InternalLinkFragment,
-  LocaleFragment,
   MenuItemFragment,
   SidebarMenuFragment,
   SupportingBrandFragment,
@@ -31,15 +30,17 @@ export const HeaderFragment = graphql(
       }
       logoSelect
       _allTaglineLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allOrganizationLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       siteName
     }
   `,
-  [MenuItemFragment, LocaleFragment],
+  [MenuItemFragment],
 );
 
 export type HeaderFragmentType = FragmentOf<typeof HeaderFragment>;
@@ -58,7 +59,8 @@ export const FooterFragment = graphql(
         }
       }
       _allTopicTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allTopicLinkLocales {
         locale
@@ -75,7 +77,8 @@ export const FooterFragment = graphql(
         }
       }
       _allUtilityTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allUtilityLocales {
         locale
@@ -114,7 +117,6 @@ export const FooterFragment = graphql(
     InternalLinkFragment,
     BrandFragment,
     SupportingBrandFragment,
-    LocaleFragment,
   ],
 );
 
@@ -129,10 +131,12 @@ export const SidebarFragment = graphql(
         value
       }
       _allOpenLabelLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allCloseLabelLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allMenuLocales {
         locale
@@ -142,7 +146,7 @@ export const SidebarFragment = graphql(
       }
     }
   `,
-  [SidebarMenuFragment, LocaleFragment],
+  [SidebarMenuFragment],
 );
 
 export type SidebarFragmentType = FragmentOf<typeof SidebarFragment>;

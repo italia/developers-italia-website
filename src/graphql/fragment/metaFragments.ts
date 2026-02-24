@@ -1,4 +1,4 @@
-import { LocaleFragment, TagFragment } from "@graphql/fragment/commonFragments";
+import { TagFragment } from "@graphql/fragment/commonFragments";
 import { graphql, type FragmentOf } from "@graphql/graphql";
 
 export const SeoMetaFragment = graphql(
@@ -16,14 +16,16 @@ export const PageLocalesFragment = graphql(
   `
     fragment PageLocalesFragment on PageRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type PageLocalesFragmentType = FragmentOf<typeof PageLocalesFragment>;
@@ -32,14 +34,16 @@ export const CatalogueLocalesFragment = graphql(
   `
     fragment CatalogueLocalesFragment on CatalogueRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type CatalogueLocalesFragmentType = FragmentOf<
@@ -50,24 +54,28 @@ export const ArticleLocalesFragment = graphql(
   `
     fragment ArticleLocalesFragment on ArticleRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export const InsightLocalesFragment = graphql(
   `
     fragment InsightLocalesFragment on InsightRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTopicLocales: _allTopicLocales {
         locale
@@ -77,33 +85,37 @@ export const InsightLocalesFragment = graphql(
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export const StoryItemLocalesFragment = graphql(
   `
     fragment StoryItemLocalesFragment on StoryItemRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export const WebinarItemLocalesFragment = graphql(
   `
     fragment WebinarItemLocalesFragment on WebinarItemRecord @_unmask {
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );

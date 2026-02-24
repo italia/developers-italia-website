@@ -1,11 +1,12 @@
 import { graphql, type FragmentOf } from "@graphql/graphql";
-import { ImageFragment, LocaleFragment } from "./commonFragments";
+import { ImageFragment } from "./commonFragments";
 
 export const ErrorRecordFragment = graphql(
   `
     fragment ErrorRecordFragment on GlobalSettingRecord @_unmask {
       _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       _allParagraphLocales(markdown: true) {
         locale
@@ -15,11 +16,12 @@ export const ErrorRecordFragment = graphql(
         ...ImageFragment
       }
       _allLabelCtaLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [ImageFragment, LocaleFragment],
+  [ImageFragment],
 );
 
 export type ErrorRecordFragmentType = FragmentOf<typeof ErrorRecordFragment>;

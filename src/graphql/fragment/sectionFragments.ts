@@ -19,7 +19,6 @@ import {
   ListCardInfoFragment,
   ListCollectionFragment,
   ListItemFragment,
-  LocaleFragment,
   NewsTabFragment,
   OrderedListFragment,
   QuickLinkCardFragment,
@@ -567,12 +566,13 @@ export const SearchMenuFragment = graphql(
     fragment SearchMenuFragment on SearchRecord @_unmask {
       id
       _allSearchLabelLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       isSearchEnabled
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type SearchMenuFragmentType = FragmentOf<typeof SearchMenuFragment>;

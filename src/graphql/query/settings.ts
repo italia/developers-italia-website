@@ -1,4 +1,4 @@
-import { LocaleFragment, TagFragment } from "@graphql/fragment/commonFragments";
+import { TagFragment } from "@graphql/fragment/commonFragments";
 import { CatalogueIndexingFragment } from "@graphql/fragment/indexing";
 import {
   AllArticlesSlugFragment,
@@ -38,48 +38,61 @@ export const AllGlobalSettingsQuery = graphql(
     query AllGlobalSettings {
       globalSetting {
         _allAriaLabelCardActionLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAnalyzerLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAriaLabelCardCategoryLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAriaLabelDownloadLinkLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAriaLabelExternalLinkLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAriaLabelInternalLinkLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allAriaLabelLogoLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allLabelCtaLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allChipTopicLabelLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allLanguageSelectorLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allLastUpdateLabelLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allLoadingLocales {
-          ...LocaleFragment
+          locale
+          value
         }
         _allSiteNameLocales {
-          ...LocaleFragment
+          locale
+          value
         }
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export const PagesLinksQuery = graphql(

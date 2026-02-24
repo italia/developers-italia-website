@@ -2,7 +2,6 @@ import { ArticleContentFragment } from "@graphql/fragment/article";
 import {
   DownloadLinkFragment,
   ExternalLinkFragment,
-  LocaleFragment,
 } from "@graphql/fragment/commonFragments";
 import { HomepageModelContentFragment } from "@graphql/fragment/homepage";
 import { InsightContentFragment } from "@graphql/fragment/insight";
@@ -104,17 +103,20 @@ export const NewsIndexingFragment = graphql(
       id
       modelApiKey: _modelApiKey
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allLinkLocales: _allLinkLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allParagraphLocales: _allParagraphLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type NewsIndexingFragmentType = FragmentOf<typeof NewsIndexingFragment>;
@@ -124,12 +126,14 @@ export const WebinarIndexingFragment = graphql(
     fragment WebinarIndexingFragment on WebinarItemRecord @_unmask {
       id
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       ...AllWebinarItemsSlugFragment
       ...WebinarItemLocalesFragment
       allParagraphLocales: _allParagraphLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allContentLocales: _allContentLocales {
         locale
@@ -142,7 +146,6 @@ export const WebinarIndexingFragment = graphql(
   [
     AllWebinarItemsSlugFragment,
     WebinarContentFragment,
-    LocaleFragment,
     WebinarItemLocalesFragment,
   ],
 );
@@ -229,7 +232,8 @@ export const HomepageIndexingFragment = graphql(
     fragment HomepageIndexingFragment on HomepageRecord @_unmask {
       id
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allContentLocales: _allContentLocales {
         locale

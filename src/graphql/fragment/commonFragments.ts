@@ -10,15 +10,6 @@ export const TagFragment = graphql(`
 
 export type TagFragmentType = FragmentOf<typeof TagFragment>;
 
-export const LocaleFragment = graphql(`
-  fragment LocaleFragment on StringNonNullMultiLocaleField @_unmask {
-    locale
-    value
-  }
-`);
-
-export type LocaleFragmentType = FragmentOf<typeof LocaleFragment>;
-
 export const ImageFragment = graphql(`
   fragment ImageFragment on FileField @_unmask {
     id
@@ -166,10 +157,12 @@ export const NewsItemFragment = graphql(
     fragment NewsItemFragment on NewsItemRecord @_unmask {
       id
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allParagraphLocales: _allParagraphLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTopicLocales: _allTopicLocales {
         value {
@@ -179,7 +172,8 @@ export const NewsItemFragment = graphql(
         locale
       }
       allLinkLocales: _allLinkLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       publishedAt: dateOfPublication
       image {
@@ -187,7 +181,7 @@ export const NewsItemFragment = graphql(
       }
     }
   `,
-  [ImageFragment, LocaleFragment],
+  [ImageFragment],
 );
 
 export type NewsItemFragmentType = FragmentOf<typeof NewsItemFragment>;
@@ -197,10 +191,12 @@ export const WebinarItemFragment = graphql(
     fragment WebinarItemFragment on WebinarItemRecord @_unmask {
       id
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allParagraphLocales: _allParagraphLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTopicLocales: _allTopicLocales {
         value {
@@ -216,7 +212,7 @@ export const WebinarItemFragment = graphql(
       }
     }
   `,
-  [ImageFragment, LocaleFragment],
+  [ImageFragment],
 );
 
 export type WebinarItemFragmentType = FragmentOf<typeof WebinarItemFragment>;
@@ -244,7 +240,8 @@ export const StoryCardFragment = graphql(
     fragment StoryCardFragment on StoryItemRecord @_unmask {
       id
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTopicLocales: _allTopicLocales {
         value {
@@ -259,7 +256,7 @@ export const StoryCardFragment = graphql(
       }
     }
   `,
-  [ImageFragment, LocaleFragment],
+  [ImageFragment],
 );
 
 export type StoryCardFragmentType = FragmentOf<typeof StoryCardFragment>;

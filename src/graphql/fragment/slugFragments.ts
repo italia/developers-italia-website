@@ -1,4 +1,3 @@
-import { LocaleFragment } from "@graphql/fragment/commonFragments";
 import {
   ArticleLocalesFragment,
   CatalogueLocalesFragment,
@@ -24,7 +23,7 @@ export const AllArticlesSlugFragment = graphql(
       }
     }
   `,
-  [LocaleFragment, PageLocalesFragment, ArticleLocalesFragment],
+  [PageLocalesFragment, ArticleLocalesFragment],
 );
 
 export type AllArticlesSlugFragmentType = FragmentOf<
@@ -39,7 +38,7 @@ export const AllPagesSlugFragment = graphql(
       ...PageLocalesFragment
     }
   `,
-  [LocaleFragment, PageLocalesFragment],
+  [PageLocalesFragment],
 );
 
 export type AllPagesSlugFragmentType = FragmentOf<typeof AllPagesSlugFragment>;
@@ -57,7 +56,7 @@ export const AllInsightsSlugFragment = graphql(
       }
     }
   `,
-  [LocaleFragment, PageLocalesFragment, InsightLocalesFragment],
+  [PageLocalesFragment, InsightLocalesFragment],
 );
 
 export type AllInsightsSlugFragmentType = FragmentOf<
@@ -84,12 +83,7 @@ export const AllStoryItemsSlugFragment = graphql(
       }
     }
   `,
-  [
-    LocaleFragment,
-    PageLocalesFragment,
-    CatalogueLocalesFragment,
-    StoryItemLocalesFragment,
-  ],
+  [PageLocalesFragment, CatalogueLocalesFragment, StoryItemLocalesFragment],
 );
 
 export type AllStoryItemsSlugFragmentType = FragmentOf<
@@ -144,11 +138,12 @@ export const HomepageFragment = graphql(
       id
       locales: _locales
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type HomepageFragmentType = FragmentOf<typeof HomepageFragment>;
@@ -159,14 +154,16 @@ export const SearchFragment = graphql(
       id
       locales: _locales
       allSlugLocales: _allSlugLocales {
-        ...LocaleFragment
+        locale
+        value
       }
       allTitleLocales: _allTitleLocales {
-        ...LocaleFragment
+        locale
+        value
       }
     }
   `,
-  [LocaleFragment],
+  [],
 );
 
 export type SearchFragmentType = FragmentOf<typeof SearchFragment>;
