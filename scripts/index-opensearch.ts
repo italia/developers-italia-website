@@ -22,7 +22,7 @@ const HOST = process.env.OPENSEARCH_HOST;
 const USERNAME = process.env.OPENSEARCH_USERNAME;
 const PASSWORD = process.env.OPENSEARCH_PASSWORD;
 const INDEX_NAME_PREFIX = process.env.OPENSEARCH_INDEX_NAME;
-const CONTENT_PATH = path.join(process.cwd(), "dist", "indexing");
+const CONTENT_PATH = path.join(process.cwd(), "dist", "client", "indexing");
 
 if (!HOST || !USERNAME || !PASSWORD || !CONTENT_PATH || !INDEX_NAME_PREFIX) {
   throw new Error(

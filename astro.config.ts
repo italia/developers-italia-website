@@ -1,6 +1,6 @@
-import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 import { defineConfig } from "astro/config";
 import { resolve } from "path";
 
@@ -27,15 +27,7 @@ export default defineConfig({
     }),
     react(),
   ],
-  adapter: netlify({
-    imageCDN: false,
-  }),
-  image: {
-    service: {
-      entrypoint: "astro/assets/services/sharp",
-    },
-    domains: ["www.datocms-assets.com"],
-  },
+  adapter: vercel(),
   redirects: {
     "/": "/it",
   },

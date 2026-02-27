@@ -10,7 +10,7 @@ export default [
       "dist/**/*",
       ".astro/**/*",
       "node_modules/**/*",
-      ".netlify/**/*",
+      ".vercel/**/*",
       "astro.d.ts",
     ],
   },
