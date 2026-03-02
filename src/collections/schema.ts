@@ -62,16 +62,6 @@ export const globalSettingsSchema = z.object({
   value: z.object({
     siteName: z.string(),
     lastUpdateLabel: z.string(),
-    ariaLabelLogo: z.string(),
-    languageSelector: z.string(),
-    chipTopicLabel: z.string(),
-    ariaLabelCardCategory: z.string(),
-    ariaLabelCardAction: z.string(),
-    ariaLabelExternalLink: z.string(),
-    ariaLabelInternalLink: z.string(),
-    ariaLabelDownloadLink: z.string(),
-    analyzer: z.string(),
-    loading: z.string(),
   }),
 });
 

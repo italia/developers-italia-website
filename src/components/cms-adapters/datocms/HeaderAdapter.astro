@@ -2,7 +2,6 @@
 import { Header } from "@components/organisms/Header";
 import type { HeaderFragmentType } from "@graphql/fragment/layout";
 import type { SearchMenuFragmentType } from "@graphql/fragment/sectionFragments";
-import { getGlobalSettings } from "@lib/dataFetcher";
 import { createMenu } from "@utils/createMenuHelper";
 import { linkResolver } from "@utils/linkResolver";
 
@@ -41,8 +40,6 @@ const menuItems = createMenu(
   currentUrl,
   lang,
 );
-
-const globalSetting = await getGlobalSettings(lang);
 ---
 
 <Header
@@ -58,7 +55,4 @@ const globalSetting = await getGlobalSettings(lang);
     url: linkResolver(search.id, lang),
   }}
   linkBackHome={linkResolver(homeRecordId, lang)}
-  ariaLabelLinkLogo={globalSetting?.ariaLabelLogo || "Home"}
-  ariaLabelLanguageSelector={globalSetting?.languageSelector ||
-    "Lingua selezionata"}
 />

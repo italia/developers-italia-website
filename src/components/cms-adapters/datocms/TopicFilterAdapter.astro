@@ -2,7 +2,6 @@
 import { TopicFilter } from "@components/organisms/TopicFilter";
 import type { ContentCollectionProps } from "@components/organisms/TopicFilter/types";
 import type { TopicFilterFragmentType } from "@graphql/fragment/sectionFragments";
-import { getGlobalSettings } from "@lib/dataFetcher";
 import { linkResolver } from "@utils/linkResolver";
 
 type Props = {
@@ -30,8 +29,6 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
     };
   },
 );
-
-const globalSetting = await getGlobalSettings(lang);
 ---
 
 <TopicFilter
@@ -40,5 +37,4 @@ const globalSetting = await getGlobalSettings(lang);
   labelForAll={block.labelForAll}
   paragraph={block.paragraph}
   contentCollection={contentCollection}
-  ariaLabelTopic={globalSetting?.chipTopicLabel || "Argomento"}
 />

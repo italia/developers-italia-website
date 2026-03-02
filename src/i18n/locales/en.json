@@ -1,0 +1,22 @@
+{
+  "language": "English",
+  "language.short": "ENG",
+  "language.analyzer": "english",
+  "skip.menu": "Go to menu",
+  "skip.content": "Go to content",
+  "skip.footer": "Go to footer",
+  "link.external": "Go to external page",
+  "link.internal": "Go to page",
+  "link.download": "Download file",
+  "header.logo": "Vai alla homepage di Cloud Italia",
+  "header.languageSelector": "Seleziona lingua: lingua selezionata",
+  "header.showHideMenu": "Mostra/nascondi navigazione",
+  "header.hideMenu": "Nascondi navigazione",
+  "header.mainNav": "Navigazione principale",
+  "header.skiplink": "Scorciatoie di navigazione",
+  "filter.topic": "Argomento: ",
+  "card.topic": "Categoria: ",
+  "card.action": "Link correlati: ",
+  "loading": "Caricamento...",
+  "breadcrumb": "Breadcrumb"
+}

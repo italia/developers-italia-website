@@ -1,12 +1,15 @@
 ---
+import { getI18n } from "@i18n/microcopy";
 import BreadcrumbItem from "./BreadcrumbItem.astro";
 import type { BreadcrumbProps } from "./types";
 
 type Props = BreadcrumbProps;
-const { ariaLabel, items, variant = "light" } = Astro.props;
+const { items, variant = "light" } = Astro.props;
+const { lang } = Astro.locals;
+const t = getI18n(lang);
 ---
 
-<nav class="breadcrumb-container mb-4" aria-label={ariaLabel}>
+<nav class="breadcrumb-container mb-4" aria-label={t["breadcrumb"]}>
   <ol class=`breadcrumb ${variant==="dark" ? "dark": ""} bg-transparent mb-0`>
     {items.map((item) => <BreadcrumbItem {...item} variant={variant} />)}
   </ol>

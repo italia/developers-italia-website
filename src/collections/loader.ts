@@ -94,16 +94,6 @@ export const globalSettingsLoader = async () => {
     const fieldMapping: Record<string, string> = {
       _allSiteNameLocales: "siteName",
       _allLastUpdateLabelLocales: "lastUpdateLabel",
-      _allAriaLabelLogoLocales: "ariaLabelLogo",
-      _allLanguageSelectorLocales: "languageSelector",
-      _allChipTopicLabelLocales: "chipTopicLabel",
-      _allAriaLabelCardCategoryLocales: "ariaLabelCardCategory",
-      _allAriaLabelCardActionLocales: "ariaLabelCardAction",
-      _allAriaLabelExternalLinkLocales: "ariaLabelExternalLink",
-      _allAriaLabelInternalLinkLocales: "ariaLabelInternalLink",
-      _allAriaLabelDownloadLinkLocales: "ariaLabelDownloadLink",
-      _allAnalyzerLocales: "analyzer",
-      _allLoadingLocales: "loading",
     };
 
     Object.entries(fieldMapping).forEach(([datoKey, zodKey]) => {

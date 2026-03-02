@@ -19,6 +19,7 @@ const {
 
 const bgClass =
   backgroundColor === "light" ? "it-section-bg-light" : "it-section-bg-default";
+const cardTitleId = `card-title-${id}`;
 ---
 
 <style>
@@ -26,6 +27,7 @@ const bgClass =
 </style>
 <article
   class=`it-card it-card-profile ${variant==="big" && "it-card-big" } p-4 rounded shadow-sm border ${bgClass} d-none d-lg-block`
+  aria-labelledby={cardTitleId}
 >
   <div class="it-card-profile-header align-items-end p-0 m-0">
     {
@@ -40,7 +42,7 @@ const bgClass =
 
     <div class="it-card-profile it-card-body m-0">
       <div>
-        <h3 class="it-card-profile-name">
+        <h3 class="it-card-profile-name" id={cardTitleId}>
           <a href={linkTo}>{title}</a>
         </h3>
         <p>
@@ -89,9 +91,9 @@ const bgClass =
 
   <div class="it-card-body">
     <div>
-      <h4 class="it-card-profile-name">
+      <h3 class="it-card-profile-name">
         <a href={linkTo}>{title}</a>
-      </h4>
+      </h3>
       <p class="it-card-text">
         {paragraph}
       </p>

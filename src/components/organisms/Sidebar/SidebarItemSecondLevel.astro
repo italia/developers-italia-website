@@ -4,9 +4,10 @@ import type { SidebarItemSecondLevelProps } from "./types";
 type Props = SidebarItemSecondLevelProps;
 
 const { id, label, linkTo, active } = Astro.props;
+const ariaCurrent = active ? "page" : undefined;
 ---
 
-<li id={id}>
+<li id={id} aria-current={ariaCurrent}>
   <a class=`list-item ${active && "active"}` href={linkTo}>
     <span>{label}</span>
   </a>

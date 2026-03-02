@@ -36,7 +36,7 @@ const { id, header, openLabel, closeLabel, ariaLabel, items } = Astro.props;
         <span>{closeLabel}</span>
       </button>
       <div class="link-list-wrapper py-0 py-lg-80">
-        <h4 class="text-uppercase px-4">{header}</h4>
+        <p class="h4 text-uppercase px-4">{header}</p>
         <ul class="link-list">
           {items.map((item) => <SidebarItemFirstLevel {...item} />)}
         </ul>

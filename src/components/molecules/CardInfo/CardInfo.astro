@@ -1,0 +1,20 @@
+---
+import type { CardInfoProps } from "./types";
+
+type Props = CardInfoProps;
+
+const { title, description } = Astro.props;
+---
+
+<div class="it-card rounded shadow-sm border">
+  <h3 class="it-card-title it-card-title-icon">
+    <span class="fs-3">
+      {title}
+    </span>
+  </h3>
+  <div class="it-card-body">
+    <p class="it-card-text">
+      {description}
+    </p>
+  </div>
+</div>

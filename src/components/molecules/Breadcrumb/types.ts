@@ -7,7 +7,6 @@ export type BreadcrumbItemProps = {
 };
 
 export type BreadcrumbProps = {
-  ariaLabel: string;
   items: BreadcrumbItemProps[];
   variant?: VariantBreadcrumbProps;
 };

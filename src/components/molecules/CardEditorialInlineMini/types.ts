@@ -1,13 +1,12 @@
 import type { ImageProps } from "@components/atoms/Image/types";
 
-export type CardEditorialNewsProps = {
+export type CardEditorialInlineMiniProps = {
   id?: string;
   title: string;
-  description: string;
-  image?: ImageProps;
+  description?: string;
+  image: ImageProps;
   linkTo: string;
   category?: string;
   dateTime?: string;
-  action?: string;
-  fullHeight?: boolean;
+  ariaLabelCardCategory?: string;
 };

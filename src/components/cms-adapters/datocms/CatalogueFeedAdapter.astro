@@ -2,14 +2,12 @@
 import { CatalogueFeed } from "@components/organisms/CatalogueFeed";
 import type { PageNewsTab } from "@components/organisms/CatalogueFeed/types";
 import type { CatalogueFeedFragmentType } from "@graphql/fragment/sectionFragments";
-import { getGlobalSettings } from "@lib/dataFetcher";
 
 type Props = {
   block: CatalogueFeedFragmentType;
 };
 
 const { block } = Astro.props;
-const { lang } = Astro.locals;
 
 const tabs: PageNewsTab[] = block.tabs.map((tab) => ({
   title: tab.title,
@@ -19,16 +17,6 @@ const tabs: PageNewsTab[] = block.tabs.map((tab) => ({
   newsPageTabType: tab.newsPageTabType,
   perPage: tab.elementPerPage || undefined,
 }));
-
-const globalSetting = await getGlobalSettings(lang);
 ---
 
-<CatalogueFeed
-  id={block.id}
-  tabs={tabs}
-  ariaLabelTopic={globalSetting?.chipTopicLabel || ""}
-  ariaLabelCardCategory={globalSetting?.ariaLabelCardCategory || ""}
-  ariaLabelCardAction={globalSetting?.ariaLabelCardAction || ""}
-  ariaLabelExternalLink={globalSetting?.ariaLabelExternalLink || ""}
-  ariaLabelDownloadLink={globalSetting?.ariaLabelDownloadLink || ""}
-/>
+<CatalogueFeed id={block.id} tabs={tabs} />

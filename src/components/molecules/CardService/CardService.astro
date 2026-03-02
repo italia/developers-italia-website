@@ -1,0 +1,41 @@
+---
+import { getI18n } from "@i18n/microcopy";
+import ItExternalLink from "@static/assets/ItExternalLink.astro";
+import type { CardServiceProps } from "./types";
+
+type Props = CardServiceProps;
+
+const { id, title, description, linkTo } = Astro.props;
+const { lang } = Astro.locals;
+const t = getI18n(lang);
+
+const isExternal = linkTo?.startsWith("http");
+const cardTitleId = `card-title-${id}`;
+---
+
+<div class="it-card rounded shadow-sm border" aria-labelledby={cardTitleId}>
+  <h3 class="it-card-title it-card-title-icon" id={cardTitleId}>
+    <a
+      href={linkTo}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      aria-label={isExternal
+        ? `${title} (${t["link.external"]})`
+        : `${title} (${t["link.internal"]})`}
+    >
+      {title}
+      {
+        isExternal && (
+          <div class="it-card-title-icon-wrapper">
+            <ItExternalLink color="primary" />
+          </div>
+        )
+      }
+    </a>
+  </h3>
+  <div class="it-card-body">
+    <p class="it-card-text">
+      {description}
+    </p>
+  </div>
+</div>

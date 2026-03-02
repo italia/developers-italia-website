@@ -3,7 +3,7 @@ import Loader from "@components/Loader.astro";
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import { FullTextSearch } from "@components/react/SearchBar";
 import type { SearchBarFragmentType } from "@graphql/fragment/search";
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 
 type Props = {
   block: SearchBarFragmentType;
@@ -12,7 +12,7 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const globalSetting = await getGlobalSettings(lang);
+const t = getI18n(lang);
 ---
 
 <SectionContainer className="search-main it-section-bg-light">
@@ -32,9 +32,9 @@ const globalSetting = await getGlobalSettings(lang);
           inputPlaceholder={block.inputPlaceholder}
           labelForAllResult={block.labelForAllResult}
           labelForNoResult={block.labelForNoResult}
-          ariaLabelDownloadLink={globalSetting?.ariaLabelDownloadLink || ""}
-          ariaLabelExternalLink={globalSetting?.ariaLabelExternalLink || ""}
-          ariaLabelInternalLink={globalSetting?.ariaLabelInternalLink || ""}
+          ariaLabelDownloadLink={t["link.download"]}
+          ariaLabelExternalLink={t["link.external"]}
+          ariaLabelInternalLink={t["link.internal"]}
         >
           <div slot="fallback">
             <Loader />

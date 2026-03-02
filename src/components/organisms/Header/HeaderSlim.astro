@@ -4,8 +4,7 @@ import type { HeaderSlimProps } from "./types";
 
 type Props = HeaderSlimProps;
 
-const { slimContent, linkBackHome, locales, ariaLabelLanguageSelector } =
-  Astro.props;
+const { slimContent, linkBackHome, locales } = Astro.props;
 ---
 
 <div class="it-header-slim-wrapper theme-light">
@@ -15,10 +14,7 @@ const { slimContent, linkBackHome, locales, ariaLabelLanguageSelector } =
         <div class="it-header-slim-wrapper-content">
           <a class="navbar-brand" href={linkBackHome}>{slimContent}</a>
           <div class="it-header-slim-right-zone">
-            <LanguageSelector
-              locales={locales}
-              ariaLabelLanguageSelector={ariaLabelLanguageSelector}
-            />
+            <LanguageSelector locales={locales} />
           </div>
         </div>
       </div>

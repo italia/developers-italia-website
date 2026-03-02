@@ -1,7 +1,7 @@
 ---
 import { ChipLink } from "@components/atoms/Chip";
 import { Link } from "@components/atoms/Link";
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 import FooterUtility from "./FooterUtility.astro";
 import type { FooterTopicsProps, FooterUtilityProps } from "./types";
 
@@ -11,15 +11,15 @@ type Props = {
 };
 const { topics, utilities } = Astro.props;
 const lang = Astro.locals.lang || "it";
-const globalSetting = await getGlobalSettings(lang);
+const t = getI18n(lang);
 ---
 
-<div class="it-footer-main">
+<div class="it-footer-main" id="footer">
   <div class="container">
     <section class="px-0">
       <div class="row">
         <div class="col-12 py-4">
-          <h4 class="pb-4">{topics.title}</h4>
+          <p class="h4 pb-4">{topics.title}</p>
           <ul
             class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row"
           >
@@ -30,9 +30,7 @@ const globalSetting = await getGlobalSettings(lang);
                     {...topic}
                     variant="outline-white"
                     size="large"
-                    visuallyHidden={
-                      globalSetting?.ariaLabelInternalLink || "Link interno"
-                    }
+                    visuallyHidden={t["link.internal"]}
                   />
                 </li>
               ))
@@ -46,7 +44,7 @@ const globalSetting = await getGlobalSettings(lang);
         {
           utilities.map((utility) => (
             <div class="col-12 ">
-              <h4 class="pb-4">{utility.title}</h4>
+              <p class="h4 pb-4">{utility.title}</p>
               <ul class="list-inline mb-0 d-flex flex-column flex-md-row">
                 {utility.socialItems.map((item) => (
                   <li class="list-inline-item me-4 mb-2">

@@ -37,51 +37,7 @@ export const AllGlobalSettingsQuery = graphql(
   `
     query AllGlobalSettings {
       globalSetting {
-        _allAriaLabelCardActionLocales {
-          locale
-          value
-        }
-        _allAnalyzerLocales {
-          locale
-          value
-        }
-        _allAriaLabelCardCategoryLocales {
-          locale
-          value
-        }
-        _allAriaLabelDownloadLinkLocales {
-          locale
-          value
-        }
-        _allAriaLabelExternalLinkLocales {
-          locale
-          value
-        }
-        _allAriaLabelInternalLinkLocales {
-          locale
-          value
-        }
-        _allAriaLabelLogoLocales {
-          locale
-          value
-        }
-        _allLabelCtaLocales {
-          locale
-          value
-        }
-        _allChipTopicLabelLocales {
-          locale
-          value
-        }
-        _allLanguageSelectorLocales {
-          locale
-          value
-        }
         _allLastUpdateLabelLocales {
-          locale
-          value
-        }
-        _allLoadingLocales {
           locale
           value
         }

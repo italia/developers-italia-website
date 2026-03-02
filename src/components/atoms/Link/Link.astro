@@ -1,5 +1,5 @@
 ---
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 import ItArrowRight from "@static/assets/ItArrowRight.astro";
 import ItExternalLink from "@static/assets/ItExternalLink.astro";
 import type { LinkProps } from "./types";
@@ -26,7 +26,7 @@ const rel = openInNewTab ? "noopener noreferrer" : "";
 const colorIcon = variant === "dark" ? "white" : "primary";
 
 const lang = Astro.locals.lang || "it";
-const globalSetting = await getGlobalSettings(lang);
+const t = getI18n(lang);
 ---
 
 <a
@@ -41,9 +41,7 @@ const globalSetting = await getGlobalSettings(lang);
     url && (
       <>
         <ItExternalLink color={colorIcon} size="sm" title={titleIcon} />
-        <span class="visually-hidden">
-          {globalSetting?.ariaLabelExternalLink}
-        </span>
+        <span class="visually-hidden">{t["link.external"]}</span>
       </>
     )
   }
@@ -52,9 +50,7 @@ const globalSetting = await getGlobalSettings(lang);
     !isIcon && linkTo && (
       <>
         <ItArrowRight color={colorIcon} size="sm" title={titleIcon} />
-        <span class="visually-hidden">
-          {globalSetting?.ariaLabelInternalLink}
-        </span>
+        <span class="visually-hidden">{t["link.internal"]}</span>
       </>
     )
   }

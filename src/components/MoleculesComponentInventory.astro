@@ -6,8 +6,9 @@ import { Callout } from "@components/molecules/Callout";
 import { CardEditorialInlineMini } from "@components/molecules/CardEditorialInlineMini";
 import { CardEditorialNews } from "@components/molecules/CardEditorialNews";
 import { CardEditorialWithIcon } from "@components/molecules/CardEditorialWithIcon";
-import { CardInfoAndService } from "@components/molecules/CardInfoAndService";
+import { CardInfo } from "@components/molecules/CardInfo";
 import { CardPresentationBanner } from "@components/molecules/CardPresentationBanner";
+import { CardService } from "@components/molecules/CardService";
 import { DataContainer } from "@components/molecules/DataContainer";
 import { GenericList } from "@components/molecules/GenericList";
 import { OrderedList } from "@components/molecules/OrderedList";
@@ -99,20 +100,13 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
     <tr>
       <td class="p-3"> Primary background </td>
       <td class="bg-primary p-3">
-        <Breadcrumb
-          ariaLabel="Percorso di navigazione"
-          items={breadcrumbItems}
-          variant="dark"
-        />
+        <Breadcrumb items={breadcrumbItems} variant="dark" />
       </td>
     </tr>
     <tr>
       <td class="p-3"> Light background </td>
       <td class="p-3">
-        <Breadcrumb
-          ariaLabel="Percorso di navigazione"
-          items={breadcrumbItems}
-        />
+        <Breadcrumb items={breadcrumbItems} />
       </td>
     </tr>
   </tbody>
@@ -226,7 +220,7 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
       <td class="p-3">
         <div class="row">
           <div class="col-12 mb-3 mb-md-4">
-            <CardInfoAndService
+            <CardInfo
               title="PA digitale 2026"
               description="Accedi all’area riservata per iniziare la classificazione."
             />
@@ -239,7 +233,7 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
       <td class="p-3">
         <div class="row">
           <div class="col-12 mb-3 mb-md-4">
-            <CardInfoAndService
+            <CardService
               title="PA digitale 2026"
               linkTo="#"
               description="Accedi all’area riservata per iniziare la classificazione."

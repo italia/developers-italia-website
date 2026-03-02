@@ -4,6 +4,8 @@ import {
 } from "@components/react/CardEditorialNews";
 import { Chip } from "@components/react/Chip";
 import { Pagination } from "@components/react/Pagination";
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
 import { useState } from "react";
 import {
   CardEditorialInlineMini,
@@ -16,12 +18,8 @@ type PaginatedCollectionCommonProps = {
   paragraph: string;
   filterTitle: string;
   labelForAll: string;
+  lang: SiteLocale;
   perPage?: number;
-  ariaLabelTopic: string;
-  ariaLabelCardCategory: string;
-  ariaLabelCardAction: string;
-  ariaLabelExternalLink: string;
-  ariaLabelDownloadLink: string;
 };
 
 type PaginatedCollectionProps =
@@ -50,12 +48,10 @@ export function PaginatedCollection({
   filterTitle,
   labelForAll,
   newsPageTabType,
-  ariaLabelTopic,
-  ariaLabelCardCategory,
-  ariaLabelCardAction,
-  ariaLabelDownloadLink,
-  ariaLabelExternalLink,
+  lang,
 }: PaginatedCollectionProps) {
+  const t = getI18n(lang);
+
   const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(labelForAll);
 
@@ -109,7 +105,7 @@ export function PaginatedCollection({
                     variant="primary"
                     size="large"
                     label={category}
-                    visuallyHidden={ariaLabelTopic}
+                    visuallyHidden={t["filter.topic"]}
                     onClick={() => handleCategoryChange(category)}
                     active={selectedCategory === category}
                   />
@@ -131,34 +127,21 @@ export function PaginatedCollection({
           return (
             <li className={colClass} key={itemKey}>
               {newsPageTabType === "news_item" && (
-                <CardEditorialNews
-                  {...(n as CardEditorialNewsProps)}
-                  ariaLabelCardCategory={ariaLabelCardCategory}
-                  ariaLabelCardAction={ariaLabelCardAction}
-                />
+                <CardEditorialNews {...(n as CardEditorialNewsProps)} />
               )}
 
               {newsPageTabType === "story_item" && (
                 <CardEditorialInlineMini
                   {...(n as CardEditorialInlineMiniProps)}
-                  ariaLabelCardCategory={ariaLabelCardCategory}
                 />
               )}
 
               {newsPageTabType === "webinar_item" && (
-                <CardEditorialNews
-                  {...(n as CardEditorialNewsProps)}
-                  ariaLabelCardCategory={ariaLabelCardCategory}
-                  ariaLabelCardAction={ariaLabelCardAction}
-                />
+                <CardEditorialNews {...(n as CardEditorialNewsProps)} />
               )}
 
               {newsPageTabType === "resource" && (
-                <Resource
-                  {...(n as ResourceProps)}
-                  ariaLabelExternalLink={ariaLabelExternalLink}
-                  ariaLabelDownloadLink={ariaLabelDownloadLink}
-                />
+                <Resource {...(n as ResourceProps)} />
               )}
             </li>
           );

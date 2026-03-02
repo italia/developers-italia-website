@@ -1,11 +1,13 @@
 ---
 import { DateTime } from "@components/atoms/DateTime";
 import { Image } from "@components/atoms/Image";
+import { getI18n } from "@i18n/microcopy";
 import type { CardEditorialNewsProps } from "./types";
 
 type Props = CardEditorialNewsProps;
 
 const {
+  id = "",
   title,
   description,
   image,
@@ -14,18 +16,20 @@ const {
   dateTime,
   action,
   fullHeight = true,
-  ariaLabelCardCategory = "",
-  ariaLabelCardAction = "",
 } = Astro.props;
 
 const shouldShowFooter = category || dateTime;
+const cardTitleId = `card-title-${id}`;
+const { lang } = Astro.locals;
+const t = getI18n(lang);
 ---
 
 <article
   class=`it-card it-card-image ${fullHeight && "it-card-height-full"} rounded shadow-sm border`
+  aria-labelledby={cardTitleId}
 >
-  <h3 class="it-card-title">
-    <a href={linkTo}>{title}</a>
+  <h3 class="it-card-title" id={cardTitleId}>
+    <a href={linkTo} aria-label={t["link.external"]}>{title}</a>
   </h3>
   {
     image && (
@@ -46,7 +50,7 @@ const shouldShowFooter = category || dateTime;
       <footer class="it-card-related it-card-footer">
         {category && (
           <div class="it-card-taxonomy">
-            <span class="visually-hidden">{ariaLabelCardCategory}</span>
+            <span class="visually-hidden">{t["card.topic"]}</span>
             <p class="it-card-category">{category}</p>
           </div>
         )}
@@ -56,11 +60,12 @@ const shouldShowFooter = category || dateTime;
   }
   {
     action && (
-      <div class="it-card-footer" aria-label={ariaLabelCardAction}>
+      <div class="it-card-footer">
         <a
           href={linkTo !== "#" ? new URL(linkTo).origin : "#"}
           class="it-card-link"
           target="_blank"
+          aria-label={`${t["card.action"]} ${action}`}
         >
           {action}
         </a>

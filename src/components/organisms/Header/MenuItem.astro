@@ -4,9 +4,14 @@ import type { MenuItemProps } from "./types";
 type Props = MenuItemProps;
 
 const { active, id, url, title } = Astro.props;
+const ariaCurrent = active ? "page" : undefined;
 ---
 
-<li class={`nav-item ${active ? "active" : ""}`} id={id}>
+<li
+  class={`nav-item ${active ? "active" : ""}`}
+  id={id}
+  aria-current={ariaCurrent}
+>
   <a class={`nav-link ${active ? "active" : ""}`} href={url}>
     {title}
   </a>

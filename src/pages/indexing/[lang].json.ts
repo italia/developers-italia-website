@@ -1,5 +1,5 @@
 import type { SiteLocale } from "@graphql/types";
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 import {
   getCataloguesMapCategory,
   getCategoryName,
@@ -28,13 +28,13 @@ export const prerender = true;
 
 export const GET: APIRoute = async ({ params }) => {
   const lang = params.lang as SiteLocale;
+  const t = getI18n(lang);
 
   if (!lang) {
     return new Response("Language parameter is missing", { status: 400 });
   }
 
-  const globalSetting = await getGlobalSettings(lang);
-  const analyzer = globalSetting?.analyzer || "standard";
+  const analyzer = t["language.analyzer"] || "standard";
 
   const responseCollection = await getEntry("documents", "all-documents");
   const response = responseCollection?.data;

@@ -1,8 +1,11 @@
 import type { ImageProps } from "@components/atoms/Image/types";
 import { DateTime } from "@components/react/DateTime";
 import { Image } from "@components/react/Image";
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
 
 export type CardEditorialNewsProps = {
+  id?: string;
   title: string;
   description: string;
   image: ImageProps;
@@ -11,12 +14,11 @@ export type CardEditorialNewsProps = {
   dateTime?: string;
   action?: string;
   fullHeight?: boolean;
-  lang: string;
-  ariaLabelCardCategory?: string;
-  ariaLabelCardAction?: string;
+  lang: SiteLocale;
 };
 
 export function CardEditorialNews({
+  id = "",
   title,
   description,
   image,
@@ -26,17 +28,20 @@ export function CardEditorialNews({
   action,
   fullHeight = true,
   lang,
-  ariaLabelCardCategory,
-  ariaLabelCardAction,
 }: CardEditorialNewsProps) {
   const shouldShowFooter = !!category || !!dateTime;
+  const cardTitleId = `card-title-${id}`;
+  const t = getI18n(lang);
 
   return (
     <article
       className={`it-card it-card-image ${fullHeight ? "it-card-height-full" : ""} rounded shadow-sm border`}
+      aria-labelledby={cardTitleId}
     >
-      <h3 className="it-card-title">
-        <a href={linkTo}>{title}</a>
+      <h3 className="it-card-title" id={cardTitleId}>
+        <a href={linkTo} aria-label={t["link.external"]}>
+          {title}
+        </a>
       </h3>
       <div className="it-card-image-wrapper">
         <div className="ratio ratio-16x9">
@@ -52,7 +57,7 @@ export function CardEditorialNews({
         <footer className="it-card-related it-card-footer">
           {category && (
             <div className="it-card-taxonomy">
-              <span className="visually-hidden">{ariaLabelCardCategory}</span>
+              <span className="visually-hidden">{t["card.topic"]}</span>
               <p className="it-card-category">{category}</p>
             </div>
           )}
@@ -62,11 +67,12 @@ export function CardEditorialNews({
         </footer>
       )}
       {action && (
-        <div className="it-card-footer" aria-label={ariaLabelCardAction}>
+        <div className="it-card-footer">
           <a
             href={new URL(linkTo).origin}
             className="it-card-link"
             target="_blank"
+            aria-label={`${t["card.action"]} ${action}`}
           >
             {action}
           </a>

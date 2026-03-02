@@ -4,17 +4,12 @@ import type { TopicFilterProps } from "./types";
 import { CardEditorialNews } from "@components/molecules/CardEditorialNews";
 import { Topics } from "@components/molecules/Topics";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
+import { getI18n } from "@i18n/microcopy";
 
 type Props = TopicFilterProps;
 
-const {
-  title,
-  filterTitle,
-  labelForAll,
-  paragraph,
-  contentCollection,
-  ariaLabelTopic,
-} = Astro.props;
+const { title, filterTitle, labelForAll, paragraph, contentCollection } =
+  Astro.props;
 
 const slugify = (text: string) =>
   text
@@ -22,6 +17,9 @@ const slugify = (text: string) =>
     .trim()
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "");
+
+const { lang } = Astro.locals;
+const t = getI18n(lang);
 ---
 
 <SectionContainer className="it-section-bg-light">
@@ -48,7 +46,7 @@ const slugify = (text: string) =>
         variant="column"
         disabled={false}
         variantChip="primary"
-        ariaLabelTopic={ariaLabelTopic}
+        ariaLabelTopic={t["filter.topic"]}
       />
     </div>
   </div>

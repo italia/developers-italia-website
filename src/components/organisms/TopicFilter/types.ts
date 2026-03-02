@@ -6,7 +6,6 @@ export type TopicFilterProps = {
   filterTitle: string;
   labelForAll: string;
   contentCollection: ContentCollectionProps[];
-  ariaLabelTopic: string;
 };
 
 export type ContentCollectionProps = {

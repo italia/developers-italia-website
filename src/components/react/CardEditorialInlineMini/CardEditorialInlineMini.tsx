@@ -2,19 +2,23 @@ import type { ImageProps } from "@components/atoms/Image/types";
 import { Chip } from "@components/react/Chip";
 import { DateTime } from "@components/react/DateTime";
 import { Image } from "@components/react/Image";
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
 
 export type CardEditorialInlineMiniProps = {
+  id?: string;
   title: string;
   description: string;
   image: ImageProps;
   linkTo: string;
   category?: string;
   dateTime?: string;
-  lang: string;
+  lang: SiteLocale;
   ariaLabelCardCategory?: string;
 };
 
 export function CardEditorialInlineMini({
+  id = "",
   title,
   description,
   image,
@@ -22,13 +26,17 @@ export function CardEditorialInlineMini({
   category,
   dateTime,
   lang,
-  ariaLabelCardCategory,
 }: CardEditorialInlineMiniProps) {
   const shouldShowFooter = !!category || !!dateTime;
+  const cardTitleId = `card-title-${id}`;
+  const t = getI18n(lang);
 
   return (
-    <article className="it-card it-card-image it-card-height-full rounded shadow-sm border">
-      <h3 className="it-card-title">
+    <article
+      className="it-card it-card-image it-card-height-full rounded shadow-sm border"
+      aria-labelledby={cardTitleId}
+    >
+      <h3 className="it-card-title" id={cardTitleId}>
         <a href={linkTo}>{title}</a>
       </h3>
 
@@ -50,7 +58,7 @@ export function CardEditorialInlineMini({
             <div className="it-card-taxonomy">
               <Chip
                 label={category}
-                visuallyHidden={ariaLabelCardCategory || ""}
+                visuallyHidden={t["card.topic"]}
                 disabled
               />
             </div>

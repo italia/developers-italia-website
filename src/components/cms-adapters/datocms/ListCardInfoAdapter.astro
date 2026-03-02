@@ -1,5 +1,5 @@
 ---
-import type { CardInfoAndServiceProps } from "@components/molecules/CardInfoAndService/types";
+import type { CardInfoProps } from "@components/molecules/CardInfo/types";
 import { ListCard } from "@components/molecules/ListCard";
 import type { ListCardInfoFragmentType } from "@graphql/fragment/commonFragments";
 
@@ -14,10 +14,10 @@ type Props = {
 
 const { block } = Astro.props;
 
-const items: CardInfoAndServiceProps[] = block.items.map((item) => ({
+const items: CardInfoProps[] = block.items.map((item) => ({
   title: item.title,
   description: item.paragraph,
 }));
 ---
 
-<ListCard type="CardInfoAndService" cards={items} />
+<ListCard type="CardInfo" cards={items} />

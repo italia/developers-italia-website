@@ -2,7 +2,7 @@
 import type { ListLinkItemProps } from "@components/molecules/ListLink/types";
 import { QuickLinkCard } from "@components/molecules/QuickLinkCard";
 import type { QuickLinkCardFragmentType } from "@graphql/fragment/commonFragments";
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 import { createDownloadUrl } from "@utils/createDownloadUrl";
 import { linkResolver } from "@utils/linkResolver";
 
@@ -18,13 +18,11 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const globalSetting = await getGlobalSettings(lang);
+const t = getI18n(lang);
 
-const downloadLabel = globalSetting?.ariaLabelDownloadLink || "Scarica il file";
-const externalLinkLabel =
-  globalSetting?.ariaLabelExternalLink || "Apri in una nuova scheda";
-const articleLinkLabel =
-  globalSetting?.ariaLabelInternalLink || "Leggi l'articolo";
+const downloadLabel = t["link.download"];
+const externalLinkLabel = t["link.external"];
+const articleLinkLabel = t["link.internal"];
 
 const links: ListLinkItemProps[] = block.linkToResource.map((link) => {
   if (link.componentName === "ResourceRecord") {

@@ -2,37 +2,32 @@
 import { ChipLink } from "@components/atoms/Chip";
 import { DateTime } from "@components/atoms/DateTime";
 import { Image } from "@components/atoms/Image";
-import type { ImageProps } from "@components/atoms/Image/types";
-
-export type CardEditorialInlineMiniProps = {
-  title: string;
-  description?: string;
-  image: ImageProps;
-  linkTo: string;
-  category?: string;
-  dateTime?: string;
-  ariaLabelCardCategory?: string;
-};
+import { getI18n } from "@i18n/microcopy";
+import type { CardEditorialInlineMiniProps } from "./types";
 
 type Props = CardEditorialInlineMiniProps;
 
 const {
+  id = "",
   title,
   description,
   image,
   linkTo,
   category,
   dateTime,
-  ariaLabelCardCategory,
 } = Astro.props;
 
 const shouldShowFooter = category || dateTime;
+const cardTitleId = `card-title-${id}`;
+const { lang } = Astro.locals;
+const t = getI18n(lang);
 ---
 
 <article
   class="it-card it-card-image it-card-height-full rounded shadow-sm border"
+  aria-labelledby={cardTitleId}
 >
-  <h3 class="it-card-title">
+  <h3 class="it-card-title" id={cardTitleId}>
     <a href={linkTo}>{title}</a>
   </h3>
 
@@ -56,7 +51,7 @@ const shouldShowFooter = category || dateTime;
             <ChipLink
               linkTo={""}
               label={category}
-              visuallyHidden={ariaLabelCardCategory || ""}
+              visuallyHidden={t["card.topic"]}
               disabled
             />
           </div>

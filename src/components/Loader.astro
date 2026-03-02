@@ -1,9 +1,9 @@
 ---
-import { getGlobalSettings } from "@lib/dataFetcher";
+import { getI18n } from "@i18n/microcopy";
 
 const lang = Astro.locals.lang || "it";
 
-const globalSetting = await getGlobalSettings(lang);
+const t = getI18n(lang);
 ---
 
 <div class="container">
@@ -14,9 +14,7 @@ const globalSetting = await getGlobalSettings(lang);
       >
         <div class="progress-spinner-inner"></div>
         <div class="progress-spinner-inner"></div>
-        <span class="visually-hidden"
-          >{globalSetting?.loading || "Caricamento..."}</span
-        >
+        <span class="visually-hidden">{t["loading"]}</span>
       </div>
     </div>
   </div>

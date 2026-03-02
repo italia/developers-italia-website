@@ -215,8 +215,6 @@ import { AdditionalContent } from "./organisms/AdditionalContent";
           menuItems={menuItems}
           locales={["it", "en"]}
           logo="https://randomuser.me/api/portraits/women/14.jpg"
-          ariaLabelLinkLogo="Logo del dipartimento"
-          ariaLabelLanguageSelector="Selezione lingua"
         />
       </td>
     </tr>
@@ -252,11 +250,7 @@ import { AdditionalContent } from "./organisms/AdditionalContent";
           paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
           image={image}
         >
-          <Breadcrumb
-            ariaLabel="Percorso di navigazione"
-            slot="category"
-            items={breadcrumbItems}
-          />
+          <Breadcrumb slot="category" items={breadcrumbItems} />
         </Hero>
       </td>
     </tr>
@@ -271,11 +265,7 @@ import { AdditionalContent } from "./organisms/AdditionalContent";
           paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
           image={image}
         >
-          <Breadcrumb
-            ariaLabel="Percorso di navigazione"
-            slot="category"
-            items={breadcrumbItems}
-          /></Hero
+          <Breadcrumb slot="category" items={breadcrumbItems} /></Hero
         >
       </td>
     </tr>
@@ -290,7 +280,6 @@ import { AdditionalContent } from "./organisms/AdditionalContent";
           paragraph="<p>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>"
           image={image}
           ><Breadcrumb
-            ariaLabel="Percorso di navigazione"
             slot="category"
             items={breadcrumbItems}
           /></HeroFullHeightImage

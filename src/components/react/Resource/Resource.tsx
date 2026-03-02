@@ -1,12 +1,14 @@
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
+
 export type ResourceProps = {
   category: string[];
   title: string;
   description: string;
   type: string;
   url: string;
+  lang: SiteLocale;
   download?: boolean;
-  ariaLabelExternalLink?: string;
-  ariaLabelDownloadLink?: string;
 };
 
 export function Resource({
@@ -15,11 +17,12 @@ export function Resource({
   url,
   download,
   type,
-  ariaLabelExternalLink = "",
-  ariaLabelDownloadLink = "",
+  lang,
 }: ResourceProps) {
   const icon = download ? "it-download" : "it-external-link";
-  const ariaLabel = download ? ariaLabelDownloadLink : ariaLabelExternalLink;
+  const t = getI18n(lang);
+
+  const ariaLabel = download ? t["link.download"] : t["link.external"];
 
   return (
     <>

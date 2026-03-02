@@ -1,0 +1,27 @@
+---
+import { getI18n } from "@i18n/microcopy";
+
+type Props = {
+  idMenu: string;
+};
+
+const { lang } = Astro.locals;
+const t = getI18n(lang);
+const { idMenu } = Astro.props;
+---
+
+<nav class="skiplinks" aria-label={t["header.skiplink"]}>
+  <ul>
+    <li>
+      <a class="visually-hidden-focusable" href={`#${idMenu}`}
+        >{t["skip.menu"]}</a
+      >
+    </li>
+    <li>
+      <a class="visually-hidden-focusable" href="#main">{t["skip.content"]}</a>
+    </li>
+    <li>
+      <a class="visually-hidden-focusable" href="#footer">{t["skip.footer"]}</a>
+    </li>
+  </ul>
+</nav>
