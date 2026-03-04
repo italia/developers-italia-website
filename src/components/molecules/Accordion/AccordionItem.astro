@@ -4,6 +4,7 @@ type Props = AccordionItemProps & {
   fullWidth?: boolean;
   index: number;
   allOpen?: boolean;
+  idParent?: string;
 };
 const {
   header,
@@ -12,6 +13,7 @@ const {
   fullWidth = true,
   index,
   allOpen = true,
+  idParent,
 } = Astro.props;
 
 const isFirst = allOpen || index === 0;
@@ -33,6 +35,7 @@ const isFirst = allOpen || index === 0;
   <div
     id={`collapse-${id}`}
     class:list={["accordion-collapse collapse", { show: isFirst || false }]}
+    data-bs-parent={`#${idParent}`}
     role="region"
     aria-labelledby={`heading-${id}`}
   >
