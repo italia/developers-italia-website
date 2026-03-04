@@ -8,6 +8,7 @@ import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { getLastUpdateCollection } from "@utils/getLastUpdateCollection";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import {
   extractFaqItems,
   extractListItems,
@@ -40,9 +41,7 @@ export async function getStaticPaths() {
       const page = item.data;
       const datesRegistry = page.datesRegistry;
       return page.locales.map(async (lang) => {
-        const content = page.allContentLocales?.find(
-          (contentLocale) => contentLocale.locale === lang,
-        )?.value;
+        const content = getLocaleValue(page.allContentLocales, lang, undefined);
 
         const finalUpdateDate = getLastUpdateCollection(content, datesRegistry);
 

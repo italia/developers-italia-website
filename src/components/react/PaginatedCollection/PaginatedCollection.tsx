@@ -148,6 +148,7 @@ export function PaginatedCollection({
         })}
       </ul>
       <Pagination
+        lang={lang}
         currentPage={page}
         totalPages={totalPages}
         onPageChange={setPage}

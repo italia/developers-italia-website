@@ -4,6 +4,7 @@ import type { TagFragmentType } from "@graphql/fragment/commonFragments";
 import type { SearchPageContentFragmentType } from "@graphql/fragment/search";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { linkResolver } from "@utils/linkResolver";
 import { removeLang } from "@utils/pathHelper";
 import { getCollection, getEntry } from "astro:content";
@@ -46,9 +47,7 @@ export async function getStaticPaths() {
         props: {
           seoMeta: seoRes?.metaTags || [],
           id: page.id,
-          content: page.allContentLocales?.find(
-            (contentLocale) => contentLocale.locale === lang,
-          )?.value,
+          content: getLocaleValue(page.allContentLocales, lang, null),
         },
       };
     }) || [];

@@ -19,8 +19,8 @@ const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
     undefined;
   return {
     id: useCase.id,
-    title: getLocaleValue(useCase._allTitleLocales, lang),
-    paragraph: getLocaleValue(useCase._allParagraphLocales, lang),
+    title: getLocaleValue(useCase._allTitleLocales, lang, ""),
+    paragraph: getLocaleValue(useCase._allParagraphLocales, lang, "") || "",
     linkTo: linkResolver(useCase.id, lang),
     image: useCase.image || undefined,
     listTopics: {
@@ -31,8 +31,11 @@ const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
             topic._allLabelLocales?.find((l) => l.locale === lang)?.value || "",
         ) || [],
     },
-    descriptionTitle: getLocaleValue(useCase._allDescriptionTitleLocales, lang),
-    description: getLocaleValue(useCase._allDescriptionLocales, lang),
+    descriptionTitle:
+      getLocaleValue(useCase._allDescriptionTitleLocales, lang, "") ||
+      undefined,
+    description:
+      getLocaleValue(useCase._allDescriptionLocales, lang, "") || undefined,
   };
 });
 ---

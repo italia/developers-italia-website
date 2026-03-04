@@ -21,6 +21,7 @@ import { SearchPageContentQuery } from "@graphql/query/search";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { executeQuery } from "@lib/datocms";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { linkResolver } from "@utils/linkResolver";
 
 type QueryConfig<T = any, V = any> = {
@@ -67,11 +68,7 @@ const response = await executeQuery(config.query, {
 
 let dataRecord = response[config.key];
 if (type === "search" && dataRecord?.allContentLocales) {
-  const localizedContent = dataRecord.allContentLocales.find(
-    (item: any) => item.locale === lang,
-  );
-
-  dataRecord = localizedContent ? localizedContent.value : null;
+  dataRecord = getLocaleValue(dataRecord.allContentLocales, lang, null);
 }
 
 if (!dataRecord) return Astro.redirect("/404");

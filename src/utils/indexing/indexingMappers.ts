@@ -23,9 +23,7 @@ export const getMapArticle = (
   lang: SiteLocale,
   category: string,
 ) => {
-  const structuredText = article.allContentLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const structuredText = getLocaleValue(article.allContentLocales, lang, null);
 
   const stOptions = getSearchRenderOptions();
 
@@ -34,8 +32,8 @@ export const getMapArticle = (
     id: article.id,
     category,
     internalLink: linkResolver(article.id, lang),
-    title: getLocaleValue(article.allTitleLocales, lang),
-    description: getLocaleValue(article.allParagraphLocales, lang),
+    title: getLocaleValue(article.allTitleLocales, lang, ""),
+    description: getLocaleValue(article.allParagraphLocales, lang, ""),
     content: render(structuredText, stOptions),
   };
 };
@@ -45,9 +43,7 @@ export const getMapInsight = (
   lang: SiteLocale,
   category: string,
 ) => {
-  const contentData = insight.allContentLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const contentData = getLocaleValue(insight.allContentLocales, lang, null);
 
   const content = flattenBlocks(contentData ?? []);
   return {
@@ -55,8 +51,8 @@ export const getMapInsight = (
     id: insight.id,
     category,
     internalLink: linkResolver(insight.id, lang),
-    title: getLocaleValue(insight.allTitleLocales, lang),
-    description: getLocaleValue(insight.allAbstractLocales, lang),
+    title: getLocaleValue(insight.allTitleLocales, lang, ""),
+    description: getLocaleValue(insight.allAbstractLocales, lang, ""),
     content: content,
   };
 };
@@ -66,9 +62,7 @@ export const getMapStory = (
   lang: SiteLocale,
   category: string,
 ) => {
-  const contentData = story.allContentLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const contentData = getLocaleValue(story.allContentLocales, lang, null);
 
   const content = flattenBlocks(contentData ?? []);
 
@@ -77,7 +71,7 @@ export const getMapStory = (
     id: story.id,
     category,
     internalLink: linkResolver(story.id, lang),
-    title: getLocaleValue(story.allTitleLocales, lang),
+    title: getLocaleValue(story.allTitleLocales, lang, ""),
     description: "",
     content: content,
   };
@@ -88,10 +82,7 @@ export const getMapWebinar = (
   lang: SiteLocale,
   category: string,
 ) => {
-  const contentData = webinar.allContentLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
-
+  const contentData = getLocaleValue(webinar.allContentLocales, lang, null);
   const content = flattenBlocks(contentData ?? []);
 
   return {
@@ -99,8 +90,8 @@ export const getMapWebinar = (
     id: webinar.id,
     category,
     internalLink: linkResolver(webinar.id, lang),
-    title: getLocaleValue(webinar.allTitleLocales, lang),
-    description: getLocaleValue(webinar.allParagraphLocales, lang),
+    title: getLocaleValue(webinar.allTitleLocales, lang, ""),
+    description: getLocaleValue(webinar.allParagraphLocales, lang, ""),
     content: content,
   };
 };
@@ -114,10 +105,10 @@ export const getMapNews = (
     type: "news",
     id: news.id,
     category,
-    externalLink: getLocaleValue(news.allLinkLocales, lang),
-    title: getLocaleValue(news.allTitleLocales, lang),
-    description: getLocaleValue(news.allParagraphLocales, lang),
-    content: getLocaleValue(news.allParagraphLocales, lang),
+    externalLink: getLocaleValue(news.allLinkLocales, lang, ""),
+    title: getLocaleValue(news.allTitleLocales, lang, ""),
+    description: getLocaleValue(news.allParagraphLocales, lang, ""),
+    content: getLocaleValue(news.allParagraphLocales, lang, ""),
   };
 };
 
@@ -126,9 +117,7 @@ export const getMapResourse = (
   lang: SiteLocale,
   category: string,
 ) => {
-  const block = resourse.allResourseLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const block = getLocaleValue(resourse.allResourseLocales, lang, null);
 
   if (!block) return null;
 
@@ -162,17 +151,15 @@ export const getMapPages = (
   page: PageIndexingFragmentType,
   lang: SiteLocale,
 ) => {
-  const contentData = page.allContentLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const contentData = getLocaleValue(page.allContentLocales, lang, []);
 
-  const content = flattenBlocks(contentData ?? []);
+  const content = flattenBlocks(contentData);
   return {
     type: "page",
     id: page.id,
     category: "",
     internalLink: linkResolver(page.id, lang),
-    title: getLocaleValue(page.allTitleLocales, lang),
+    title: getLocaleValue(page.allTitleLocales, lang, ""),
     description: "",
     content: content,
   };

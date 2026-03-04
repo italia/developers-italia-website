@@ -1,4 +1,5 @@
 ---
+import { getI18n } from "@i18n/microcopy";
 import ItChevronLeft from "@static/assets/ItChevronLeft.astro";
 import ItChevronRight from "@static/assets/ItChevronRight.astro";
 import SidebarItemFirstLevel from "./SidebarItemFirstLevel.astro";
@@ -6,7 +7,11 @@ import type { SidebarProps } from "./types";
 
 type Props = SidebarProps;
 
-const { id, header, openLabel, closeLabel, ariaLabel, items } = Astro.props;
+const { id, header, openLabel, closeLabel, items } = Astro.props;
+
+const lang = Astro.locals.lang || "it";
+
+const t = getI18n(lang);
 ---
 
 <nav
@@ -17,7 +22,7 @@ const { id, header, openLabel, closeLabel, ariaLabel, items } = Astro.props;
     class="custom-navbar-toggler"
     type="button"
     aria-controls={id}
-    aria-label={ariaLabel}
+    aria-label={t["sidebar.openButton"]}
     data-bs-toggle="navbarcollapsible"
     data-bs-target="#navbarNav"
   >

@@ -38,9 +38,13 @@ export async function getStaticPaths() {
       return {
         params: { lang },
         props: {
-          title: getLocaleValue(globalSetting._allTitleLocales, lang),
-          paragraph: getLocaleValue(globalSetting._allParagraphLocales, lang),
-          labelCta: getLocaleValue(globalSetting._allLabelCtaLocales, lang),
+          title: getLocaleValue(globalSetting._allTitleLocales, lang, ""),
+          paragraph: getLocaleValue(
+            globalSetting._allParagraphLocales,
+            lang,
+            "",
+          ),
+          labelCta: getLocaleValue(globalSetting._allLabelCtaLocales, lang, ""),
           image: globalSetting.image,
           homepageId,
         },

@@ -32,15 +32,15 @@ const buttonLabel = block.cta?.label;
           componentName: "CardEditorialNews",
           title: tab.title,
           news: tab.news.map((n) => {
-            const link = getLocaleValue(n.allLinkLocales, lang);
+            const link = getLocaleValue(n.allLinkLocales, lang, "");
             const topic = getLocaleValue(n.allTopicLocales, lang, null);
             return {
               id: n.id,
-              title: getLocaleValue(n.allTitleLocales, lang),
-              description: getLocaleValue(n.allParagraphLocales, lang),
+              title: getLocaleValue(n.allTitleLocales, lang, ""),
+              description: getLocaleValue(n.allParagraphLocales, lang, ""),
               image: n.image,
               linkTo: link || "#",
-              category: getLocaleValue(topic._allLabelLocales, lang),
+              category: getLocaleValue(topic?._allLabelLocales, lang, ""),
               dateTime: n.publishedAt,
               action: link ? new URL(link).host : "",
             };
@@ -55,10 +55,10 @@ const buttonLabel = block.cta?.label;
             const topic = getLocaleValue(n.allTopicLocales, lang, null);
             return {
               id: n.id,
-              title: getLocaleValue(n.allTitleLocales, lang),
+              title: getLocaleValue(n.allTitleLocales, lang, ""),
               image: n.image,
               linkTo: linkResolver(n.id, lang),
-              category: getLocaleValue(topic._allLabelLocales, lang),
+              category: getLocaleValue(topic?._allLabelLocales, lang, ""),
               dateTime: n.publishedAt,
             };
           }),

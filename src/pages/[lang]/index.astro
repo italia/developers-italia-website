@@ -1,6 +1,7 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
 import Layout from "@layouts/Layout.astro";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -26,9 +27,7 @@ if (!homepage) return;
 const seoResCollection = await getEntry("global_seo", `${homepage.id}_${lang}`);
 const seoRes = seoResCollection?.data;
 
-const content = homepage.allContentLocales?.find(
-  (contentLocale) => contentLocale.locale === lang,
-)?.value;
+const content = getLocaleValue(homepage.allContentLocales, lang, null);
 
 if (!content) return;
 

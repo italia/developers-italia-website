@@ -6,6 +6,7 @@ import type { SidebarFragmentType } from "@graphql/fragment/layout";
 import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 import { linkResolver } from "@utils/linkResolver";
 import { removeLang } from "@utils/pathHelper";
@@ -59,9 +60,7 @@ export async function getStaticPaths() {
             seo: seoRes?.seo ?? null,
             id: page.id,
             sidebar: { ...sidebarForArticle, id: `sidebar_${page.id}` },
-            content: page.allContentLocales?.find(
-              (contentLocale) => contentLocale.locale === lang,
-            )?.value,
+            content: getLocaleValue(page.allContentLocales, lang, null),
             publishedAt: page.publishedAt,
             updatedAt: seoRes?.updatedAt || page.updatedAt,
           },

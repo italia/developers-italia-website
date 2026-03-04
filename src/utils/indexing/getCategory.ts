@@ -17,7 +17,7 @@ export const getCategoryName = (
   lang: SiteLocale,
 ): string => {
   if (!page) return "";
-  return getLocaleValue(page.allTitleLocales, lang);
+  return getLocaleValue(page.allTitleLocales, lang, "");
 };
 
 export const resolveArticleCategory = (
@@ -28,7 +28,7 @@ export const resolveArticleCategory = (
 
   if (!firstValidParent) return "";
 
-  return getLocaleValue(firstValidParent.allTitleLocales, lang);
+  return getLocaleValue(firstValidParent.allTitleLocales, lang, "");
 };
 
 export const getTitleByTypeNews = (
@@ -60,7 +60,7 @@ export const getCataloguesMapCategory = (
   lang: SiteLocale,
 ): catalogueMapCategory[] => {
   return allCatalogues.map((catalogue) => {
-    const title = getLocaleValue(catalogue.allTitleLocales, lang);
+    const title = getLocaleValue(catalogue.allTitleLocales, lang, "");
     const feedRecord = catalogue.content.find(
       (item) => item.componentName === DatoBlockModel.CatalogueFeed,
     );

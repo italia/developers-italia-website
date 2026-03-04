@@ -6,6 +6,7 @@ import type { PageContentFragmentType } from "@graphql/fragment/page";
 import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { type JsonLdPageData, extractFaqItems } from "@utils/JsonLD/seoJsonLd";
 import { linkResolver } from "@utils/linkResolver";
 import { removeLang } from "@utils/pathHelper";
@@ -53,9 +54,7 @@ export async function getStaticPaths() {
             id: page.id,
             publishedAt: page.data.publishedAt,
             updatedAt: seoRes?.updatedAt || page.data.updatedAt,
-            content: page.data.allContentLocales?.find(
-              (contentLocale) => contentLocale.locale === lang,
-            )?.value,
+            content: getLocaleValue(page.data.allContentLocales, lang, []),
           },
         };
       }),

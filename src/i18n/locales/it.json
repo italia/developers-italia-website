@@ -20,5 +20,9 @@
   "card.action": "Link correlati: ",
   "loading": "Caricamento...",
   "breadcrumb": "Percorso di navigazione",
-  "footer.sectionLink": "Sezione link utili"
+  "footer.sectionLink": "Sezione link utili",
+  "sidebar.openButton": "Apri/chiudi sidebar",
+  "nav.pagination": "Paginazione",
+  "nav.prev": "Pagina precedente",
+  "nav.next": "Pagina successiva"
 }

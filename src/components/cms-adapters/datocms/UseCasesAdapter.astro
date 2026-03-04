@@ -18,8 +18,8 @@ const { lang } = Astro.locals;
 
 const usecases: UseCaseCardProps[] = block.useCases.map((usecase) => {
   return {
-    title: getLocaleValue(usecase._allTitleLocales, lang),
-    paragraph: getLocaleValue(usecase._allParagraphLocales, lang),
+    title: getLocaleValue(usecase._allTitleLocales, lang, ""),
+    paragraph: getLocaleValue(usecase._allParagraphLocales, lang, "") || "",
     linkTo: linkResolver(usecase.id, lang),
     image: usecase.image || undefined,
   };

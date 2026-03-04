@@ -21,16 +21,16 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
     );
     return {
       title: content.title,
-      topicSlug: getLocaleValue(topicSlug?._allLabelLocales, lang),
+      topicSlug: getLocaleValue(topicSlug?._allLabelLocales, lang, ""),
       paragraph: content.paragraph || undefined,
       items: content.content.map((item) => {
         const topicRecord = getLocaleValue(item._allTopicLocales, lang, null);
         return {
-          title: getLocaleValue(item._allTitleLocales, lang),
-          description: getLocaleValue(item._allAbstractLocales, lang),
+          title: getLocaleValue(item._allTitleLocales, lang, ""),
+          description: getLocaleValue(item._allAbstractLocales, lang, ""),
           image: item.image,
           linkTo: linkResolver(item.id, lang),
-          category: getLocaleValue(topicRecord?._allLabelLocales, lang),
+          category: getLocaleValue(topicRecord?._allLabelLocales, lang, ""),
         };
       }),
     };

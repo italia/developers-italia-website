@@ -3,7 +3,6 @@ export type SidebarProps = {
   header?: string;
   openLabel: string;
   closeLabel: string;
-  ariaLabel: string;
   items: SidebarItemFirstLevelProps[];
 };
 

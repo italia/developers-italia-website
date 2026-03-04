@@ -30,7 +30,7 @@ export type SiteMap = Record<string, LocaleMap>;
 
 export const getTitle = (item: HasTitles, locale: string) => {
   if (!item) return "";
-  return getLocaleValue(item.allTitleLocales, locale);
+  return getLocaleValue(item.allTitleLocales, locale, "");
 };
 
 const processGenericItems = <T extends RoutableRecord>(

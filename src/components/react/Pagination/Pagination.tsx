@@ -1,24 +1,30 @@
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
+
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  lang: SiteLocale;
 };
 
 export function Pagination({
   currentPage,
   totalPages,
   onPageChange,
+  lang,
 }: PaginationProps) {
   if (totalPages <= 1) return null;
+  const t = getI18n(lang);
 
   return (
-    <nav aria-label="Pagination">
+    <nav aria-label={t["nav.pagination"]}>
       <ul className="pagination justify-content-center pt-5">
         <li className="page-item">
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            aria-label="Previous page"
+            aria-label={t["nav.prev"]}
             className="page-link"
           >
             &laquo;
@@ -39,7 +45,7 @@ export function Pagination({
           <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            aria-label="Next page"
+            aria-label={t["nav.next"]}
             className="page-link"
           >
             &raquo;
