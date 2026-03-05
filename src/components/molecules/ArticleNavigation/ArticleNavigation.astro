@@ -7,10 +7,10 @@ type Props = ArticleNavigationProps;
 const { previousArticle, previousLabel, nextArticle, nextLabel } = Astro.props;
 ---
 
-<div class="row justify-content-between">
+<div class="d-flex flex-lg-row flex-column justify-content-between">
   {
     previousArticle && (
-      <div class="col-12 col-lg-5">
+      <div>
         <NavigationLink
           label={previousLabel}
           title={previousArticle.title}
@@ -23,7 +23,7 @@ const { previousArticle, previousLabel, nextArticle, nextLabel } = Astro.props;
 
   {
     nextArticle && (
-      <div class="col-12 col-lg-5 mt-3 mt-lg-0">
+      <div class="mt-3 mt-lg-0">
         <NavigationLink
           label={nextLabel}
           title={nextArticle.title}
