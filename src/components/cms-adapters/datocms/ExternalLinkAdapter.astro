@@ -18,9 +18,11 @@ if (!block.label || !block.url) {
 }
 ---
 
-<CardService
-  id={block.id}
-  title={block.label}
-  linkTo={block.url}
-  description={block.description || ""}
-/>
+<div class="col-lg-10 col-12">
+  <CardService
+    id={block.id}
+    title={block.label}
+    linkTo={block.url}
+    description={block.description || ""}
+  />
+</div>
