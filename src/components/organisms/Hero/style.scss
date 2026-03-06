@@ -1,5 +1,3 @@
-@import "@styles/palette";
-
 @media (min-width: 992px) {
   .default-size {
     min-height: 440px !important;
@@ -22,7 +20,7 @@
 .it-hero-wrapper.dark {
   .it-hero-text-wrapper h1,
   .it-hero-text-wrapper p {
-    color: $color-text-base !important;
+    color: #1a1a1a !important;
   }
 }
 

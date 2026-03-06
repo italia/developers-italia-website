@@ -1,4 +1,4 @@
-@use "bootstrap-italia/src/scss/bootstrap-italia" as *;
+@import "@styles/palette";
 
 .border-left-primary {
   border-left-color: $primary !important;

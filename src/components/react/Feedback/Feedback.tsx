@@ -1,3 +1,5 @@
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
 import type { Modal } from "bootstrap-italia";
 import { useCallback, useRef, useState } from "react";
 import FormNo from "./components/form-no/FormNo";
@@ -8,12 +10,6 @@ import Icon, {
 } from "./Icon";
 import { FeedbackState } from "./state";
 import "./style.scss";
-
-const BTN_INTRO = {
-  label: "Invia",
-  btnStyle: "primary",
-  type: "submit",
-};
 
 const ICON_CLOSE = {
   icon: "sprites.svg#it-close",
@@ -28,7 +24,12 @@ const ICON_RESULT = {
   addonClasses: "me-2",
 };
 
-function Feedback() {
+type Feedback = {
+  lang: SiteLocale;
+};
+
+function Feedback({ lang }: Feedback) {
+  const t = getI18n(lang);
   const [isChecked, setIsChecked] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.Start);
   const [choiceVal, setChoiceVal] = useState("");
@@ -137,15 +138,15 @@ function Feedback() {
       case FeedbackState.Start:
         return (
           <>
-            <h2 className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
-              <span className="feedback-title">
-                Ciao, questa pagina è stata utile?
-              </span>
-            </h2>
+            <p className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
+              <span className="feedback-title">{t["feedback.title"]}</span>
+            </p>
             <form className="mt-3 mt-md-3">
               <fieldset>
                 <legend>
-                  <span className="visually-hidden">Scegli la risposta:</span>
+                  <span className="visually-hidden">
+                    {t["feedback.legend"]}
+                  </span>
                 </legend>
                 <div className="form-check form-check-inline">
                   <input
@@ -156,7 +157,7 @@ function Feedback() {
                     onChange={onChange}
                   />
                   <label className="mb-0" htmlFor="feedbackValueYes">
-                    Sì
+                    {t["feedback.yes"]}
                   </label>
                 </div>
                 <div className="form-check form-check-inline">
@@ -168,7 +169,7 @@ function Feedback() {
                     onChange={onChange}
                   />
                   <label className="mb-0" htmlFor="feedbackValueNo">
-                    No
+                    {t["feedback.no"]}
                   </label>
                 </div>
               </fieldset>
@@ -186,10 +187,10 @@ function Feedback() {
                       role="status"
                       aria-hidden="true"
                     />
-                    <span className="sr-only">Invio in corso...</span>
+                    <span className="sr-only">{t["feedback.sending"]}</span>
                   </>
                 ) : (
-                  BTN_INTRO.label
+                  t["feedback.send"]
                 )}
               </button>
             </form>
@@ -199,7 +200,7 @@ function Feedback() {
         return (
           <span className="feedback-confirm d-flex align-items-center">
             <Icon icon="sprites.svg#it-check-circle" {...ICON_RESULT} />
-            Feedback inviato. Grazie.
+            {t["feedback.success"]}
           </span>
         );
       case FeedbackState.Error:
@@ -210,12 +211,12 @@ function Feedback() {
               icon="sprites.svg#it-error"
               addonClasses="icon-danger me-2"
             />
-            C’è stato un problema nell’invio 😞
-            <br /> Ti va di riprovare più tardi? 🙏
+            {t["feedback.error"]}
+            <br /> {t["feedback.retry"]}
           </span>
         );
       default:
-        return null; // should not happen
+        return null;
     }
   };
 
@@ -258,13 +259,17 @@ function Feedback() {
                 className="btn-close flex-shrink-0"
                 type="button"
                 data-bs-dismiss="modal"
-                aria-label="Chiudi finestra modale"
+                aria-label={t["modal.close"]}
               >
                 <Icon {...ICON_CLOSE} />
               </button>
             </div>
             <div className="modal-body pt-0 pb-4 pb-md-5 px-md-4">
-              <FormNo onResult={onModalResult} state={feedbackState} />
+              <FormNo
+                onResult={onModalResult}
+                state={feedbackState}
+                lang={lang}
+              />
             </div>
           </div>
         </div>

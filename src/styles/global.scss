@@ -1,6 +1,6 @@
 @use "bootstrap-italia/src/scss/bootstrap-italia" as *;
 
-@use "./palette.scss" as *;
+@use "./palette.scss" as col;
 
 html,
 body {
@@ -57,7 +57,7 @@ body {
     z-index: 1055 !important;
 
     .navbar {
-      border-top: 1px solid $gray-border;
+      border-top: 1px solid col.$gray-border;
     }
   }
 }

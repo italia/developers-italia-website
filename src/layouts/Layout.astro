@@ -16,7 +16,6 @@ import { isDraftModeEnabled } from "@lib/draftMode";
 import { type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 import { getCollection } from "astro:content";
 import bsi from "bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?url";
-import "dataviz-components/dist/style.css";
 import "../styles/global.scss";
 import JsonLDScripts from "./JsonLDScripts.astro";
 import SeoHreflang from "./SeoHreflang.astro";
@@ -85,18 +84,26 @@ const isProd = import.meta.env.PROD;
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <Seo data={[...siteMetaTag.faviconMetaTags, ...pageSeo]} />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+
     <JsonLDScripts jsonLd={jsonLd} />
     {isProd && <WAI />}
     <SeoHreflang locales={layout.locales} />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     {isShowingPreviewBar && <PreviewBar redirectUrl={redirectUrl} />}
@@ -117,7 +124,7 @@ const isProd = import.meta.env.PROD;
         />
       )
     }
-    <Feedback client:only="react">
+    <Feedback client:visible lang={lang}>
       <div slot="fallback">
         <Loader />
       </div>
@@ -125,4 +132,4 @@ const isProd = import.meta.env.PROD;
     <FooterAdapter {...footerLayout} />
   </body>
 </html>
-<script src={bsi}></script>
+<script src={bsi} defer is:inline></script>

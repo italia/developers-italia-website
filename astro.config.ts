@@ -16,7 +16,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes("component-inventory"),
+      filter: (page) =>
+        !page.includes("component-inventory") &&
+        !page.includes("/search") &&
+        !page.includes("/ricerca"),
       i18n: {
         defaultLocale: "it",
         locales: {

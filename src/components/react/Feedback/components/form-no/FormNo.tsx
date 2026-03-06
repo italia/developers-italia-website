@@ -1,6 +1,8 @@
 import { useCallback, useRef, useState } from "react";
 
 import { Image } from "@components/react/Image";
+import type { SiteLocale } from "@graphql/types";
+import { getI18n } from "@i18n/microcopy";
 import Icon, { type ColorIconProps, type SizeIconProps } from "../../Icon";
 import { FeedbackState } from "../../state";
 import LabelTextArea from "../label-textarea/label-textarea";
@@ -30,16 +32,18 @@ const ICON_INFO = {
   hidden: true,
 };
 
-interface FormNoProps {
+type FormNoProps = {
   onResult: (result: {
     who: string | null;
     from: string | null;
     details: string | null;
   }) => void;
   state: FeedbackState;
-}
+  lang: SiteLocale;
+};
 
-function FormNo({ onResult, state }: FormNoProps) {
+function FormNo({ onResult, state, lang }: FormNoProps) {
+  const t = getI18n(lang);
   const rootRef = useRef(null);
 
   const [who, setWho] = useState<string | null>(null);
@@ -60,24 +64,19 @@ function FormNo({ onResult, state }: FormNoProps) {
           height={100}
         />
         <h2 className="mb-3" id="feedbackNoTitle">
-          Grazie per la tua risposta!
+          {t["feedback.modal.title"]}
         </h2>
 
-        <h3 className="mb-3">
-          Aiutaci a migliorare dandoci qualche dettaglio in più.
-        </h3>
+        <h3 className="mb-3">{t["feedback.modal.subtitle"]}</h3>
         <p>
-          Quanto segue è una raccolta di informazioni anonima, che ci aiuta a
-          capire come migliorare la tua esperienza sul sito senza trattare dati
-          personali. Se sei un developer puoi scoprire come funziona questo
-          meccanismo nella{" "}
+          {t["feedback.modal.privacy"]}{" "}
           <a
             href="https://github.com/italia/feedback.designers.italia.it"
             target="_blank"
             rel="noreferrer"
-            aria-label="repository GitHub dedicata (si apre in una nuova finestra"
           >
-            repository GitHub dedicata
+            {t["feedback.modal.privacy.link"]}
+            <span className="visually-hidden"> ({t["link.external"]})</span>
           </a>
           .
         </p>
@@ -85,7 +84,7 @@ function FormNo({ onResult, state }: FormNoProps) {
         <fieldset>
           <legend className="d-flex mb-3 px-0 align-items-center w-75">
             <Icon {...ICON_USER} />
-            <span className="text-secondary">Sei:</span>
+            <span className="text-secondary">{t["feedback.who.legend"]}</span>
           </legend>
           <div className="px-3 px-lg-5 py-3 py-lg-5 rounded shadow-lg">
             <div className="form-check form-check-group">
@@ -97,7 +96,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Designer"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt1">Designer</label>
+              <label htmlFor="optsStep1Opt1">
+                {t["feedback.who.designer"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -108,7 +109,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Developer"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt2">Developer</label>
+              <label htmlFor="optsStep1Opt2">
+                {t["feedback.who.developer"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -119,7 +122,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Dirigente"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt3">Dirigente</label>
+              <label htmlFor="optsStep1Opt3">
+                {t["feedback.who.dirigente"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -130,7 +135,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Docente"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt4">Docente</label>
+              <label htmlFor="optsStep1Opt4">{t["feedback.who.docente"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -141,7 +146,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Editor"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt5">Editor</label>
+              <label htmlFor="optsStep1Opt5">{t["feedback.who.editor"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -152,7 +157,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Legale"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt6">Legale</label>
+              <label htmlFor="optsStep1Opt6">{t["feedback.who.legale"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -163,7 +168,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Personale amministrativo"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt7">Personale amministrativo</label>
+              <label htmlFor="optsStep1Opt7">{t["feedback.who.admin"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -174,7 +179,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Project manager"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt8">Project manager</label>
+              <label htmlFor="optsStep1Opt8">{t["feedback.who.pm"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -185,7 +190,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Specialista comunicazione"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt9">Specialista comunicazione</label>
+              <label htmlFor="optsStep1Opt9">{t["feedback.who.comms"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -196,7 +201,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={who === "Studente"}
                 onChange={(e) => setWho(e.target.value)}
               />
-              <label htmlFor="optsStep1Opt10">Studente</label>
+              <label htmlFor="optsStep1Opt10">
+                {t["feedback.who.student"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -208,7 +215,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 onChange={(e) => setWho(e.target.value)}
               />
               <label htmlFor="optsStep1Opt11">
-                Qui per curiosità / interesse
+                {t["feedback.who.curiosity"]}
               </label>
             </div>
           </div>
@@ -217,9 +224,7 @@ function FormNo({ onResult, state }: FormNoProps) {
         <fieldset>
           <legend className="d-flex mb-3 px-0 pt-5 align-items-center w-75">
             <Icon {...ICON_HELP} />
-            <span className="text-secondary">
-              Hai trovato questa pagina grazie a:
-            </span>
+            <span className="text-secondary">{t["feedback.from.legend"]}</span>
           </legend>
           <div className="px-3 px-lg-5 py-3 py-lg-5 rounded shadow-lg">
             <div className="form-check form-check-group">
@@ -231,7 +236,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "altro sito web"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt1">Altro sito web</label>
+              <label htmlFor="optsStep2Opt1">
+                {t["feedback.from.website"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -242,7 +249,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "funzione Cerca del sito"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt2">Funzione Cerca del sito</label>
+              <label htmlFor="optsStep2Opt2">
+                {t["feedback.from.search_internal"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -253,7 +262,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "motore di ricerca"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt3">Motore di ricerca</label>
+              <label htmlFor="optsStep2Opt3">
+                {t["feedback.from.search_engine"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -264,7 +275,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "messaggio social"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt4">Messaggio social</label>
+              <label htmlFor="optsStep2Opt4">{t["feedback.from.social"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -275,7 +286,9 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "navigazione del sito"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt5">Navigazione del sito</label>
+              <label htmlFor="optsStep2Opt5">
+                {t["feedback.from.navigation"]}
+              </label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -286,7 +299,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "posta elettronica"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt6">Posta elettronica</label>
+              <label htmlFor="optsStep2Opt6">{t["feedback.from.email"]}</label>
             </div>
             <div className="form-check form-check-group">
               <input
@@ -297,7 +310,7 @@ function FormNo({ onResult, state }: FormNoProps) {
                 checked={from === "altro"}
                 onChange={(e) => setFrom(e.target.value)}
               />
-              <label htmlFor="optsStep2Opt7">Altro</label>
+              <label htmlFor="optsStep2Opt7">{t["feedback.from.other"]}</label>
             </div>
           </div>
         </fieldset>
@@ -306,7 +319,7 @@ function FormNo({ onResult, state }: FormNoProps) {
           <legend className="d-flex pt-5 pb-4 px-0 align-items-center w-75">
             <Icon {...ICON_INFO} />
             <span className="text-secondary">
-              Come possiamo migliorare questa pagina?
+              {t["feedback.improve.legend"]}
             </span>
           </legend>
           <div className="px-3 px-lg-5 pt-5 pb-1 rounded shadow-lg">
@@ -314,15 +327,14 @@ function FormNo({ onResult, state }: FormNoProps) {
               <LabelTextArea
                 ariadescribedby="helperText"
                 id="feedbackText"
-                label="Risposta"
+                label={t["feedback.improve.label"]}
                 rows="3"
                 maxLength="200"
                 value={details || ""}
                 onChange={(e: { value: string }) => setDetails(e.value)}
               />
               <small id="helperText" className="form-control form-text">
-                Hai a disposizione 200 caratteri. Per favore non inserire dati
-                personali in questo campo.
+                {t["feedback.improve.helper"]}
               </small>
             </div>
           </div>
@@ -344,10 +356,10 @@ function FormNo({ onResult, state }: FormNoProps) {
                   role="status"
                   aria-hidden="true"
                 />
-                <span className="sr-only">Invio in corso...</span>
+                <span className="sr-only">{t["feedback.sending"]}</span>
               </>
             ) : (
-              "Invia dettagli"
+              t["feedback.improve.send"]
             )}
           </button>
         </div>
