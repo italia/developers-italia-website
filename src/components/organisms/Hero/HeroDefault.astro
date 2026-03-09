@@ -32,7 +32,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
       >
         <div class="img-responsive">
           <div class="img-wrapper">
-            <Image {...image} />
+            <Image {...image} loading="eager" />
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
       <div class="img-responsive-wrapper d-block d-lg-none">
         <div class="img-responsive">
           <div class="img-wrapper">
-            <Image {...imageMobile} />
+            <Image {...imageMobile} loading="eager" />
           </div>
         </div>
       </div>

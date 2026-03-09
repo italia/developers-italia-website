@@ -1,14 +1,22 @@
 ---
-import type { ImageProps } from "./types";
 import { Image as ImageAstro } from "astro:assets";
+import type { ImageProps } from "./types";
 type Props = ImageProps;
+const {
+  url,
+  alt = "",
+  title = "",
+  width,
+  height,
+  loading = "lazy",
+} = Astro.props;
 
-const { url, alt = "", title = "", width, height } = Astro.props;
-if (!width || !height) {
-  return null;
-}
-const targetWidths = [480, 720, 1024, width];
+if (!width || !height) return null;
+
+const targetWidths = [480, 800, width];
 const responsiveWidths = targetWidths.filter((w) => w <= width);
+
+const isHero = loading === "eager";
 ---
 
 <ImageAstro
@@ -16,7 +24,11 @@ const responsiveWidths = targetWidths.filter((w) => w <= width);
   title={title}
   alt={alt || ""}
   widths={responsiveWidths}
+  sizes="(max-width: 480px) 466px, (max-width: 1024px) 720px, 928px"
   width={width}
   height={height}
-  loading="lazy"
+  loading={loading}
+  decoding={isHero ? "sync" : "async"}
+  fetchpriority={isHero ? "high" : "auto"}
+  format="webp"
 />

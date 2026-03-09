@@ -84,22 +84,8 @@ const isProd = import.meta.env.PROD;
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <Seo data={[...siteMetaTag.faviconMetaTags, ...pageSeo]} />
-
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
 
     <JsonLDScripts jsonLd={jsonLd} />
     {isProd && <WAI />}

@@ -41,6 +41,7 @@ export default defineConfig({
         "@splidejs/splide/src/css/core/index": resolve(
           "node_modules/@splidejs/splide/src/css/core/index.scss",
         ),
+        "@font-assets": "/node_modules/bootstrap-italia/dist/fonts",
       },
     },
   },

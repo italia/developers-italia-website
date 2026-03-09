@@ -4,4 +4,5 @@ export type ImageProps = {
   height: number | null;
   alt?: string | null;
   title?: string | null;
+  loading?: "lazy" | "eager";
 };
