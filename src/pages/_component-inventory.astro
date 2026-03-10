@@ -1,4 +1,11 @@
 ---
+if (import.meta.env.PROD) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not Found",
+  });
+}
+
 import { TabContent, Tabs } from "@components/molecules/Tabs";
 import { DataSection } from "@components/organisms/DataSection";
 import { Hero } from "@components/organisms/Hero";
@@ -12,13 +19,6 @@ import type { TabItemProps } from "@components/molecules/Tabs/types";
 import MoleculesComponentInventory from "@components/MoleculesComponentInventory.astro";
 import OrganismsComponentInventory from "@components/OrganismsComponentInventory.astro";
 import { channelItems, image, listItems } from "@utils/mock";
-
-if (import.meta.env.PROD) {
-  return new Response(null, {
-    status: 404,
-    statusText: "Not Found",
-  });
-}
 
 const tabsComponentInventory: TabItemProps[] = [
   { id: "content-atoms", label: "Atoms", active: true },
@@ -34,14 +34,6 @@ const tabsComponentInventory: TabItemProps[] = [
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400&display=swap"
-      rel="stylesheet"
     />
   </head>
   <body>
@@ -163,5 +155,5 @@ const tabsComponentInventory: TabItemProps[] = [
       </div>
     </main>
   </body>
-  <script src={bsi}></script>
+  <script src={bsi} defer is:inline></script>
 </html>
