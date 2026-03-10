@@ -1,15 +1,14 @@
-@use "bootstrap-italia/src/scss/bootstrap-italia" as vars;
 $accent-color: #79ece8;
 $primary-darker: #036;
 $color-text-base: #1a1a1a;
 $bg-medium: #bfdfff;
-$color-text-secondary: vars.$color-text-secondary;
-$primary: vars.$primary;
-$gray-border: vars.$gray-border;
-$gray-100: vars.$gray-100;
-$white: vars.$white;
-$primary-a10: vars.$primary-a10;
-$gray-400: vars.$gray-400;
+$color-text-secondary: #303f4c;
+$primary: #0066cc;
+$gray-border: #c4c9cc;
+$gray-100: #f5f5f5;
+$white: #ffffff;
+$primary-a10: #036;
+$gray-400: #a3a3a3;
 
 .bg-medium {
   background-color: $bg-medium !important;
