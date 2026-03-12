@@ -66,5 +66,9 @@
   "feedback.improve.legend": "Come possiamo migliorare questa pagina?",
   "feedback.improve.label": "Risposta",
   "feedback.improve.helper": "Hai a disposizione 200 caratteri. Per favore non inserire dati personali in questo campo.",
-  "feedback.improve.send": "Invia dettagli"
+  "feedback.improve.send": "Invia dettagli",
+
+  "subscribe.button": "Iscriviti",
+  "subscribe.errorText": "Qualcosa è andato storto 😔 Riprova più tardi",
+  "subscribe.successText": "Ti abbiamo mandato un’email, segui il collegamento per confermare la tua iscrizione"
 }

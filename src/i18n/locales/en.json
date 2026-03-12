@@ -66,5 +66,9 @@
   "feedback.improve.legend": "How can we improve this page?",
   "feedback.improve.label": "Response",
   "feedback.improve.helper": "You have 200 characters available. Please do not enter personal data in this field.",
-  "feedback.improve.send": "Send details"
+  "feedback.improve.send": "Send details",
+
+  "subscribe.button": "Subscribe",
+  "subscribe.errorText": "Something went wrong 😔 Please try again later",
+  "subscribe.successText": "We sent you an email, follow the link to confirm your subscription"
 }

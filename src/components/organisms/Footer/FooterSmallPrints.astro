@@ -6,7 +6,7 @@ import type { FooterSmallPrintsProps } from "./types";
 
 type Props = FooterSmallPrintsProps;
 
-const { links } = Astro.props;
+const { links, showSitemap = false } = Astro.props;
 const lang = Astro.locals.lang || "it";
 const t = getI18n(lang);
 ---
@@ -17,6 +17,19 @@ const t = getI18n(lang);
     <ul
       class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row px-0"
     >
+      {
+        showSitemap && (
+          <li class="list-inline-item d-flex align-items-center gap-2">
+            <FooterLink
+              label={"Mappa del sito"}
+              linkTo={"/sitemap.xml"}
+              openInNewTab={false}
+              isIcon={true}
+              variant="dark"
+            />
+          </li>
+        )
+      }
       {
         links.map((link) => (
           <li class="list-inline-item d-flex align-items-center gap-2">

@@ -1,5 +1,6 @@
 import type { SiteLocale } from "@graphql/types";
 import { getI18n } from "@i18n/microcopy";
+import { postRequest } from "@utils/apiUtils";
 import type { Modal } from "bootstrap-italia";
 import { useCallback, useRef, useState } from "react";
 import FormNo from "./components/form-no/FormNo";
@@ -37,50 +38,20 @@ function Feedback({ lang }: Feedback) {
 
   const modalNo = useRef(null);
 
-  /* const sendFeedback = useCallback(
-    async (result = {}) => {
-      setFeedbackState(FeedbackState.Loading);
- 
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      const mockSuccess = true;
-
-      if (!mockSuccess) {
-        setFeedbackState(FeedbackState.Error);
-        return false;
-      }
-
-      setFeedbackState(FeedbackState.Success);
-      return true;
-    },
-    [choiceVal],
-  ); */
-
   const sendFeedback = useCallback(
     async (result = {}) => {
       setFeedbackState(FeedbackState.Loading);
       const feedback = choiceVal === "1" ? "+" : "-";
 
       try {
-        const r = await fetch(
-          "https://feedback.designers.italia.it/api/messages",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              feedback,
-              url: window.location.href,
-              ...result,
-            }),
-          },
-        );
+        await postRequest(import.meta.env.PUBLIC_FEEDBACK_URL, {
+          feedback,
+          url: window.location.href,
+          ...result,
+        });
 
-        if (!r.ok) {
-          throw new Error(`HTTP response: ${r.status}`);
-        }
+        setFeedbackState(FeedbackState.Success);
+        return true;
       } catch (e) {
         setFeedbackState(FeedbackState.Error);
 
@@ -88,10 +59,6 @@ function Feedback({ lang }: Feedback) {
 
         return false;
       }
-
-      setFeedbackState(FeedbackState.Success);
-
-      return true;
     },
     [choiceVal],
   );

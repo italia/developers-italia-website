@@ -4,9 +4,11 @@ import type {
   FooterLinkProps,
   FooterLinkSupportingBrandProps,
   FooterLogoProps,
+  MailingListFormProps,
 } from "@components/organisms/Footer/types";
 import type { FooterFragmentType } from "@graphql/fragment/layout";
 import { DatoBlockModel } from "@utils/cmsMapper";
+import { getLocaleValue } from "@utils/getLocaleValue";
 
 import { linkResolver } from "@utils/linkResolver";
 
@@ -20,6 +22,8 @@ const {
   _allUtilityTitleLocales,
   _allUtilityLocales,
   _allSmallPrintLocales,
+  _allMailingListFormLocales,
+  showSitemapLink,
 } = Astro.props;
 
 const { lang } = Astro.locals;
@@ -34,6 +38,7 @@ const utilityTitle =
   _allUtilityTitleLocales?.find((l) => l.locale === lang)?.value || "";
 const utility = _allUtilityLocales?.find((l) => l.locale === lang)?.value;
 const smallPrint = _allSmallPrintLocales?.find((l) => l.locale === lang)?.value;
+const mailingList = getLocaleValue(_allMailingListFormLocales, lang, null);
 
 const logos: FooterLogoProps[] =
   organizations?.map((org) => {
@@ -84,9 +89,20 @@ const smallPrints: FooterLinkProps[] =
       [isExternal ? "url" : "linkTo"]: url,
     };
   }) || [];
+
+const mailingListForm: MailingListFormProps | undefined = mailingList
+  ? {
+      title: mailingList.title,
+      privacyPolicy: {
+        label: mailingList.privacyPolicy.label,
+        linkTo: linkResolver(mailingList.privacyPolicy.linkTo.id, lang),
+      },
+    }
+  : undefined;
 ---
 
 <Footer
+  mailingListForm={mailingListForm}
   brand={{
     heading: heading,
     logos: logos,
@@ -104,5 +120,6 @@ const smallPrints: FooterLinkProps[] =
   ]}
   smallPrints={{
     links: smallPrints,
+    showSitemap: showSitemapLink,
   }}
 />

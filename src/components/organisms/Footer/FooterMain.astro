@@ -1,16 +1,14 @@
 ---
 import { ChipLink } from "@components/atoms/Chip";
 
+import { SubscribeMailingList } from "@components/react/SubscribeMailingList";
 import { getI18n } from "@i18n/microcopy";
 import FooterLink from "./FooterLink.astro";
 import FooterLinkSupportingBrand from "./FooterLinkSupportingBrand.astro";
-import type { FooterTopicsProps, FooterUtilityProps } from "./types";
+import type { FooterMainProps } from "./types";
 
-type Props = {
-  topics: FooterTopicsProps;
-  utilities: FooterUtilityProps[];
-};
-const { topics, utilities } = Astro.props;
+type Props = FooterMainProps;
+const { topics, utilities, mailingListForm } = Astro.props;
 const lang = Astro.locals.lang || "it";
 const t = getI18n(lang);
 ---
@@ -71,5 +69,33 @@ const t = getI18n(lang);
         }
       </div>
     </section>
+    {
+      mailingListForm && (
+        <section class="py-4 border-white border-top px-0">
+          <div class="row">
+            <div class="col-12 col-lg-6 ">
+              <div class="pb-4 d-flex align-items-center justify-content-between">
+                <p class="h4">{mailingListForm.title}</p>
+                <a
+                  class="text-white mb-2"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={mailingListForm.privacyPolicy.linkTo}
+                >
+                  {mailingListForm.privacyPolicy.label}
+                </a>
+              </div>
+              <span class="bg-dark">
+                <SubscribeMailingList
+                  client:visible
+                  lang={lang}
+                  idForm="idNewsletterForm"
+                />
+              </span>
+            </div>
+          </div>
+        </section>
+      )
+    }
   </div>
 </div>

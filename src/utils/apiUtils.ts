@@ -60,17 +60,31 @@ export function successfulResponse(data?: unknown, status = 200) {
 
 export function isRelativeUrl(path: string) {
   try {
-    // Try to create a URL object — if it succeeds without a base, it's absolute
     new URL(path);
     return false;
   } catch {
     try {
-      // Verify it can be parsed as a relative URL by providing a base
       new URL(path, "http://example.com");
       return true;
     } catch {
-      // If both attempts fail, it's not a valid URL at all
       return false;
     }
   }
 }
+
+export const postRequest = async (url: string, body: object) => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
+  }
+
+  return response;
+};
