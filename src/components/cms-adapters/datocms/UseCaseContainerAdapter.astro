@@ -14,9 +14,8 @@ const { block } = Astro.props;
 const { lang } = Astro.locals;
 
 const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
-  const listTopics =
-    useCase._allTopicsLocales?.find((l) => l.locale === lang)?.value ||
-    undefined;
+  const listTopics = getLocaleValue(useCase._allTopicsLocales, lang, undefined);
+
   return {
     id: useCase.id,
     title: getLocaleValue(useCase._allTitleLocales, lang, ""),
@@ -26,9 +25,8 @@ const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
     listTopics: {
       title: listTopics?.title || "",
       topics:
-        listTopics?.topics.map(
-          (topic) =>
-            topic._allLabelLocales?.find((l) => l.locale === lang)?.value || "",
+        listTopics?.topics.map((topic) =>
+          getLocaleValue(topic._allLabelLocales, lang, ""),
         ) || [],
     },
     descriptionTitle:

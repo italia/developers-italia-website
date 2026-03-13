@@ -618,3 +618,42 @@ export const TextOnlyFragment = graphql(
 );
 
 export type TextOnlyFragmentType = FragmentOf<typeof TextOnlyFragment>;
+
+export const CardLinkListFragment = graphql(
+  `
+    fragment CardLinkListFragment on CardLinkListRecord @_unmask {
+      backgroundColor
+      title
+      listContent {
+        title
+        paragraph
+        link {
+          link {
+            ... on ArticleRecord {
+              id
+            }
+            ... on CatalogueRecord {
+              id
+            }
+            ... on StoryItemRecord {
+              id
+            }
+            ... on PageRecord {
+              id
+            }
+            ... on InsightRecord {
+              id
+            }
+          }
+          externalUrl
+        }
+        image {
+          ...ImageFragment
+        }
+      }
+    }
+  `,
+  [TextBlockFragment, ImageFragment],
+);
+
+export type CardLinkListFragmentType = FragmentOf<typeof CardLinkListFragment>;

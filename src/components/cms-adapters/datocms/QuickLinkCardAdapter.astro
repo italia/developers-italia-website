@@ -4,6 +4,7 @@ import { QuickLinkCard } from "@components/molecules/QuickLinkCard";
 import type { QuickLinkCardFragmentType } from "@graphql/fragment/commonFragments";
 import { getI18n } from "@i18n/microcopy";
 import { createDownloadUrl } from "@utils/createDownloadUrl";
+import { getLocaleValue } from "@utils/getLocaleValue";
 import { linkResolver } from "@utils/linkResolver";
 
 type DatoRecord = QuickLinkCardFragmentType & {
@@ -26,7 +27,7 @@ const articleLinkLabel = t["link.internal"];
 
 const links: ListLinkItemProps[] = block.linkToResource.map((link) => {
   if (link.componentName === "ResourceRecord") {
-    const res = link.allResourceLocales?.find((t) => t.locale === lang)?.value;
+    const res = getLocaleValue(link.allResourceLocales, lang, null);
 
     if (res?.componentName === "DownloadLinkRecord") {
       return {

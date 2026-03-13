@@ -1,6 +1,7 @@
 ---
 import ActionCardSectionAdapter from "@components/cms-adapters/datocms/ActionCardSectionAdapter.astro";
 import CalloutLinkAdapter from "@components/cms-adapters/datocms/CalloutLinkAdapter.astro";
+import CardLinkListAdapter from "@components/cms-adapters/datocms/CardLinkListAdapter.astro";
 import CatalogueFeedAdapter from "@components/cms-adapters/datocms/CatalogueFeedAdapter.astro";
 import DataSectionAdapter from "@components/cms-adapters/datocms/DataSectionAdapter.astro";
 import FAQSectionAdapter from "@components/cms-adapters/datocms/FAQSectionAdapter.astro";
@@ -99,6 +100,8 @@ const { content, isFontSerif = false } = Astro.props;
         return <CalloutLinkAdapter block={block} />;
       case DatoBlockModel.TextOnly:
         return <TextOnlyAdapter block={block} />;
+      case DatoBlockModel.CardLinkList:
+        return <CardLinkListAdapter block={block} />;
       default:
         return null;
     }

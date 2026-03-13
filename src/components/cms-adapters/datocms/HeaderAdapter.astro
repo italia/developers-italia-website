@@ -36,7 +36,7 @@ const organizations = getLocaleValue(_allListNavbarBrandLocales, lang, []);
 const mainNavigation = getLocaleValue(allMainNavigation, lang, []);
 const secondaryNavigation = getLocaleValue(allSecondaryNavigation, lang, []);
 
-const metaNavigation = allMetaNavigation?.find((l) => l.locale === lang)?.value;
+const metaNavigation = getLocaleValue(allMetaNavigation, lang, []);
 
 const menuItems = createMenu(
   mainNavigation,

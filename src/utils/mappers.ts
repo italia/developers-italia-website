@@ -70,9 +70,11 @@ export const mapResourceToResourceProps = (
   let url = "";
   let isDownload = false;
 
-  const resourceContent = resource.allResourceLocales?.find(
-    (t) => t.locale === lang,
-  )?.value;
+  const resourceContent = getLocaleValue(
+    resource.allResourceLocales,
+    lang,
+    undefined,
+  );
   if (!resourceContent) {
     return {} as ResourceProps;
   }

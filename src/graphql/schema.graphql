@@ -758,6 +758,62 @@ type CardEditorialWithIconRecord implements RecordInterface {
   title: String!
 }
 
+"""Block of type Card link list (card_link_list)"""
+type CardLinkListRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  backgroundColor: String!
+  id: ItemId!
+  listContent: [CardLinkRecord!]!
+  title: String!
+}
+
+"""Block of type Card Link (card_link)"""
+type CardLinkRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  image: FileField!
+  link: LinkBlockRecord!
+  paragraph(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  title: String!
+}
+
 """Block of type Cards hub with filter (catalogue_feed)"""
 type CatalogueFeedRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -1745,7 +1801,7 @@ type HighlightRecord implements RecordInterface {
   title: String!
 }
 
-union HomepageModelContentField = HeroRecord | NewsFeedRecord | SupportChannelsSectionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
+union HomepageModelContentField = CardLinkListRecord | HeroRecord | NewsFeedRecord | SupportChannelsSectionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
 
 type HomepageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -4635,6 +4691,33 @@ type LayoutRecord implements RecordInterface {
   variant: String!
 }
 
+union LinkBlockModelLinkField = ArticleRecord | CatalogueRecord | InsightRecord | PageRecord | StoryItemRecord
+
+"""Block of type Link block (link_block)"""
+type LinkBlockRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  externalUrl: String
+  id: ItemId!
+  link: LinkBlockModelLinkField
+}
+
 """Specifies how to filter Single-link fields"""
 input LinkFilter {
   """
@@ -5390,7 +5473,7 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
-union PageModelContentField = DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TopicFilterRecord | UseCaseContainerRecord
+union PageModelContentField = CardLinkListRecord | DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TopicFilterRecord | UseCaseContainerRecord
 
 type PageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale

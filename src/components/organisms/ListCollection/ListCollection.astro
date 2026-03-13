@@ -2,17 +2,21 @@
 import { CardEditorialNews } from "@components/molecules/CardEditorialNews";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import { SectionContainer } from "@components/organisms/SectionContainer";
+import { getSectionBgClass } from "@utils/background";
 import type { ListCollectionProps } from "./types";
 
 type Props = ListCollectionProps;
 
-const { title, items } = Astro.props;
+const { title, items, background = "lighter" } = Astro.props;
+
+const textColorClass =
+  background === "primary" || background === "dark" ? "text-white" : "";
 ---
 
-<SectionContainer className="it-section-bg-light">
+<SectionContainer className={getSectionBgClass(background)}>
   <div class="row justify-content-between align-items-top">
     <div class="col-lg-8 col-12">
-      <h2 class="pb-lg-5">
+      <h2 class=`pb-lg-5 ${textColorClass}`>
         {title}
       </h2>
     </div>

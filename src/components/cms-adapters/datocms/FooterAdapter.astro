@@ -27,17 +27,13 @@ const {
 } = Astro.props;
 
 const { lang } = Astro.locals;
-const heading = _allHeadingLocales?.find((l) => l.locale === lang)?.value || "";
-const organizations = _allOrganizationsLocales?.find(
-  (l) => l.locale === lang,
-)?.value;
-const topicTitle =
-  _allTopicTitleLocales?.find((l) => l.locale === lang)?.value || "";
-const topicLink = _allTopicLinkLocales?.find((l) => l.locale === lang)?.value;
-const utilityTitle =
-  _allUtilityTitleLocales?.find((l) => l.locale === lang)?.value || "";
-const utility = _allUtilityLocales?.find((l) => l.locale === lang)?.value;
-const smallPrint = _allSmallPrintLocales?.find((l) => l.locale === lang)?.value;
+const heading = getLocaleValue(_allHeadingLocales, lang, "");
+const organizations = getLocaleValue(_allOrganizationsLocales, lang, null);
+const topicTitle = getLocaleValue(_allTopicTitleLocales, lang, "");
+const topicLink = getLocaleValue(_allTopicLinkLocales, lang, null);
+const utilityTitle = getLocaleValue(_allUtilityTitleLocales, lang, "");
+const utility = getLocaleValue(_allUtilityLocales, lang, null);
+const smallPrint = getLocaleValue(_allSmallPrintLocales, lang, null);
 const mailingList = getLocaleValue(_allMailingListFormLocales, lang, null);
 
 const logos: FooterLogoProps[] =

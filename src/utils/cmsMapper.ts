@@ -43,6 +43,7 @@ export enum DatoBlockModel {
   UseCaseBlock = "UseCaseBlockRecord",
   TextBlock = "TextBlockRecord",
   TextOnly = "TextOnlyRecord",
+  CardLinkList = "CardLinkListRecord",
 }
 
 export type DatoBlockModelType =

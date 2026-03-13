@@ -49,6 +49,31 @@ export const ExternalLinkFragment = graphql(`
 
 export type ExternalLinkFragmentType = FragmentOf<typeof ExternalLinkFragment>;
 
+export const LinkBlockFragment = graphql(`
+  fragment LinkBlockFragment on LinkBlockRecord @_unmask {
+    link {
+      ... on ArticleRecord {
+        id
+      }
+      ... on CatalogueRecord {
+        id
+      }
+      ... on StoryItemRecord {
+        id
+      }
+      ... on PageRecord {
+        id
+      }
+      ... on InsightRecord {
+        id
+      }
+    }
+    externalUrl
+  }
+`);
+
+export type LinkBlockFragmentType = FragmentOf<typeof LinkBlockFragment>;
+
 export const BrandFragment = graphql(`
   fragment BrandFragment on BrandRecord @_unmask {
     id
@@ -894,3 +919,21 @@ export const QuickLinkCardFragment = graphql(
 export type QuickLinkCardFragmentType = FragmentOf<
   typeof QuickLinkCardFragment
 >;
+
+export const CardLinkFragment = graphql(
+  `
+    fragment CardLinkFragment on CardLinkRecord @_unmask {
+      title
+      paragraph
+      link {
+        ...LinkBlockFragment
+      }
+      image {
+        ...ImageFragment
+      }
+    }
+  `,
+  [TextBlockFragment, ImageFragment, LinkBlockFragment],
+);
+
+export type CardLinkFragmentType = FragmentOf<typeof CardLinkFragment>;

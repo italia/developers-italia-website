@@ -1,4 +1,5 @@
 import {
+  CardLinkListFragment,
   HeroFragment,
   NewsFeedFragment,
   SupportChannelsSectionFragment,
@@ -38,6 +39,9 @@ export const HomepageModelContentFragment = graphql(
       ... on TextOnlyRecord {
         ...TextOnlyFragment
       }
+      ... on CardLinkListRecord {
+        ...CardLinkListFragment
+      }
     }
   `,
   [
@@ -48,6 +52,7 @@ export const HomepageModelContentFragment = graphql(
     TextAndStatisticsFragment,
     TextAndUseCasesFragment,
     TextOnlyFragment,
+    CardLinkListFragment,
   ],
 );
 
