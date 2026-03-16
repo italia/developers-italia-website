@@ -368,6 +368,14 @@ export const StructuredTextFragment = graphql(
         ... on ExternalLinkRecord {
           ...ExternalLinkFragment
         }
+        ... on InternalLinkRecord {
+          ...InternalLinkFragment
+        }
+        ... on CardServiceRecord {
+          card {
+            ...ExternalLinkFragment
+          }
+        }
         ... on QuickLinkCardRecord {
           ...QuickLinkCardFragment
         }
@@ -386,6 +394,7 @@ export const StructuredTextFragment = graphql(
   [
     ListCardEditorialWithIconFragment,
     ExternalLinkFragment,
+    InternalLinkFragment,
     OrderedListFragment,
     CalloutFragment,
     QuickLinkCardFragment,

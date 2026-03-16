@@ -1,0 +1,33 @@
+---
+import { Link } from "@components/atoms/Link";
+import type { InternalLinkFragmentType } from "@graphql/fragment/commonFragments";
+import { linkResolver } from "@utils/linkResolver";
+
+type DatoRecord = InternalLinkFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props;
+const { lang } = Astro.locals;
+
+if (!block.label || !block.linkTo) {
+  return null;
+}
+
+const label = block.label;
+const id = block.linkTo.id;
+---
+
+<div class="mt-2">
+  <Link
+    label={label}
+    linkTo={linkResolver(id, lang)}
+    openInNewTab={false}
+    isIcon={true}
+  />
+</div>

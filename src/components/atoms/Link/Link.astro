@@ -14,7 +14,7 @@ const {
   disabled,
   openInNewTab = false,
   iconPosition = "right",
-  isIcon = false,
+  isIcon = true,
   variant = "light",
 } = Astro.props;
 
@@ -38,20 +38,16 @@ const t = getI18n(lang);
 >
   <span class="fw-semibold">{label}</span>
   {
-    url && (
-      <>
-        <ItExternalLink color={colorIcon} size="sm" title={titleIcon} />
-        <span class="visually-hidden">{t["link.external"]}</span>
-      </>
+    isIcon && linkTo && (
+      <ItArrowRight color={colorIcon} size="sm" title={titleIcon} />
     )
   }
-
   {
-    !isIcon && linkTo && (
-      <>
-        <ItArrowRight color={colorIcon} size="sm" title={titleIcon} />
-        <span class="visually-hidden">{t["link.internal"]}</span>
-      </>
+    isIcon && url && (
+      <ItExternalLink color={colorIcon} size="sm" title={titleIcon} />
     )
   }
+  {url && <span class="visually-hidden">{t["link.external"]}</span>}
+
+  {linkTo && <span class="visually-hidden">{t["link.internal"]}</span>}
 </a>

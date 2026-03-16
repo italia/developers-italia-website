@@ -186,7 +186,7 @@ type ArticleListRecord implements RecordInterface {
   relatedArticles: [MenuArticleItemRecord!]!
 }
 
-union ArticleModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
+union ArticleModelContentBlocksField = CalloutRecord | CardServiceRecord | ExternalLinkRecord | ImageBlockRecord | InternalLinkRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | RelatedArticleRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type ArticleModelContentField {
   blocks: [ArticleModelContentBlocksField!]!
@@ -812,6 +812,30 @@ type CardLinkRecord implements RecordInterface {
     markdown: Boolean
   ): String
   title: String!
+}
+
+"""Block of type Card service (card_service)"""
+type CardServiceRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  card: ExternalLinkRecord!
+  id: ItemId!
 }
 
 """Block of type Cards hub with filter (catalogue_feed)"""
@@ -7806,7 +7830,7 @@ input StructuredTextFilter {
   exists: BooleanType
 }
 
-union StructuredTextModelContentBlocksField = CalloutRecord | ExternalLinkRecord | ImageBlockRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
+union StructuredTextModelContentBlocksField = CalloutRecord | CardServiceRecord | ExternalLinkRecord | ImageBlockRecord | InternalLinkRecord | ListBlockquoteRecord | ListCardEditorialWithIconRecord | ListCardInfoRecord | OrderedListRecord | QuickLinkCardRecord | SupportCtaSectionRecord | TopicsBlockRecord
 
 type StructuredTextModelContentField {
   blocks: [StructuredTextModelContentBlocksField!]!

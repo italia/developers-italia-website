@@ -1,5 +1,5 @@
 ---
-import { CardService } from "@components/molecules/CardService";
+import { Link } from "@components/atoms/Link";
 import type { ExternalLinkFragmentType } from "@graphql/fragment/commonFragments";
 
 type DatoRecord = ExternalLinkFragmentType & {
@@ -16,13 +16,11 @@ const { block } = Astro.props;
 if (!block.label || !block.url) {
   return null;
 }
+
+const label = block.label;
+const url = block.url;
 ---
 
-<div class="col-lg-10 col-12">
-  <CardService
-    id={block.id}
-    title={block.label}
-    linkTo={block.url}
-    description={block.description || ""}
-  />
+<div class="mt-2">
+  <Link label={label} url={url} openInNewTab={true} isIcon={true} />
 </div>

@@ -1,0 +1,29 @@
+---
+import { CardService } from "@components/molecules/CardService";
+import type { ExternalLinkFragmentType } from "@graphql/fragment/commonFragments";
+
+type DatoRecord = ExternalLinkFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: { card: DatoRecord };
+};
+
+const { block } = Astro.props;
+const { card } = block;
+
+if (!card.label || !card.url) {
+  return null;
+}
+---
+
+<div class="col-lg-10 col-12">
+  <CardService
+    id={card.id}
+    title={card.label}
+    linkTo={card.url}
+    description={card.description || ""}
+  />
+</div>

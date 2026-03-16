@@ -1,0 +1,19 @@
+---
+import { getI18n } from "@i18n/microcopy";
+
+const { node } = Astro.props;
+const { url, meta } = node;
+
+const lang = Astro.locals.lang || "it";
+const t = getI18n(lang);
+
+const target = meta?.find((m: any) => m.id === "target")?.value;
+
+const isExternal = target === "_blank";
+const finalLabel = isExternal ? t["link.external"] : t["link.internal"];
+---
+
+<a href={url} target={target} rel={isExternal ? "noopener noreferrer" : ""}>
+  <slot />
+  <span class="visually-hidden">{finalLabel}</span>
+</a>
