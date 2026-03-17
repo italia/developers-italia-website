@@ -76,6 +76,10 @@ export const AllStoryItemsSlugFragment = graphql(
         }
         ... on CatalogueRecord {
           ...CatalogueLocalesFragment
+          parentPage {
+            id
+            ...PageLocalesFragment
+          }
         }
         ... on PageRecord {
           ...PageLocalesFragment
@@ -103,6 +107,10 @@ export const AllWebinarItemsSlugFragment = graphql(
         }
         ... on CatalogueRecord {
           ...CatalogueLocalesFragment
+          parentPage {
+            id
+            ...PageLocalesFragment
+          }
         }
         ... on PageRecord {
           ...PageLocalesFragment
@@ -123,9 +131,13 @@ export const AllCataloguesSlugFragment = graphql(
       id
       locales: _locales
       ...CatalogueLocalesFragment
+      parentPage {
+        id
+        ...PageLocalesFragment
+      }
     }
   `,
-  [CatalogueLocalesFragment],
+  [CatalogueLocalesFragment, PageLocalesFragment],
 );
 
 export type AllCataloguesSlugFragmentType = FragmentOf<

@@ -79,13 +79,16 @@ async function generateLinkMap() {
     });
   }
 
-  const collectionPages = [pagesRes.allPages, cataloguesRes.allCatalogues];
+  const collectionPages = [pagesRes.allPages];
 
   collectionPages.forEach((collection) =>
     processItemsPages(collection, linkMap, home),
   );
 
-  const collectionNestedPages = [articlesRes.allArticles];
+  const collectionNestedPages = [
+    articlesRes.allArticles,
+    cataloguesRes.allCatalogues,
+  ];
 
   collectionNestedPages.forEach((collection) =>
     processItemsNestedPages(collection, linkMap, home),

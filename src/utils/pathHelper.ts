@@ -83,17 +83,8 @@ export function resolveRoutePath(
       current.parentPage &&
       "id" in current.parentPage
     ) {
-      const parentPage = current.parentPage;
-      const pSlug = getSlug(parentPage, locale);
-      const pTitle = getTitle(parentPage, locale);
-
-      if (pSlug) {
-        steps.unshift({
-          id: parentPage.id,
-          slug: pSlug,
-          title: pTitle,
-        });
-      }
+      current = current.parentPage as RoutableRecord;
+      continue;
     }
 
     current = null;

@@ -875,6 +875,7 @@ input CatalogueModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
+  parentPage: LinkFilter
   seo: SeoFilter
   slug: SlugFilter
   title: StringFilter
@@ -913,6 +914,12 @@ type CatalogueRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [CatalogueModelContentFieldListListNonNullMultiLocaleField!]
+  _allParentPageLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [PageRecordMultiLocaleField!]
   _allSeoLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -960,6 +967,15 @@ type CatalogueRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): [CatalogueModelContentField!]!
   id: ItemId!
+  parentPage(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): PageRecord
   seo(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
