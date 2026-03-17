@@ -7412,6 +7412,7 @@ type StatisticBlockRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
+  kpiElement: [KpiElementRecord!]!
   statistics: [DataContainerRecord!]!
 }
 

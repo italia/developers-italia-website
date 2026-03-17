@@ -6,16 +6,31 @@ import type {
 } from "./types";
 
 type Props = DataContainerProps & { variant?: VariantTextDataContainerProps };
+type ColorTheme = {
+  title: string;
+  text: string;
+};
+
 const { info, title, contentIcon, variant = "light" } = Astro.props;
+
+const colors: Record<VariantTextDataContainerProps, ColorTheme> = {
+  dark: { title: "text-white", text: "text-accent" },
+  light: { title: "", text: "" },
+};
+
+const theme = colors[variant];
+
+const titleColorClass = theme.title;
+const textColorClass = contentIcon ? theme.title : theme.text;
 ---
 
 <Fragment>
-  <p class=`body-sans-lg fw-semibold ${variant==="dark" ? "text-white": ""}`>
+  <p class=`body-sans-lg fw-semibold ${titleColorClass}`>
     {title}
   </p>
   <div class="d-flex align-items-center gap-3">
-    <IconContainer content={contentIcon} aria-hidden="true" />
-    <p class=`h1 align-middle m-0 ${variant==="dark" ? "text-white": ""}`>
+    {contentIcon && <IconContainer content={contentIcon} aria-hidden="true" />}
+    <p class=`h1 align-middle m-0 ${textColorClass}`>
       {info}
     </p>
   </div>

@@ -166,6 +166,16 @@ export const KpiFragment = graphql(`
 
 export type KpiFragmentType = FragmentOf<typeof KpiFragment>;
 
+export const KpiElementFragment = graphql(`
+  fragment KpiElementFragment on KpiElementRecord @_unmask {
+    title
+    valuePrefix
+    value
+  }
+`);
+
+export type KpiElementFragmentType = FragmentOf<typeof KpiElementFragment>;
+
 export const ArticleCardPreviewFragment = graphql(
   `
     fragment ArticleCardPreviewFragment on ArticleRecord @_unmask {
@@ -412,9 +422,12 @@ export const StatisticBlockFragment = graphql(
       statistics {
         ...DataContainerFragment
       }
+      kpiElement {
+        ...KpiElementFragment
+      }
     }
   `,
-  [DataContainerFragment],
+  [DataContainerFragment, KpiElementFragment],
 );
 
 export type StatisticBlockFragmentType = FragmentOf<

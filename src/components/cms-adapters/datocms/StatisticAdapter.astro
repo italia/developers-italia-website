@@ -12,14 +12,26 @@ type Props = {
 };
 
 const { block, variant = "dark" } = Astro.props;
+let items: DataContainerProps[] = [];
 
-const items: DataContainerProps[] = block.statistics.map((item) => {
-  return {
-    info: item.info,
-    title: item.title,
-    contentIcon: item.iconSelect,
-  };
-});
+if (block.statistics.length > 0) {
+  items = block.statistics.map((item) => {
+    return {
+      info: item.info,
+      title: item.title,
+      contentIcon: item.iconSelect,
+    };
+  });
+}
+
+if (block.kpiElement.length > 0) {
+  items = block.kpiElement.map((item) => {
+    return {
+      info: `${item.valuePrefix} ${item.value}`,
+      title: item.title,
+    };
+  });
+}
 ---
 
 <Statistics items={items} variant={variant} />

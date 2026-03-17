@@ -15,6 +15,7 @@ import {
   ImageBlockFragment,
   ImageFragment,
   InternalLinkFragment,
+  KpiElementFragment,
   ListBlockquoteFragment,
   ListCardEditorialWithIconFragment,
   ListCardInfoFragment,
@@ -201,16 +202,14 @@ export const HighlightsFragment = graphql(
       title
       paragraph(markdown: true)
       kpiElement {
-        title
-        valuePrefix
-        value
+        ...KpiElementFragment
       }
       image {
         ...ImageFragment
       }
     }
   `,
-  [ImageFragment],
+  [ImageFragment, KpiElementFragment],
 );
 
 export type HighlightsFragmentType = FragmentOf<typeof HighlightsFragment>;
