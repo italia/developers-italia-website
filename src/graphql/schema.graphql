@@ -76,11 +76,6 @@ type AccordionMenuRecord implements RecordInterface {
   menu: [MenuArticleItemRecord!]!
 }
 
-type AccordionMenuRecordListListNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: [AccordionMenuRecord!]!
-}
-
 """Block of type Accordion (accordion)"""
 type AccordionRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -7243,6 +7238,13 @@ type SettingsKpiRecord implements RecordInterface {
   title: String
 }
 
+union SidebarForArticleModelMenuField = AccordionMenuRecord | MenuArticleItemRecord
+
+type SidebarForArticleModelMenuFieldListListNonNullMultiLocaleField {
+  locale: SiteLocale
+  value: [SidebarForArticleModelMenuField!]!
+}
+
 """Record of type Sidebar for articles (sidebar_for_article)"""
 type SidebarForArticleRecord implements RecordInterface {
   _allCloseLabelLocales(
@@ -7262,7 +7264,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [AccordionMenuRecordListListNonNullMultiLocaleField!]
+  ): [SidebarForArticleModelMenuFieldListListNonNullMultiLocaleField!]
   _allOpenLabelLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7315,7 +7317,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [AccordionMenuRecord!]!
+  ): [SidebarForArticleModelMenuField!]!
   openLabel(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

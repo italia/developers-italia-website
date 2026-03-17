@@ -3,7 +3,8 @@ export type SidebarProps = {
   header?: string;
   openLabel: string;
   closeLabel: string;
-  items: SidebarItemFirstLevelProps[];
+  accordionItems?: SidebarItemFirstLevelProps[];
+  flatItems?: SidebarItemSecondLevelProps[];
 };
 
 export type SidebarItemFirstLevelProps = {

@@ -3,6 +3,7 @@ import {
   ExternalLinkFragment,
   InternalLinkFragment,
   MegaMenuItemFragment,
+  MenuArticleItemFragment,
   MenuItemFragment,
   SidebarMenuFragment,
   SupportingBrandFragment,
@@ -163,12 +164,19 @@ export const SidebarFragment = graphql(
       _allMenuLocales {
         locale
         value {
-          ...SidebarMenuFragment
+          ... on AccordionMenuRecord {
+            ...SidebarMenuFragment
+            __typename
+          }
+          ... on MenuArticleItemRecord {
+            ...MenuArticleItemFragment
+            __typename
+          }
         }
       }
     }
   `,
-  [SidebarMenuFragment],
+  [SidebarMenuFragment, MenuArticleItemFragment],
 );
 
 export type SidebarFragmentType = FragmentOf<typeof SidebarFragment>;

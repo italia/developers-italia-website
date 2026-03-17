@@ -1,7 +1,18 @@
 ---
 import { Sidebar } from "@components/organisms/Sidebar";
+import type {
+  SidebarItemFirstLevelProps,
+  SidebarItemSecondLevelProps,
+} from "@components/organisms/Sidebar/types";
+import type {
+  MenuArticleItemFragmentType,
+  SidebarMenuFragmentType,
+} from "@graphql/fragment/commonFragments";
 import type { SidebarFragmentType } from "@graphql/fragment/layout";
-import { createMenuSidebar } from "@utils/createMenuSidebarHelper";
+import {
+  createFlatMenuSidebar,
+  createMenuSidebar,
+} from "@utils/createMenuSidebarHelper";
 import { getLocaleValue } from "@utils/getLocaleValue";
 
 type Props = {
@@ -20,7 +31,33 @@ const menu = getLocaleValue(sidebar._allMenuLocales, lang, null);
 if (!menu) {
   return;
 }
-const sidebarItems = createMenuSidebar(menu, currentPathname, lang);
+
+const isMenuArticle = (item: any): item is MenuArticleItemFragmentType =>
+  item.__typename === "MenuArticleItemRecord";
+
+const isAccordionMenu = (item: any): item is SidebarMenuFragmentType =>
+  item.__typename === "AccordionMenuRecord";
+
+const menuItems = menu ?? [];
+
+const flatItems = menuItems.filter(
+  isMenuArticle,
+) as MenuArticleItemFragmentType[];
+const accordionItems = menuItems.filter(
+  isAccordionMenu,
+) as SidebarMenuFragmentType[];
+
+const sidebarAccordionItems: SidebarItemFirstLevelProps[] = createMenuSidebar(
+  accordionItems,
+  currentPathname,
+  lang,
+);
+
+const sidebarItems: SidebarItemSecondLevelProps[] = createFlatMenuSidebar(
+  flatItems,
+  currentPathname,
+  lang,
+);
 ---
 
 <Sidebar
@@ -28,5 +65,6 @@ const sidebarItems = createMenuSidebar(menu, currentPathname, lang);
   header={headerLabel || undefined}
   openLabel={openLabel}
   closeLabel={closeLabel}
-  items={sidebarItems}
+  accordionItems={sidebarAccordionItems}
+  flatItems={sidebarItems}
 />

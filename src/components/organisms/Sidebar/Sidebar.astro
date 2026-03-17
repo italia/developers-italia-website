@@ -3,11 +3,13 @@ import { getI18n } from "@i18n/microcopy";
 import ItChevronLeft from "@static/assets/ItChevronLeft.astro";
 import ItChevronRight from "@static/assets/ItChevronRight.astro";
 import SidebarItemFirstLevel from "./SidebarItemFirstLevel.astro";
+import SidebarItemSecondLevel from "./SidebarItemSecondLevel.astro";
 import type { SidebarProps } from "./types";
 
 type Props = SidebarProps;
 
-const { id, header, openLabel, closeLabel, items } = Astro.props;
+const { id, header, openLabel, closeLabel, accordionItems, flatItems } =
+  Astro.props;
 
 const lang = Astro.locals.lang || "it";
 
@@ -43,7 +45,18 @@ const t = getI18n(lang);
       <div class="link-list-wrapper py-0 py-lg-80">
         <p class="h4 text-uppercase px-4">{header}</p>
         <ul class="link-list">
-          {items.map((item) => <SidebarItemFirstLevel {...item} />)}
+          {accordionItems?.map((item) => <SidebarItemFirstLevel {...item} />)}
+          {
+            flatItems && flatItems.length > 0 && (
+              <li>
+                <ul class={`link-sublist px-0`}>
+                  {flatItems.map((item) => (
+                    <SidebarItemSecondLevel {...item} />
+                  ))}
+                </ul>
+              </li>
+            )
+          }
         </ul>
       </div>
     </div>
