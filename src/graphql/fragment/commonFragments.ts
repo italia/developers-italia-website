@@ -307,6 +307,9 @@ export const StoryCardFragment = graphql(
   `
     fragment StoryCardFragment on StoryItemRecord @_unmask {
       id
+      articleClassification {
+        id
+      }
       allTitleLocales: _allTitleLocales {
         locale
         value

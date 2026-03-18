@@ -420,6 +420,9 @@ export const CatalogueFeedFragment = graphql(`
       labelForAll
       id
       filterTitle
+      filterStory {
+        id
+      }
       elementPerPage
     }
   }

@@ -15,6 +15,7 @@ const tabs: PageNewsTab[] = block.tabs.map((tab) => ({
   filterTitle: tab.filterTitle,
   labelForAll: tab.labelForAll,
   newsPageTabType: tab.newsPageTabType,
+  filterStory: tab.filterStory?.id || undefined,
   perPage: tab.elementPerPage || undefined,
 }));
 ---

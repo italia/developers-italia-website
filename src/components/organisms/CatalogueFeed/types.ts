@@ -3,6 +3,7 @@ export type PageNewsTab = {
   paragraph: string;
   filterTitle: string;
   labelForAll: string;
+  filterStory?: string;
   newsPageTabType: string;
   perPage?: number;
 };

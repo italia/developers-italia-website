@@ -1,10 +1,7 @@
 ---
 import { SplitContent } from "@components/layout/SplitContent";
 import { TabContent, Tabs } from "@components/molecules/Tabs";
-import type { CardEditorialInlineMiniProps } from "@components/react/CardEditorialInlineMini/CardEditorialInlineMini";
-import type { CardEditorialNewsProps } from "@components/react/CardEditorialNews";
 import { PaginatedCollection } from "@components/react/PaginatedCollection/PaginatedCollection";
-import type { ResourceProps } from "@components/react/Resource";
 import {
   getNews,
   getResources,
@@ -29,6 +26,7 @@ const tabsItems = tabs.map((tab, index) => ({
   id: `tab-${id}-${index}`,
   label: tab.title,
   active: index === 0,
+  filterStory: tab.filterStory,
 }));
 
 const isPreview = isDraftModeEnabled(Astro.cookies);
@@ -47,22 +45,32 @@ function isValidTabType(val: string): val is ElementType {
   );
 }
 
-const collectionMap: Record<
-  ElementType,
-  (ResourceProps | CardEditorialNewsProps | CardEditorialInlineMiniProps)[]
-> = {
-  news_item: news.map((n) => mapNewsToCardEditorialNewsProps(n.data, lang)),
-  story_item: stories.map((s) =>
-    mapStoryToCardEditorialInlineMiniProps(s.data, lang),
-  ),
-  webinar_item: webinars.map((w) =>
-    mapWebinarToCardEditorialNewsProps(w.data, lang),
-  ),
-  resource: resources.map((r) => mapResourceToResourceProps(r.data, lang)),
-};
+function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
+  switch (tabType) {
+    case "story_item":
+      const filteredStories = tabCategoryReference
+        ? stories.filter(
+            (s) => s.data.articleClassification?.id === tabCategoryReference,
+          )
+        : stories;
 
-function getCollectionItems(type: string) {
-  return collectionMap[type as ElementType] || [];
+      return filteredStories.map((s) =>
+        mapStoryToCardEditorialInlineMiniProps(s.data, lang),
+      );
+
+    case "news_item":
+      return news.map((n) => mapNewsToCardEditorialNewsProps(n.data, lang));
+
+    case "webinar_item":
+      return webinars.map((w) =>
+        mapWebinarToCardEditorialNewsProps(w.data, lang),
+      );
+
+    case "resource":
+      return resources.map((r) => mapResourceToResourceProps(r.data, lang));
+    default:
+      return [];
+  }
 }
 ---
 
@@ -74,7 +82,7 @@ function getCollectionItems(type: string) {
           const tabType = tab.newsPageTabType;
           if (!isValidTabType(tabType)) return null;
 
-          const items = getCollectionItems(tabType);
+          const items = getFilteredItems(tabType, tab.filterStory);
 
           return (
             <TabContent tab={tabsItems[index]}>

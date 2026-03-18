@@ -1026,6 +1026,7 @@ type CatalogueTabRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   elementPerPage: IntType
+  filterStory: StoryClassRecord
   filterTitle: String!
   id: ItemId!
   labelForAll: String!
@@ -7557,6 +7558,8 @@ input StoryClassModelFilter {
   _status: StatusFilter
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  _locales: LocalesFilter
+  label: StringFilter
   OR: [StoryClassModelFilter]
   AND: [StoryClassModelFilter]
 }
@@ -7580,16 +7583,25 @@ enum StoryClassModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  label_ASC
+  label_DESC
 }
 
 """Record of type Story class (story_class)"""
 type StoryClassRecord implements RecordInterface {
+  _allLabelLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
   _editingUrl: String
   _firstPublishedAt: DateTime!
   _isValid: BooleanType!
+  _locales: [SiteLocale!]!
   _modelApiKey: String!
   _publicationScheduledAt: DateTime
   _publishedAt: DateTime!
@@ -7603,6 +7615,20 @@ type StoryClassRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
+  label(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+}
+
+type StoryClassRecordMultiLocaleField {
+  locale: SiteLocale
+  value: StoryClassRecord
 }
 
 union StoryItemModelContentField = HeroRecord | IntroArticleRecord | StructuredTextRecord | SupportCtaSectionRecord
@@ -7623,6 +7649,7 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
+  articleClassification: LinkFilter
   dateOfPublication: DateFilter
   image: FileFilter
   parentPage: LinkFilter
@@ -7668,6 +7695,12 @@ type StoryItemModelParentPageFieldMultiLocaleField {
 
 """Record of type Story item (story_item)"""
 type StoryItemRecord implements RecordInterface {
+  _allArticleClassificationLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StoryClassRecordMultiLocaleField!]
   _allContentLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7729,6 +7762,15 @@ type StoryItemRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  articleClassification(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): StoryClassRecord
   content(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
