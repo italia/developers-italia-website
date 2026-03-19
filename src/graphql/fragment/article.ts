@@ -64,6 +64,11 @@ export const ArticleContentFragment = graphql(
         ... on InternalLinkRecord {
           ...InternalLinkFragment
         }
+        ... on ListExternalLinkRecord {
+          links {
+            ...ExternalLinkFragment
+          }
+        }
       }
     }
   `,

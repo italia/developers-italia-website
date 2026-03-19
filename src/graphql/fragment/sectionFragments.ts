@@ -388,6 +388,11 @@ export const StructuredTextFragment = graphql(
         ... on ImageBlockRecord {
           ...ImageBlockFragment
         }
+        ... on ListExternalLinkRecord {
+          links {
+            ...ExternalLinkFragment
+          }
+        }
       }
     }
   `,

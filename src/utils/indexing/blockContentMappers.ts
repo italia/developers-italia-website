@@ -7,7 +7,6 @@ import type {
   ListCardEditorialWithIconFragmentType,
   ListCardInfoFragmentType,
   OrderedListFragmentType,
-  TopicsBlockFragmentType,
 } from "@graphql/fragment/commonFragments";
 import type { InsightContentFragmentType } from "@graphql/fragment/insight";
 import type { PageContentFragmentType } from "@graphql/fragment/page";
@@ -91,14 +90,16 @@ export const getSearchRenderOptions = () => ({
         return flattenListCardInfo(record);
       case DatoBlockModel.OrderedList:
         return flattenOrderedList(record);
-      case DatoBlockModel.TopicsBlock:
-        return flattenTopicsBlock(record);
+      /* case DatoBlockModel.TopicsBlock:
+              return flattenTopicsBlock(record); */
       case DatoBlockModel.ExternalLink:
         return flattenExternalLink(record);
       case DatoBlockModel.SupportCta:
         return flattenSupportCtaSection(record);
       case DatoBlockModel.ListBlockquote:
         return flattenListBlockquote(record);
+      case DatoBlockModel.ListExternalLink:
+        return flattenListExternalLinkSection(record);
       default:
         return "";
     }
@@ -297,17 +298,17 @@ const flattenListCardEditorialWithIcon = (
   return cleanJoin(parts);
 };
 
-const flattenTopicsBlock = (record: TopicsBlockFragmentType): string => {
+/* const flattenTopicsBlock = (record: TopicsBlockFragmentType): string => {
   const parts: string[] = [];
 
   if (record.title) parts.push(record.title);
 
-  record.topics?.forEach((topic: any) => {
+  record.topics?.forEach((topic) => {
     if (topic.label) parts.push(topic.label);
   });
 
   return cleanJoin(parts);
-};
+}; */
 
 const flattenExternalLink = (record: ExternalLinkFragmentType): string => {
   const parts: string[] = [];
@@ -321,7 +322,7 @@ const flattenExternalLink = (record: ExternalLinkFragmentType): string => {
 const flattenListBlockquote = (record: ListBlockquoteFragmentType): string => {
   const parts: string[] = [];
 
-  record.items?.forEach((item: any) => {
+  record.items?.forEach((item) => {
     if (item.paragraph) parts.push(item.paragraph);
     if (item.author) parts.push(item.author);
   });
@@ -332,7 +333,7 @@ const flattenListBlockquote = (record: ListBlockquoteFragmentType): string => {
 const flattenListCardInfo = (record: ListCardInfoFragmentType): string => {
   const parts: string[] = [];
 
-  record.items?.forEach((item: any) => {
+  record.items?.forEach((item) => {
     if (item.title) parts.push(item.title);
     if (item.paragraph) parts.push(item.paragraph);
   });
@@ -343,9 +344,26 @@ const flattenListCardInfo = (record: ListCardInfoFragmentType): string => {
 const flattenOrderedList = (record: OrderedListFragmentType): string => {
   const parts: string[] = [];
 
-  record.items?.forEach((item: any) => {
+  record.items?.forEach((item) => {
     if (item.title) parts.push(item.title);
     if (item.paragraph) parts.push(item.paragraph);
+    if ("links" in item) {
+      item.links.forEach((link) => {
+        if (link.label) parts.push(link.label);
+      });
+    }
+  });
+
+  return cleanJoin(parts);
+};
+const flattenListExternalLinkSection = (record: {
+  links: ExternalLinkFragmentType[];
+}): string => {
+  const parts: string[] = [];
+
+  record.links?.forEach((item) => {
+    if (item.label) parts.push(item.label);
+    if (item.description) parts.push(item.description);
   });
 
   return cleanJoin(parts);

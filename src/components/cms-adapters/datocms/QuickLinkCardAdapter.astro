@@ -3,6 +3,7 @@ import type { ListLinkItemProps } from "@components/molecules/ListLink/types";
 import { QuickLinkCard } from "@components/molecules/QuickLinkCard";
 import type { QuickLinkCardFragmentType } from "@graphql/fragment/commonFragments";
 import { getI18n } from "@i18n/microcopy";
+import { DatoBlockModel } from "@utils/cmsMapper";
 import { createDownloadUrl } from "@utils/createDownloadUrl";
 import { getLocaleValue } from "@utils/getLocaleValue";
 import { linkResolver } from "@utils/linkResolver";
@@ -26,10 +27,10 @@ const externalLinkLabel = t["link.external"];
 const articleLinkLabel = t["link.internal"];
 
 const links: ListLinkItemProps[] = block.linkToResource.map((link) => {
-  if (link.componentName === "ResourceRecord") {
+  if (link.componentName === DatoBlockModel.Resource) {
     const res = getLocaleValue(link.allResourceLocales, lang, null);
 
-    if (res?.componentName === "DownloadLinkRecord") {
+    if (res?.componentName === DatoBlockModel.DownloadLink) {
       return {
         linkTo: createDownloadUrl(res.doc),
         text: res.label,
@@ -47,7 +48,7 @@ const links: ListLinkItemProps[] = block.linkToResource.map((link) => {
     };
   }
 
-  if (link.componentName === "ArticleRecord") {
+  if (link.componentName === DatoBlockModel.Article) {
     return {
       linkTo: linkResolver(link.id, lang),
       text: link.title,

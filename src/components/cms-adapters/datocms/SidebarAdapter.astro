@@ -9,6 +9,7 @@ import type {
   SidebarMenuFragmentType,
 } from "@graphql/fragment/commonFragments";
 import type { SidebarFragmentType } from "@graphql/fragment/layout";
+import { DatoBlockModel } from "@utils/cmsMapper";
 import {
   createFlatMenuSidebar,
   createMenuSidebar,
@@ -33,10 +34,10 @@ if (!menu) {
 }
 
 const isMenuArticle = (item: any): item is MenuArticleItemFragmentType =>
-  item.__typename === "MenuArticleItemRecord";
+  item.__typename === DatoBlockModel.MenuArticleItem;
 
 const isAccordionMenu = (item: any): item is SidebarMenuFragmentType =>
-  item.__typename === "AccordionMenuRecord";
+  item.__typename === DatoBlockModel.AccordionMenu;
 
 const menuItems = menu ?? [];
 

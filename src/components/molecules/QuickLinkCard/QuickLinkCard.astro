@@ -1,13 +1,17 @@
 ---
 import { ListLink } from "@components/molecules/ListLink";
+import { getSectionBgClass } from "@utils/background";
 import type { QuickLinkCardProps } from "./types";
 
 type Props = QuickLinkCardProps;
 
-const { title, links } = Astro.props;
+const { title, links, background = "primary" } = Astro.props;
+
+const bgClass = getSectionBgClass(background);
+const variantTextContainer = background === "dark" ? "dark" : "light";
 ---
 
-<div class="it-section-bg-primary rounded-2 py-4 px-5 text-white">
-  <h3>{title}</h3>
-  <ListLink items={links} variant="dark" />
+<div class=`${bgClass} rounded-2 py-4 px-5 text-white`>
+  {title && <h3>{title}</h3>}
+  <ListLink items={links} variant={variantTextContainer} />
 </div>

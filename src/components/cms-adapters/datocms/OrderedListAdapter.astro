@@ -3,6 +3,7 @@ import type { LinkProps } from "@components/atoms/Link/types";
 import { OrderedList } from "@components/molecules/OrderedList";
 import type { ListItemProps } from "@components/molecules/OrderedList/types";
 import type { OrderedListFragmentType } from "@graphql/fragment/commonFragments";
+import { createDownloadUrl } from "@utils/createDownloadUrl";
 import { linkResolver } from "@utils/linkResolver";
 
 type DatoRecord = OrderedListFragmentType & {
@@ -31,6 +32,13 @@ const items: ListItemProps[] = block.items.map((item) => {
       if ("linkTo" in link) {
         return {
           linkTo: linkResolver(link.linkTo.id, lang),
+          label: link.label,
+        };
+      }
+
+      if ("doc" in link) {
+        return {
+          download: createDownloadUrl(link.doc),
           label: link.label,
         };
       }

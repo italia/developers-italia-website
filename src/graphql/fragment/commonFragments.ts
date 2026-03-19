@@ -965,12 +965,20 @@ export const OrderedListFragment = graphql(
             ... on InternalLinkRecord {
               ...InternalLinkFragment
             }
+            ... on DownloadLinkRecord {
+              ...DownloadLinkFragment
+            }
           }
         }
       }
     }
   `,
-  [ListItemFragment, ExternalLinkFragment, InternalLinkFragment],
+  [
+    ListItemFragment,
+    ExternalLinkFragment,
+    InternalLinkFragment,
+    DownloadLinkFragment,
+  ],
 );
 
 export type OrderedListFragmentType = FragmentOf<typeof OrderedListFragment>;

@@ -44,6 +44,12 @@ export enum DatoBlockModel {
   TextBlock = "TextBlockRecord",
   TextOnly = "TextOnlyRecord",
   CardLinkList = "CardLinkListRecord",
+  ListExternalLink = "ListExternalLinkRecord",
+  Resource = "ResourceRecord",
+  Article = "ArticleRecord",
+  SupportingBrand = "SupportingBrandRecord",
+  MenuArticleItem = "MenuArticleItemRecord",
+  AccordionMenu = "AccordionMenuRecord",
 }
 
 export type DatoBlockModelType =

@@ -1,0 +1,34 @@
+---
+import type { ListLinkItemProps } from "@components/molecules/ListLink/types";
+import { QuickLinkCard } from "@components/molecules/QuickLinkCard";
+import type { ExternalLinkFragmentType } from "@graphql/fragment/commonFragments";
+import { getI18n } from "@i18n/microcopy";
+
+type DatoRecord = ExternalLinkFragmentType[] & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: { links: DatoRecord };
+};
+
+const { block } = Astro.props;
+const { lang } = Astro.locals;
+
+const t = getI18n(lang);
+
+const externalLinkLabel = t["link.external"];
+
+const links: ListLinkItemProps[] = block.links.map((link) => {
+  return {
+    linkTo: link.url || "#",
+    text: `${link.description} ${link.label}`,
+    iconRight: "it-external-link",
+    openInNewTab: true,
+    ariaLabelLink: `${externalLinkLabel} ${link.description} ${link.label}`,
+  };
+});
+---
+
+<QuickLinkCard links={links} background={"lighter"} />

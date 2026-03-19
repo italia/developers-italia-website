@@ -36,7 +36,8 @@ const variantAdditionalContent =
     : undefined;
 
 const additionalContent = block.additionalContent;
-const isRightBlockImage = rightBlock?.componentName === "ImageBlockRecord";
+const isRightBlockImage =
+  rightBlock?.componentName === DatoBlockModel.ImageBlock;
 const className = isRightBlockImage ? "px-0" : "";
 ---
 

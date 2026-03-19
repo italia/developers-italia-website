@@ -1,6 +1,7 @@
 ---
 import { getI18n } from "@i18n/microcopy";
 import ItArrowRight from "@static/assets/ItArrowRight.astro";
+import ItDownload from "@static/assets/ItDownload.astro";
 import ItExternalLink from "@static/assets/ItExternalLink.astro";
 import type { LinkProps } from "./types";
 
@@ -11,6 +12,7 @@ const {
   titleIcon,
   linkTo,
   url,
+  download,
   disabled,
   openInNewTab = false,
   iconPosition = "right",
@@ -18,7 +20,7 @@ const {
   variant = "light",
 } = Astro.props;
 
-const finalHref = url || linkTo || "#";
+const finalHref = url || linkTo || download || "#";
 const ariaDisabled = disabled ? "true" : "false";
 const target = openInNewTab ? "_blank" : "_self";
 const rel = openInNewTab ? "noopener noreferrer" : "";
@@ -34,6 +36,7 @@ const t = getI18n(lang);
   aria-disabled={ariaDisabled}
   target={target}
   rel={rel}
+  download={!!download}
   class={`d-inline-flex align-items-center gap-2 ${iconPosition === "left" ? "flex-row-reverse" : ""}`}
 >
   <span class="fw-semibold">{label}</span>
@@ -47,7 +50,15 @@ const t = getI18n(lang);
       <ItExternalLink color={colorIcon} size="sm" title={titleIcon} />
     )
   }
+  {
+    isIcon && download && (
+      <ItDownload color={colorIcon} size="sm" title={titleIcon} />
+    )
+  }
+
   {url && <span class="visually-hidden">{t["link.external"]}</span>}
 
   {linkTo && <span class="visually-hidden">{t["link.internal"]}</span>}
+
+  {download && <span class="visually-hidden">{t["link.download"]}</span>}
 </a>

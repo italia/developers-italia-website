@@ -8,6 +8,7 @@ import LinkInlineAdapter from "@components/cms-adapters/datocms/LinkInlineAdapte
 import ListBlockquoteAdapter from "@components/cms-adapters/datocms/ListBlockquoteAdapter.astro";
 import ListCardEditorialWithIconAdapter from "@components/cms-adapters/datocms/ListCardEditorialWithIconAdapter.astro";
 import ListCardInfoAdapter from "@components/cms-adapters/datocms/ListCardInfoAdapter.astro";
+import ListExternalLinkAdapter from "@components/cms-adapters/datocms/ListExternalLinkAdapter.astro";
 import OrderedListAdapter from "@components/cms-adapters/datocms/OrderedListAdapter.astro";
 import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
 import RelatedArticleAdapter from "@components/cms-adapters/datocms/RelatedArticleAdapter.astro";
@@ -40,6 +41,7 @@ const { block } = Astro.props;
     ListBlockquoteRecord: ListBlockquoteAdapter,
     RelatedArticleRecord: RelatedArticleAdapter,
     ImageBlockRecord: ImageContainerAdapter,
+    ListExternalLinkRecord: ListExternalLinkAdapter,
   }}
   nodeOverrides={{ link: LinkInlineAdapter }}
 />
