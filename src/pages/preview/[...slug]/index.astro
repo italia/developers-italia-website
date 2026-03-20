@@ -67,8 +67,12 @@ const response = await executeQuery(config.query, {
 });
 
 let dataRecord = response[config.key];
-if (type === "search" && dataRecord?.allContentLocales) {
-  dataRecord = getLocaleValue(dataRecord.allContentLocales, lang, null);
+let content = dataRecord.content;
+if (
+  (type === "search" || type === "homepage") &&
+  dataRecord?.allContentLocales
+) {
+  content = getLocaleValue(dataRecord.allContentLocales, lang, null);
 }
 
 if (!dataRecord) return Astro.redirect("/404");
@@ -89,8 +93,6 @@ if (type === "article" || type === "sidebar_for_article") {
 if (dataRecord) {
   Astro.locals.recordId = dataRecord?.id;
 }
-
-const content = dataRecord.content;
 
 let redirectUrl = "/";
 const slugProduction = linkResolver(id, lang);
