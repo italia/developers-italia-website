@@ -1,5 +1,6 @@
 ---
 import { Icon } from "@components/atoms/Icon";
+import { Link } from "@components/atoms/Link";
 import type { CardPresentationBannerProps } from "./types";
 
 type Props = CardPresentationBannerProps;
@@ -7,7 +8,7 @@ type Props = CardPresentationBannerProps;
 const { title, description, icon, linkTo } = Astro.props;
 ---
 
-<article
+<!-- Ripristina su cloud --><!-- <article
   class="it-card it-card-banner it-card-height-full rounded shadow-sm border"
 >
   <h3 class="it-card-title">
@@ -18,5 +19,16 @@ const { title, description, icon, linkTo } = Astro.props;
   </div>
   <div class="it-card-body">
     <p class="it-card-text">{description}</p>
+  </div>
+</article> -->
+<article class="it-card it-card-banner it-card-inline it-card-height-full">
+  <div class="it-card-inline-content">
+    <div class="it-card-body">
+      <Fragment class="fs-5" set:html={description} />
+      <Link label={title} url={linkTo} />
+    </div>
+  </div>
+  <div class="it-card-banner-icon-wrapper">
+    <Icon icon={icon} className="text-primary icon-xl" />
   </div>
 </article>

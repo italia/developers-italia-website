@@ -358,7 +358,7 @@ export const ChannelFragment = graphql(`
     id
     title
     iconSelect
-    description
+    description(markdown: true)
     linkTo
   }
 `);

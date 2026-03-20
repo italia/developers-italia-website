@@ -1058,7 +1058,10 @@ type ChannelRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  description: String!
+  description(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String!
   iconSelect: String!
   id: ItemId!
   linkTo: String!
