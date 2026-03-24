@@ -1,0 +1,204 @@
+{
+  "backgroundColors": [
+    {
+      "name": "Default",
+      "type": "color",
+      "display": "#ffffff",
+      "value": "default"
+    },
+    {
+      "name": "Lighter",
+      "type": "color",
+      "display": "#F2F7FC",
+      "value": "lighter"
+    },
+    {
+      "name": "Primary",
+      "type": "color",
+      "display": "#0066cc",
+      "value": "primary"
+    },
+    {
+      "name": "Dark",
+      "type": "color",
+      "display": "#17324D",
+      "value": "dark"
+    }
+  ],
+  "backgroundHeroColors": [
+    {
+      "name": "Default",
+      "type": "color",
+      "display": "#ffffff",
+      "value": "default"
+    },
+    {
+      "name": "Lighter",
+      "type": "color",
+      "display": "#F2F7FC",
+      "value": "lighter"
+    },
+    {
+      "name": "Primary",
+      "type": "color",
+      "display": "#0066cc",
+      "value": "primary"
+    }
+  ],
+  "backgroundColorsNoPrimary": [
+    {
+      "name": "Default",
+      "type": "color",
+      "display": "#ffffff",
+      "value": "default"
+    },
+    {
+      "name": "Lighter",
+      "type": "color",
+      "display": "#F2F7FC",
+      "value": "lighter"
+    },
+    {
+      "name": "Dark",
+      "type": "color",
+      "display": "#17324D",
+      "value": "dark"
+    }
+  ],
+  "backgroundLightColors": [
+    {
+      "name": "Default",
+      "type": "color",
+      "display": "#ffffff",
+      "value": "default"
+    },
+    {
+      "name": "Lighter",
+      "type": "color",
+      "display": "#F2F7FC",
+      "value": "lighter"
+    }
+  ],
+  "iconList": [
+    {
+      "name": "Fornitori",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770196807-fornitori.svg",
+      "value": "https://www.datocms-assets.com/166118/1770196807-fornitori.svg"
+    },
+    {
+      "name": "Repubblica italiana",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770196699-repubblica_italiana.svg",
+      "value": "https://www.datocms-assets.com/166118/1770196699-repubblica_italiana.svg"
+    },
+    {
+      "name": "Checkmark",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770116245-checkmark.svg",
+      "value": "https://www.datocms-assets.com/166118/1770116245-checkmark.svg"
+    },
+    {
+      "name": "Avatar",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770039138-avatar.svg",
+      "value": "https://www.datocms-assets.com/166118/1770039138-avatar.svg"
+    },
+    {
+      "name": "Check",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1769694001-check.svg",
+      "value": "https://www.datocms-assets.com/166118/1769694001-check.svg"
+    },
+    {
+      "name": "Layers",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1769693984-layers.svg",
+      "value": "https://www.datocms-assets.com/166118/1769693984-layers.svg"
+    },
+    {
+      "name": "PA",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1769693859-pa.svg",
+      "value": "https://www.datocms-assets.com/166118/1769693859-pa.svg"
+    },
+    {
+      "name": "Foggy",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312594-foggy.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312594-foggy.svg"
+    },
+    {
+      "name": "Currency",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770111633-currency.svg",
+      "value": "https://www.datocms-assets.com/166118/1770111633-currency.svg"
+    },
+    {
+      "name": "World",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1769696755-world.svg",
+      "value": "https://www.datocms-assets.com/166118/1769696755-world.svg"
+    },
+    {
+      "name": "IT logo",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg",
+      "value": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg"
+    },
+    {
+      "name": "IT logo white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg"
+    },
+    {
+      "name": "Github",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312333-github.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312333-github.svg"
+    },
+    {
+      "name": "Github white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-github-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-github-white.svg"
+    },
+    {
+      "name": "Logo DTD",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312333-logo-dtd.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312333-logo-dtd.svg"
+    },
+    {
+      "name": "Slack",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312333-slack.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312333-slack.svg"
+    },
+    {
+      "name": "Slack white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg"
+    },
+    {
+      "name": "Cloud logo",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768311105-cloud-logo.svg",
+      "value": "https://www.datocms-assets.com/166118/1768311105-cloud-logo.svg"
+    },
+    {
+      "name": "Matrix",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774259551-matrix.svg",
+      "value": "https://www.datocms-assets.com/166118/1774259551-matrix.svg"
+    },
+    {
+      "name": "Matrix white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg"
+    }
+  ]
+}

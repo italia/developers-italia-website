@@ -15,7 +15,9 @@
     "prepare": "husky",
     "format": "prettier . --write --ignore-unknown",
     "index:staging": "dotenv -c -- bash -c 'NODE_TLS_REJECT_UNAUTHORIZED=0 bun run ./scripts/index-opensearch.ts staging'",
-    "index:production": "dotenv -c -- bash -c 'bun run ./scripts/index-opensearch.ts production'"
+    "index:production": "dotenv -c -- bash -c 'bun run ./scripts/index-opensearch.ts production'",
+    "sync-visual:staging": "dotenv -c staging -- bun ./scripts/sync-visual-select.ts",
+    "sync-visual:production": "dotenv -c production -- bun ./scripts/sync-visual-select.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

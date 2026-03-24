@@ -29,21 +29,23 @@ You will find the components structured in `src/components/` as follows:
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                | Action                                                    |
-| :--------------------- | :-------------------------------------------------------- |
-| `bun install`          | Installs dependencies                                     |
-| `bun staging`          | Starts dev server using `--mode staging`                  |
-| `bun production`       | Starts dev server using `--mode production`               |
-| `bun build:staging`    | Build using `--mode staging`                              |
-| `bun build:production` | Build using `--mode production`                           |
-| `bun astro ...`        | Run CLI commands like `astro add`, `astro check`          |
-| `bun astro -- --help`  | Get help using the Astro CLI                              |
-| `bun generate-output`  | Generate GraphQL output types                             |
-| `bun tada-doctor`      | Check GraphQL setup with gql-tada                         |
-| `bun tada-check`       | Validate GraphQL documents with gql-tada                  |
-| `bun format`           | Format files with Prettier                                |
-| `bun index:staging`    | Manually syncs DatoCMS content to OpenSearch (Staging)    |
-| `bun index:production` | Manually syncs DatoCMS content to OpenSearch (Production) |
+| Command                      | Action                                                        |
+| :--------------------------- | :------------------------------------------------------------ |
+| `bun install`                | Installs dependencies                                         |
+| `bun staging`                | Starts dev server using `--mode staging`                      |
+| `bun production`             | Starts dev server using `--mode production`                   |
+| `bun build:staging`          | Build using `--mode staging`                                  |
+| `bun build:production`       | Build using `--mode production`                               |
+| `bun astro ...`              | Run CLI commands like `astro add`, `astro check`              |
+| `bun astro -- --help`        | Get help using the Astro CLI                                  |
+| `bun generate-output`        | Generate GraphQL output types                                 |
+| `bun tada-doctor`            | Check GraphQL setup with gql-tada                             |
+| `bun tada-check`             | Validate GraphQL documents with gql-tada                      |
+| `bun format`                 | Format files with Prettier                                    |
+| `bun index:staging`          | Manually syncs DatoCMS content to OpenSearch (Staging)        |
+| `bun index:production`       | Manually syncs DatoCMS content to OpenSearch (Production)     |
+| `bun sync-visual:staging`    | Syncs Visual Select presets from JSON to DatoCMS (Staging)    |
+| `bun sync-visual:production` | Syncs Visual Select presets from JSON to DatoCMS (Production) |
 
 ## 🌱 Environment files
 
@@ -68,6 +70,7 @@ PUBLIC_WAI_URL: Configuration for WAI (Web Accessibility/Analytics).
 PUBLIC_SITE_ID: Configuration for WAI (Web Accessibility/Analytics).
 PUBLIC_SENDPORTAL_SUBSCRIBE_URL: Endpoint for newsletter subscriptions via Sendportal.
 PUBLIC_FEEDBACK_URL: Link or API for the user feedback system.
+DATOCMS_VISUAL_SELECT_PLUGIN_ID: This variable stores the unique installation ID of the "Visual Select" plugin within your DatoCMS project.
 ```
 
 Astro (via Vite) loads environment files in this order:
