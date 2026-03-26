@@ -11,6 +11,7 @@ type Props = ListCollectionProps;
 const {
   title,
   items,
+  paragraph,
   background = "lighter",
   showInline = false,
 } = Astro.props;
@@ -21,10 +22,11 @@ const textColorClass =
 
 <SectionContainer className={getSectionBgClass(background)}>
   <div class="row justify-content-between align-items-top">
-    <div class="col-lg-8 col-12">
-      <h2 class=`pb-lg-5 ${textColorClass}`>
+    <div class="col-lg-8 col-12 pb-lg-5">
+      <h2 class=` ${textColorClass}`>
         {title}
       </h2>
+      {paragraph && <Fragment set:html={paragraph} />}
     </div>
 
     <div class="d-none d-lg-block">

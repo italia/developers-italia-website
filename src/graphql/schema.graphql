@@ -776,6 +776,10 @@ type CardLinkListRecord implements RecordInterface {
   backgroundColor: String!
   id: ItemId!
   listContent: [CardLinkRecord!]!
+  paragraph(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
   showInlineCard: BooleanType!
   title: String!
 }
@@ -8973,6 +8977,8 @@ input UploadWidthFilter {
   neq: IntType
 }
 
+union UseCaseBlockModelUseCasesField = ArticleRecord | InsightRecord | StoryItemRecord | WebinarItemRecord
+
 """Block of type Use case block (use_case_block)"""
 type UseCaseBlockRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -8995,7 +9001,7 @@ type UseCaseBlockRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   title: String!
-  useCases: [ArticleRecord!]!
+  useCases: [UseCaseBlockModelUseCasesField!]!
 }
 
 """Block of type Cards container (use_case_container)"""

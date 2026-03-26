@@ -390,21 +390,6 @@ export const TextBlockFragment = graphql(
 
 export type TextBlockFragmentType = FragmentOf<typeof TextBlockFragment>;
 
-export const UseCaseBlockFragment = graphql(
-  `
-    fragment UseCaseBlockFragment on UseCaseBlockRecord @_unmask {
-      id
-      title
-      useCases {
-        ...ArticleCardPreviewFragment
-      }
-    }
-  `,
-  [ArticleCardPreviewFragment],
-);
-
-export type UseCaseBlockFragmentType = FragmentOf<typeof UseCaseBlockFragment>;
-
 export const DataContainerFragment = graphql(`
   fragment DataContainerFragment on DataContainerRecord @_unmask {
     id
@@ -982,3 +967,34 @@ export const OrderedListFragment = graphql(
 );
 
 export type OrderedListFragmentType = FragmentOf<typeof OrderedListFragment>;
+
+export const UseCaseBlockFragment = graphql(
+  `
+    fragment UseCaseBlockFragment on UseCaseBlockRecord @_unmask {
+      id
+      title
+      useCases {
+        ... on ArticleRecord {
+          ...ArticleCardPreviewFragment
+        }
+        ... on InsightRecord {
+          ...InsightCardFragment
+        }
+        ... on StoryItemRecord {
+          ...StoryCardFragment
+        }
+        ... on WebinarItemRecord {
+          ...WebinarItemFragment
+        }
+      }
+    }
+  `,
+  [
+    ArticleCardPreviewFragment,
+    StoryCardFragment,
+    InsightCardFragment,
+    WebinarItemFragment,
+  ],
+);
+
+export type UseCaseBlockFragmentType = FragmentOf<typeof UseCaseBlockFragment>;
