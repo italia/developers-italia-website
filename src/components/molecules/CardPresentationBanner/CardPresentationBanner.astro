@@ -21,7 +21,9 @@ const { title, description, icon, linkTo } = Astro.props;
     <p class="it-card-text">{description}</p>
   </div>
 </article> -->
-<article class="it-card it-card-banner it-card-inline it-card-height-full">
+<article
+  class="it-card it-card-banner it-card-inline it-card-height-full bg-transparent"
+>
   <div class="it-card-inline-content">
     <div class="it-card-body">
       <Fragment class="fs-5" set:html={description} />
