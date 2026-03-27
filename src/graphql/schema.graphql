@@ -8284,7 +8284,7 @@ type TextImageRecord implements RecordInterface {
   additionalContent: AdditionalContentRecord
   backgroundColor: String!
   id: ItemId!
-  image: FileField!
+  image: FileField
   text: TextBlockRecord!
   variant: String!
 }

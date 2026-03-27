@@ -38,7 +38,11 @@ const additionalContent = block.additionalContent;
     variant={variantTextContainer}
   />
 
-  <ImageContainer slot="image" image={block.image} ratio="4x3" />
+  {
+    block.image && (
+      <ImageContainer slot="image" image={block.image} ratio="4x3" />
+    )
+  }
 
   {
     additionalContent && (
