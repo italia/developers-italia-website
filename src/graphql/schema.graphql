@@ -862,7 +862,7 @@ type CatalogueFeedRecord implements RecordInterface {
   tabs: [CatalogueTabRecord!]!
 }
 
-union CatalogueModelContentField = CalloutLinkRecord | CatalogueFeedRecord | HeroRecord
+union CatalogueModelContentField = CalloutLinkRecord | CatalogueFeedRecord | HeroRecord | TextOnlyRecord
 
 type CatalogueModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -8336,6 +8336,7 @@ type TextStatisticRecord implements RecordInterface {
   _updatedAt: DateTime!
   backgroundColor: String!
   id: ItemId!
+  showInline: BooleanType!
   statistics: StatisticBlockRecord!
   text: TextBlockRecord!
 }

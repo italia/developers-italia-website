@@ -537,6 +537,7 @@ export const TextAndStatisticsFragment = graphql(
   `
     fragment TextAndStatisticsFragment on TextStatisticRecord @_unmask {
       backgroundColor
+      showInline
       text {
         ...TextBlockFragment
       }

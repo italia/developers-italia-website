@@ -15,7 +15,10 @@ const variantTextContainer =
   block.backgroundColor === "dark" ? "dark" : "light";
 ---
 
-<TextAndStatistics background={block.backgroundColor as SectionBackground}>
+<TextAndStatistics
+  background={block.backgroundColor as SectionBackground}
+  showInline={block.showInline}
+>
   <TextContainerAdapter
     slot="text"
     block={block.text}
@@ -25,5 +28,6 @@ const variantTextContainer =
     slot="statistics"
     block={block.statistics}
     variant={variantTextContainer}
+    showInline={block.showInline}
   />
 </TextAndStatistics>
