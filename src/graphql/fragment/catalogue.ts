@@ -2,6 +2,7 @@ import {
   CalloutLinkFragment,
   CatalogueFeedFragment,
   HeroFragment,
+  TextOnlyFragment,
 } from "@graphql/fragment/sectionFragments";
 import { graphql, type FragmentOf } from "@graphql/graphql";
 
@@ -21,9 +22,12 @@ export const CatalogueContentFragment = graphql(
       ... on CalloutLinkRecord {
         ...CalloutLinkFragment
       }
+      ... on TextOnlyRecord {
+        ...TextOnlyFragment
+      }
     }
   `,
-  [HeroFragment, CatalogueFeedFragment, CalloutLinkFragment],
+  [HeroFragment, CatalogueFeedFragment, CalloutLinkFragment, TextOnlyFragment],
 );
 
 export type CatalogueContentFragmentType = FragmentOf<

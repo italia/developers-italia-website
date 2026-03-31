@@ -9,9 +9,10 @@ import type { StatisticBlockFragmentType } from "@graphql/fragment/commonFragmen
 type Props = {
   block: StatisticBlockFragmentType;
   variant?: VariantTextDataContainerProps;
+  showInline?: boolean;
 };
 
-const { block, variant = "dark" } = Astro.props;
+const { block, variant = "dark", showInline = false } = Astro.props;
 let items: DataContainerProps[] = [];
 
 if (block.statistics.length > 0) {
@@ -34,4 +35,4 @@ if (block.kpiElement.length > 0) {
 }
 ---
 
-<Statistics items={items} variant={variant} />
+<Statistics items={items} variant={variant} showInline={showInline} />

@@ -8,16 +8,21 @@ import type {
 type Props = {
   items: DataContainerProps[];
   variant?: VariantTextDataContainerProps;
+  showInline?: boolean;
 };
 
-const { items, variant = "light" } = Astro.props;
+const { items, variant = "light", showInline = false } = Astro.props;
+
+const classInline = showInline
+  ? "d-flex flex-row justify-content-between mt-5"
+  : "statistics-container";
 ---
 
 <style>
   @import "./style.scss";
 </style>
 
-<ul class="statistics-container" role="list">
+<ul class={`list-unstyled ${classInline}`} role="list">
   {
     items.map((item) => (
       <li class="statistics-item">
