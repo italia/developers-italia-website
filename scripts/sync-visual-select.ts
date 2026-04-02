@@ -4,14 +4,15 @@ import { resolve } from "path";
 
 const token = process.env.DATOCMS_MANAGEMENT_API_TOKEN;
 const FIELD_ID = process.env.DATOCMS_VISUAL_SELECT_PLUGIN_ID;
+const environment = process.env.DATOCMS_ENVIRONMENT;
 const outputPath = `src/config/options-visual-select.json`;
 
-if (!token || !FIELD_ID) {
+if (!token || !FIELD_ID || !environment) {
   throw new Error(
-    "DATOCMS_MANAGEMENT_API_TOKEN and DATOCMS_VISUAL_SELECT_PLUGIN_ID is required to sync plugin options.",
+    "DATOCMS_MANAGEMENT_API_TOKEN, DATOCMS_VISUAL_SELECT_PLUGIN_ID, and DATOCMS_ENVIRONMENT are required to sync plugin options.",
   );
 }
-const client = buildClient({ apiToken: token });
+const client = buildClient({ apiToken: token, environment });
 
 async function syncOptions() {
   try {

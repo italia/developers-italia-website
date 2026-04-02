@@ -13,6 +13,12 @@
       "value": "lighter"
     },
     {
+      "name": "Primary light",
+      "type": "color",
+      "display": "#BFDFFF",
+      "value": "primary-light"
+    },
+    {
       "name": "Primary",
       "type": "color",
       "display": "#0066cc",
@@ -77,6 +83,12 @@
       "type": "color",
       "display": "#F2F7FC",
       "value": "lighter"
+    },
+    {
+      "name": "Primary light",
+      "type": "color",
+      "display": "#BFDFFF",
+      "value": "primary-light"
     }
   ],
   "iconList": [
