@@ -515,6 +515,7 @@ export type IntroArticleFragmentType = FragmentOf<typeof IntroArticleFragment>;
 export const TextAndImageFragment = graphql(
   `
     fragment TextAndImageFragment on TextImageRecord @_unmask {
+      heading
       text {
         ...TextBlockFragment
       }
@@ -626,6 +627,7 @@ export type CalloutLinkFragmentType = FragmentOf<typeof CalloutLinkFragment>;
 export const TextOnlyFragment = graphql(
   `
     fragment TextOnlyFragment on TextOnlyRecord @_unmask {
+      heading
       text {
         ...TextBlockFragment
       }

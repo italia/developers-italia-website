@@ -8283,6 +8283,7 @@ type TextImageRecord implements RecordInterface {
   _updatedAt: DateTime!
   additionalContent: AdditionalContentRecord
   backgroundColor: String!
+  heading: String
   id: ItemId!
   image: FileField
   text: TextBlockRecord!
@@ -8310,6 +8311,7 @@ type TextOnlyRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   backgroundColor: String!
+  heading: String
   id: ItemId!
   text: TextBlockRecord!
 }
