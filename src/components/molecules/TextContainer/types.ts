@@ -4,6 +4,8 @@ export type TextContainerProps = {
   variant?: TextContainerVariant;
   labelButton?: string;
   linkTo?: string;
+  heading?: HeadingTag;
 };
 
 export type TextContainerVariant = "light" | "dark" | "primary";
+export type HeadingTag = "h2" | "h3" | "h4" | "h5";

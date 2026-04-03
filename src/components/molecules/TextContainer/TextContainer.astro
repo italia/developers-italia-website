@@ -10,6 +10,7 @@ const {
   labelButton,
   linkTo,
   variant = "light",
+  heading: TitleTag = "h2",
 } = Astro.props;
 
 const colorClass =
@@ -24,9 +25,9 @@ const variantButton =
 ---
 
 <div class=`text-container mb-4 mb-lg-0 ${colorClass}`>
-  <h2 class="mb-3">
+  <TitleTag class="mb-3">
     {title}
-  </h2>
+  </TitleTag>
   <Fragment class="mb-4" set:html={paragraph} />
   {
     labelButton && linkTo && (

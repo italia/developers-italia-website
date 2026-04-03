@@ -1,5 +1,6 @@
 ---
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
+import type { HeadingTag } from "@components/molecules/TextContainer/types";
 import { TextOnly } from "@components/organisms/TextOnly";
 import type { TextOnlyFragmentType } from "@graphql/fragment/sectionFragments";
 import type { SectionBackground } from "@utils/background";
@@ -23,5 +24,6 @@ const variantTextContainer =
     slot="text"
     block={block.text}
     variant={variantTextContainer}
+    heading={(block.heading as HeadingTag) || undefined}
   />
 </TextOnly>

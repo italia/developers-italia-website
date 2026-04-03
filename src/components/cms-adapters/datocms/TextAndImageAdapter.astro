@@ -1,6 +1,7 @@
 ---
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
 import { ImageContainer } from "@components/molecules/ImageContainer";
+import type { HeadingTag } from "@components/molecules/TextContainer/types";
 import { AdditionalContent } from "@components/organisms/AdditionalContent";
 import { TextAndImage } from "@components/organisms/TextAndImage";
 import type { VariantTextAndImageProps } from "@components/organisms/TextAndImage/types";
@@ -36,6 +37,7 @@ const additionalContent = block.additionalContent;
     slot="text"
     block={block.text}
     variant={variantTextContainer}
+    heading={(block.heading as HeadingTag) || undefined}
   />
 
   {
