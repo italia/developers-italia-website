@@ -180,15 +180,15 @@ export const ArticleCardPreviewFragment = graphql(
   `
     fragment ArticleCardPreviewFragment on ArticleRecord @_unmask {
       id
-      _allTitleLocales {
+      allTitleLocales: _allTitleLocales {
         locale
         value
       }
-      _allParagraphLocales {
+      allParagraphLocales: _allParagraphLocales {
         locale
         value
       }
-      _allTopicsLocales {
+      allTopicsLocales: _allTopicsLocales {
         locale
         value {
           ...TopicsBlockFragment
@@ -197,11 +197,11 @@ export const ArticleCardPreviewFragment = graphql(
       image {
         ...ImageFragment
       }
-      _allDescriptionTitleLocales {
+      allDescriptionTitleLocales: _allDescriptionTitleLocales {
         locale
         value
       }
-      _allDescriptionLocales(markdown: true) {
+      allDescriptionLocales: _allDescriptionLocales(markdown: true) {
         locale
         value
       }
@@ -335,6 +335,37 @@ export const StoryCardFragment = graphql(
 
 export type StoryCardFragmentType = FragmentOf<typeof StoryCardFragment>;
 
+export const InsightCardFragment = graphql(
+  `
+    fragment InsightCardFragment on InsightRecord @_unmask {
+      id
+      allTitleLocales: _allTitleLocales {
+        locale
+        value
+      }
+      allParagraphLocales: _allAbstractLocales {
+        locale
+        value
+      }
+      allTopicLocales: _allTopicLocales {
+        locale
+        value {
+          _allLabelLocales {
+            locale
+            value
+          }
+        }
+      }
+      image {
+        ...ImageFragment
+      }
+    }
+  `,
+  [ImageFragment],
+);
+
+export type InsightCardFragmentType = FragmentOf<typeof InsightCardFragment>;
+
 export const StoryTabFragment = graphql(
   `
     fragment StoryTabFragment on StoryTabRecord @_unmask {
@@ -344,11 +375,28 @@ export const StoryTabFragment = graphql(
       id
       title
       news {
-        ...StoryCardFragment
+        ... on StoryItemRecord {
+          ...StoryCardFragment
+        }
+        ... on WebinarItemRecord {
+          ...WebinarItemFragment
+        }
+        ... on InsightRecord {
+          ...InsightCardFragment
+        }
+        ... on ArticleRecord {
+          ...ArticleCardPreviewFragment
+        }
       }
     }
   `,
-  [StoryCardFragment, InternalLinkFragment],
+  [
+    StoryCardFragment,
+    WebinarItemFragment,
+    InsightCardFragment,
+    ArticleCardPreviewFragment,
+    InternalLinkFragment,
+  ],
 );
 
 export type StoryTabFragmentType = FragmentOf<typeof StoryTabFragment>;
@@ -582,37 +630,6 @@ export const AdditionalContentFragment = graphql(
 export type AdditionalContentFragmentType = FragmentOf<
   typeof AdditionalContentFragment
 >;
-
-export const InsightCardFragment = graphql(
-  `
-    fragment InsightCardFragment on InsightRecord @_unmask {
-      id
-      _allTitleLocales {
-        locale
-        value
-      }
-      _allAbstractLocales {
-        locale
-        value
-      }
-      _allTopicLocales {
-        locale
-        value {
-          _allLabelLocales {
-            locale
-            value
-          }
-        }
-      }
-      image {
-        ...ImageFragment
-      }
-    }
-  `,
-  [ImageFragment],
-);
-
-export type InsightCardFragmentType = FragmentOf<typeof InsightCardFragment>;
 
 export const ListCollectionFragment = graphql(
   `

@@ -12,10 +12,10 @@ const { block } = Astro.props;
 const { lang } = Astro.locals;
 
 const items = block.content.map((item) => {
-  const topicRecord = getLocaleValue(item._allTopicLocales, lang, null);
+  const topicRecord = getLocaleValue(item.allTopicLocales, lang, null);
   return {
-    title: getLocaleValue(item._allTitleLocales, lang, ""),
-    description: getLocaleValue(item._allAbstractLocales, lang, ""),
+    title: getLocaleValue(item.allTitleLocales, lang, ""),
+    description: getLocaleValue(item.allParagraphLocales, lang, ""),
     image: item.image,
     linkTo: linkResolver(item.id, lang),
     category: getLocaleValue(topicRecord?._allLabelLocales, lang, ""),

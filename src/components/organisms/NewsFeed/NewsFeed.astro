@@ -8,6 +8,7 @@ import TextContainer from "@components/molecules/TextContainer/TextContainer.ast
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import ButtonLink from "@components/atoms/Button/ButtonLink.astro";
 import type { CardEditorialStoryProps } from "@components/molecules/CardEditorialStory/types";
+import type { SectionBackground } from "@utils/background";
 
 type NewsTab = {
   title: string;
@@ -28,13 +29,22 @@ type UpdateTabSectionProps = {
   title: string;
   paragraph: string;
   tabs: UpdateTabSectionTab[];
+  backgroundColor?: SectionBackground;
   labelButton?: string;
   linkTo?: string;
 };
 
 type Props = UpdateTabSectionProps;
 
-const { id, title, paragraph, tabs = [], labelButton, linkTo } = Astro.props;
+const {
+  id,
+  title,
+  paragraph,
+  tabs = [],
+  labelButton,
+  linkTo,
+  backgroundColor = "dark",
+} = Astro.props;
 
 const tabsItems = tabs.map((tab, index) => ({
   id: `tab-${id}-${index}`,
@@ -43,17 +53,29 @@ const tabsItems = tabs.map((tab, index) => ({
 }));
 
 const hasMultipleTabs = tabsItems.length > 1;
+
+const variantTextContainer =
+  backgroundColor === "dark"
+    ? "dark"
+    : backgroundColor === "primary"
+      ? "primary"
+      : "light";
+
+const variantButtonLink =
+  backgroundColor === "dark" || backgroundColor === "primary"
+    ? "outline-dark"
+    : "light";
 ---
 
-<SplitContent leftColumns={5} background="primary" alignItems="top">
+<SplitContent leftColumns={5} background={backgroundColor} alignItems="top">
   <TextContainer
     slot="left"
     title={title}
     paragraph={paragraph}
-    variant="primary"
+    variant={variantTextContainer}
   />
   <div class="row pt-lg-5">
-    <Tabs id={id} variant="dark" items={tabsItems}>
+    <Tabs id={id} background={backgroundColor} items={tabsItems}>
       {
         tabs.map((tab, index) => (
           <TabContent tab={tabsItems[index]}>
@@ -102,7 +124,7 @@ const hasMultipleTabs = tabsItems.length > 1;
         <div class="mt-5 d-flex justify-content-center">
           <ButtonLink
             size="small"
-            variant="outline-dark"
+            variant={variantButtonLink}
             label={labelButton}
             linkTo={linkTo}
           />

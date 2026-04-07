@@ -1,3 +1,5 @@
+import type { SectionBackground } from "@utils/background";
+
 export type TabItemProps = {
   id: string;
   label: string;
@@ -8,7 +10,5 @@ export type TabItemProps = {
 export type TabsProps = {
   id: string;
   items: TabItemProps[];
-  variant?: VariantTabsProps;
+  background?: SectionBackground;
 };
-
-export type VariantTabsProps = "light" | "dark";

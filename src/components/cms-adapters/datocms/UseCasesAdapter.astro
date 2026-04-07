@@ -17,20 +17,11 @@ const { block, backgroundColor = "light" } = Astro.props;
 const { lang } = Astro.locals;
 
 const usecases: UseCaseCardProps[] = block.useCases.map((usecase) => {
-  const titleData =
-    "allTitleLocales" in usecase
-      ? usecase.allTitleLocales
-      : usecase._allTitleLocales;
-
   let paragraphData =
-    "_allParagraphLocales" in usecase
-      ? usecase._allParagraphLocales
-      : "_allAbstractLocales" in usecase
-        ? usecase._allAbstractLocales
-        : [];
+    "allParagraphLocales" in usecase ? usecase.allParagraphLocales : [];
 
   return {
-    title: getLocaleValue(titleData, lang, ""),
+    title: getLocaleValue(usecase.allTitleLocales, lang, ""),
     paragraph: getLocaleValue(paragraphData, lang, "") || "",
     linkTo: linkResolver(usecase.id, lang),
     image: usecase.image || undefined,

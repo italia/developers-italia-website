@@ -8,7 +8,8 @@ type Props = QuickLinkCardProps;
 const { title, links, background = "primary" } = Astro.props;
 
 const bgClass = getSectionBgClass(background);
-const variantTextContainer = background === "dark" ? "dark" : "light";
+const variantTextContainer =
+  background === "dark" || background === "primary" ? "dark" : "light";
 ---
 
 <div class=`${bgClass} rounded-2 py-4 px-5 text-white`>

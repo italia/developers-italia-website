@@ -4,7 +4,7 @@ import type { ListLinkProps } from "./types";
 
 type Props = ListLinkProps;
 
-const { items, variant } = Astro.props;
+const { items, variant = "dark" } = Astro.props;
 ---
 
 <style>

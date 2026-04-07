@@ -14,12 +14,12 @@ const { block } = Astro.props;
 const { lang } = Astro.locals;
 
 const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
-  const listTopics = getLocaleValue(useCase._allTopicsLocales, lang, undefined);
+  const listTopics = getLocaleValue(useCase.allTopicsLocales, lang, undefined);
 
   return {
     id: useCase.id,
-    title: getLocaleValue(useCase._allTitleLocales, lang, ""),
-    paragraph: getLocaleValue(useCase._allParagraphLocales, lang, "") || "",
+    title: getLocaleValue(useCase.allTitleLocales, lang, ""),
+    paragraph: getLocaleValue(useCase.allParagraphLocales, lang, "") || "",
     linkTo: linkResolver(useCase.id, lang),
     image: useCase.image || undefined,
     listTopics: {
@@ -30,10 +30,9 @@ const useCases: UseCaseCardProps[] = block.useCases.map((useCase) => {
         ) || [],
     },
     descriptionTitle:
-      getLocaleValue(useCase._allDescriptionTitleLocales, lang, "") ||
-      undefined,
+      getLocaleValue(useCase.allDescriptionTitleLocales, lang, "") || undefined,
     description:
-      getLocaleValue(useCase._allDescriptionLocales, lang, "") || undefined,
+      getLocaleValue(useCase.allDescriptionLocales, lang, "") || undefined,
   };
 });
 ---
