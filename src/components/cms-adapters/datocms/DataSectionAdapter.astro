@@ -38,8 +38,8 @@ const panel = {
 const newsResult: CardEditorialNewsProps[] = block.result.useCases.map(
   (useCase) => {
     return {
-      title: getLocaleValue(useCase._allTitleLocales, lang, ""),
-      description: getLocaleValue(useCase._allParagraphLocales, lang, "") || "",
+      title: getLocaleValue(useCase.allTitleLocales, lang, ""),
+      description: getLocaleValue(useCase.allParagraphLocales, lang, "") || "",
       image: useCase.image || undefined,
       linkTo: linkResolver(useCase.id, lang),
     };

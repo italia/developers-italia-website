@@ -31,13 +31,17 @@ const t = getI18n(lang);
     <a href={linkTo}>{title}</a>
   </h3>
 
-  <div class="it-card-image-wrapper">
-    <div class="ratio ratio-16x9">
-      <figure class="figure img-full">
-        <Image {...image} />
-      </figure>
-    </div>
-  </div>
+  {
+    image && (
+      <div class="it-card-image-wrapper">
+        <div class="ratio ratio-16x9">
+          <figure class="figure img-full">
+            <Image {...image} />
+          </figure>
+        </div>
+      </div>
+    )
+  }
 
   <div class="it-card-body">
     <p class="it-card-text">{description}</p>
