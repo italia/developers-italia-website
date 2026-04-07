@@ -229,26 +229,13 @@ import Badge from "./atoms/Badge/Badge.astro";
     <tr>
       <td class="p-3">Light background</td>
       <td class="p-3">
-        <IconContainer content="1" />
+        <IconContainer content="https://placehold.co/20x20.png?text=20x20" />
       </td>
     </tr>
     <tr>
       <td class="p-3">Dark background</td>
       <td class="bg-dark p-3">
-        <IconContainer
-          content=`<svg
-        width="27"
-        height="27"
-        viewBox="0 0 27 27"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4 21.3333V12H6.66667V21.3333H4ZM12 21.3333V12H14.6667V21.3333H12ZM0 26.6667V24H26.6667V26.6667H0ZM20 21.3333V12H22.6667V21.3333H20ZM0 9.33333V6.66667L13.3333 0L26.6667 6.66667V9.33333H0ZM5.93333 6.66667H20.7333L13.3333 3L5.93333 6.66667Z"
-          fill="#003366"
-        />
-      </svg>`
-        />
+        <IconContainer content="https://placehold.co/20x20.png?text=20x20" />
       </td>
     </tr>
   </tbody>
@@ -263,15 +250,21 @@ import Badge from "./atoms/Badge/Badge.astro";
   </thead>
   <tbody>
     <tr>
-      <td class="p-3">Link</td>
+      <td class="p-3">Internal link</td>
       <td class="p-3">
         <Link label="Link example" linkTo="#" />
       </td>
     </tr>
     <tr>
-      <td class="p-3">Link with icon</td>
+      <td class="p-3">External link</td>
       <td class="p-3">
-        <Link label="Link example" linkTo="#" titleIcon="Freccia destra" />
+        <Link label="Link example" url="#" titleIcon="Freccia destra" />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Download link</td>
+      <td class="p-3">
+        <Link label="Link example" download="#" titleIcon="Freccia destra" />
       </td>
     </tr>
   </tbody>

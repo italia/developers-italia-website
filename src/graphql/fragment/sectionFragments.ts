@@ -71,6 +71,7 @@ export const NewsFeedFragment = graphql(
     fragment NewsFeedFragment on NewsFeedRecord @_unmask {
       id
       title
+      backgroundColor
       paragraph(markdown: true)
       cta {
         ...InternalLinkFragment

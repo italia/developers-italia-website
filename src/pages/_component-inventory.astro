@@ -1,11 +1,4 @@
 ---
-if (import.meta.env.PROD) {
-  return new Response(null, {
-    status: 404,
-    statusText: "Not Found",
-  });
-}
-
 import { TabContent, Tabs } from "@components/molecules/Tabs";
 import { DataSection } from "@components/organisms/DataSection";
 import { Hero } from "@components/organisms/Hero";

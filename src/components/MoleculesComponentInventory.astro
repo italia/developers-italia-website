@@ -255,14 +255,14 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
   <tbody>
     <tr>
       <td>Standard</td>
-      <td class="bg-primary p-3">
+      <td class="p-3">
         <div class="row">
           <div class="col-12 col-md-6 col-lg-6 mb-3 mb-md-4">
             <CardPresentationBanner
               linkTo="#"
               title="Titolo contenuto editoriale"
               description="Testo breve che riassume il contenuto della pagina di destinazione in massimo tre o quattro righe, senza troncamento."
-              icon="it-github"
+              icon="https://placehold.co/20x20.png?text=20x20"
             />
           </div>
         </div>
@@ -280,12 +280,12 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
   </thead>
   <tbody>
     <tr>
-      <td class="p-3">Dark background</td>
-      <td class="bg-dark p-3"
+      <td class="p-3">Standard</td>
+      <td class="p-3"
         ><DataContainer
           title="Numero di PA che hanno migrato al Cloud "
           info="70.000 +"
-          contentIcon="1"
+          contentIcon="https://placehold.co/20x20.png?text=20x20"
         /></td
       >
     </tr>
@@ -414,6 +414,7 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
         <QuickLinkCard
           title="Titolo sezione link rapidi"
           links={genericListItems}
+          background="primary"
         />
       </td>
     </tr>
@@ -457,7 +458,25 @@ In apertura, i relatori hanno delineato il contesto di riferimento: oltre il 70%
     <tr>
       <td class="p-3">Primary background</td>
       <td class="p-3"
-        ><Tabs id="exampleTabs" variant="dark" items={tabsItems} />
+        ><Tabs id="exampleTabs" background="primary" items={tabsItems} />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Dark background</td>
+      <td class="p-3"
+        ><Tabs id="exampleTabs" background="dark" items={tabsItems} />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Primary light background</td>
+      <td class="p-3"
+        ><Tabs id="exampleTabs" background="primary-light" items={tabsItems} />
+      </td>
+    </tr>
+    <tr>
+      <td class="p-3">Lighter background</td>
+      <td class="p-3"
+        ><Tabs id="exampleTabs" background="lighter" items={tabsItems} />
       </td>
     </tr>
   </tbody>

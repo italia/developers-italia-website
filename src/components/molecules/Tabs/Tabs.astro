@@ -1,8 +1,9 @@
 ---
+import { getSectionBgClass } from "@utils/background";
 import TabsItem from "./TabsItem.astro";
 import type { TabsProps } from "./types";
 type Props = TabsProps;
-const { id, items, variant = "light" } = Astro.props;
+const { id, items, background = "default" } = Astro.props;
 
 const hasMultipleTabs = items.length > 1;
 ---
@@ -13,7 +14,7 @@ const hasMultipleTabs = items.length > 1;
 {
   hasMultipleTabs && (
     <ul
-      class={`nav nav-tabs auto mb-5 ${variant === "dark" ? "bg-primary" : ""}`}
+      class={`nav nav-tabs auto mb-5 ${getSectionBgClass(background)}`}
       id={`tabs-${id}`}
       role="tablist"
     >

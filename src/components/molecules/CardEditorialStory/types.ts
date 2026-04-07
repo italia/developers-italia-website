@@ -4,7 +4,7 @@ export type CardEditorialStoryProps = {
   id?: string;
   title: string;
   description?: string;
-  image: ImageProps;
+  image?: ImageProps;
   linkTo: string;
   category?: string;
   dateTime?: string;

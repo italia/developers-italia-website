@@ -15,7 +15,7 @@ const { lang } = Astro.locals;
 const contentCollection: ContentCollectionProps[] = block.content.map(
   (content) => {
     const topicSlug = getLocaleValue(
-      content.content[0]._allTopicLocales,
+      content.content[0].allTopicLocales,
       lang,
       null,
     );
@@ -24,10 +24,10 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
       topicSlug: getLocaleValue(topicSlug?._allLabelLocales, lang, ""),
       paragraph: content.paragraph || undefined,
       items: content.content.map((item) => {
-        const topicRecord = getLocaleValue(item._allTopicLocales, lang, null);
+        const topicRecord = getLocaleValue(item.allTopicLocales, lang, null);
         return {
-          title: getLocaleValue(item._allTitleLocales, lang, ""),
-          description: getLocaleValue(item._allAbstractLocales, lang, ""),
+          title: getLocaleValue(item.allTitleLocales, lang, ""),
+          description: getLocaleValue(item.allParagraphLocales, lang, ""),
           image: item.image,
           linkTo: linkResolver(item.id, lang),
           category: getLocaleValue(topicRecord?._allLabelLocales, lang, ""),

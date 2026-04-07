@@ -4,20 +4,39 @@
   .nav-link:hover {
     text-decoration: underline !important;
   }
-}
 
-.nav-tabs.bg-primary {
-  .nav-link {
-    color: $white !important;
+  &.it-section-bg-primary,
+  &.it-section-bg-dark {
+    .nav-link {
+      color: $white !important;
+
+      &.active {
+        border-bottom-color: $white;
+        color: $white !important;
+        background-color: transparent !important;
+      }
+    }
   }
 
-  .nav-link.active {
-    border-bottom-color: $white;
-    color: $white !important;
-    background-color: $primary !important;
+  &.it-section-bg-light,
+  &.it-section-bg-medium {
+    .nav-link {
+      color: $color-text-base !important;
+
+      &.active {
+        border-bottom-color: $primary;
+        color: $primary !important;
+        background-color: transparent !important;
+      }
+    }
   }
 
-  .nav-link.disabled {
-    color: $gray-400 !important;
+  &.it-section-bg-primary,
+  &.it-section-bg-dark,
+  &.it-section-bg-light,
+  &.it-section-bg-medium {
+    .nav-link.disabled {
+      color: $gray-400 !important;
+    }
   }
 }

@@ -5268,6 +5268,7 @@ type NewsFeedRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: String
   cta: InternalLinkRecord
   id: ItemId!
   paragraph(
@@ -7870,6 +7871,8 @@ type StoryItemRecord implements RecordInterface {
   ): StoryTopicRecord!
 }
 
+union StoryTabModelNewsField = ArticleRecord | InsightRecord | StoryItemRecord | WebinarItemRecord
+
 """Block of type Story tab (story_tab)"""
 type StoryTabRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -7891,7 +7894,7 @@ type StoryTabRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  news: [StoryItemRecord!]!
+  news: [StoryTabModelNewsField!]!
   title: String!
 }
 
