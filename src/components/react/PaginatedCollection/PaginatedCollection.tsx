@@ -6,12 +6,12 @@ import {
   CardEditorialStory,
   type CardEditorialStoryProps,
 } from "@components/react/CardEditorialStory";
-import { Chip } from "@components/react/Chip";
 import { Pagination } from "@components/react/Pagination";
 import type { SiteLocale } from "@graphql/types";
 import { getI18n } from "@i18n/microcopy";
 import { useState } from "react";
 import { Resource, type ResourceProps } from "../Resource";
+import { Select } from "../Select";
 type PaginatedCollectionCommonProps = {
   title: string;
   paragraph: string;
@@ -88,30 +88,13 @@ export function PaginatedCollection({
             <div className="mb-4">{paragraph}</div>
           </div>
         </div>
-        <div className="mw-lg-filter">
-          <div className="it-list-wrapper d-flex flex-column">
-            <span id="filterPagination" className="it-label text-dark mt-1">
-              {filterTitle}
-            </span>
-            <ul
-              className="it-list d-flex mb-0 flex-wrap"
-              aria-labelledby="filterPagination"
-            >
-              {categories.map((category) => (
-                <li className="list-item border-bottom-0 me-3 mt-1">
-                  <Chip
-                    key={category}
-                    variant="primary"
-                    size="large"
-                    label={category}
-                    visuallyHidden={t["filter.topic"]}
-                    onClick={() => handleCategoryChange(category)}
-                    active={selectedCategory === category}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="col-lg-4 col-12">
+          <Select
+            filterTitle={filterTitle}
+            selectedCategory={selectedCategory}
+            categories={categories}
+            onCategoryChange={handleCategoryChange}
+          />
         </div>
       </div>
       <ul className="it-card-list row pt-4">
