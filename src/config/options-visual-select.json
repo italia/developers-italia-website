@@ -93,6 +93,36 @@
   ],
   "iconList": [
     {
+      "name": "Office hours",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-office-hours.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-office-hours.svg"
+    },
+     {
+      "name": "Github esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-github-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-github-esteso.svg"
+    },
+     {
+      "name": "Matrix esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-matrix-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-matrix-esteso.svg"
+    },
+      {
+      "name": "It forum esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-it-forum-estesto.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-it-forum-estesto.svg"
+    },
+      {
+      "name": "Docs Italia esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-docs-italia-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-docs-italia-esteso.svg"
+    },
+    {
       "name": "Agid",
       "type": "image",
       "display": "https://www.datocms-assets.com/166118/1774975766-agid.svg",
