@@ -33,7 +33,7 @@
     "@types/react-dom": "^19.1.9",
     "astro": "^5.17.2",
     "bootstrap-italia": "^2.18.0",
-    "dataviz-components": "^0.3.1",
+    "dataviz-components": "^0.3.21",
     "datocms-structured-text-to-plain-text": "^5.1.7",
     "dotenv": "^16.6.1",
     "gql.tada": "^1.8.12",

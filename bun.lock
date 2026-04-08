@@ -17,7 +17,7 @@
         "@types/react-dom": "^19.1.9",
         "astro": "^5.17.2",
         "bootstrap-italia": "^2.18.0",
-        "dataviz-components": "^0.3.1",
+        "dataviz-components": "^0.3.21",
         "datocms-structured-text-to-plain-text": "^5.1.7",
         "dotenv": "^16.6.1",
         "gql.tada": "^1.8.12",
@@ -792,7 +792,7 @@
 
     "data-view-byte-offset": ["data-view-byte-offset@1.0.1", "", { "dependencies": { "call-bound": "^1.0.2", "es-errors": "^1.3.0", "is-data-view": "^1.0.1" } }, "sha512-BS8PfmtDGnrgYdOonGZQdLZslWIeCGFP9tpan0hi1Co2Zr2NKADsvGYA8XxuG/4UWgJ6Cjtv+YJnB6MM69QGlQ=="],
 
-    "dataviz-components": ["dataviz-components@0.3.1", "", { "peerDependencies": { "@dnd-kit/core": "^6.3.1", "@dnd-kit/sortable": "^10.0.0", "@dnd-kit/utilities": "^3.2.2", "dayjs": "^1.11.13", "echarts": "^5.6.0", "echarts-for-react": "^3.0.2", "ol": "^10.5.0", "react": "^19.1.0", "react-dom": "^19.1.0", "react-error-boundary": "^6.0.0", "react-markdown": "^10.1.0", "remark-gfm": "^4.0.1" } }, "sha512-j5iHAeBGtrmXmeovL+A8BnjmqbWnyB0IH9n2wTOc3JUIo6YVq4xM1bLkHjCehdp/U2HN+LF9wFQl3J+cjjff4Q=="],
+    "dataviz-components": ["dataviz-components@0.3.21", "", { "peerDependencies": { "@dnd-kit/core": "^6.3.1", "@dnd-kit/sortable": "^10.0.0", "@dnd-kit/utilities": "^3.2.2", "dayjs": "^1.11.13", "echarts": "^5.6.0", "echarts-for-react": "^3.0.2", "ol": "^10.5.0", "react": "^19.1.0", "react-dom": "^19.1.0", "react-error-boundary": "^6.0.0", "react-markdown": "^10.1.0", "remark-gfm": "^4.0.1" } }, "sha512-IYiyEc58HfsuW3GcPgJWMZekVPikiyID9YFwGAT9MdWBveZSZ45XtYv6uo6glBE4cAG9Kve50F4g1ihWO3k1zw=="],
 
     "datocms-listen": ["datocms-listen@1.0.2", "", { "dependencies": { "@0no-co/graphql.web": "^1.0.1", "@datocms/cda-client": "^0.2.5" } }, "sha512-7E1VFqd6/DEZAgfr9GtVFPPgI6xzIKOHR4Iths9FrjEKiE85rK9lzHhgPOTUiQJFALu1KNyARJUsL8Uj8iehxw=="],
 
