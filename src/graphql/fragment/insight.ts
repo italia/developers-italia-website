@@ -5,8 +5,16 @@ import {
 } from "@graphql/fragment/commonFragments";
 import {
   ArticleSTFragment,
+  CardLinkListFragment,
   FaqSectionRecordFragment,
   HeroFragment,
+  SupportChannelsSectionFragment,
+  SupportCTASectionFragment,
+  TextAndAccordionFragment,
+  TextAndImageFragment,
+  TextAndStatisticsFragment,
+  TextAndUseCasesFragment,
+  TextOnlyFragment,
 } from "@graphql/fragment/sectionFragments";
 import { AllInsightsSlugFragment } from "@graphql/fragment/slugFragments";
 import { graphql, type FragmentOf } from "@graphql/graphql";
@@ -30,6 +38,30 @@ export const InsightContentFragment = graphql(
       ... on ListCollectionRecord {
         ...ListCollectionFragment
       }
+      ... on SupportChannelsSectionRecord {
+        ...SupportChannelsSectionFragment
+      }
+      ... on SupportCtaSectionRecord {
+        ...SupportCTASectionFragment
+      }
+      ... on TextImageRecord {
+        ...TextAndImageFragment
+      }
+      ... on TextAccordionRecord {
+        ...TextAndAccordionFragment
+      }
+      ... on TextOnlyRecord {
+        ...TextOnlyFragment
+      }
+      ... on CardLinkListRecord {
+        ...CardLinkListFragment
+      }
+      ... on TextStatisticRecord {
+        ...TextAndStatisticsFragment
+      }
+      ... on TextUseCaseRecord {
+        ...TextAndUseCasesFragment
+      }
     }
   `,
   [
@@ -38,6 +70,14 @@ export const InsightContentFragment = graphql(
     ListCollectionFragment,
     CalloutFragment,
     ArticleSTFragment,
+    SupportChannelsSectionFragment,
+    TextAndImageFragment,
+    TextAndAccordionFragment,
+    TextOnlyFragment,
+    CardLinkListFragment,
+    TextAndStatisticsFragment,
+    TextAndUseCasesFragment,
+    SupportCTASectionFragment,
   ],
 );
 

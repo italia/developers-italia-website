@@ -1292,6 +1292,11 @@ input DateFilter {
   neq: Date
 }
 
+type DateMultiLocaleField {
+  locale: SiteLocale
+  value: Date
+}
+
 type DateNonNullMultiLocaleField {
   locale: SiteLocale
   value: Date!
@@ -3992,7 +3997,7 @@ input InUseFilter {
   eq: BooleanType
 }
 
-union InsightModelContentField = FaqSectionRecord | HeroRecord | ListCollectionRecord | StructuredTextRecord
+union InsightModelContentField = CardLinkListRecord | FaqSectionRecord | HeroRecord | ListCollectionRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
 
 type InsightModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -7745,7 +7750,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [DateNonNullMultiLocaleField!]
+  ): [DateMultiLocaleField!]
   _allParentPageLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7821,7 +7826,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): Date!
+  ): Date
   id: ItemId!
   image: FileField!
   parentPage(
