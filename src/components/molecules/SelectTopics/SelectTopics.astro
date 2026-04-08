@@ -1,0 +1,25 @@
+---
+import type { SelectTopicsProps } from "./types";
+
+type Props = SelectTopicsProps;
+const { title, topics } = Astro.props;
+const listId = `list-topics-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class="select-wrapper py-3">
+  {
+    title && (
+      <label
+        aria-labelledby={title ? listId : undefined}
+        for={listId}
+        class="form-label fw-semibold text-uppercase small text-dark"
+      >
+        {title}
+      </label>
+    )
+  }
+
+  <select id={listId}>
+    {topics.map((topic) => <option value={topic}>{topic}</option>)}
+  </select>
+</div>

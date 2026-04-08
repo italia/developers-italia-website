@@ -2,9 +2,9 @@
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import type { TopicFilterProps } from "./types";
 import { CardEditorialNews } from "@components/molecules/CardEditorialNews";
-import { Topics } from "@components/molecules/Topics";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import { getI18n } from "@i18n/microcopy";
+import { SelectTopics } from "@components/molecules/SelectTopics";
 
 type Props = TopicFilterProps;
 
@@ -35,20 +35,16 @@ const t = getI18n(lang);
       </div>
     </div>
     <div
-      class=`mw-lg-filter`
+      class=`col-lg-4 col-12`
       id="filter-container"
       data-label-for-all={labelForAll}
     >
-      <Topics
+      <SelectTopics
         title={filterTitle}
         topics={[
           labelForAll,
           ...contentCollection.map((collection) => collection.topicSlug),
         ]}
-        variant="column"
-        disabled={false}
-        variantChip="primary"
-        ariaLabelTopic={t["filter.topic"]}
       />
     </div>
   </div>
@@ -91,7 +87,7 @@ const t = getI18n(lang);
 </SectionContainer>
 
 <script>
-  import { initFilters } from "@utils/filterTopics";
+  import { initFilters } from "@utils/filterTopicsSelect";
   initFilters();
   document.addEventListener("astro:page-load", initFilters);
 </script>
