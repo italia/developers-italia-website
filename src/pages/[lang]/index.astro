@@ -1,39 +1,72 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import type { TagFragmentType } from "@graphql/fragment/commonFragments";
+import type { HomepageModelContentFragmentType } from "@graphql/fragment/homepage";
+import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
+import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { getLocaleValue } from "@utils/getLocaleValue";
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const response = await getEntry("locales", "site-locales");
-
-  const locales = response?.data.locales;
-  if (!locales) throw new Error("Locales not found");
-  return locales.map((lang) => ({
+  type PathItem = {
     params: {
-      lang,
-    },
-  }));
+      slug: string;
+      lang: SiteLocale;
+    };
+    props: {
+      seoMeta: TagFragmentType[];
+      seo: SeoFieldFragmentType | null;
+      content: HomepageModelContentFragmentType[];
+      publishedAt: string;
+      id: string;
+    };
+  };
+
+  const localesRes = await getEntry("locales", "site-locales");
+  const locales = localesRes?.data.locales;
+  const homepages = await getCollection("homepage");
+  const homepage = homepages[0];
+
+  if (!locales || !homepage) {
+    throw new Error("Configurazione locales o homepage non trovata");
+  }
+
+  const pathsPromises = locales.map(async (lang) => {
+    const seoResCollection = await getEntry(
+      "global_seo",
+      `${homepage.id}_${lang}`,
+    );
+    const seoRes = seoResCollection?.data;
+
+    const content = getLocaleValue(homepage.data.allContentLocales, lang, null);
+
+    if (!content) return null;
+
+    return {
+      params: { lang },
+      props: {
+        id: homepage.id,
+        content: content,
+        seoMeta: seoRes?.metaTags || [],
+        seo: seoRes?.seo || null,
+        publishedAt: homepage.data.publishedAt,
+      },
+    };
+  });
+
+  const paths = await Promise.all(pathsPromises);
+
+  return paths.filter((path): path is PathItem => path !== null);
 }
 
+const { id, content, seoMeta, publishedAt } = Astro.props;
 const { lang } = Astro.params;
+
 Astro.locals.lang = lang;
-
-const response = await getCollection("homepage");
-
-const homepage = response[0].data;
-if (!homepage) return;
-
-const seoResCollection = await getEntry("global_seo", `${homepage.id}_${lang}`);
-const seoRes = seoResCollection?.data;
-
-const content = getLocaleValue(homepage.allContentLocales, lang, null);
-
-if (!content) return;
-
-Astro.locals.recordId = homepage.id;
+Astro.locals.recordId = id;
 ---
 
-<Layout pageSeo={seoRes?.metaTags} datePublished={homepage.publishedAt}>
+<Layout pageSeo={seoMeta} datePublished={publishedAt}>
   <PageAdapter content={content} />
 </Layout>
