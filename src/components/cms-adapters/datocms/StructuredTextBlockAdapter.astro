@@ -17,9 +17,13 @@ const fontClass = isFontSerif ? "font-serif-p" : "";
 ---
 
 <section class={bgClass}>
-  <div class=`structured-text-container ${fontClass}  col-12 col-lg-8 m-auto `>
+  <div class=`structured-text-container ${fontClass}`>
     <div class="container py-5 py-lg-80">
-      <StructuredTextAdapter block={block.textContent} />
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <StructuredTextAdapter block={block.textContent} />
+        </div>
+      </div>
     </div>
   </div>
 </section>
