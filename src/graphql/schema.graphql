@@ -4101,7 +4101,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [InsightTopicRecordNonNullMultiLocaleField!]
+  ): [InsightTopicRecordMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -4196,7 +4196,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): InsightTopicRecord!
+  ): InsightTopicRecord
 }
 
 input InsightTopicModelFilter {
@@ -4277,9 +4277,9 @@ type InsightTopicRecord implements RecordInterface {
   ): String!
 }
 
-type InsightTopicRecordNonNullMultiLocaleField {
+type InsightTopicRecordMultiLocaleField {
   locale: SiteLocale
-  value: InsightTopicRecord!
+  value: InsightTopicRecord
 }
 
 """

@@ -23,7 +23,7 @@ type HasLocales = {
   allTopicLocales?:
     | {
         locale: SiteLocale | null;
-        value: { label: string };
+        value: { label: string } | null;
       }[]
     | null;
 };
@@ -36,7 +36,8 @@ const getTitle = (item: HasLocales, locale: string) =>
   item?.allTitleLocales?.find((t) => t.locale === locale)?.value || "No title";
 
 const getCategory = (item: HasLocales, locale: string) =>
-  item?.allTopicLocales?.find((t) => t.locale === locale)?.value.label;
+  item?.allTopicLocales?.find((t) => t.locale === locale)?.value?.label ||
+  undefined;
 
 export type RoutableRecord =
   | AllArticlesSlugFragmentType
@@ -68,7 +69,7 @@ export function resolveRoutePath(
         id: current.id,
         slug: slug,
         title: title,
-        category: category || topic,
+        category: category || topic || title,
       });
     }
 
