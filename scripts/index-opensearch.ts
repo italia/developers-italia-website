@@ -25,9 +25,11 @@ const INDEX_NAME_PREFIX = process.env.OPENSEARCH_INDEX_NAME;
 const CONTENT_PATH = path.join(process.cwd(), "dist", "client", "indexing");
 
 if (!HOST || !USERNAME || !PASSWORD || !CONTENT_PATH || !INDEX_NAME_PREFIX) {
-  throw new Error(
-    "Missing environment variables for OpenSearch (HOST, USERNAME, PASSWORD, CONTENT_PATH, INDEX_NAME_PREFIX).",
+  console.warn(
+    "⚠️  Missing environment variables for OpenSearch (HOST, USERNAME, PASSWORD, CONTENT_PATH, INDEX_NAME_PREFIX).",
   );
+  console.warn("Indexing will be skipped.\n");
+  process.exit(0);
 }
 
 function getBulkBody(documents: Document[], INDEX_NAME: string) {
