@@ -1,0 +1,27 @@
+---
+import { Link } from "@components/atoms/Link";
+import type { DownloadLinkFragmentType } from "@graphql/fragment/commonFragments";
+import { createDownloadUrl } from "@utils/createDownloadUrl";
+
+type DatoRecord = DownloadLinkFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord;
+};
+
+const { block } = Astro.props;
+
+if (!block.label || !block.doc) {
+  return null;
+}
+
+const label = block.label;
+const url = createDownloadUrl(block.doc);
+---
+
+<div class="mt-2">
+  <Link label={label} download={url} isIcon={true} />
+</div>

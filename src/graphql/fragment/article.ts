@@ -1,5 +1,6 @@
 import {
   CalloutFragment,
+  DownloadLinkFragment,
   ExternalLinkFragment,
   ImageBlockFragment,
   InternalLinkFragment,
@@ -69,6 +70,9 @@ export const ArticleContentFragment = graphql(
             ...ExternalLinkFragment
           }
         }
+        ... on DownloadLinkRecord {
+          ...DownloadLinkFragment
+        }
       }
     }
   `,
@@ -85,6 +89,7 @@ export const ArticleContentFragment = graphql(
     ImageBlockFragment,
     ListBlockquoteFragment,
     ListCardInfoFragment,
+    DownloadLinkFragment,
   ],
 );
 

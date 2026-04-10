@@ -394,6 +394,9 @@ export const StructuredTextFragment = graphql(
             ...ExternalLinkFragment
           }
         }
+        ... on DownloadLinkRecord {
+          ...DownloadLinkFragment
+        }
       }
     }
   `,
@@ -409,6 +412,7 @@ export const StructuredTextFragment = graphql(
     ImageBlockFragment,
     ListBlockquoteFragment,
     ListCardInfoFragment,
+    DownloadLinkFragment,
   ],
 );
 
