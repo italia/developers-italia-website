@@ -8,7 +8,7 @@ const { title, content, variant = "dark" } = Astro.props;
 const textLabelColorClass = variant === "light" ? "text-white" : undefined;
 ---
 
-<div class="row align-item-center justify-content-between pt-5">
+<div class="row align-item-center justify-content-between pt-lg-5 pt-0">
   {title && <p class={`it-label ${textLabelColorClass}`}>{title}</p>}
   {
     content.map((card) => (

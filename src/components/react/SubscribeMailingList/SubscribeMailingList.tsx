@@ -51,7 +51,7 @@ export function SubscribeMailingList({ idForm, lang }: SubscribeProps) {
 
   return (
     <>
-      <form id={idForm} onSubmit={onSubmit} className="form-group mb-0">
+      <form id={idForm} onSubmit={onSubmit} className="form-group mb-0 ">
         <div className="d-flex flex-row align-items-center">
           <div className="flex-grow-1 flex-grow-1 me-sm-4 w-100">
             <label
@@ -62,7 +62,7 @@ export function SubscribeMailingList({ idForm, lang }: SubscribeProps) {
             </label>
             <input
               type="email"
-              className="form-control"
+              className="form-control "
               id={`${idForm}_InputMail`}
               required
               name="email"
@@ -71,7 +71,7 @@ export function SubscribeMailingList({ idForm, lang }: SubscribeProps) {
           <div>
             <button
               type="submit"
-              className="btn btn-outline-primary"
+              className="btn btn-outline-primary ms-3 ms-lg-0"
               disabled={state === StateClass.LOADING}
             >
               {state === StateClass.LOADING ? (

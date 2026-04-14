@@ -1,5 +1,4 @@
 ---
-import { Icon } from "@components/atoms/Icon";
 import { Link } from "@components/atoms/Link";
 import type { CardPresentationBannerProps } from "./types";
 
@@ -8,21 +7,8 @@ type Props = CardPresentationBannerProps;
 const { title, description, icon, linkTo } = Astro.props;
 ---
 
-<!-- Ripristina su cloud --><!-- <article
-  class="it-card it-card-banner it-card-height-full rounded shadow-sm border"
->
-  <h3 class="it-card-title">
-    <a href={linkTo}>{title}</a>
-  </h3>
-  <div class="it-card-banner-icon-wrapper">
-    <Icon icon={icon} className="text-primary icon-xl" />
-  </div>
-  <div class="it-card-body">
-    <p class="it-card-text">{description}</p>
-  </div>
-</article> -->
 <article
-  class="it-card it-card-banner it-card-inline it-card-height-full bg-transparent"
+  class="it-card it-card-banner it-card-inline it-card-height-full bg-transparent text-start"
 >
   <div class="it-card-inline-content">
     <div class="it-card-body">
@@ -30,7 +16,7 @@ const { title, description, icon, linkTo } = Astro.props;
       <Link label={title} url={linkTo} />
     </div>
   </div>
-  <div class="it-card-banner-icon-wrapper">
-    <Icon icon={icon} className="text-primary icon-xl" />
+  <div class="px-3 it-card-banner-icon-wrapper align-items-start">
+    <img src={icon} alt="" style="width: 170px;" />
   </div>
 </article>
