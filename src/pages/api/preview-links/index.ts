@@ -43,6 +43,7 @@ export const POST: APIRoute = async ({ url, request }) => {
     const isLocal = process.env.NODE_ENV === "development";
 
     const protocol = isLocal ? "http" : "https";
+
     const host =
       request.headers.get("x-forwarded-host") || request.headers.get("host");
 

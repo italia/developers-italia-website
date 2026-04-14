@@ -29,7 +29,7 @@ const textColorClass =
       {paragraph && <p class={`${textColorClass}`}>{paragraph}</p>}
     </div>
 
-    <div class="d-none d-lg-block">
+    <div class=` ${!showInline ? 'd-none d-lg-block' : ''}`>
       <ul class="it-card-list row">
         {
           items.map((item) => {
@@ -47,14 +47,16 @@ const textColorClass =
       </ul>
     </div>
 
-    <Carousel>
-      {
-        items.map((item) => (
-          <CarouselItem>
-            <CardEditorialNews {...item} />
-          </CarouselItem>
-        ))
-      }
-    </Carousel>
+    {
+      !showInline && (
+        <Carousel>
+          {items.map((item) => (
+            <CarouselItem>
+              <CardEditorialNews {...item} />
+            </CarouselItem>
+          ))}
+        </Carousel>
+      )
+    }
   </div>
 </SectionContainer>
