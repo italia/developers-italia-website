@@ -3997,7 +3997,7 @@ input InUseFilter {
   eq: BooleanType
 }
 
-union InsightModelContentField = CardLinkListRecord | FaqSectionRecord | HeroRecord | ListCollectionRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
+union InsightModelContentField = CardLinkListRecord | FaqSectionRecord | HeroRecord | IntroArticleRecord | ListCollectionRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
 
 type InsightModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -9155,7 +9155,7 @@ type WebinarDescriptionRecord implements RecordInterface {
   text: TextBlockRecord!
 }
 
-union WebinarItemModelContentField = ActionCardRecord | HeroRecord | SpeakerRecord | WebinarDescriptionRecord
+union WebinarItemModelContentField = ActionCardRecord | HeroRecord | IntroArticleRecord | SpeakerRecord | WebinarDescriptionRecord
 
 type WebinarItemModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
