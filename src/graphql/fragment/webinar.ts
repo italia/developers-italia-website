@@ -2,6 +2,7 @@ import { TagFragment } from "@graphql/fragment/commonFragments";
 import {
   ActionCardFragment,
   HeroFragment,
+  IntroArticleFragment,
   SpeakerFragment,
   WebinarDescriptionFragment,
 } from "@graphql/fragment/sectionFragments";
@@ -27,6 +28,9 @@ export const WebinarContentFragment = graphql(
       ... on WebinarDescriptionRecord {
         ...WebinarDescriptionFragment
       }
+      ... on IntroArticleRecord {
+        ...IntroArticleFragment
+      }
     }
   `,
   [
@@ -34,6 +38,7 @@ export const WebinarContentFragment = graphql(
     ActionCardFragment,
     SpeakerFragment,
     WebinarDescriptionFragment,
+    IntroArticleFragment,
   ],
 );
 
