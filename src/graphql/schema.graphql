@@ -275,7 +275,7 @@ type ArticleNavigationRecord implements RecordInterface {
   previousLabel: String
 }
 
-"""Record of type Article (article)"""
+"""Record of type Articoli interni con sidebar (article)"""
 type ArticleRecord implements RecordInterface {
   _allContentLocales(
     """
@@ -4049,7 +4049,7 @@ enum InsightModelOrderBy {
   title_DESC
 }
 
-"""Record of type Insight (insight)"""
+"""Record of type Articoli e sottopagine (insight)"""
 type InsightRecord implements RecordInterface {
   _allAbstractLocales(
     """Process content as markdown"""
@@ -4238,7 +4238,7 @@ enum InsightTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type Insight topic (insight_topic)"""
+"""Record of type Categoria articoli e sottopagine (insight_topic)"""
 type InsightTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -5083,7 +5083,7 @@ enum MacroTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type Macro topic (macro_topic)"""
+"""Record of type Categoria link e risorse (macro_topic)"""
 type MacroTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -5332,7 +5332,7 @@ enum NewsItemModelOrderBy {
   title_DESC
 }
 
-"""Record of type News item (news_item)"""
+"""Record of type Contenuto esterno (news_item)"""
 type NewsItemRecord implements RecordInterface {
   _allDateOfPublicationLocales(
     """
@@ -5438,7 +5438,7 @@ type NewsItemRecord implements RecordInterface {
   ): NewsTopicRecord!
 }
 
-"""Block of type News tab (news_tab)"""
+"""Block of type Tab contenuto esterno (news_tab)"""
 type NewsTabRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -5502,7 +5502,7 @@ enum NewsTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type News topic (news_topic)"""
+"""Record of type Categoria contenuto esterno (news_topic)"""
 type NewsTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -6861,7 +6861,7 @@ type ResourceModelResourceFieldNonNullMultiLocaleField {
   value: ResourceModelResourceField!
 }
 
-"""Record of type Resource (resource)"""
+"""Record of type Link e risorse (resource)"""
 type ResourceRecord implements RecordInterface {
   _allCategoryLocales(
     """
@@ -6969,7 +6969,7 @@ enum ResourceTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type Resource topic (resource_topic)"""
+"""Record of type Tipologia di risorsa (resource_topic)"""
 type ResourceTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -7625,7 +7625,9 @@ enum StoryClassModelOrderBy {
   label_DESC
 }
 
-"""Record of type Story class (story_class)"""
+"""
+Record of type Classificazione articoli interni senza sidebar (story_class)
+"""
 type StoryClassRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -7731,7 +7733,7 @@ type StoryItemModelParentPageFieldMultiLocaleField {
   value: StoryItemModelParentPageField
 }
 
-"""Record of type Story item (story_item)"""
+"""Record of type Articoli interni senza sidebar (story_item)"""
 type StoryItemRecord implements RecordInterface {
   _allArticleClassificationLocales(
     """
@@ -7878,7 +7880,7 @@ type StoryItemRecord implements RecordInterface {
 
 union StoryTabModelNewsField = ArticleRecord | InsightRecord | StoryItemRecord | WebinarItemRecord
 
-"""Block of type Story tab (story_tab)"""
+"""Block of type Tab contenuto interno (story_tab)"""
 type StoryTabRecord implements RecordInterface {
   _createdAt: DateTime!
 
@@ -7942,7 +7944,7 @@ enum StoryTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type Story topic (story_topic)"""
+"""Record of type Categoria articoli interni senza sidebar (story_topic)"""
 type StoryTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
@@ -9088,7 +9090,7 @@ enum WebinarAuthorModelOrderBy {
   role_DESC
 }
 
-"""Record of type Webinar author (webinar_author)"""
+"""Record of type Relatori (webinar_author)"""
 type WebinarAuthorRecord implements RecordInterface {
   _allRoleLocales(
     """
@@ -9217,7 +9219,7 @@ type WebinarItemModelParentPageFieldMultiLocaleField {
   value: WebinarItemModelParentPageField
 }
 
-"""Record of type Webinar item (webinar_item)"""
+"""Record of type Webinar ed eventi (webinar_item)"""
 type WebinarItemRecord implements RecordInterface {
   _allContentLocales(
     """
@@ -9407,7 +9409,7 @@ enum WebinarTopicModelOrderBy {
   label_DESC
 }
 
-"""Record of type Webinar topic (webinar_topic)"""
+"""Record of type Categoria webinar ed eventi (webinar_topic)"""
 type WebinarTopicRecord implements RecordInterface {
   _allLabelLocales(
     """
