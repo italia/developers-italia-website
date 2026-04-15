@@ -91,6 +91,20 @@
       "value": "primary-light"
     }
   ],
+  "backgroundLightColorsNoPrimary": [
+    {
+      "name": "Default",
+      "type": "color",
+      "display": "#ffffff",
+      "value": "default"
+    },
+    {
+      "name": "Lighter",
+      "type": "color",
+      "display": "#F2F7FC",
+      "value": "lighter"
+    }
+  ],
   "iconList": [
     {
       "name": "Fornitori",
