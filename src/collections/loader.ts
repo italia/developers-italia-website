@@ -59,14 +59,7 @@ export const newsLoader = async () => {
 };
 
 export const storiesLoader = async () => {
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  const dateLimit = oneYearAgo.toISOString();
-  const response = await executeAutoPagingQuery(AllStoryCardQuery, {
-    variables: {
-      dateLimit: dateLimit,
-    },
-  });
+  const response = await executeAutoPagingQuery(AllStoryCardQuery);
   return response?.allStoryItems || [];
 };
 

@@ -4,11 +4,8 @@ import { graphql } from "@graphql/graphql";
 
 export const AllStoryCardQuery = graphql(
   `
-    query AllStory($dateLimit: Date) {
-      allStoryItems(
-        first: 2500
-        filter: { dateOfPublication: { gt: $dateLimit } }
-      ) {
+    query AllStory {
+      allStoryItems(first: 2500) {
         ...StoryCardFragment
       }
     }

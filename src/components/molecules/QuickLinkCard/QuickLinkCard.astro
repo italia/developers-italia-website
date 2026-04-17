@@ -12,7 +12,9 @@ const variantTextContainer =
   background === "dark" || background === "primary" ? "dark" : "light";
 ---
 
-<div class=`${bgClass} rounded-2 py-4 px-5 text-white`>
+<div
+  class=`${bgClass} rounded-2 py-4 px-5 ${variantTextContainer=== "dark"? "text-white":""}`
+>
   {title && <h3>{title}</h3>}
   <ListLink items={links} variant={variantTextContainer} />
 </div>
