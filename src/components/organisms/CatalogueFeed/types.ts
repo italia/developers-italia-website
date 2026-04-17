@@ -1,3 +1,5 @@
+import type { SectionBackground } from "@utils/background";
+
 export type PageNewsTab = {
   title: string;
   paragraph: string;
@@ -10,6 +12,7 @@ export type PageNewsTab = {
 
 export type UpdateTabSectionProps = {
   id: string;
+  background?: SectionBackground;
   tabs: PageNewsTab[];
 };
 

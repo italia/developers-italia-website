@@ -423,6 +423,7 @@ export type StructuredTextFragmentType = FragmentOf<
 export const CatalogueFeedFragment = graphql(`
   fragment CatalogueFeedFragment on CatalogueFeedRecord @_unmask {
     id
+    backgroundColor
     tabs {
       title
       paragraph

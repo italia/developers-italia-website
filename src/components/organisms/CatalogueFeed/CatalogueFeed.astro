@@ -19,7 +19,7 @@ import type { ElementType, UpdateTabSectionProps } from "./types";
 
 type Props = UpdateTabSectionProps;
 
-const { id, tabs = [] } = Astro.props;
+const { id, background = "default", tabs = [] } = Astro.props;
 const { lang } = Astro.locals;
 
 const tabsItems = tabs.map((tab, index) => ({
@@ -74,7 +74,7 @@ function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
 }
 ---
 
-<SplitContent leftColumns={5} alignItems="top">
+<SplitContent leftColumns={5} alignItems="top" background={background}>
   <div class="row">
     <Tabs id={id} items={tabsItems}>
       {

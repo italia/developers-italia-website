@@ -2,6 +2,7 @@
 import { CatalogueFeed } from "@components/organisms/CatalogueFeed";
 import type { PageNewsTab } from "@components/organisms/CatalogueFeed/types";
 import type { CatalogueFeedFragmentType } from "@graphql/fragment/sectionFragments";
+import type { SectionBackground } from "@utils/background";
 
 type Props = {
   block: CatalogueFeedFragmentType;
@@ -20,4 +21,8 @@ const tabs: PageNewsTab[] = block.tabs.map((tab) => ({
 }));
 ---
 
-<CatalogueFeed id={block.id} tabs={tabs} />
+<CatalogueFeed
+  id={block.id}
+  tabs={tabs}
+  background={block.backgroundColor as SectionBackground}
+/>
