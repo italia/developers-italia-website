@@ -107,10 +107,154 @@
   ],
   "iconList": [
     {
-      "name": "Fornitori",
+      "name": "Office hours",
       "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770196807-fornitori.svg",
-      "value": "https://www.datocms-assets.com/166118/1770196807-fornitori.svg"
+      "display": "https://www.datocms-assets.com/166118/1775209096-office-hours.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-office-hours.svg"
+    },
+    {
+      "name": "Github esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-github-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-github-esteso.svg"
+    },
+    {
+      "name": "Matrix esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-matrix-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-matrix-esteso.svg"
+    },
+    {
+      "name": "It forum esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-it-forum-estesto.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-it-forum-estesto.svg"
+    },
+    {
+      "name": "Docs Italia esteso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775209096-docs-italia-esteso.svg",
+      "value": "https://www.datocms-assets.com/166118/1775209096-docs-italia-esteso.svg"
+    },
+    {
+      "name": "Agid",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1775638631-agid.svg",
+      "value": "https://www.datocms-assets.com/166118/1775638631-agid.svg"
+    },
+    {
+      "name": "Risorse",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975647-risorse.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975647-risorse.svg"
+    },
+    {
+      "name": "Strumenti",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975638-strumenti.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975638-strumenti.svg"
+    },
+    {
+      "name": "Software a catalogo",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975638-software-a-catalogo.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975638-software-a-catalogo.svg"
+    },
+    {
+      "name": "Software open source",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975638-software-open-source.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975638-software-open-source.svg"
+    },
+    {
+      "name": "Software a riuso",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975638-software-a-riuso.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975638-software-a-riuso.svg"
+    },
+    {
+      "name": "Governance",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975628-governance.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975628-governance.svg"
+    },
+    {
+      "name": "Piattaforme abilitanti",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975628-piattaforme-abilitanti.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975628-piattaforme-abilitanti.svg"
+    },
+    {
+      "name": "Documenti docs italia",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975628-documenti-docs-italia.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975628-documenti-docs-italia.svg"
+    },
+    {
+      "name": "Community",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975628-community.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975628-community.svg"
+    },
+    {
+      "name": "API",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975625-api.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975625-api.svg"
+    },
+    {
+      "name": "Amministrazione",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774975618-amministrazione.svg",
+      "value": "https://www.datocms-assets.com/166118/1774975618-amministrazione.svg"
+    },
+    {
+      "name": "Matrix",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774259551-matrix.svg",
+      "value": "https://www.datocms-assets.com/166118/1774259551-matrix.svg"
+    },
+    {
+      "name": "Matrix white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg"
+    },
+    {
+      "name": "IT logo",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg",
+      "value": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg"
+    },
+    {
+      "name": "IT logo white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg"
+    },
+    {
+      "name": "Slack",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312333-slack.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312333-slack.svg"
+    },
+    {
+      "name": "Slack white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg"
+    },
+    {
+      "name": "Github",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1768312333-github.svg",
+      "value": "https://www.datocms-assets.com/166118/1768312333-github.svg"
+    },
+    {
+      "name": "Github white",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/166118/1770300598-github-white.svg",
+      "value": "https://www.datocms-assets.com/166118/1770300598-github-white.svg"
     },
     {
       "name": "Repubblica italiana",
@@ -131,100 +275,10 @@
       "value": "https://www.datocms-assets.com/166118/1770039138-avatar.svg"
     },
     {
-      "name": "Check",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1769694001-check.svg",
-      "value": "https://www.datocms-assets.com/166118/1769694001-check.svg"
-    },
-    {
-      "name": "Layers",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1769693984-layers.svg",
-      "value": "https://www.datocms-assets.com/166118/1769693984-layers.svg"
-    },
-    {
-      "name": "PA",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1769693859-pa.svg",
-      "value": "https://www.datocms-assets.com/166118/1769693859-pa.svg"
-    },
-    {
-      "name": "Foggy",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1768312594-foggy.svg",
-      "value": "https://www.datocms-assets.com/166118/1768312594-foggy.svg"
-    },
-    {
-      "name": "Currency",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770111633-currency.svg",
-      "value": "https://www.datocms-assets.com/166118/1770111633-currency.svg"
-    },
-    {
-      "name": "World",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1769696755-world.svg",
-      "value": "https://www.datocms-assets.com/166118/1769696755-world.svg"
-    },
-    {
-      "name": "IT logo",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg",
-      "value": "https://www.datocms-assets.com/166118/1770033512-it-logo.svg"
-    },
-    {
-      "name": "IT logo white",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg",
-      "value": "https://www.datocms-assets.com/166118/1770300598-it-logo-white.svg"
-    },
-    {
-      "name": "Github",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1768312333-github.svg",
-      "value": "https://www.datocms-assets.com/166118/1768312333-github.svg"
-    },
-    {
-      "name": "Github white",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770300598-github-white.svg",
-      "value": "https://www.datocms-assets.com/166118/1770300598-github-white.svg"
-    },
-    {
       "name": "Logo DTD",
       "type": "image",
       "display": "https://www.datocms-assets.com/166118/1768312333-logo-dtd.svg",
       "value": "https://www.datocms-assets.com/166118/1768312333-logo-dtd.svg"
-    },
-    {
-      "name": "Slack",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1768312333-slack.svg",
-      "value": "https://www.datocms-assets.com/166118/1768312333-slack.svg"
-    },
-    {
-      "name": "Slack white",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg",
-      "value": "https://www.datocms-assets.com/166118/1770300598-slack-white.svg"
-    },
-    {
-      "name": "Cloud logo",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1768311105-cloud-logo.svg",
-      "value": "https://www.datocms-assets.com/166118/1768311105-cloud-logo.svg"
-    },
-    {
-      "name": "Matrix",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1774259551-matrix.svg",
-      "value": "https://www.datocms-assets.com/166118/1774259551-matrix.svg"
-    },
-    {
-      "name": "Matrix white",
-      "type": "image",
-      "display": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg",
-      "value": "https://www.datocms-assets.com/166118/1774259556-matrix-white.svg"
     }
   ]
 }
