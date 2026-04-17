@@ -1,4 +1,6 @@
+import { LayoutQuery } from "@graphql/query/layout";
 import type { Document, SiteLocale } from "@graphql/types";
+import { executeQuery } from "@lib/datocms";
 import { Client } from "@opensearch-project/opensearch";
 import dotenv from "dotenv";
 import * as fs from "fs";
@@ -96,11 +98,31 @@ const loadDocumentsIntoIndex = async (
 };
 
 const refreshIndex = async (client: Client, index: string) => {
-  console.log(`ELASTIC: REFRESH INDEX ${index}`);
+  console.log(`OPENSEARCH: REFRESH INDEX ${index}`);
   await client.indices.refresh({ index });
 };
 
+async function isSearchEnabledOnDato(): Promise<boolean> {
+  const token = process.env.DATOCMS_API_TOKEN;
+
+  if (!token) {
+    console.error("Missing DATOCMS_API_TOKEN");
+    return false;
+  }
+
+  const response = await executeQuery(LayoutQuery);
+
+  return response.search?.isSearchEnabled || false;
+}
+
 async function runIndexing() {
+  const searchEnabled = await isSearchEnabledOnDato();
+
+  if (!searchEnabled) {
+    console.log("Search is disabled on DatoCMS. Skipping indexing.");
+    return;
+  }
+
   const client = new Client({
     node: HOST,
     auth: {
