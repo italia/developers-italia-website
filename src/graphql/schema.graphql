@@ -858,6 +858,7 @@ type CatalogueFeedRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: String
   id: ItemId!
   tabs: [CatalogueTabRecord!]!
 }
