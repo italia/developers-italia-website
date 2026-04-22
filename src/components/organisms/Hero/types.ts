@@ -14,6 +14,7 @@ export type HeroProps = {
   labelButton?: string;
   linkTo?: string;
   variantButton?: ButtonVariantProps;
+  openInNewTab?: boolean;
 };
 
 export type HeroSizeProps = "xsmall" | "small" | "default";

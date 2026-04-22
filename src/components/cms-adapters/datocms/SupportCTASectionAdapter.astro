@@ -20,7 +20,7 @@ type Props = {
 const { block, size = "small" } = Astro.props;
 const { lang } = Astro.locals;
 
-const { labelButton, linkTo } = getCtaFields(block.cta, lang);
+const { labelButton, linkTo, openInNewTab } = getCtaFields(block.cta, lang);
 ---
 
 <SupportCTASection
@@ -31,4 +31,5 @@ const { labelButton, linkTo } = getCtaFields(block.cta, lang);
   background={block.backgroundColor as SupportCTASectionBackgroundProps}
   labelButton={labelButton}
   linkTo={linkTo}
+  openInNewTab={openInNewTab}
 />

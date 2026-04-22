@@ -1,4 +1,5 @@
 ---
+import { getI18n } from "@i18n/microcopy";
 import ButtonBase from "./ButtonBase.astro";
 import { getButtonClasses } from "./helper";
 import type { ButtonLinkProps } from "./types";
@@ -19,6 +20,14 @@ const { className, colorIcon } = getButtonClasses(variant, size, !!icon);
 
 const target = openInNewTab ? "_blank" : "_self";
 const rel = openInNewTab ? "noopener noreferrer" : undefined;
+
+const { lang } = Astro.locals;
+const t = getI18n(lang);
+const ariaLabel = download
+  ? t["link.download"]
+  : openInNewTab
+    ? t["link.external"]
+    : t["link.internal"];
 ---
 
 <style>
@@ -32,4 +41,5 @@ const rel = openInNewTab ? "noopener noreferrer" : undefined;
   target={target}
 >
   <ButtonBase label={label} icon={icon} colorIcon={colorIcon} />
+  <span class="visually-hidden">{ariaLabel}</span>
 </a>

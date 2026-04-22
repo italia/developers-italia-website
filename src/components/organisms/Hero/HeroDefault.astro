@@ -16,6 +16,7 @@ const {
   labelButton,
   linkTo,
   variantButton,
+  openInNewTab = false,
 } = Astro.props;
 const sizeClass = variant === "small" ? "small-size" : "default-size";
 ---
@@ -65,6 +66,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
                   label={labelButton}
                   variant={variantButton}
                   linkTo={linkTo}
+                  openInNewTab={openInNewTab}
                 />
               </div>
             )

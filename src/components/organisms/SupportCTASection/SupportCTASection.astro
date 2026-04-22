@@ -16,6 +16,7 @@ const {
   image,
   background = "lighter",
   size = "default",
+  openInNewTab = false,
 } = Astro.props;
 
 const backgroundColor: Record<SupportCTASectionBackgroundProps, string> = {
@@ -40,7 +41,12 @@ const backgroundColorClass = backgroundColor[background];
           {
             labelButton && linkTo && (
               <div class="mt-5">
-                <ButtonLink size="small" label={labelButton} linkTo={linkTo} />
+                <ButtonLink
+                  size="small"
+                  label={labelButton}
+                  linkTo={linkTo}
+                  openInNewTab={openInNewTab}
+                />
               </div>
             )
           }

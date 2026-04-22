@@ -5,6 +5,7 @@ export type TextContainerProps = {
   labelButton?: string;
   linkTo?: string;
   heading?: HeadingTag;
+  openInNewTab?: boolean;
 };
 
 export type TextContainerVariant = "light" | "dark" | "primary";

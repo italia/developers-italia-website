@@ -11,6 +11,7 @@ const {
   linkTo,
   variant = "light",
   heading: TitleTag = "h2",
+  openInNewTab = false,
 } = Astro.props;
 
 const colorClass =
@@ -40,6 +41,7 @@ const variantButton =
           label={labelButton}
           variant={variantButton}
           linkTo={linkTo}
+          openInNewTab={openInNewTab}
         />
       </div>
     )

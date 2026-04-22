@@ -8,6 +8,7 @@ export type SupportCTASectionProps = {
   image: ImageProps;
   background?: SupportCTASectionBackgroundProps;
   size?: SupportCTASectionSizeProps;
+  openInNewTab?: boolean;
 };
 
 export type SupportCTASectionBackgroundProps = "lighter" | "default";

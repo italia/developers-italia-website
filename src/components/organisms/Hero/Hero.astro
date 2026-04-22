@@ -17,6 +17,7 @@ const {
   backgroundColor = "default",
   labelButton,
   linkTo,
+  openInNewTab = false,
 } = Astro.props;
 
 const classBackground =
@@ -44,6 +45,7 @@ const variantButton = backgroundColor === "primary" ? "dark" : "light";
       labelButton={labelButton}
       linkTo={linkTo}
       variantButton={variantButton}
+      openInNewTab={openInNewTab}
     >
       <slot name="breadcrumb" slot="breadcrumb" />
     </HeroDefault>
@@ -61,6 +63,7 @@ const variantButton = backgroundColor === "primary" ? "dark" : "light";
       labelButton={labelButton}
       linkTo={linkTo}
       variantButton={variantButton}
+      openInNewTab={openInNewTab}
     >
       <slot name="breadcrumb" slot="breadcrumb" />
     </HeroCompactImage>
@@ -78,6 +81,7 @@ const variantButton = backgroundColor === "primary" ? "dark" : "light";
       labelButton={labelButton}
       linkTo={linkTo}
       variantButton={variantButton}
+      openInNewTab={openInNewTab}
     >
       <slot name="breadcrumb" slot="breadcrumb" />
     </HeroFullHeightImage>

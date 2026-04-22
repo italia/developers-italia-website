@@ -13,6 +13,7 @@ const {
   labelButton,
   linkTo,
   variantButton,
+  openInNewTab = false,
 } = Astro.props;
 ---
 
@@ -37,6 +38,7 @@ const {
                   label={labelButton}
                   variant={variantButton}
                   linkTo={linkTo}
+                  openInNewTab={openInNewTab}
                 />
               </div>
             )

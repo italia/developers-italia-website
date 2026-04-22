@@ -30,7 +30,7 @@ const variantTextColorBreadcrumb = () => {
   return variantOnBackgroundColor;
 };
 
-const { labelButton, linkTo } = getCtaFields(block.cta, lang);
+const { labelButton, linkTo, openInNewTab } = getCtaFields(block.cta, lang);
 ---
 
 <Hero
@@ -44,6 +44,7 @@ const { labelButton, linkTo } = getCtaFields(block.cta, lang);
     undefined) as SectionBackgroundHero}
   labelButton={labelButton}
   linkTo={linkTo}
+  openInNewTab={openInNewTab}
 >
   <Breadcrumb
     items={itemsBreadcrumb}

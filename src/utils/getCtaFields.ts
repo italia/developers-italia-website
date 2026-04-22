@@ -12,23 +12,27 @@ type BaseCta = {
 };
 
 export const getCtaFields = (cta: BaseCta | null, lang: SiteLocale) => {
-  if (!cta) return { labelButton: undefined, linkTo: undefined };
+  const defaultReturn = {
+    labelButton: undefined,
+    linkTo: undefined,
+    openInNewTab: undefined,
+  };
+  if (!cta) return defaultReturn;
 
   switch (cta.componentName) {
     case DatoBlockModel.ExternalLink:
       return {
         labelButton: cta.label,
         linkTo: cta.url,
+        openInNewTab: true,
       };
     case DatoBlockModel.InternalLink:
       return {
         labelButton: cta.label,
         linkTo: linkResolver(cta.linkTo?.id, lang),
+        openInNewTab: false,
       };
     default:
-      return {
-        labelButton: undefined,
-        linkTo: undefined,
-      };
+      return defaultReturn;
   }
 };
