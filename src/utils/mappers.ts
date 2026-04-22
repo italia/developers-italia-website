@@ -42,7 +42,7 @@ export const mapStoryToCardEditorialStoryProps = (
     linkTo: linkResolver(story.id, lang),
     category: getLocaleValue(topic?._allLabelLocales, lang, ""),
     dateTime: story.publishedAt || undefined,
-    description: "",
+    description: getLocaleValue(story.allParagraphLocales, lang, "") || "",
     lang: lang,
   };
 };
