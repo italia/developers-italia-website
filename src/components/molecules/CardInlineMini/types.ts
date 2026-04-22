@@ -8,4 +8,5 @@ export type CardInlineMiniProps = {
   category?: string;
   dateTime?: string;
   ariaLabelCardCategory?: string;
+  isExternal?: boolean;
 };

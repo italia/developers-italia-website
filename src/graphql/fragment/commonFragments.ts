@@ -933,6 +933,7 @@ export type QuickLinkCardFragmentType = FragmentOf<
 export const CardLinkFragment = graphql(
   `
     fragment CardLinkFragment on CardLinkRecord @_unmask {
+      id
       title
       paragraph
       link {

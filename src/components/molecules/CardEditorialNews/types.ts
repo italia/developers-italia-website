@@ -10,4 +10,5 @@ export type CardEditorialNewsProps = {
   dateTime?: string;
   action?: string;
   fullHeight?: boolean;
+  isExternal?: boolean;
 };

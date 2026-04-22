@@ -16,12 +16,15 @@ const {
   dateTime,
   action,
   fullHeight = true,
+  isExternal = true,
 } = Astro.props;
 
 const shouldShowFooter = category || dateTime;
 const cardTitleId = `card-title-${id}`;
 const { lang } = Astro.locals;
 const t = getI18n(lang);
+
+const ariaLabel = isExternal ? t["link.external"] : t["link.internal"];
 ---
 
 <article
@@ -29,7 +32,10 @@ const t = getI18n(lang);
   aria-labelledby={cardTitleId}
 >
   <h3 class="it-card-title" id={cardTitleId}>
-    <a href={linkTo} aria-label={t["link.external"]}>{title}</a>
+    <a href={linkTo}
+      >{title}
+      <span class="visually-hidden">{ariaLabel}</span>
+    </a>
   </h3>
   {
     image && (

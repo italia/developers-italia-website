@@ -648,6 +648,7 @@ export type TextOnlyFragmentType = FragmentOf<typeof TextOnlyFragment>;
 export const CardLinkListFragment = graphql(
   `
     fragment CardLinkListFragment on CardLinkListRecord @_unmask {
+      id
       backgroundColor
       title
       paragraph

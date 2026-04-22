@@ -19,11 +19,13 @@ const items: CardEditorialNewsProps[] = block.listContent.map((item) => {
     : null;
 
   return {
+    id: item.id,
     title: item.title,
     description: item.paragraph || "",
     image: item.image,
     linkTo: url || linkTo || "#",
     action: url ? new URL(url).host : undefined,
+    isExternal: !!url,
   };
 });
 ---

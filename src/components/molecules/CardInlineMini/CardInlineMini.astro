@@ -7,12 +7,22 @@ import type { CardInlineMiniProps } from "./types";
 
 type Props = CardInlineMiniProps;
 
-const { id = "", title, image, linkTo, category, dateTime } = Astro.props;
+const {
+  id = "",
+  title,
+  image,
+  linkTo,
+  category,
+  dateTime,
+  isExternal = true,
+} = Astro.props;
 
 const shouldShowFooter = category || dateTime;
 const cardTitleId = `card-title-${id}`;
 const { lang } = Astro.locals;
 const t = getI18n(lang);
+
+const ariaLabel = isExternal ? t["link.external"] : t["link.internal"];
 ---
 
 <article
@@ -23,7 +33,10 @@ const t = getI18n(lang);
     class="d-flex flex-column it-card-title justify-content-center mt-0"
     id={cardTitleId}
   >
-    <a href={linkTo}>{title}</a>
+    <a href={linkTo}
+      >{title}
+      <span class="visually-hidden">{ariaLabel}</span>
+    </a>
   </h3>
 
   {
