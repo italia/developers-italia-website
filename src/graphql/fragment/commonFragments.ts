@@ -314,6 +314,10 @@ export const StoryCardFragment = graphql(
         locale
         value
       }
+      allParagraphLocales: _allParagraphLocales {
+        locale
+        value
+      }
       allTopicLocales: _allTopicLocales {
         value {
           id

@@ -208,15 +208,15 @@ input ArticleModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  content: StructuredTextFilter
-  description: TextFilter
-  descriptionTitle: StringFilter
+  title: StringFilter
+  seo: SeoFilter
+  parentPage: LinkFilter
   image: FileFilter
   paragraph: TextFilter
-  parentPage: LinkFilter
-  seo: SeoFilter
+  descriptionTitle: StringFilter
+  description: TextFilter
+  content: StructuredTextFilter
   slug: SlugFilter
-  title: StringFilter
   OR: [ArticleModelFilter]
   AND: [ArticleModelFilter]
 }
@@ -242,10 +242,10 @@ enum ArticleModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  descriptionTitle_ASC
-  descriptionTitle_DESC
   title_ASC
   title_DESC
+  descriptionTitle_ASC
+  descriptionTitle_DESC
 }
 
 """Block of type Article navigation (article_navigation)"""
@@ -881,10 +881,10 @@ input CatalogueModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  parentPage: LinkFilter
-  seo: SeoFilter
-  slug: SlugFilter
   title: StringFilter
+  seo: SeoFilter
+  parentPage: LinkFilter
+  slug: SlugFilter
   OR: [CatalogueModelFilter]
   AND: [CatalogueModelFilter]
 }
@@ -4016,13 +4016,13 @@ input InsightModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  abstract: TextFilter
+  title: StringFilter
   image: FileFilter
+  abstract: TextFilter
   parentPage: LinkFilter
   seo: SeoFilter
-  slug: SlugFilter
-  title: StringFilter
   topic: LinkFilter
+  slug: SlugFilter
   OR: [InsightModelFilter]
   AND: [InsightModelFilter]
 }
@@ -4388,18 +4388,18 @@ input KpiElementModelFilter {
   _status: StatusFilter
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  backgroundColor: StringFilter
-  flowDetail: StringFilter
-  flowDirection: StringFilter
-  flowValue: StringFilter
-  footerText: StringFilter
-  openDataPath: StringFilter
-  percentage: StringFilter
-  showFlow: BooleanFilter
   title: StringFilter
   value: StringFilter
+  backgroundColor: StringFilter
   valuePrefix: StringFilter
+  flowDirection: StringFilter
+  showFlow: BooleanFilter
+  flowValue: StringFilter
+  flowDetail: StringFilter
+  footerText: StringFilter
+  percentage: StringFilter
   valueSuffix: StringFilter
+  openDataPath: StringFilter
   OR: [KpiElementModelFilter]
   AND: [KpiElementModelFilter]
 }
@@ -4423,30 +4423,30 @@ enum KpiElementModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  backgroundColor_ASC
-  backgroundColor_DESC
-  flowDetail_ASC
-  flowDetail_DESC
-  flowDirection_ASC
-  flowDirection_DESC
-  flowValue_ASC
-  flowValue_DESC
-  footerText_ASC
-  footerText_DESC
-  openDataPath_ASC
-  openDataPath_DESC
-  percentage_ASC
-  percentage_DESC
-  showFlow_ASC
-  showFlow_DESC
   title_ASC
   title_DESC
   value_ASC
   value_DESC
+  backgroundColor_ASC
+  backgroundColor_DESC
   valuePrefix_ASC
   valuePrefix_DESC
+  flowDirection_ASC
+  flowDirection_DESC
+  showFlow_ASC
+  showFlow_DESC
+  flowValue_ASC
+  flowValue_DESC
+  flowDetail_ASC
+  flowDetail_DESC
+  footerText_ASC
+  footerText_DESC
+  percentage_ASC
+  percentage_DESC
   valueSuffix_ASC
   valueSuffix_DESC
+  openDataPath_ASC
+  openDataPath_DESC
 }
 
 """Record of type Kpi element (kpi_element)"""
@@ -5296,11 +5296,11 @@ input NewsItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
+  title: StringFilter
+  paragraph: TextFilter
   dateOfPublication: DateFilter
   image: FileFilter
   link: StringFilter
-  paragraph: TextFilter
-  title: StringFilter
   topic: LinkFilter
   OR: [NewsItemModelFilter]
   AND: [NewsItemModelFilter]
@@ -5325,12 +5325,12 @@ enum NewsItemModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  title_ASC
+  title_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
   link_ASC
   link_DESC
-  title_ASC
-  title_DESC
 }
 
 """Record of type Contenuto esterno (news_item)"""
@@ -5602,9 +5602,9 @@ input PageModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
+  title: StringFilter
   seo: SeoFilter
   slug: SlugFilter
-  title: StringFilter
   OR: [PageModelFilter]
   AND: [PageModelFilter]
 }
@@ -7690,14 +7690,15 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  articleClassification: LinkFilter
-  dateOfPublication: DateFilter
   image: FileFilter
-  parentPage: LinkFilter
-  seo: SeoFilter
-  slug: SlugFilter
+  dateOfPublication: DateFilter
   title: StringFilter
+  parentPage: LinkFilter
   topic: LinkFilter
+  seo: SeoFilter
+  articleClassification: LinkFilter
+  slug: SlugFilter
+  paragraph: TextFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
@@ -7754,6 +7755,15 @@ type StoryItemRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [DateMultiLocaleField!]
+  _allParagraphLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
   _allParentPageLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7832,6 +7842,18 @@ type StoryItemRecord implements RecordInterface {
   ): Date
   id: ItemId!
   image: FileField!
+  paragraph(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
   parentPage(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -9179,11 +9201,11 @@ input WebinarItemModelFilter {
   date: DateFilter
   image: FileFilter
   paragraph: TextFilter
+  title: StringFilter
+  topic: LinkFilter
   parentPage: LinkFilter
   seo: SeoFilter
   slug: SlugFilter
-  title: StringFilter
-  topic: LinkFilter
   OR: [WebinarItemModelFilter]
   AND: [WebinarItemModelFilter]
 }

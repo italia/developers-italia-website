@@ -59,6 +59,8 @@ const buttonLabel = block.cta?.label;
             const topic = getLocaleValue(allTopicLocales, lang, null);
             let publishedAt = "publishedAt" in n ? n.publishedAt : undefined;
 
+            const description = getLocaleValue(n.allParagraphLocales, lang, "");
+
             return {
               id: n.id,
               title: getLocaleValue(n.allTitleLocales, lang, ""),
@@ -69,6 +71,7 @@ const buttonLabel = block.cta?.label;
                 lang,
                 undefined,
               ),
+              description: description || undefined,
               dateTime: publishedAt || undefined,
             };
           }),
