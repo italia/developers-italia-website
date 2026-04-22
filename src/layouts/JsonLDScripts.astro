@@ -16,7 +16,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
 const globalSetting = await getGlobalSettings(lang);
 
-const siteName = globalSetting?.siteName || "Cloud Italia";
+const siteName = globalSetting?.siteName || "Developers Italia";
 
 const jsonLdScripts = generateJsonLdScripts({
   jsonLd,

@@ -214,7 +214,7 @@ export function getPageTitle(
     return steps[steps.length - 1].title;
   }
 
-  return "Cloud Italia";
+  return "Developers Italia";
 }
 
 export function getArticleSection(
