@@ -91,3 +91,12 @@ body {
   @extend .fs-6;
   @extend .text-uppercase;
 }
+
+@media (min-width: 992px) {
+  .it-header-wrapper.it-header-sticky.is-sticky
+    .it-header-navbar-wrapper
+    .menu-wrapper
+    .navbar-nav {
+    flex: none;
+  }
+}
