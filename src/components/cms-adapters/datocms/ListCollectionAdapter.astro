@@ -1,4 +1,5 @@
 ---
+import type { CardEditorialNewsProps } from "@components/molecules/CardEditorialNews/types";
 import { ListCollection } from "@components/organisms/ListCollection";
 import type { ListCollectionFragmentType } from "@graphql/fragment/commonFragments";
 import { getLocaleValue } from "@utils/getLocaleValue";
@@ -11,14 +12,16 @@ type Props = {
 const { block } = Astro.props;
 const { lang } = Astro.locals;
 
-const items = block.content.map((item) => {
+const items: CardEditorialNewsProps[] = block.content.map((item) => {
   const topicRecord = getLocaleValue(item.allTopicLocales, lang, null);
   return {
+    id: item.id,
     title: getLocaleValue(item.allTitleLocales, lang, ""),
     description: getLocaleValue(item.allParagraphLocales, lang, ""),
     image: item.image,
     linkTo: linkResolver(item.id, lang),
     category: getLocaleValue(topicRecord?._allLabelLocales, lang, ""),
+    isExternal: false,
   };
 });
 ---
