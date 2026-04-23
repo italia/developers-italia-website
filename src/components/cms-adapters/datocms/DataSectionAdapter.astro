@@ -38,10 +38,12 @@ const panel = {
 const newsResult: CardEditorialNewsProps[] = block.result.useCases.map(
   (useCase) => {
     return {
+      id: useCase.id,
       title: getLocaleValue(useCase.allTitleLocales, lang, ""),
       description: getLocaleValue(useCase.allParagraphLocales, lang, "") || "",
       image: useCase.image || undefined,
       linkTo: linkResolver(useCase.id, lang),
+      isExternal: false,
     };
   },
 );
