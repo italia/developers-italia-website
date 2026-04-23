@@ -27,6 +27,7 @@ export const mapNewsToCardEditorialNewsProps = (
     dateTime: news.publishedAt,
     action: link ? new URL(link).host : "",
     lang: lang,
+    isExternal: true,
   };
 };
 
@@ -61,6 +62,7 @@ export const mapWebinarToCardEditorialNewsProps = (
     category: getLocaleValue(topic?._allLabelLocales, lang, ""),
     dateTime: webinar.publishedAt,
     lang: lang,
+    isExternal: false,
   };
 };
 export const mapResourceToResourceProps = (

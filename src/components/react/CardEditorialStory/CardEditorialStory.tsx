@@ -37,7 +37,10 @@ export function CardEditorialStory({
       aria-labelledby={cardTitleId}
     >
       <h3 className="it-card-title" id={cardTitleId}>
-        <a href={linkTo}>{title}</a>
+        <a href={linkTo}>
+          {title}
+          <span className="visually-hidden">{t["link.internal"]}</span>
+        </a>
       </h3>
 
       <div className="it-card-image-wrapper">
