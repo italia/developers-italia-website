@@ -25,6 +25,8 @@ const { lang } = Astro.locals;
 const t = getI18n(lang);
 
 const ariaLabel = isExternal ? t["link.external"] : t["link.internal"];
+const target = isExternal ? "_blank" : "_self";
+const rel = isExternal ? "noopener noreferrer" : undefined;
 ---
 
 <article
@@ -32,8 +34,8 @@ const ariaLabel = isExternal ? t["link.external"] : t["link.internal"];
   aria-labelledby={cardTitleId}
 >
   <h3 class="it-card-title" id={cardTitleId}>
-    <a href={linkTo}
-      >{title}
+    <a href={linkTo} target={target} rel={rel}>
+      {title}
       <span class="visually-hidden">{ariaLabel}</span>
     </a>
   </h3>
