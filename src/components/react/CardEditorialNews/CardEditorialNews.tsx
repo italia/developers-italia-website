@@ -15,6 +15,7 @@ export type CardEditorialNewsProps = {
   action?: string;
   fullHeight?: boolean;
   lang: SiteLocale;
+  isExternal?: boolean;
 };
 
 export function CardEditorialNews({
@@ -28,10 +29,14 @@ export function CardEditorialNews({
   action,
   fullHeight = true,
   lang,
+  isExternal = true,
 }: CardEditorialNewsProps) {
   const shouldShowFooter = !!category || !!dateTime;
   const cardTitleId = `card-title-${id}`;
   const t = getI18n(lang);
+  const ariaLabel = isExternal ? t["link.external"] : t["link.internal"];
+  const target = isExternal ? "_blank" : "_self";
+  const rel = isExternal ? "noopener noreferrer" : undefined;
 
   return (
     <article
@@ -39,8 +44,9 @@ export function CardEditorialNews({
       aria-labelledby={cardTitleId}
     >
       <h3 className="it-card-title" id={cardTitleId}>
-        <a href={linkTo} aria-label={t["link.external"]}>
+        <a href={linkTo} target={target} rel={rel}>
           {title}
+          <span className="visually-hidden">{ariaLabel}</span>
         </a>
       </h3>
       <div className="it-card-image-wrapper">
