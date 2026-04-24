@@ -39,21 +39,37 @@ const classVariant = variant === "light" ? "theme-light" : "";
             metaNav.length !== 0 && (
               <div class="nav-mobile">
                 <nav aria-label={t["header.metaNav"]}>
-                  <a
-                    class="it-opener d-lg-none"
-                    data-bs-toggle="collapse"
-                    href="#menu1a"
-                    role="button"
-                    aria-expanded="false"
-                    aria-controls="menu4"
-                  >
-                    <span>
-                      {brandList?.map((brand) => brand.shortLabel).join(" + ")}
-                    </span>
-                    <svg class="icon" aria-hidden="true">
-                      <use href="/bsi-svg/sprites.svg#it-expand" />
-                    </svg>
-                  </a>
+                  <div class="d-flex align-items-center  navbar-brand d-lg-none">
+                    {brandList?.map((brand, index) => (
+                      <>
+                        <a href={brand.url} target="_blank" rel="noopener">
+                          {brand.shortLabel}
+                          <span class="visually-hidden">
+                            {t["link.external"]}
+                          </span>
+                        </a>
+                        {index < brandList.length - 1 && (
+                          <span class="mx-2" aria-hidden="true">
+                            +
+                          </span>
+                        )}
+                      </>
+                    ))}
+
+                    <a
+                      class="it-opener  p-2"
+                      data-bs-toggle="collapse"
+                      href="#menu1a"
+                      role="button"
+                      aria-expanded="false"
+                      aria-controls="menu4"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="/bsi-svg/sprites.svg#it-expand" />
+                      </svg>
+                    </a>
+                  </div>
+
                   <div class="link-list-wrapper collapse" id="menu1a">
                     <ul class="link-list">
                       {metaNav.map((link) => (
