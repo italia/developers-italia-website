@@ -16,7 +16,7 @@ const { title, paragraph, label, url } = Astro.props;
           <span class="text">{title}</span>
         </div>
         <p class="col-lg-7 col-12">{paragraph}</p>
-        <Link label={label} url={url} />
+        <Link label={label} url={url} openInNewTab={true} />
       </div>
     </div>
   </div>
