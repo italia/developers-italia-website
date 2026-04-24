@@ -26,11 +26,13 @@ const contentCollection: ContentCollectionProps[] = block.content.map(
       items: content.content.map((item) => {
         const topicRecord = getLocaleValue(item.allTopicLocales, lang, null);
         return {
+          id: item.id,
           title: getLocaleValue(item.allTitleLocales, lang, ""),
           description: getLocaleValue(item.allParagraphLocales, lang, ""),
           image: item.image,
           linkTo: linkResolver(item.id, lang),
           category: getLocaleValue(topicRecord?._allLabelLocales, lang, ""),
+          isExternal: false,
         };
       }),
     };

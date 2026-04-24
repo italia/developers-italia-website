@@ -14,10 +14,6 @@ const { title, paragraph, channels, background = "default" } = Astro.props;
   <div class="row pt-4">
     {
       channels.map((item) => (
-        /* Ripristina su cloud */
-        /*         <div class="col-12 col-md-6 mb-3 mb-md-4 col-lg-4">
-          <CardPresentationBanner {...item} />
-        </div> */
         <div class="col-12 mb-3 mb-md-4 col-lg-8">
           <CardPresentationBanner {...item} />
         </div>
