@@ -21,6 +21,7 @@ const usecases: UseCaseCardProps[] = block.useCases.map((usecase) => {
     "allParagraphLocales" in usecase ? usecase.allParagraphLocales : [];
 
   return {
+    id: usecase.id,
     title: getLocaleValue(usecase.allTitleLocales, lang, ""),
     paragraph: getLocaleValue(paragraphData, lang, "") || "",
     linkTo: linkResolver(usecase.id, lang),
