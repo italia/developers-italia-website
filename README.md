@@ -166,3 +166,13 @@ Instead of a static file, we use an API Route (src/pages/robots.txt.ts) to gener
 ### Redirects (301)
 
 Redirects are centralized in the `astro.config.ts`.
+
+### DATOCMS TEMPLATE
+
+[![Deploy DatoCMS starter](https://dashboard.datocms.com/deploy/button.svg)](https://dashboard.datocms.com/deploy?repo=github.com%3Aitalia%2Ftemplate-astro-siti-pa.git)
+
+or just
+
+[![Clone DatoCMS project](https://dashboard.datocms.com/clone/button.svg)](https://dashboard.datocms.com/clone?projectId=197995&name=DTD-Template-PA)
+
+and wire this repo renaming .env.example in .env an d filling variables from Dato Instance

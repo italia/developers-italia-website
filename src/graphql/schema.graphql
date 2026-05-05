@@ -208,15 +208,15 @@ input ArticleModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
-  seo: SeoFilter
-  parentPage: LinkFilter
+  content: StructuredTextFilter
+  description: TextFilter
+  descriptionTitle: StringFilter
   image: FileFilter
   paragraph: TextFilter
-  descriptionTitle: StringFilter
-  description: TextFilter
+  parentPage: LinkFilter
+  seo: SeoFilter
   slug: SlugFilter
-  content: StructuredTextFilter
+  title: StringFilter
   OR: [ArticleModelFilter]
   AND: [ArticleModelFilter]
 }
@@ -242,10 +242,10 @@ enum ArticleModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  title_ASC
-  title_DESC
   descriptionTitle_ASC
   descriptionTitle_DESC
+  title_ASC
+  title_DESC
 }
 
 """Block of type Article navigation (article_navigation)"""
@@ -881,10 +881,10 @@ input CatalogueModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
-  slug: SlugFilter
-  seo: SeoFilter
   parentPage: LinkFilter
+  seo: SeoFilter
+  slug: SlugFilter
+  title: StringFilter
   OR: [CatalogueModelFilter]
   AND: [CatalogueModelFilter]
 }
@@ -4016,12 +4016,12 @@ input InsightModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
-  image: FileFilter
   abstract: TextFilter
+  image: FileFilter
   parentPage: LinkFilter
   seo: SeoFilter
   slug: SlugFilter
+  title: StringFilter
   topic: LinkFilter
   OR: [InsightModelFilter]
   AND: [InsightModelFilter]
@@ -4388,18 +4388,18 @@ input KpiElementModelFilter {
   _status: StatusFilter
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  backgroundColor: StringFilter
+  flowDetail: StringFilter
+  flowDirection: StringFilter
+  flowValue: StringFilter
+  footerText: StringFilter
+  openDataPath: StringFilter
+  percentage: StringFilter
+  showFlow: BooleanFilter
   title: StringFilter
   value: StringFilter
-  backgroundColor: StringFilter
   valuePrefix: StringFilter
-  flowDirection: StringFilter
-  showFlow: BooleanFilter
-  flowValue: StringFilter
-  flowDetail: StringFilter
-  footerText: StringFilter
-  percentage: StringFilter
   valueSuffix: StringFilter
-  openDataPath: StringFilter
   OR: [KpiElementModelFilter]
   AND: [KpiElementModelFilter]
 }
@@ -4423,30 +4423,30 @@ enum KpiElementModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  backgroundColor_ASC
+  backgroundColor_DESC
+  flowDetail_ASC
+  flowDetail_DESC
+  flowDirection_ASC
+  flowDirection_DESC
+  flowValue_ASC
+  flowValue_DESC
+  footerText_ASC
+  footerText_DESC
+  openDataPath_ASC
+  openDataPath_DESC
+  percentage_ASC
+  percentage_DESC
+  showFlow_ASC
+  showFlow_DESC
   title_ASC
   title_DESC
   value_ASC
   value_DESC
-  backgroundColor_ASC
-  backgroundColor_DESC
   valuePrefix_ASC
   valuePrefix_DESC
-  flowDirection_ASC
-  flowDirection_DESC
-  showFlow_ASC
-  showFlow_DESC
-  flowValue_ASC
-  flowValue_DESC
-  flowDetail_ASC
-  flowDetail_DESC
-  footerText_ASC
-  footerText_DESC
-  percentage_ASC
-  percentage_DESC
   valueSuffix_ASC
   valueSuffix_DESC
-  openDataPath_ASC
-  openDataPath_DESC
 }
 
 """Record of type Kpi element (kpi_element)"""
@@ -5296,11 +5296,11 @@ input NewsItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
-  paragraph: TextFilter
   dateOfPublication: DateFilter
   image: FileFilter
   link: StringFilter
+  paragraph: TextFilter
+  title: StringFilter
   topic: LinkFilter
   OR: [NewsItemModelFilter]
   AND: [NewsItemModelFilter]
@@ -5325,12 +5325,12 @@ enum NewsItemModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  title_ASC
-  title_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
   link_ASC
   link_DESC
+  title_ASC
+  title_DESC
 }
 
 """Record of type Contenuto esterno (news_item)"""
@@ -5602,9 +5602,9 @@ input PageModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
   seo: SeoFilter
   slug: SlugFilter
+  title: StringFilter
   OR: [PageModelFilter]
   AND: [PageModelFilter]
 }
@@ -7690,15 +7690,15 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  title: StringFilter
-  parentPage: LinkFilter
-  topic: LinkFilter
-  slug: SlugFilter
-  image: FileFilter
-  dateOfPublication: DateFilter
-  paragraph: TextFilter
-  seo: SeoFilter
   articleClassification: LinkFilter
+  dateOfPublication: DateFilter
+  image: FileFilter
+  paragraph: TextFilter
+  parentPage: LinkFilter
+  seo: SeoFilter
+  slug: SlugFilter
+  title: StringFilter
+  topic: LinkFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
@@ -7722,10 +7722,10 @@ enum StoryItemModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  title_ASC
-  title_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
+  title_ASC
+  title_DESC
 }
 
 union StoryItemModelParentPageField = CatalogueRecord | PageRecord
@@ -9201,11 +9201,11 @@ input WebinarItemModelFilter {
   date: DateFilter
   image: FileFilter
   paragraph: TextFilter
-  title: StringFilter
-  topic: LinkFilter
   parentPage: LinkFilter
   seo: SeoFilter
   slug: SlugFilter
+  title: StringFilter
+  topic: LinkFilter
   OR: [WebinarItemModelFilter]
   AND: [WebinarItemModelFilter]
 }

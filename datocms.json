@@ -1,0 +1,79 @@
+{
+  "name": "PA Sample Site",
+  "description": "a website of a PublicAdministration",
+  "previewImage": "https://www.datocms-assets.com/197995/1777977276-dtd-ap-template-preview.jpg",
+  "livePreviewUrl": "https://template-pa.vercel.app/it",
+  "datocmsProjectId": "197995",
+  "deploymentType": "vercel",
+  "environmentVariables": {
+    "SITE_URL": {
+      "type": "string",
+      "value": "https://template-pa.vercel.app/it"
+    },
+    "SECRET_API_TOKEN": {
+      "type": "string",
+      "value": "xxxxxxxxxxxx"
+    },
+    "DATOCMS_API_TOKEN": {
+      "type": "string",
+      "value": "xxxxxxxxxxxx"
+    },
+    "DATOCMS_MANAGEMENT_API_TOKEN": {
+      "type": "string",
+      "value": "xxxxxxxxxxxx"
+    },
+    "DATOCMS_DRAFT_API_TOKEN": {
+      "type": "string",
+      "value": "xxxxxxxxxxxx"
+    },
+    "DATOCMS_VISUAL_SELECT_PLUGIN_ID": {
+      "type": "string",
+      "value": "xxxxxxxxxxxx"
+    },
+    "DATOCMS_ENVIRONMENT": {
+      "type": "string",
+      "value": "main"
+    },
+    "SIGNED_COOKIE_JWT_SECRET": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "DRAFT_MODE_COOKIE_NAME": {
+      "type": "string",
+      "value": "draft_mode"
+    },
+    "OPENSEARCH_HOST": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "OPENSEARCH_USERNAME": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "OPENSEARCH_PASSWORD": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "OPENSEARCH_INDEX_NAME": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "PUBLIC_WAI_URL": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "PUBLIC_WAI_SITE_ID": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "PUBLIC_SENDPORTAL_SUBSCRIBE_URL": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    },
+    "PUBLIC_FEEDBACK_URL": {
+      "type": "string",
+      "value": "THIS FIELD IS MANDATORY. PLEASE PROVIDE A VALUE!"
+    }
+  },
+  "buildCommand": " bun run build:production"
+}
