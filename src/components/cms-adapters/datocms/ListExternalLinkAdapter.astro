@@ -23,10 +23,11 @@ const externalLinkLabel = t["link.external"];
 const links: ListLinkItemProps[] = block.links.map((link) => {
   return {
     linkTo: link.url || "#",
-    text: `${link.description} ${link.label}`,
+    text: link.label,
+    description: link.description || undefined,
     iconRight: "it-external-link",
     openInNewTab: true,
-    ariaLabelLink: `${externalLinkLabel} ${link.description} ${link.label}`,
+    ariaLabelLink: `${externalLinkLabel} ${link.description || ""} ${link.label}`,
   };
 });
 ---

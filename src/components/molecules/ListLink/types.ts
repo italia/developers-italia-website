@@ -5,6 +5,7 @@ export type ListLinkProps = {
 
 export type ListLinkItemProps = {
   text: string;
+  description?: string;
   iconRight?: string;
   linkTo?: string;
   openInNewTab?: boolean;

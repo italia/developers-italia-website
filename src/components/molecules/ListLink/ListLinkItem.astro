@@ -14,6 +14,7 @@ const {
   bordered = false,
   openInNewTab = false,
   ariaLabelLink,
+  description,
 } = Astro.props;
 
 const colorClassName = variant === "dark" ? "text-white text-underline" : "";
@@ -25,6 +26,13 @@ const rel = openInNewTab ? "noopener noreferrer" : undefined;
 
 <li>
   <div class={`list-item ${!bordered ? "border-0" : ""}`}>
+    {
+      description && (
+        <div class={`fs-6 m-0 fw-semibold text-primary ${colorClassName}`}>
+          {description}
+        </div>
+      )
+    }
     <a
       href={linkTo}
       class={`it-right-zone ${colorClassName}`}
