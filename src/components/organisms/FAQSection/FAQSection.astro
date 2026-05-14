@@ -8,10 +8,13 @@ type Props = FAQSectionProps;
 const { title, accordion, background = "default" } = Astro.props;
 ---
 
-<SectionContainer className={getSectionBgClass(background)}>
+<SectionContainer
+  className={getSectionBgClass(background)}
+  sectionTitleId={title}
+>
   <div class="row align-items-top">
     <div class="col-12">
-      <h2 class="mb-5">
+      <h2 class="mb-5" id={title}>
         {title}
       </h2>
       <Accordion

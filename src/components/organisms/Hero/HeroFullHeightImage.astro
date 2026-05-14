@@ -22,13 +22,14 @@ const {
 </style>
 <section
   class=`it-hero-wrapper it-hero-wrapper-full-height-image xsmall-size ${bgClass}`
+  aria-labelledby={title}
 >
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-7">
         <div class="it-hero-text-wrapper px-0">
           {showBreadcrumb && <slot name="breadcrumb" />}
-          <h1>{title}</h1>
+          <h1 id={title}>{title}</h1>
           {paragraph && <p class="font-sans-serif">{paragraph}</p>}
           {
             labelButton && linkTo && (

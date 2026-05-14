@@ -1,12 +1,13 @@
 ---
 type Props = {
   className?: string;
+  sectionTitleId?: string;
 };
 
-const { className } = Astro.props;
+const { className, sectionTitleId } = Astro.props;
 ---
 
-<section class={className}>
+<section class={className} aria-labelledby={sectionTitleId}>
   <div class="container py-5 py-lg-80">
     <slot />
   </div>

@@ -22,13 +22,13 @@ const { lang } = Astro.locals;
 const t = getI18n(lang);
 ---
 
-<SectionContainer className="it-section-bg-light">
+<SectionContainer className="it-section-bg-light" sectionTitleId={title}>
   <div
     class=`d-flex flex-lg-row flex-column justify-content-between align-items-top`
   >
     <div class=`col-lg-5 col-12`>
       <div class=`text-container mb-4 mb-lg-0`>
-        <h2 class="mb-3">
+        <h2 class="mb-3" id={title}>
           {title}
         </h2>
         <p>{paragraph}</p>

@@ -19,7 +19,10 @@ const variantTextContainer =
       : "light";
 ---
 
-<TextOnly background={block.backgroundColor as SectionBackground}>
+<TextOnly
+  background={block.backgroundColor as SectionBackground}
+  sectionTitleId={block.text.title}
+>
   <TextContainerAdapter
     slot="text"
     block={block.text}

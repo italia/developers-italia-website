@@ -4,7 +4,11 @@ import type { TextAndImageProps } from "./types";
 
 type Props = TextAndImageProps;
 
-const { background = "default", variant = "variant-1" } = Astro.props;
+const {
+  background = "default",
+  variant = "variant-1",
+  sectionTitleId,
+} = Astro.props;
 const columnLeftSize = variant === "variant-2" ? 4 : 6;
 const columnRightSize = variant === "variant-2" ? 8 : 5;
 
@@ -16,6 +20,7 @@ const alignItems = variant === "variant-2" ? "top" : "center";
   rightColumns={columnRightSize}
   alignItems={alignItems}
   background={background}
+  sectionTitleId={sectionTitleId}
 >
   <slot name="text" slot="left" />
   <slot name="image" slot="right" />

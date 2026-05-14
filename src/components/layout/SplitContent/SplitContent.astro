@@ -11,10 +11,14 @@ const {
   alignItems = "center",
   background = "default",
   classSecondColumn = "",
+  sectionTitleId,
 } = Astro.props;
 ---
 
-<SectionContainer className={getSectionBgClass(background)}>
+<SectionContainer
+  className={getSectionBgClass(background)}
+  sectionTitleId={sectionTitleId}
+>
   <div class=`row justify-content-between align-items-${alignItems}`>
     <div class=`col-lg-${leftColumns} col-12`>
       <slot name="left" />

@@ -29,12 +29,13 @@ const backgroundColorClass = backgroundColor[background];
 
 <section
   class={`${backgroundColorClass} ${size === "small" ? "rounded-2" : ""}`}
+  aria-labelledby={title}
 >
   <div class={`container py-5  ${size === "small" ? "px-5" : ""}`}>
     <div class={`row align-items-center justify-content-between `}>
       <div class="col-lg-6 col-12">
         <div class=`text-container mb-4 mb-lg-0`>
-          <h3 class="mb-3">
+          <h3 class="mb-3" id={title}>
             {title}
           </h3>
           <div class="mb-4" set:html={paragraph} />

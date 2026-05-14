@@ -5,12 +5,19 @@ import { getSectionBgClass } from "@utils/background";
 import type { TextAndStatisticsProps } from "./types";
 type Props = TextAndStatisticsProps;
 
-const { background = "default", showInline = false } = Astro.props;
+const {
+  background = "default",
+  showInline = false,
+  sectionTitleId,
+} = Astro.props;
 ---
 
 {
   showInline ? (
-    <SectionContainer className={getSectionBgClass(background)}>
+    <SectionContainer
+      className={getSectionBgClass(background)}
+      sectionTitleId={sectionTitleId}
+    >
       <slot name="text" />
       <slot name="statistics" />
     </SectionContainer>
@@ -20,6 +27,7 @@ const { background = "default", showInline = false } = Astro.props;
       leftColumns={6}
       alignItems="center"
       background={background}
+      sectionTitleId={sectionTitleId}
     >
       <slot name="text" slot="left" />
       <slot name="statistics" slot="right" />
