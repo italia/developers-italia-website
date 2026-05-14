@@ -48,21 +48,34 @@ function isValidTabType(val: string): val is ElementType {
 function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
   switch (tabType) {
     case "story_item":
+      const filteredStoryByLang = stories.filter((s) =>
+        s.data.allTitleLocales?.some((item) => item.locale === lang),
+      );
+
       const filteredStories = tabCategoryReference
-        ? stories.filter(
+        ? filteredStoryByLang.filter(
             (s) => s.data.articleClassification?.id === tabCategoryReference,
           )
-        : stories;
+        : filteredStoryByLang;
 
       return filteredStories.map((s) =>
         mapStoryToCardEditorialStoryProps(s.data, lang),
       );
 
     case "news_item":
-      return news.map((n) => mapNewsToCardEditorialNewsProps(n.data, lang));
+      const filteredNews = news.filter((n) =>
+        n.data.allTitleLocales?.some((item) => item.locale === lang),
+      );
+
+      return filteredNews.map((n) =>
+        mapNewsToCardEditorialNewsProps(n.data, lang),
+      );
 
     case "webinar_item":
-      return webinars.map((w) =>
+      const filteredWebinars = webinars.filter((w) =>
+        w.data.allTitleLocales?.some((item) => item.locale === lang),
+      );
+      return filteredWebinars.map((w) =>
         mapWebinarToCardEditorialNewsProps(w.data, lang),
       );
 

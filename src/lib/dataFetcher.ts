@@ -6,7 +6,7 @@ import { AllWebinarQuery } from "@graphql/query/webinar";
 import { executeQuery } from "@lib/datocms";
 import { getCollection, getEntry } from "astro:content";
 
-const wrap = (items: any[]) => items.map((item) => ({ data: item }));
+const wrap = <T>(items: T[]) => items.map((item) => ({ data: item }));
 
 export const getNews = async (isPreview: boolean) => {
   if (isPreview) {
