@@ -32,16 +32,24 @@ export const SearchResultList = ({
             {labelForNoResult} <strong>"{value}"</strong>
           </p>
         )}
-        <div role="list" aria-label={`${labelForAllResult} ${value}`}>
-          {results.map((result) => (
-            <SearchResultItem
-              key={result.id}
-              result={result}
-              ariaLabelDownloadLink={ariaLabelDownloadLink}
-              ariaLabelExternalLink={ariaLabelExternalLink}
-              ariaLabelInternalLink={ariaLabelInternalLink}
-            />
-          ))}
+        <div
+          role="list"
+          aria-label={`${labelForAllResult} ${value}`}
+          className="it-list-wrapper"
+        >
+          <ul className="it-list">
+            {results.map((result) => (
+              <li key={result.id}>
+                <SearchResultItem
+                  key={result.id}
+                  result={result}
+                  ariaLabelDownloadLink={ariaLabelDownloadLink}
+                  ariaLabelExternalLink={ariaLabelExternalLink}
+                  ariaLabelInternalLink={ariaLabelInternalLink}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
