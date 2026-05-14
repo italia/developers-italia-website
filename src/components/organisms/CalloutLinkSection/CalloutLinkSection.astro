@@ -7,11 +7,11 @@ type Props = CalloutLinkSectionProps;
 const { title, paragraph, label, url } = Astro.props;
 ---
 
-<section class="it-section-bg-light">
+<section class="it-section-bg-light" aria-labelledby={title}>
   <div class="container">
     <div class="callout note">
       <div class="callout-inner">
-        <div class="callout-title">
+        <div class="callout-title" id={title}>
           <ItFiles />
           <span class="text">{title}</span>
         </div>

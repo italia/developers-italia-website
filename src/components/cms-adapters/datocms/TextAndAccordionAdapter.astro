@@ -12,7 +12,10 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<TextAndAccordions background={block.backgroundColor as SectionBackground}>
+<TextAndAccordions
+  background={block.backgroundColor as SectionBackground}
+  sectionTitleId={block.text.title}
+>
   <TextContainerAdapter slot="text" block={block.text} variant="light" />
   <AccordionAdapter slot="accordion" block={block.accordion} />
 </TextAndAccordions>

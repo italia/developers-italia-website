@@ -8,4 +8,5 @@ export type SplitContentProps = {
   alignItems?: SectionAlignItems;
   background?: SectionBackground;
   classSecondColumn?: string;
+  sectionTitleId?: string;
 };

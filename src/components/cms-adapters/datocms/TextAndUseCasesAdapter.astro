@@ -15,7 +15,10 @@ const variantCardContainer =
   block.backgroundColor === "default" ? "light" : "default";
 ---
 
-<TextAndUseCase background={block.backgroundColor as SectionBackground}>
+<TextAndUseCase
+  background={block.backgroundColor as SectionBackground}
+  sectionTitleId={block.text.title}
+>
   <TextContainerAdapter slot="text" block={block.text} variant="light" />
   <UseCasesAdapter
     slot="useCases"

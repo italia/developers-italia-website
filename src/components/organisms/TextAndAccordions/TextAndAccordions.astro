@@ -2,9 +2,9 @@
 import { SplitContent } from "@components/layout/SplitContent";
 import type { SectionBackground } from "@utils/background";
 
-type Props = { background?: SectionBackground };
+type Props = { background?: SectionBackground; sectionTitleId?: string };
 
-const { background = "default" } = Astro.props;
+const { background = "default", sectionTitleId } = Astro.props;
 ---
 
 <SplitContent
@@ -12,6 +12,7 @@ const { background = "default" } = Astro.props;
   leftColumns={5}
   alignItems="top"
   background={background}
+  sectionTitleId={sectionTitleId}
 >
   <slot name="text" slot="left" />
   <slot name="accordion" slot="right" />

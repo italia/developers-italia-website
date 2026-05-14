@@ -25,7 +25,10 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
   @import "./style.scss";
 </style>
 
-<section class={`it-hero-wrapper ${sizeClass} ${bgClass}`}>
+<section
+  class={`it-hero-wrapper ${sizeClass} ${bgClass}`}
+  aria-labelledby={title}
+>
   {
     image && (
       <div
@@ -56,7 +59,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
       <div class="col-12">
         <div class="it-hero-text-wrapper px-0">
           {showBreadcrumb && <slot name="breadcrumb" />}
-          <h1>{title}</h1>
+          <h1 id={title}>{title}</h1>
           {paragraph && <p class="font-sans-serif">{paragraph}</p>}
           {
             labelButton && linkTo && (
