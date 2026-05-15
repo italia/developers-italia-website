@@ -6,7 +6,7 @@ import type {
 } from "@components/molecules/UseCaseCard/types";
 
 type Props = {
-  label?: string;
+  label: string;
   items: UseCaseCardProps[];
   backgroundColor?: UseCaseCardBackgroundColor;
 };
@@ -18,7 +18,7 @@ const { items, label, backgroundColor } = Astro.props;
   @import "./style.scss";
 </style>
 
-{label && <p class="it-label">{label}</p>}
+<h3 class="it-label">{label}</h3>
 <div class="usecase-container">
   {
     items.map((useCase) => (
