@@ -11,13 +11,18 @@ const { title, paragraph, channels, background = "default" } = Astro.props;
 
 <SplitContent background={background} leftColumns={5} alignItems="top">
   <TextContainer slot="left" title={title} paragraph={paragraph} />
-  <div class="row pt-4">
-    {
-      channels.map((item) => (
-        <div class="col-12 mb-3 mb-md-4 col-lg-8">
-          <CardPresentationBanner {...item} />
-        </div>
-      ))
-    }
+
+  <div class="pt-4 it-list-wrapper">
+    <ul class="it-list">
+      {
+        channels.map((item) => (
+          <li>
+            <div class="col-12 mb-3 mb-md-4 col-lg-8">
+              <CardPresentationBanner {...item} />
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </SplitContent>

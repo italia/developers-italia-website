@@ -7,7 +7,7 @@ type Props = CardPresentationBannerProps;
 const { title, description, icon, linkTo } = Astro.props;
 ---
 
-<article
+<div
   class="it-card it-card-banner it-card-inline it-card-height-full bg-transparent text-start"
 >
   <div class="it-card-inline-content">
@@ -19,4 +19,4 @@ const { title, description, icon, linkTo } = Astro.props;
   <div class="px-3 it-card-banner-icon-wrapper align-items-start">
     <img src={icon} alt="" style="width: 170px;" />
   </div>
-</article>
+</div>
