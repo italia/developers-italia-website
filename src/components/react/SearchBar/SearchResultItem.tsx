@@ -31,8 +31,8 @@ export const SearchResultItem = ({
       <a
         className={`d-inline-flex align-items-center h6 gap-2`}
         href={url}
-        target="_blank"
-        rel="noopener noreferrer"
+        // target="_blank"
+        // rel="noopener noreferrer"
         download={!!result.downloadLink}
       >
         <span className="fw-semibold">{result.title}</span>
