@@ -1,5 +1,6 @@
 import {
   allDocumentsLoader,
+  allStoryClassesLoader,
   articleContentLoader,
   cataloguesLoader,
   errorPageLoader,
@@ -22,6 +23,7 @@ import {
 } from "@collections/loader";
 import {
   allDocumentsSchema,
+  allStoryClassesSchema,
   articleSchema,
   catalogueSchema,
   errorPageSchema,
@@ -124,5 +126,9 @@ export const collections = {
   documents: defineCollection({
     loader: allDocumentsLoader,
     schema: allDocumentsSchema,
+  }),
+  story_classes: defineCollection({
+    loader: allStoryClassesLoader,
+    schema: allStoryClassesSchema,
   }),
 };

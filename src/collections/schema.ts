@@ -133,3 +133,8 @@ export const allDocumentsSchema = z.object({
   allCatalogues: z.array(z.custom<CatalogueIndexingFragmentType>()),
   allPages: z.array(z.custom<PageIndexingFragmentType>()),
 });
+
+export const allStoryClassesSchema = z.object({
+  id: z.string(),
+  value: z.string(),
+});

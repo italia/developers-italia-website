@@ -7690,15 +7690,15 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  image: FileFilter
-  dateOfPublication: DateFilter
+  seo: SeoFilter
   title: StringFilter
   parentPage: LinkFilter
-  topic: LinkFilter
-  seo: SeoFilter
+  dateOfPublication: DateFilter
+  paragraph: TextFilter
   articleClassification: LinkFilter
   slug: SlugFilter
-  paragraph: TextFilter
+  image: FileFilter
+  topic: LinkFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
@@ -7722,10 +7722,10 @@ enum StoryItemModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  dateOfPublication_ASC
-  dateOfPublication_DESC
   title_ASC
   title_DESC
+  dateOfPublication_ASC
+  dateOfPublication_DESC
 }
 
 union StoryItemModelParentPageField = CatalogueRecord | PageRecord
@@ -7793,7 +7793,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StoryTopicRecordNonNullMultiLocaleField!]
+  ): [StoryTopicRecordMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -7841,7 +7841,7 @@ type StoryItemRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): Date
   id: ItemId!
-  image: FileField!
+  image: FileField
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
@@ -7898,7 +7898,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): StoryTopicRecord!
+  ): StoryTopicRecord
 }
 
 union StoryTabModelNewsField = ArticleRecord | InsightRecord | StoryItemRecord | WebinarItemRecord
@@ -8006,9 +8006,9 @@ type StoryTopicRecord implements RecordInterface {
   ): String!
 }
 
-type StoryTopicRecordNonNullMultiLocaleField {
+type StoryTopicRecordMultiLocaleField {
   locale: SiteLocale
-  value: StoryTopicRecord!
+  value: StoryTopicRecord
 }
 
 """Specifies how to filter Single-line string fields"""

@@ -39,6 +39,7 @@ import {
 import {
   AllStoriesContentQuery,
   AllStoryCardQuery,
+  AllStoryClassesQuery,
 } from "@graphql/query/story";
 import {
   AllWebinarQuery,
@@ -328,4 +329,19 @@ export const allDocumentsLoader = async () => {
       allPages: pagesRes.allPages || [],
     },
   ];
+};
+
+export const allStoryClassesLoader = async () => {
+  const response = await executeQuery(AllStoryClassesQuery);
+
+  if (!response?.allStoryClasses) return [];
+
+  return response.allStoryClasses.flatMap((item) => {
+    return (
+      item.allLabelsLocales?.map((label) => ({
+        id: `${item.id}_${label.locale}`,
+        value: label.value,
+      })) || []
+    );
+  });
 };

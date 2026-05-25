@@ -57,8 +57,6 @@ export const GET: APIRoute = async ({ params }) => {
 
   const articleCategory = resolveArticleCategory(articles, lang);
   const insightCategory = getCategoryName(insights[0]?.parentPage, lang);
-  const storyCategory =
-    getTitleByTypeNews(cataloguesMapCategory, stories[0]?.modelApiKey) || "";
   const newsCategory =
     getTitleByTypeNews(cataloguesMapCategory, newsItems[0]?.modelApiKey) || "";
   const webinarCategory =
@@ -66,6 +64,10 @@ export const GET: APIRoute = async ({ params }) => {
   const resourseCategory =
     getTitleByTypeResourse(cataloguesMapCategory, resourses[0]?.modelApiKey) ||
     "";
+
+  const storyPromises = stories.map((item) => Mappers.getMapStory(item, lang));
+
+  const mappedStories = await Promise.all(storyPromises);
 
   const allDocuments = [
     ...pages.map((item) => Mappers.getMapPages(item, lang)),
@@ -76,7 +78,7 @@ export const GET: APIRoute = async ({ params }) => {
     ...insights.map((item) =>
       Mappers.getMapInsight(item, lang, insightCategory),
     ),
-    ...stories.map((item) => Mappers.getMapStory(item, lang, storyCategory)),
+    ...mappedStories,
     ...webinars.map((item) =>
       Mappers.getMapWebinar(item, lang, webinarCategory),
     ),

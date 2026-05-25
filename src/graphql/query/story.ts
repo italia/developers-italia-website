@@ -23,3 +23,15 @@ export const AllStoriesContentQuery = graphql(
   `,
   [AllStoriesRecordFragment],
 );
+
+export const AllStoryClassesQuery = graphql(`
+  query AllStoryClassesQuery {
+    allStoryClasses {
+      id
+      allLabelsLocales: _allLabelLocales {
+        locale
+        value
+      }
+    }
+  }
+`);

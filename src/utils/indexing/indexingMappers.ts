@@ -16,6 +16,7 @@ import {
   getSearchRenderOptions,
 } from "@utils/indexing/blockContentMappers";
 import { linkResolver } from "@utils/linkResolver";
+import { getEntry } from "astro:content";
 import { render } from "datocms-structured-text-to-plain-text";
 
 export const getMapArticle = (
@@ -57,19 +58,23 @@ export const getMapInsight = (
   };
 };
 
-export const getMapStory = (
+export const getMapStory = async (
   story: StoryIndexingFragmentType,
   lang: SiteLocale,
-  category: string,
 ) => {
   const contentData = getLocaleValue(story.allContentLocales, lang, null);
 
   const content = flattenBlocks(contentData ?? []);
 
+  const customCategory = await getEntry(
+    "story_classes",
+    `${story.articleClassification?.id}_${lang}`,
+  );
+
   return {
     type: "story",
     id: story.id,
-    category,
+    category: customCategory?.data.value || "",
     internalLink: linkResolver(story.id, lang),
     title: getLocaleValue(story.allTitleLocales, lang, ""),
     description: "",
