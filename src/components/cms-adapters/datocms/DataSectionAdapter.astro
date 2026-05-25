@@ -35,8 +35,11 @@ const panel = {
   },
 };
 
-const newsResult: CardEditorialNewsProps[] = block.result.useCases.map(
-  (useCase) => {
+let result = {} as ResultProps;
+let newsResult: CardEditorialNewsProps[] = [];
+
+if (block.result) {
+  newsResult = block.result.useCases.map((useCase) => {
     return {
       id: useCase.id,
       title: getLocaleValue(useCase.allTitleLocales, lang, ""),
@@ -45,23 +48,23 @@ const newsResult: CardEditorialNewsProps[] = block.result.useCases.map(
       linkTo: linkResolver(useCase.id, lang),
       isExternal: false,
     };
-  },
-);
+  });
 
-const result: ResultProps = {
-  title: block.result.title,
-  paragraph: block.result.paragraph,
-  news: newsResult,
-  items: block.result.items.map((item) => ({
-    title: item.title,
-    paragraph: item.paragraph,
-  })),
-  titleListNews: block.result.titleListUseCases || undefined,
-};
+  result = {
+    title: block.result.title,
+    paragraph: block.result.paragraph,
+    news: newsResult,
+    items: block.result.items.map((item) => ({
+      title: item.title,
+      paragraph: item.paragraph,
+    })),
+    titleListNews: block.result.titleListUseCases || undefined,
+  };
+}
 ---
 
 <DataSection
   highlights={highlights}
   panel={panel}
-  result={{ ...result, news: newsResult }}
+  result={block.result ? { ...result, news: newsResult } : undefined}
 />

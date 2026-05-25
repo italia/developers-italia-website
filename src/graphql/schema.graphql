@@ -1255,7 +1255,7 @@ type DataSectionRecord implements RecordInterface {
   highlights: HighlightRecord!
   id: ItemId!
   panel: PanelRecord!
-  result: ResultRecord!
+  result: ResultRecord
 }
 
 """A ISO 8601 compliant date value"""

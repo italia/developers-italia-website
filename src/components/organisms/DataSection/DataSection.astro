@@ -8,7 +8,7 @@ import type { HighlightsProps, PanelProps, ResultProps } from "./types";
 type Props = {
   highlights: HighlightsProps;
   panel: PanelProps;
-  result: ResultProps;
+  result?: ResultProps;
 };
 
 const { highlights, panel, result } = Astro.props;
