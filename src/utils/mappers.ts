@@ -39,7 +39,7 @@ export const mapStoryToCardEditorialStoryProps = (
   return {
     id: story.id,
     title: getLocaleValue(story.allTitleLocales, lang, ""),
-    image: story.image,
+    image: story.image || undefined,
     linkTo: linkResolver(story.id, lang),
     category: getLocaleValue(topic?._allLabelLocales, lang, ""),
     dateTime: story.publishedAt || undefined,

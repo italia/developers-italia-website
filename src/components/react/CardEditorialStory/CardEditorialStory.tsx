@@ -9,7 +9,7 @@ export type CardEditorialStoryProps = {
   id?: string;
   title: string;
   description: string;
-  image: ImageProps;
+  image?: ImageProps;
   linkTo: string;
   category?: string;
   dateTime?: string;
@@ -43,13 +43,15 @@ export function CardEditorialStory({
         </a>
       </h3>
 
-      <div className="it-card-image-wrapper">
-        <div className="ratio ratio-16x9">
-          <figure className="figure img-full">
-            <Image {...image} />
-          </figure>
+      {image && (
+        <div className="it-card-image-wrapper">
+          <div className="ratio ratio-16x9">
+            <figure className="figure img-full">
+              <Image {...image} />
+            </figure>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="it-card-body">
         <p className="it-card-text">{description}</p>
