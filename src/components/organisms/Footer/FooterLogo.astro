@@ -1,13 +1,17 @@
 ---
-import { Icon } from "@components/atoms/Icon";
+import { Image } from "@components/atoms/Image";
 import { getI18n } from "@i18n/microcopy";
 import type { FooterLogoProps } from "./types";
 
 type Props = FooterLogoProps;
 
-const { mainLogo, brandLogo, label, linkTo } = Astro.props;
+const { logo, linkTo } = Astro.props;
 const { lang } = Astro.locals;
 const t = getI18n(lang);
+
+const targetWidth = 275;
+const aspect = logo.width && logo.height ? logo.height / logo.width : 1;
+const targetHeight = Math.round(targetWidth * aspect);
 ---
 
 <a
@@ -16,12 +20,11 @@ const t = getI18n(lang);
   rel="noreferrer"
   class="d-block h6 fw-semibold text-decoration-none d-flex align-items-center"
 >
-  {mainLogo && <Icon icon={mainLogo} className="text-white me-3 icon-lg" />}
-  {brandLogo && <Icon icon={brandLogo} className="text-white me-3 icon-lg" />}
-  <div>
-    {label}
-    <span class="visually-hidden">
-      {t["link.external"]}
-    </span>
-  </div>
+  <Image
+    url={logo.url}
+    width={targetWidth}
+    height={targetHeight}
+    alt={`${logo.alt} - ${t["link.external"]}`}
+    loading="lazy"
+  />
 </a>

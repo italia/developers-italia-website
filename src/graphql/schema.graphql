@@ -655,10 +655,8 @@ type BrandRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  brandLogo: String!
   id: ItemId!
-  label: String!
-  mainLogo: String!
+  logo: FileField!
   url: String!
 }
 
@@ -7690,15 +7688,16 @@ input StoryItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  seo: SeoFilter
   title: StringFilter
   parentPage: LinkFilter
   dateOfPublication: DateFilter
   paragraph: TextFilter
   articleClassification: LinkFilter
-  slug: SlugFilter
   image: FileFilter
   topic: LinkFilter
+  seo: SeoFilter
+  hasNewsLayout: BooleanFilter
+  slug: SlugFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
@@ -7726,6 +7725,8 @@ enum StoryItemModelOrderBy {
   title_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
+  hasNewsLayout_ASC
+  hasNewsLayout_DESC
 }
 
 union StoryItemModelParentPageField = CatalogueRecord | PageRecord
@@ -7840,6 +7841,7 @@ type StoryItemRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): Date
+  hasNewsLayout: BooleanType!
   id: ItemId!
   image: FileField
   paragraph(

@@ -83,15 +83,19 @@ export const LinkBlockFragment = graphql(`
 
 export type LinkBlockFragmentType = FragmentOf<typeof LinkBlockFragment>;
 
-export const BrandFragment = graphql(`
-  fragment BrandFragment on BrandRecord @_unmask {
-    id
-    brandLogo
-    mainLogo
-    label
-    url
-  }
-`);
+export const BrandFragment = graphql(
+  `
+    fragment BrandFragment on BrandRecord @_unmask {
+      id
+      logo {
+        ...ImageFragment
+      }
+      url
+    }
+  `,
+  [ImageFragment],
+);
+
 export type BrandFragmentType = FragmentOf<typeof BrandFragment>;
 
 export const SupportingBrandFragment = graphql(`
