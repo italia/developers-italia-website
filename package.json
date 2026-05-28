@@ -28,7 +28,7 @@
     "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
     "@datocms/cma-client": "^5.0.1",
-    "@opensearch-project/opensearch": "^3.5.1",
+    "@opensearch-project/opensearch": "^3.6.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "astro": "^5.17.2",
