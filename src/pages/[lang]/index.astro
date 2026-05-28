@@ -70,3 +70,8 @@ Astro.locals.recordId = id;
 <Layout pageSeo={seoMeta} datePublished={publishedAt}>
   <PageAdapter content={content} />
 </Layout>
+<script>
+  import { HeaderSticky } from "bootstrap-italia";
+  const el = document.getElementsByTagName("header")[0];
+  HeaderSticky.getOrCreateInstance(el);
+</script>
