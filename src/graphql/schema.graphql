@@ -7693,11 +7693,11 @@ input StoryItemModelFilter {
   dateOfPublication: DateFilter
   paragraph: TextFilter
   articleClassification: LinkFilter
+  slug: SlugFilter
   image: FileFilter
   topic: LinkFilter
   seo: SeoFilter
   hasNewsLayout: BooleanFilter
-  slug: SlugFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
