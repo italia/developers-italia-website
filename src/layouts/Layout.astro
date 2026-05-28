@@ -151,3 +151,8 @@ const isProd = import.meta.env.PROD;
   </body>
 </html>
 <script src={bsi} defer is:inline></script>
+<script>
+  import { HeaderSticky } from "bootstrap-italia";
+  const el = document.getElementsByTagName("header")[0];
+  HeaderSticky.getOrCreateInstance(el);
+</script>
