@@ -80,7 +80,7 @@ const buttonLabel = block.cta?.label;
       default:
         return {
           componentName: "CardEditorialNews",
-          title: tab.title,
+          title: (tab as any).title ?? "",
           news: [],
         };
     }
