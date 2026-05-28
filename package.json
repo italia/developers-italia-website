@@ -54,7 +54,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
     "prettier-plugin-astro": "^0.14.1",
-    "sass-embedded": "^1.89.2",
+    "sass-embedded": "^1.100.0",
     "typescript": "^5.9.3"
   },
   "lint-staged": {
