@@ -17,6 +17,7 @@ export enum DatoBlockModel {
   TextUseCase = "TextUseCaseRecord",
   TextAccordion = "TextAccordionRecord",
   WebinarDescription = "WebinarDescriptionRecord",
+  WebinarTranscription = "WebinarTranscriptRecord",
   Speaker = "SpeakerRecord",
   IntroArticle = "IntroArticleRecord",
   CalloutLink = "CalloutLinkRecord",

@@ -1,23 +1,23 @@
 ---
-import FeatureListAdapter from "@components/cms-adapters/datocms/FeatureListAdapter.astro";
-import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
 import { WebinarDescription } from "@components/organisms/WebinarDescription";
 import type { WebinarDescriptionFragmentType } from "@graphql/fragment/sectionFragments";
+import EventsListAdapter from "./EventsListAdapter.astro";
+import LinksTagdAdapter from "./LinksTagdAdapter.astro";
 
 type Props = {
   block: WebinarDescriptionFragmentType;
 };
-
 const { block } = Astro.props;
 ---
 
 <WebinarDescription>
   <TextContainerAdapter slot="text" block={block.text} variant="light" />
-  <FeatureListAdapter slot="subjects" block={block.subjects} />
+  <EventsListAdapter slot="subjects" block={block.subjects} />
+
   {
     block.resources && (
-      <QuickLinkCardAdapter slot="resources" block={block.resources} />
+      <LinksTagdAdapter slot="resources" block={block.resources} />
     )
   }
 </WebinarDescription>

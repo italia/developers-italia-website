@@ -501,6 +501,26 @@ export type WebinarDescriptionFragmentType = FragmentOf<
   typeof WebinarDescriptionFragment
 >;
 
+export const WebinarTranscriptionFragment = graphql(
+  `
+    fragment WebinarTranscriptionFragment on WebinarTranscriptRecord @_unmask {
+      id
+      title
+      category
+      paragraph {
+        ...TextBlockFragment
+      }
+      readMoreLabel
+      readLessLabel
+    }
+  `,
+  [TextBlockFragment],
+);
+
+export type WebinarTranscriptionFragmentType = FragmentOf<
+  typeof WebinarTranscriptionFragment
+>;
+
 export const IntroArticleFragment = graphql(
   `
     fragment IntroArticleFragment on IntroArticleRecord @_unmask {

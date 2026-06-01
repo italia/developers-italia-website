@@ -1,0 +1,33 @@
+---
+import type { GenericListItemProps } from "@components/molecules/GenericList/types";
+import type { FeatureListBlockFragmentType } from "@graphql/fragment/commonFragments";
+
+type Props = {
+  block: FeatureListBlockFragmentType;
+};
+
+const { block } = Astro.props;
+
+const items: GenericListItemProps[] =
+  block.items?.map((item) => {
+    return {
+      text: item.title,
+      subtext: item.paragraph,
+    };
+  }) || [];
+---
+
+<div class="row">
+  {
+    items?.map((item) => (
+      <div class="d-inline-flex  me-lg-5 my tag-small-size">
+        <span class="text-uppercase text-secondary me-2">
+          <strong>{item.text}</strong>
+        </span>
+        <div class="ms-3 small">
+          <span set:html={item.subtext} />
+        </div>
+      </div>
+    ))
+  }
+</div>

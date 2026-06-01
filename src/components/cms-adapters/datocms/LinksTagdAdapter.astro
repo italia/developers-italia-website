@@ -1,0 +1,91 @@
+---
+import type { ListLinkItemProps } from "@components/molecules/ListLink/types";
+import type { QuickLinkCardFragmentType } from "@graphql/fragment/commonFragments";
+import { getI18n } from "@i18n/microcopy";
+import { DatoBlockModel } from "@utils/cmsMapper";
+import { createDownloadUrl } from "@utils/createDownloadUrl";
+import { getLocaleValue } from "@utils/getLocaleValue";
+import { linkResolver } from "@utils/linkResolver";
+
+type DatoRecord = QuickLinkCardFragmentType & {
+  __typename: string;
+  id: string;
+};
+
+type Props = {
+  block: DatoRecord | QuickLinkCardFragmentType;
+};
+
+const { block } = Astro.props;
+const { lang } = Astro.locals;
+
+const t = getI18n(lang);
+
+const downloadLabel = t["link.download"];
+const externalLinkLabel = t["link.external"];
+const articleLinkLabel = t["link.internal"];
+
+const links: ListLinkItemProps[] = block.linkToResource.map((link) => {
+  if (link.componentName === DatoBlockModel.Resource) {
+    const res = getLocaleValue(link.allResourceLocales, lang, null);
+
+    if (res?.componentName === DatoBlockModel.DownloadLink) {
+      return {
+        linkTo: createDownloadUrl(res.doc),
+        text: res.label,
+        iconRight: "it-download",
+        ariaLabelLink: `${downloadLabel} ${res.label}`,
+      };
+    }
+
+    return {
+      linkTo: res?.url || "#",
+      text: res?.label || "",
+      iconRight: "it-external-link",
+      openInNewTab: true,
+      ariaLabelLink: `${externalLinkLabel} ${res?.label || ""}`,
+    };
+  }
+
+  if (link.componentName === DatoBlockModel.Article) {
+    return {
+      linkTo: linkResolver(link.id, lang),
+      text: link.title,
+      iconRight: "it-arrow-right",
+      ariaLabelLink: `${articleLinkLabel} ${link.title}`,
+    };
+  }
+
+  return {
+    linkTo: "#",
+    text: "Link non valido",
+  };
+});
+---
+
+<div class="row">
+  <div class="d-inline-flex me-lg-5 my tag-small-size">
+    <span class="text-uppercase text-secondary me-2">
+      <strong>{block.title}</strong>
+    </span>
+    <div class="ms-3">
+      {
+        links?.map((link) => (
+          <span>
+            <a
+              class="chip chip-primary chip-lg chip-simple"
+              href={link.linkTo}
+              target={link.openInNewTab ? "_blank" : "_self"}
+              aria-label={link.ariaLabelLink}
+            >
+              <span class="chip-label">{link.text}</span>
+            </a>
+            {link.iconRight && (
+              <span class={`icon ${link.iconRight}`} aria-hidden="true" />
+            )}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>
