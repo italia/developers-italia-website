@@ -1,10 +1,14 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import { Breadcrumb } from "@components/molecules/Breadcrumb";
 import type { TagFragmentType } from "@graphql/fragment/commonFragments";
 import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
 import type { WebinarContentFragmentType } from "@graphql/fragment/webinar";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
+import { DatoBlockModel } from "@utils/cmsMapper";
+import { createBreadcrumb } from "@utils/createBreadcrumb";
+import { getCtaFields } from "@utils/getCtaFields";
 import { getLocaleValue } from "@utils/getLocaleValue";
 import { extractFaqItems, type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 import { linkResolver } from "@utils/linkResolver";
@@ -79,8 +83,38 @@ const jsonLd: JsonLdPageData = {
   updatedAt,
   faq: extractFaqItems(content ?? []),
 };
+
+// L'Hero renderizza già il proprio breadcrumb: lo mostriamo a parte solo per i
+// contenuti che non iniziano con un Hero (es. contenuti editoriali).
+const hasHero = (content ?? []).some(
+  (block) => block.componentName === DatoBlockModel.Hero,
+);
+const breadcrumbItems = hasHero ? [] : createBreadcrumb(id, lang as SiteLocale);
+
+// L'URL del video (YouTube) per il player arriva dalla CTA della
+// WebinarDescription ("Vai al video"). Viene passato all'ActionCard "Webinar
+// transcript" che, quando riceve un videoUrl, renderizza il VideoPlayer al
+// posto della card.
+const webinarDescription = (content ?? []).find(
+  (block) => block.componentName === DatoBlockModel.WebinarDescription,
+);
+const videoText =
+  webinarDescription && "text" in webinarDescription
+    ? webinarDescription.text
+    : null;
+const { linkTo: videoUrl } = getCtaFields(
+  videoText?.cta ?? null,
+  lang as SiteLocale,
+);
 ---
 
 <Layout pageSeo={seoMeta} datePublished={publishedAt} jsonLd={jsonLd}>
-  <PageAdapter content={content} />
+  {
+    breadcrumbItems.length > 0 && (
+      <div class="container pt-4">
+        <Breadcrumb items={breadcrumbItems} />
+      </div>
+    )
+  }
+  <PageAdapter content={content} videoUrl={videoUrl} />
 </Layout>

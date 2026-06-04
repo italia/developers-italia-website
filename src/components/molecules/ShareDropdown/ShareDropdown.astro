@@ -1,0 +1,206 @@
+---
+// Dropdown di condivisione modellato su quello di designers.italia.it
+// (pagine community/media): WhatsApp, Telegram, LinkedIn, email e copia
+// collegamento. Niente data-api Bootstrap (data-bs-toggle): verrebbe agganciato
+// due volte (bundle BI + import ESM in Layout) e il doppio toggle() farebbe
+// aprire e richiudere subito la tendina — toggle manuale nello script.
+import type { ShareDropdownProps } from "./types";
+
+type Props = ShareDropdownProps;
+
+const { url, title, label = "Condividi" } = Astro.props;
+
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+
+const shareLinks = [
+  {
+    label: "Condividi su WhatsApp",
+    href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+    icon: "it-whatsapp",
+    external: true,
+  },
+  {
+    label: "Condividi su Telegram",
+    href: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+    icon: "it-telegram",
+    external: true,
+  },
+  {
+    label: "Condividi su LinkedIn",
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: "it-linkedin",
+    external: true,
+  },
+  {
+    label: "Invia per email",
+    href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    icon: "it-mail",
+    external: false,
+  },
+];
+---
+
+<div class="dropdown">
+  <button
+    type="button"
+    aria-label={`${label}: ${title}`}
+    class="btn btn-share btn-dropdown text-primary"
+    aria-expanded="false"
+    aria-haspopup="true"
+    data-share-toggle
+  >
+    <span>{label}</span>
+    <svg role="img" aria-hidden="true" class="icon icon-sm icon-primary ms-1">
+      <use href="/bsi-svg/sprites.svg#it-more-items"></use>
+    </svg>
+  </button>
+  <div class="dropdown-menu">
+    <div class="link-list-wrapper">
+      <ul class="link-list">
+        {
+          shareLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="list-item right-icon dropdown-item"
+                aria-label={
+                  link.external
+                    ? `${link.label} (si apre in una nuova finestra)`
+                    : link.label
+                }
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+              >
+                <span>{link.label}</span>
+                <svg
+                  role="img"
+                  aria-hidden="true"
+                  class="icon icon-sm icon-primary"
+                >
+                  <use href={`/bsi-svg/sprites.svg#${link.icon}`} />
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+        <li class="list-item">
+          <div class="d-grid px-2 pt-2">
+            <button
+              type="button"
+              class="dropdown-item btn btn-primary btn-icon"
+              data-share-copy={url}
+            >
+              <span>Copia collegamento</span>
+              <svg role="img" aria-hidden="true" class="icon icon-white ms-1">
+                <use href="/bsi-svg/sprites.svg#it-copy"></use>
+              </svg>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Stili ripresi dal CSS custom di designers.italia.it */
+  .btn.btn-share {
+    align-items: center;
+    display: flex;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  .dropdown-item.btn.btn-primary {
+    background-color: var(--bs-primary) !important;
+    color: #fff !important;
+    justify-content: center;
+    text-align: center;
+  }
+  .dropdown-item.btn.btn-primary:hover {
+    background-color: var(--bs-btn-hover-bg) !important;
+  }
+</style>
+
+<script>
+  // Toggle manuale della tendina con il Dropdown del bundle BI
+  // (window.bootstrap): risolto al click perché il bundle è caricato con defer
+  // e potrebbe non essere ancora disponibile quando questo modulo esegue.
+  function initShareDropdowns() {
+    const toggles = document.querySelectorAll<HTMLButtonElement>(
+      "[data-share-toggle]",
+    );
+
+    toggles.forEach((btn) => {
+      if (btn.dataset.shareInit) return;
+      btn.dataset.shareInit = "true";
+
+      const container = btn.closest(".dropdown");
+
+      const getDropdown = () => {
+        const bootstrap = (window as unknown as { bootstrap?: any }).bootstrap;
+        return bootstrap?.Dropdown
+          ? bootstrap.Dropdown.getOrCreateInstance(btn)
+          : null;
+      };
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        getDropdown()?.toggle();
+      });
+
+      // Senza data-api il clearMenus di Bootstrap non interviene: gestiamo
+      // noi chiusura su click fuori, Esc e click su una voce del menu.
+      document.addEventListener("click", (e) => {
+        if (container && !container.contains(e.target as Node)) {
+          getDropdown()?.hide();
+        }
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") getDropdown()?.hide();
+      });
+      container
+        ?.querySelectorAll<HTMLAnchorElement>("a.dropdown-item")
+        .forEach((link) => {
+          link.addEventListener("click", () => getDropdown()?.hide());
+        });
+    });
+  }
+
+  // "Copia collegamento": copia l'URL e dà feedback temporaneo sull'etichetta.
+  function initShareCopy() {
+    const buttons =
+      document.querySelectorAll<HTMLButtonElement>("[data-share-copy]");
+
+    buttons.forEach((btn) => {
+      if (btn.dataset.copyInit) return;
+      btn.dataset.copyInit = "true";
+
+      const labelEl = btn.querySelector("span");
+      const originalLabel = labelEl?.textContent ?? "";
+
+      btn.addEventListener("click", async () => {
+        const url = btn.dataset.shareCopy;
+        if (!url || !labelEl) return;
+
+        try {
+          await navigator.clipboard.writeText(url);
+          labelEl.textContent = "Collegamento copiato";
+        } catch {
+          labelEl.textContent = "Copia non riuscita";
+        }
+        setTimeout(() => {
+          labelEl.textContent = originalLabel;
+        }, 2000);
+      });
+    });
+  }
+
+  function init() {
+    initShareDropdowns();
+    initShareCopy();
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

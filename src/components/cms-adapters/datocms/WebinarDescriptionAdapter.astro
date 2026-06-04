@@ -1,7 +1,9 @@
 ---
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
+import { ShareDropdown } from "@components/molecules/ShareDropdown";
 import { WebinarDescription } from "@components/organisms/WebinarDescription";
 import type { WebinarDescriptionFragmentType } from "@graphql/fragment/sectionFragments";
+import { getCtaFields } from "@utils/getCtaFields";
 import EventsListAdapter from "./EventsListAdapter.astro";
 import LinksTagdAdapter from "./LinksTagdAdapter.astro";
 
@@ -9,10 +11,36 @@ type Props = {
   block: WebinarDescriptionFragmentType;
 };
 const { block } = Astro.props;
+const { lang } = Astro.locals;
+
+// Il CTA del blocco porta l'URL del video e l'etichetta ("Condividi" dal CMS):
+// al posto del pulsante CTA mostriamo il dropdown di condivisione (come
+// designers.italia.it) con quel link. Se il CTA manca (o non risolve), il
+// blocco resta com'è.
+const { linkTo, labelButton } = getCtaFields(block.text.cta, lang);
+const videoUrl = linkTo && linkTo !== "#" ? linkTo : undefined;
 ---
 
 <WebinarDescription>
-  <TextContainerAdapter slot="text" block={block.text} variant="light" />
+  <Fragment slot="text">
+    <TextContainerAdapter
+      block={block.text}
+      variant="light"
+      heading="h1"
+      hideCta={!!videoUrl}
+    />
+    {
+      videoUrl && (
+        <div class="mt-5 d-flex justify-content-end">
+          <ShareDropdown
+            url={videoUrl}
+            title={block.text.title}
+            label={labelButton}
+          />
+        </div>
+      )
+    }
+  </Fragment>
   <EventsListAdapter slot="subjects" block={block.subjects} />
 
   {

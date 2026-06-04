@@ -1,0 +1,248 @@
+---
+export type SubtitleTrack = {
+  /** URL del file WebVTT (.vtt) */
+  src: string;
+  /** Codice lingua della traccia (es. "it") */
+  srclang: string;
+  /** Etichetta mostrata nel menu sottotitoli (es. "Italiano") */
+  label: string;
+  /** Se true la traccia è attiva all'avvio */
+  default?: boolean;
+};
+
+type Props = {
+  /** Unique id (es. il record id del blocco) per legare overlay/accordion */
+  id: string;
+  /** URL YouTube (arriva dal CMS) */
+  videoUrl: string;
+  /** Tracce sottotitoli WebVTT: attivano l'icona sottotitoli nella control bar */
+  subtitles?: SubtitleTrack[];
+  /** Testo della trascrizione mostrata nell'accordion (HTML) */
+  transcription?: string;
+  /** Titolo dell'overlay (HTML, può contenere link) */
+  overlayTitle?: string;
+  /** Etichetta del pulsante di accettazione */
+  acceptLabel?: string;
+  /** Etichetta della checkbox "ricorda per tutti i video" */
+  rememberLabel?: string;
+  /** Etichetta dell'accordion trascrizione */
+  transcriptionLabel?: string;
+};
+
+// Lingua della pagina corrente (impostata dalle route in Astro.locals) per
+// non hardcodare la lingua nel link alla cookie policy.
+const lang = Astro.locals.lang ?? "it";
+
+const {
+  id,
+  videoUrl,
+  subtitles,
+  transcription,
+  overlayTitle = `Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella <a href="/${lang}/privacy-policy">cookie policy</a>.`,
+  acceptLabel = "Accetta e visualizza",
+  rememberLabel = "Ricorda per tutti i video",
+  transcriptionLabel = "Trascrizione",
+} = Astro.props;
+
+const videoId = `video-${id}`;
+const rememberId = `accept-remember-${id}`;
+const transcriptionId = `transcription-${id}`;
+const transcriptionHeadingId = `transcription-heading-${id}`;
+---
+
+<div class="acceptoverlayable">
+  <div class="acceptoverlay acceptoverlay-primary fade show">
+    <div class="acceptoverlay-inner">
+      <div class="acceptoverlay-icon">
+        <svg class="icon" aria-hidden="true">
+          <use href="/bsi-svg/sprites.svg#it-video"></use>
+        </svg>
+      </div>
+      {overlayTitle && <h4 set:html={overlayTitle} />}
+      <div class="acceptoverlay-buttons single-button">
+        {
+          /* btn-light: su sfondo blu (acceptoverlay-primary) un btn-primary
+            si confonderebbe con l'overlay */
+        }
+        <button
+          type="button"
+          class="btn btn-light"
+          data-bs-accept-from="youtube"
+        >
+          {acceptLabel}
+        </button>
+        <label for={rememberId}>
+          <input id={rememberId} type="checkbox" data-bs-accept-remember />
+          {rememberLabel}
+        </label>
+      </div>
+    </div>
+  </div>
+  <video
+    id={videoId}
+    class="video-js vjs-theme-bootstrap-italia vjs-fluid vjs-big-play-centered"
+    data-youtube-url={videoUrl}
+    data-subtitles={subtitles?.length ? JSON.stringify(subtitles) : undefined}
+    playsinline></video>
+</div>
+
+{
+  transcription && (
+    <div class="vjs-transcription">
+      <div class="accordion" id={`accordion-${id}`}>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id={transcriptionHeadingId}>
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-transcription-toggle
+              aria-expanded="false"
+              aria-controls={transcriptionId}
+            >
+              {transcriptionLabel}
+            </button>
+          </h3>
+          <div
+            id={transcriptionId}
+            class="accordion-collapse collapse"
+            role="region"
+            aria-labelledby={transcriptionHeadingId}
+          >
+            <div class="accordion-body" set:html={transcription} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  /* La checkbox "Ricorda la scelta" sta affiancata al pulsante di consenso,
+     non sotto: BI centra il bottone singolo con `margin: 0 auto` e gli impone
+     `min-width: 50%` (_accept-overlay.scss), qui centriamo invece la coppia
+     bottone+checkbox. Specificità maggiorata per vincere sulle regole BI. */
+  .acceptoverlayable .acceptoverlay .acceptoverlay-buttons.single-button {
+    justify-content: center;
+  }
+  .acceptoverlayable
+    .acceptoverlay
+    .acceptoverlay-buttons.single-button
+    button {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+  }
+  .acceptoverlayable .acceptoverlay .acceptoverlay-buttons.single-button label {
+    margin-bottom: 0;
+  }
+
+  /* Link "cookie policy" nel titolo: il colore link di default (blu) sarebbe
+     invisibile sullo sfondo blu dell'overlay. :global() perché l'anchor arriva
+     da set:html e non ha la classe di scope di Astro. */
+  .acceptoverlayable .acceptoverlay h4 :global(a) {
+    color: var(--bs-white, #fff);
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  import { initYoutubePlugin } from "bootstrap-italia/dist/plugins/util/youtube-video";
+  // Traduzione ufficiale video.js: serve perché creiamo il player direttamente
+  // con window.videojs (le stringhe it del plugin VideoPlayer di BI non sono
+  // esportate). Senza, il menu sottotitoli resterebbe in inglese.
+  import itLang from "video.js/dist/lang/it.json";
+
+  // Accordion trascrizione: toggle manuale della classe `.show`. Niente data-api
+  // Bootstrap (`data-bs-toggle`), che verrebbe agganciato due volte — bundle BI
+  // + eventuale import ESM — causando "apre ma non chiude".
+  function initTranscriptions() {
+    const toggles = document.querySelectorAll<HTMLButtonElement>(
+      "[data-transcription-toggle]",
+    );
+
+    toggles.forEach((btn) => {
+      if (btn.dataset.collapseInit) return;
+      btn.dataset.collapseInit = "true";
+
+      const targetId = btn.getAttribute("aria-controls");
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+
+      btn.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        target.classList.toggle("show", !expanded);
+        btn.classList.toggle("collapsed", expanded);
+        btn.setAttribute("aria-expanded", String(!expanded));
+      });
+    });
+  }
+
+  // Usiamo lo STESSO video.js già caricato dal bundle BI (window.videojs) per
+  // evitare una seconda istanza (causa del video nero). Registriamo il tech
+  // Youtube e creiamo il player con techOrder youtube solo dopo il consenso.
+  function initYouTubePlayers() {
+    const videos = document.querySelectorAll<HTMLVideoElement>(
+      "video[data-youtube-url]",
+    );
+
+    videos.forEach((el) => {
+      if (el.dataset.ytInit) return;
+      el.dataset.ytInit = "true";
+
+      const url = el.dataset.youtubeUrl;
+      if (!url) return;
+
+      const loadVideo = () => {
+        const videojs = (window as unknown as { videojs?: any }).videojs;
+        if (!videojs) return;
+
+        initYoutubePlugin(videojs);
+        videojs.addLanguage("it", itLang);
+
+        const existing = videojs.getPlayer(el.id);
+        if (existing) {
+          existing.src({ type: "video/youtube", src: url });
+          return;
+        }
+
+        // Le tracce WebVTT vengono renderizzate da video.js in overlay sopra
+        // l'iframe YouTube; con almeno una traccia la control bar mostra il
+        // pulsante sottotitoli (lingue, "Senza sottotitoli", parametri).
+        const subtitles: Array<{
+          src: string;
+          srclang: string;
+          label: string;
+          default?: boolean;
+        }> = el.dataset.subtitles ? JSON.parse(el.dataset.subtitles) : [];
+
+        videojs(el, {
+          controls: true,
+          fluid: true,
+          techOrder: ["youtube"],
+          sources: [{ type: "video/youtube", src: url }],
+          language: "it",
+          tracks: subtitles.map((track) => ({ kind: "subtitles", ...track })),
+        });
+      };
+
+      // Il video YouTube viene caricato solo dopo il consenso (accept-overlay).
+      const acceptBtn = el
+        .closest(".acceptoverlayable")
+        ?.querySelector<HTMLElement>("[data-bs-accept-from]");
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", loadVideo);
+      } else {
+        loadVideo();
+      }
+    });
+  }
+
+  function init() {
+    initTranscriptions();
+    initYouTubePlayers();
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

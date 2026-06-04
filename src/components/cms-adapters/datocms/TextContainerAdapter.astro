@@ -11,9 +11,12 @@ type Props = {
   block: TextBlockFragmentType;
   variant: TextContainerVariant;
   heading?: HeadingTag;
+  /** Non renderizzare il pulsante CTA del blocco (es. quando viene sostituito
+   *  da un altro controllo, come il "Condividi" della pagina webinar) */
+  hideCta?: boolean;
 };
 
-const { block, variant, heading = "h2" } = Astro.props;
+const { block, variant, heading = "h2", hideCta = false } = Astro.props;
 const { lang } = Astro.locals;
 
 const { labelButton, linkTo, openInNewTab } = getCtaFields(block.cta, lang);
@@ -23,8 +26,8 @@ const { labelButton, linkTo, openInNewTab } = getCtaFields(block.cta, lang);
   title={block.title}
   paragraph={block.paragraph}
   variant={variant}
-  labelButton={labelButton}
-  linkTo={linkTo}
+  labelButton={hideCta ? undefined : labelButton}
+  linkTo={hideCta ? undefined : linkTo}
   openInNewTab={openInNewTab}
   heading={heading}
 />

@@ -1,18 +1,18 @@
 <div class="container py-5">
-  <div class="row">
-    <div class="col-lg-8 text-center">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
       <slot name="title" />
-    </div>
-    <div class="mb-5 block">
-      <slot name="text" slot="left" />
+      <slot name="text" />
     </div>
   </div>
 </div>
-<div class="border-top border-bottom py-5 container">
-  <div class="row">
-    <div class="justify-content-center">
-      <slot name="subjects" />
-      <slot name="resources" />
+<div class="border-top border-bottom py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <slot name="subjects" />
+        <slot name="resources" />
+      </div>
     </div>
   </div>
 </div>

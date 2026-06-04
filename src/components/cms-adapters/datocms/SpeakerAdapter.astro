@@ -1,26 +1,24 @@
 ---
 import AuthorListAdapter from "@components/cms-adapters/datocms/AuthorListAdapter.astro";
 import TextContainerAdapter from "@components/cms-adapters/datocms/TextContainerAdapter.astro";
-import { SplitContent } from "@components/layout/SplitContent";
+import { SectionContainer } from "@components/organisms/SectionContainer";
 import type { SpeakerFragmentType } from "@graphql/fragment/sectionFragments";
+import { getSectionBgClass } from "@utils/background";
 
 type Props = {
   block: SpeakerFragmentType;
 };
 
 const { block } = Astro.props;
+
+const hasAuthors = (block.list?.authors?.length ?? 0) > 0;
 ---
 
-<SplitContent
-  rightColumns={5}
-  leftColumns={5}
-  alignItems="top"
-  background="lighter"
->
-  <Fragment slot="left">
-    <TextContainerAdapter block={block.text} variant="light" />
-  </Fragment>
-  <Fragment slot="right">
-    <AuthorListAdapter block={block.list} />
-  </Fragment>
-</SplitContent>
+<SectionContainer className={getSectionBgClass("lighter")}>
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <TextContainerAdapter block={block.text} variant="light" />
+      {hasAuthors && <AuthorListAdapter block={block.list} />}
+    </div>
+  </div>
+</SectionContainer>

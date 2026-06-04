@@ -1,0 +1,48 @@
+---
+import {
+  VideoPlayer,
+  type SubtitleTrack,
+} from "@components/organisms/VideoPlayer";
+
+// TODO: il block model `WebinarTranscript` non è ancora presente nello schema
+// DatoCMS, quindi `WebinarTranscriptionFragmentType` (in @graphql/fragment/
+// sectionFragments) risolve a `never`. Tipizziamo localmente i campi attesi.
+// Il modello CMS deve esporre, oltre a quelli già nel fragment:
+//   - videoUrl: String       → URL YouTube del player
+//   - subtitles: FileField   → file WebVTT (.vtt) per i sottotitoli del player
+// e usare `paragraph` (TextBlock) come testo della trascrizione.
+// Quando il modello esiste e lo schema è rigenerato, sostituire questo type con
+// `WebinarTranscriptionFragmentType` e cablare l'arm GraphQL + il case in PageAdapter.
+type TranscriptionBlock = {
+  id: string;
+  videoUrl: string;
+  subtitles?: { url: string } | null;
+  paragraph: { paragraph?: string | null };
+};
+
+type Props = {
+  block: TranscriptionBlock;
+};
+
+const { block } = Astro.props;
+
+const subtitles: SubtitleTrack[] | undefined = block.subtitles?.url
+  ? [
+      {
+        src: block.subtitles.url,
+        srclang: "it",
+        label: "Italiano",
+        default: true,
+      },
+    ]
+  : undefined;
+---
+
+<div class="container py-5">
+  <VideoPlayer
+    id={block.id}
+    videoUrl={block.videoUrl}
+    subtitles={subtitles}
+    transcription={block.paragraph.paragraph || undefined}
+  />
+</div>

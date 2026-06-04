@@ -1,28 +1,40 @@
 ---
 import { ActionCardSection } from "@components/organisms/ActionCardSection";
+import { VideoPlayer } from "@components/organisms/VideoPlayer";
 import type { ActionCardFragmentType } from "@graphql/fragment/sectionFragments";
 import { createDownloadUrl } from "@utils/createDownloadUrl";
 import { formatAssetInfo } from "@utils/formatAssetInfo";
 
 type Props = {
   block: ActionCardFragmentType;
+  /** Se valorizzato, il blocco renderizza il VideoPlayer (trascrizione ←
+   *  paragraph) invece della card di download. */
+  videoUrl?: string;
 };
 
-const { block } = Astro.props;
-
-const downloadUrl = createDownloadUrl(block.cta.doc);
-
-const cta = {
-  label: `${block.cta.label} ${formatAssetInfo(block.cta.doc.size, block.cta.doc.format)}`,
-  url: downloadUrl,
-};
+const { block, videoUrl } = Astro.props;
 ---
 
-<ActionCardSection
-  title={block.title}
-  paragraph={block.paragraph}
-  category={block.category || undefined}
-  cta={cta}
-  labelButtonMore={block.readMoreLabel}
-  labelButtonLess={block.readLessLabel}
-/>
+{
+  videoUrl ? (
+    <div class="container py-5">
+      <VideoPlayer
+        id={block.id}
+        videoUrl={videoUrl}
+        transcription={block.paragraph || undefined}
+      />
+    </div>
+  ) : (
+    <ActionCardSection
+      title={block.title}
+      paragraph={block.paragraph}
+      category={block.category || undefined}
+      cta={{
+        label: `${block.cta.label} ${formatAssetInfo(block.cta.doc.size, block.cta.doc.format)}`,
+        url: createDownloadUrl(block.cta.doc),
+      }}
+      labelButtonMore={block.readMoreLabel}
+      labelButtonLess={block.readLessLabel}
+    />
+  )
+}

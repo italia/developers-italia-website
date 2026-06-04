@@ -9,4 +9,4 @@ export type TextContainerProps = {
 };
 
 export type TextContainerVariant = "light" | "dark" | "primary";
-export type HeadingTag = "h2" | "h3" | "h4" | "h5";
+export type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5";
