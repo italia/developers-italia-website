@@ -17,13 +17,15 @@ const { block, videoUrl } = Astro.props;
 
 {
   videoUrl ? (
-    <div class="container py-5">
-      <VideoPlayer
-        id={block.id}
-        videoUrl={videoUrl}
-        transcription={block.paragraph || undefined}
-      />
-    </div>
+    <section class="it-section-bg-medium py-5">
+      <div class="container">
+        <VideoPlayer
+          id={block.id}
+          videoUrl={videoUrl}
+          transcription={block.paragraph || undefined}
+        />
+      </div>
+    </section>
   ) : (
     <ActionCardSection
       title={block.title}

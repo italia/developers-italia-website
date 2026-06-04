@@ -92,6 +92,19 @@ body {
   @extend .text-uppercase;
 }
 
+// Link esterni in evidenza nei testi markdown del CMS (vedi
+// utils/decorateExternalLinks.ts), come il "simple-cta" di designers.italia.it
+.simple-cta {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  text-decoration: none;
+
+  .icon {
+    flex-shrink: 0;
+  }
+}
+
 @media (min-width: 992px) {
   .it-header-wrapper.it-header-sticky.is-sticky
     .it-header-navbar-wrapper

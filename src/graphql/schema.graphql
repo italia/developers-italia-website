@@ -9178,7 +9178,7 @@ type WebinarDescriptionRecord implements RecordInterface {
   text: TextBlockRecord!
 }
 
-union WebinarItemModelContentField = ActionCardRecord | HeroRecord | IntroArticleRecord | SpeakerRecord | TextBlockRecord | WebinarDescriptionRecord | WebinarTextRecord
+union WebinarItemModelContentField = ActionCardRecord | HeroRecord | IntroArticleRecord | SpeakerRecord | TextBlockRecord | WebinarDescriptionRecord
 
 type WebinarItemModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -9196,13 +9196,14 @@ input WebinarItemModelFilter {
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
+  seo: SeoFilter
+  eventBody: TextFilter
   date: DateFilter
   image: FileFilter
   paragraph: TextFilter
   title: StringFilter
   topic: LinkFilter
   parentPage: LinkFilter
-  seo: SeoFilter
   slug: SlugFilter
   OR: [WebinarItemModelFilter]
   AND: [WebinarItemModelFilter]
@@ -9330,6 +9331,10 @@ type WebinarItemRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): Date!
+  eventBody(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
   id: ItemId!
   image: FileField!
   paragraph(
@@ -9389,33 +9394,6 @@ type WebinarItemRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): WebinarTopicRecord!
-}
-
-"""Block of type Webinar text (webinar_text)"""
-type WebinarTextRecord implements RecordInterface {
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  id: ItemId!
-  text(
-    """Process content as markdown"""
-    markdown: Boolean
-  ): String
 }
 
 input WebinarTopicModelFilter {

@@ -76,6 +76,7 @@ export const AllWebinarRecordFragment = graphql(
       locales: _locales
       publishedAt: _publishedAt
       updatedAt: _updatedAt
+      eventBody(markdown: true)
       allContentLocales: _allContentLocales {
         locale
         value {

@@ -38,11 +38,13 @@ const subtitles: SubtitleTrack[] | undefined = block.subtitles?.url
   : undefined;
 ---
 
-<div class="container py-5">
-  <VideoPlayer
-    id={block.id}
-    videoUrl={block.videoUrl}
-    subtitles={subtitles}
-    transcription={block.paragraph.paragraph || undefined}
-  />
-</div>
+<section class="it-section-bg-medium py-5">
+  <div class="container">
+    <VideoPlayer
+      id={block.id}
+      videoUrl={block.videoUrl}
+      subtitles={subtitles}
+      transcription={block.paragraph.paragraph || undefined}
+    />
+  </div>
+</section>

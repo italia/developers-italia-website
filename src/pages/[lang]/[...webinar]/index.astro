@@ -8,6 +8,7 @@ import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
 import { DatoBlockModel } from "@utils/cmsMapper";
 import { createBreadcrumb } from "@utils/createBreadcrumb";
+import { decorateExternalLinks } from "@utils/decorateExternalLinks";
 import { getCtaFields } from "@utils/getCtaFields";
 import { getLocaleValue } from "@utils/getLocaleValue";
 import { extractFaqItems, type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
@@ -25,6 +26,8 @@ export async function getStaticPaths() {
       seoMeta: TagFragmentType[];
       seo: SeoFieldFragmentType | null;
       content: WebinarContentFragmentType[];
+      /** Corpo dell'evento (markdown -> HTML), non localizzato */
+      eventBody: string | null;
       id: string;
       publishedAt: string;
       updatedAt: string;
@@ -57,6 +60,7 @@ export async function getStaticPaths() {
             seo: seoRes?.seo || null,
             id: page.id,
             content: getLocaleValue(page.allContentLocales, lang, null),
+            eventBody: page.eventBody ?? null,
             publishedAt: page.publishedAt,
             updatedAt: seoRes?.updatedAt || page.updatedAt,
           },
@@ -69,7 +73,8 @@ export async function getStaticPaths() {
   return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { id, content, seo, seoMeta, publishedAt, updatedAt } = Astro.props;
+const { id, content, eventBody, seo, seoMeta, publishedAt, updatedAt } =
+  Astro.props;
 const { lang } = Astro.params;
 
 Astro.locals.lang = lang;
@@ -117,4 +122,15 @@ const { linkTo: videoUrl } = getCtaFields(
     )
   }
   <PageAdapter content={content} videoUrl={videoUrl} />
+  {
+    eventBody && (
+      <section class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <div set:html={decorateExternalLinks(eventBody)} />
+          </div>
+        </div>
+      </section>
+    )
+  }
 </Layout>
