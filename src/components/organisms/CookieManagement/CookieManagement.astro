@@ -1,0 +1,91 @@
+---
+import { getI18n } from "@i18n/microcopy";
+
+// Gestione dei cookie di terze parti in fondo alla privacy policy, come su
+// innovazione.gov.it: mostra il servizio per cui l'utente ha accettato i
+// cookie (YouTube, scelta salvata dall'accept-overlay del VideoPlayer) e
+// permette di revocare il consenso. Titolo, descrizione del servizio e
+// chiave del servizio (cookiePrefix) arrivano dal blocco CMS
+// "Third Party Cookies".
+type Props = {
+  /** Nome del servizio mostrato in grassetto (es. "YouTube") */
+  title?: string | null;
+  /** Dettaglio del servizio (es. "per la visualizzazione di video") */
+  description?: string | null;
+  /**
+   * Service usato dall'accept-overlay del VideoPlayer
+   * (data-bs-accept-from): BI vi salva la scelta dell'utente. Deve
+   * combaciare con quello del VideoPlayer (default "youtube").
+   */
+  cookiePrefix?: string | null;
+};
+
+const { title, description, cookiePrefix } = Astro.props;
+const service = cookiePrefix || "youtube";
+
+const { lang } = Astro.locals;
+const t = getI18n(lang);
+---
+
+<section>
+  <div class="container py-5 py-lg-80">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <div id="cookies-management" data-cookie-prefix={service}>
+          <h2 class="h4">{t["cookies.title"]}</h2>
+          <p data-cookies-empty>{t["cookies.empty"]}</p>
+          <div data-cookies-manager hidden>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <span>
+                {title && <strong>{title}</strong>}
+                {title && description && " - "}
+                {description}
+              </span>
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-cookies-revoke
+              >
+                {t["cookies.revoke"]}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { cookies } from "bootstrap-italia/dist/plugins/util/cookies";
+
+  function init() {
+    const root = document.getElementById("cookies-management");
+    if (!root || root.dataset.cookiesInit) return;
+    root.dataset.cookiesInit = "true";
+
+    // Service usato dall'accept-overlay del VideoPlayer
+    // (data-bs-accept-from): BI salva la scelta in localStorage sotto la
+    // chiave "bs-ck3". Arriva dal CMS via data-cookie-prefix.
+    const service = root.dataset.cookiePrefix || "youtube";
+
+    if (cookies.isChoiceRemembered(service)) {
+      root
+        .querySelector<HTMLElement>("[data-cookies-empty]")
+        ?.setAttribute("hidden", "");
+      root
+        .querySelector<HTMLElement>("[data-cookies-manager]")
+        ?.removeAttribute("hidden");
+    }
+
+    root
+      .querySelector<HTMLButtonElement>("[data-cookies-revoke]")
+      ?.addEventListener("click", () => {
+        cookies.clearAllRememberedChoices();
+        window.location.reload();
+      });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

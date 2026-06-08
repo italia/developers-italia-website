@@ -1,4 +1,6 @@
 ---
+import { getI18n } from "@i18n/microcopy";
+
 export type SubtitleTrack = {
   /** URL del file WebVTT (.vtt) */
   src: string;
@@ -30,18 +32,19 @@ type Props = {
 };
 
 // Lingua della pagina corrente (impostata dalle route in Astro.locals) per
-// non hardcodare la lingua nel link alla cookie policy.
+// non hardcodare la lingua nel link alla cookie policy e per le microcopy i18n.
 const lang = Astro.locals.lang ?? "it";
+const t = getI18n(lang);
 
 const {
   id,
   videoUrl,
   subtitles,
   transcription,
-  overlayTitle = `Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella <a href="/${lang}/privacy-policy">cookie policy</a>.`,
-  acceptLabel = "Accetta e visualizza",
-  rememberLabel = "Ricorda per tutti i video",
-  transcriptionLabel = "Trascrizione",
+  overlayTitle = `${t["videoplayer.overlay.title"]} <a href="/${lang}/privacy-policy">${t["videoplayer.overlay.cookiePolicy"]}</a>.`,
+  acceptLabel = t["videoplayer.accept"],
+  rememberLabel = t["videoplayer.remember"],
+  transcriptionLabel = t["videoplayer.transcription"],
 } = Astro.props;
 
 const videoId = `video-${id}`;
@@ -83,6 +86,7 @@ const transcriptionHeadingId = `transcription-heading-${id}`;
     class="video-js vjs-theme-bootstrap-italia vjs-fluid vjs-big-play-centered"
     data-youtube-url={videoUrl}
     data-subtitles={subtitles?.length ? JSON.stringify(subtitles) : undefined}
+    data-lang={lang}
     playsinline></video>
 </div>
 
@@ -192,12 +196,17 @@ const transcriptionHeadingId = `transcription-heading-${id}`;
       const url = el.dataset.youtubeUrl;
       if (!url) return;
 
+      // Lingua della pagina (default "it"): il menu sottotitoli di video.js
+      // (es. "Senza sottotitoli", impostazioni) segue questa lingua. L'inglese
+      // è la lingua base di video.js, quindi carichiamo solo le stringhe it.
+      const lang = el.dataset.lang === "en" ? "en" : "it";
+
       const loadVideo = () => {
         const videojs = (window as unknown as { videojs?: any }).videojs;
         if (!videojs) return;
 
         initYoutubePlugin(videojs);
-        videojs.addLanguage("it", itLang);
+        if (lang === "it") videojs.addLanguage("it", itLang);
 
         const existing = videojs.getPlayer(el.id);
         if (existing) {
@@ -220,7 +229,7 @@ const transcriptionHeadingId = `transcription-heading-${id}`;
           fluid: true,
           techOrder: ["youtube"],
           sources: [{ type: "video/youtube", src: url }],
-          language: "it",
+          language: lang,
           tracks: subtitles.map((track) => ({ kind: "subtitles", ...track })),
         });
       };

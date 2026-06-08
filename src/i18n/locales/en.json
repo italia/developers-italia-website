@@ -68,6 +68,17 @@
   "feedback.improve.helper": "You have 200 characters available. Please do not enter personal data in this field.",
   "feedback.improve.send": "Send details",
 
+  "cookies.title": "Third-party cookies",
+  "cookies.empty": "You have not installed any third-party cookies.",
+  "cookies.youtube": "YouTube for video playback",
+  "cookies.revoke": "Revoke consent",
+
+  "videoplayer.overlay.title": "Accept YouTube cookies to watch the video. You can manage your preferences in the",
+  "videoplayer.overlay.cookiePolicy": "cookie policy",
+  "videoplayer.accept": "Accept and view",
+  "videoplayer.remember": "Remember for all videos",
+  "videoplayer.transcription": "Transcript",
+
   "subscribe.button": "Subscribe",
   "subscribe.errorText": "Something went wrong 😔 Please try again later",
   "subscribe.successText": "We sent you an email, follow the link to confirm your subscription"

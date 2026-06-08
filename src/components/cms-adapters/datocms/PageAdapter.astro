@@ -19,6 +19,7 @@ import TextAndImageAdapter from "@components/cms-adapters/datocms/TextAndImageAd
 import TextAndStatisticsAdapter from "@components/cms-adapters/datocms/TextAndStatisticsAdapter.astro";
 import TextAndUseCasesAdapter from "@components/cms-adapters/datocms/TextAndUseCasesAdapter.astro";
 import TextOnlyAdapter from "@components/cms-adapters/datocms/TextOnlyAdapter.astro";
+import ThirdPartyCookieAdapter from "@components/cms-adapters/datocms/ThirdPartyCookieAdapter.astro";
 import TopicFilterAdapter from "@components/cms-adapters/datocms/TopicFilterAdapter.astro";
 import UseCaseContainerAdapter from "@components/cms-adapters/datocms/UseCaseContainerAdapter.astro";
 import WebinarDescriptionAdapter from "@components/cms-adapters/datocms/WebinarDescriptionAdapter.astro";
@@ -67,6 +68,8 @@ const { content, isFontSerif = false, videoUrl } = Astro.props;
         return <UseCaseContainerAdapter block={block} />;
       case DatoBlockModel.TopicFilter:
         return <TopicFilterAdapter block={block} />;
+      case DatoBlockModel.ThirdPartyCookie:
+        return <ThirdPartyCookieAdapter block={block} />;
       case DatoBlockModel.SupportCta:
         return <SupportCTASectionAdapter block={block} size="default" />;
       case DatoBlockModel.StructuredText:

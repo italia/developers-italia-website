@@ -6,6 +6,7 @@ export enum DatoBlockModel {
   DataSection = "DataSectionRecord",
   UseCaseContainer = "UseCaseContainerRecord",
   TopicFilter = "TopicFilterRecord",
+  ThirdPartyCookie = "ThirdPartyCookieRecord",
   SupportCta = "SupportCtaSectionRecord",
   StructuredText = "StructuredTextRecord",
   ListCollection = "ListCollectionRecord",

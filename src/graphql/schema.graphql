@@ -121,15 +121,18 @@ type ActionCardRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   category: String
-  cta: DownloadLinkRecord!
+  cta: DownloadLinkRecord
   id: ItemId!
+  isSharable: BooleanType!
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
   ): String!
   readLessLabel: String!
   readMoreLabel: String!
+  shareLabel: String
   title: String!
+  videoUrl: String
 }
 
 """Block of type Additional content (additional_content)"""
@@ -1039,6 +1042,7 @@ type CatalogueTabRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String!
+  storyType: String
   title: String!
 }
 
@@ -5580,7 +5584,7 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
-union PageModelContentField = CardLinkListRecord | DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TopicFilterRecord | UseCaseContainerRecord
+union PageModelContentField = CardLinkListRecord | DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | ThirdPartyCookieRecord | TopicFilterRecord | UseCaseContainerRecord
 
 type PageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -7597,6 +7601,7 @@ input StoryClassModelFilter {
   _isValid: BooleanFilter
   _locales: LocalesFilter
   label: StringFilter
+  sort: StringFilter
   OR: [StoryClassModelFilter]
   AND: [StoryClassModelFilter]
 }
@@ -7622,6 +7627,8 @@ enum StoryClassModelOrderBy {
   _isValid_DESC
   label_ASC
   label_DESC
+  sort_ASC
+  sort_DESC
 }
 
 """
@@ -7663,6 +7670,7 @@ type StoryClassRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
+  sort: String
 }
 
 type StoryClassRecordMultiLocaleField {
@@ -7697,6 +7705,7 @@ input StoryItemModelFilter {
   image: FileFilter
   topic: LinkFilter
   seo: SeoFilter
+  storyType: StringFilter
   OR: [StoryItemModelFilter]
   AND: [StoryItemModelFilter]
 }
@@ -7724,6 +7733,8 @@ enum StoryItemModelOrderBy {
   title_DESC
   dateOfPublication_ASC
   dateOfPublication_DESC
+  storyType_ASC
+  storyType_DESC
 }
 
 union StoryItemModelParentPageField = CatalogueRecord | PageRecord
@@ -7879,6 +7890,7 @@ type StoryItemRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
+  storyType: String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -8398,6 +8410,35 @@ type TextUseCaseRecord implements RecordInterface {
   id: ItemId!
   text: TextBlockRecord!
   useCases: UseCaseBlockRecord!
+}
+
+"""Block of type Third Party Cookies (third_party_cookie)"""
+type ThirdPartyCookieRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  cookiePrefix: String
+  description(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  id: ItemId!
+  title: String
 }
 
 """Block of type Cards container with filter (topic_filter)"""

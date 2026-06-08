@@ -11,6 +11,7 @@ import {
   TextAndImageFragment,
   TextAndStatisticsFragment,
   TextOnlyFragment,
+  ThirdPartyCookieFragment,
   TopicFilterFragment,
   UseCaseContainerFragment,
 } from "@graphql/fragment/sectionFragments";
@@ -65,6 +66,9 @@ export const PageContentFragment = graphql(
       ... on TextStatisticRecord {
         ...TextAndStatisticsFragment
       }
+      ... on ThirdPartyCookieRecord {
+        ...ThirdPartyCookieFragment
+      }
     }
   `,
   [
@@ -82,6 +86,7 @@ export const PageContentFragment = graphql(
     TextOnlyFragment,
     CardLinkListFragment,
     TextAndStatisticsFragment,
+    ThirdPartyCookieFragment,
   ],
 );
 

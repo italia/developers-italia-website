@@ -696,3 +696,16 @@ export const ArticleSTFragment = graphql(
 );
 
 export type ArticleSTFragmentType = FragmentOf<typeof ArticleSTFragment>;
+
+export const ThirdPartyCookieFragment = graphql(`
+  fragment ThirdPartyCookieFragment on ThirdPartyCookieRecord @_unmask {
+    id
+    title
+    description
+    cookiePrefix
+  }
+`);
+
+export type ThirdPartyCookieFragmentType = FragmentOf<
+  typeof ThirdPartyCookieFragment
+>;
