@@ -44,11 +44,9 @@ type ContentType =
 type Props = {
   content: ContentType[];
   isFontSerif?: boolean;
-  /** URL YouTube per il VideoPlayer (es. dalla CTA della WebinarDescription) */
-  videoUrl?: string;
 };
 
-const { content, isFontSerif = false, videoUrl } = Astro.props;
+const { content, isFontSerif = false } = Astro.props;
 ---
 
 {
@@ -81,7 +79,7 @@ const { content, isFontSerif = false, videoUrl } = Astro.props;
       case DatoBlockModel.CatalogueFeed:
         return <CatalogueFeedAdapter block={block} />;
       case DatoBlockModel.ActionCard:
-        return <ActionCardSectionAdapter block={block} videoUrl={videoUrl} />;
+        return <ActionCardSectionAdapter block={block} />;
       case DatoBlockModel.SearchBar:
         return <SearchBarAdapter block={block} />;
       case DatoBlockModel.TextImage:

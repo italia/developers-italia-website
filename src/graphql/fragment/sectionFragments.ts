@@ -450,6 +450,7 @@ export const ActionCardFragment = graphql(
       title
       paragraph(markdown: true)
       category
+      videoUrl
       cta {
         ...DownloadLinkFragment
       }
@@ -499,26 +500,6 @@ export const WebinarDescriptionFragment = graphql(
 
 export type WebinarDescriptionFragmentType = FragmentOf<
   typeof WebinarDescriptionFragment
->;
-
-export const WebinarTranscriptionFragment = graphql(
-  `
-    fragment WebinarTranscriptionFragment on WebinarTranscriptRecord @_unmask {
-      id
-      title
-      category
-      paragraph {
-        ...TextBlockFragment
-      }
-      readMoreLabel
-      readLessLabel
-    }
-  `,
-  [TextBlockFragment],
-);
-
-export type WebinarTranscriptionFragmentType = FragmentOf<
-  typeof WebinarTranscriptionFragment
 >;
 
 export const IntroArticleFragment = graphql(
