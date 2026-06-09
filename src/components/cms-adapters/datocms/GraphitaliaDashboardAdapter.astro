@@ -1,0 +1,15 @@
+---
+import Dashboard from "@components/dashboards/Dashboard";
+import type { GraphitaliaDashboardRecordFragmentType } from "@graphql/fragment/sectionFragments";
+type Props = {
+  block: GraphitaliaDashboardRecordFragmentType;
+};
+
+const { block } = Astro.props;
+const dashboardId: string = block.dashboardId;
+---
+
+<div>
+  <h1>Graphitalia Dashboard</h1>
+  <Dashboard client:visible dashboardId={dashboardId} />
+</div>

@@ -276,6 +276,23 @@ export type DataSectionRecordFragmentType = FragmentOf<
   typeof DataSectionRecordFragment
 >;
 
+export const GraphitaliaDashboardRecordFragment = graphql(
+  `
+    fragment GraphitaliaDashboardRecordFragment on GraphitaliaDashboardRecord
+    @_unmask {
+      __typename
+      id
+      title
+      dashboardId
+    }
+  `,
+  [],
+);
+
+export type GraphitaliaDashboardRecordFragmentType = FragmentOf<
+  typeof GraphitaliaDashboardRecordFragment
+>;
+
 export const UseCaseContainerFragment = graphql(
   `
     fragment UseCaseContainerFragment on UseCaseContainerRecord @_unmask {

@@ -4,6 +4,7 @@ export enum DatoBlockModel {
   SupportChannels = "SupportChannelsSectionRecord",
   FaqSection = "FaqSectionRecord",
   DataSection = "DataSectionRecord",
+  GraphitaliaDashboard = "GraphitaliaDashboardRecord",
   UseCaseContainer = "UseCaseContainerRecord",
   TopicFilter = "TopicFilterRecord",
   ThirdPartyCookie = "ThirdPartyCookieRecord",

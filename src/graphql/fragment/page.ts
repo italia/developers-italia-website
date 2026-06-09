@@ -3,6 +3,7 @@ import {
   CardLinkListFragment,
   DataSectionRecordFragment,
   FaqSectionRecordFragment,
+  GraphitaliaDashboardRecordFragment,
   HeroFragment,
   NewsFeedFragment,
   SupportChannelsSectionFragment,
@@ -38,6 +39,9 @@ export const PageContentFragment = graphql(
       }
       ... on DataSectionRecord {
         ...DataSectionRecordFragment
+      }
+      ... on GraphitaliaDashboardRecord {
+        ...GraphitaliaDashboardRecordFragment
       }
       ... on UseCaseContainerRecord {
         ...UseCaseContainerFragment
@@ -77,6 +81,7 @@ export const PageContentFragment = graphql(
     SupportChannelsSectionFragment,
     FaqSectionRecordFragment,
     DataSectionRecordFragment,
+    GraphitaliaDashboardRecordFragment,
     UseCaseContainerFragment,
     TopicFilterFragment,
     SupportCTASectionFragment,

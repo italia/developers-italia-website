@@ -1787,6 +1787,31 @@ type GlobalSettingRecord implements RecordInterface {
   ): String!
 }
 
+"""Block of type GraphItalia Dashboard (graphitalia_dashboard)"""
+type GraphitaliaDashboardRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  dashboardId: String!
+  id: ItemId!
+  title: String
+}
+
 union HeroModelCtaField = ExternalLinkRecord | InternalLinkRecord
 
 """Block of type Hero (hero)"""
@@ -5584,7 +5609,7 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
-union PageModelContentField = CardLinkListRecord | DataSectionRecord | FaqSectionRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | ThirdPartyCookieRecord | TopicFilterRecord | UseCaseContainerRecord
+union PageModelContentField = CardLinkListRecord | DataSectionRecord | FaqSectionRecord | GraphitaliaDashboardRecord | HeroRecord | NewsFeedRecord | StructuredTextRecord | SupportChannelsSectionRecord | SupportCtaSectionRecord | TextAccordionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | ThirdPartyCookieRecord | TopicFilterRecord | UseCaseContainerRecord
 
 type PageModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale

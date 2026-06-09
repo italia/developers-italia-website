@@ -5,6 +5,7 @@ import CardLinkListAdapter from "@components/cms-adapters/datocms/CardLinkListAd
 import CatalogueFeedAdapter from "@components/cms-adapters/datocms/CatalogueFeedAdapter.astro";
 import DataSectionAdapter from "@components/cms-adapters/datocms/DataSectionAdapter.astro";
 import FAQSectionAdapter from "@components/cms-adapters/datocms/FAQSectionAdapter.astro";
+import GraphitaliaDashboardAdapter from "@components/cms-adapters/datocms/GraphitaliaDashboardAdapter.astro";
 import HeroAdapter from "@components/cms-adapters/datocms/HeroAdapter.astro";
 import IntroArticleAdapter from "@components/cms-adapters/datocms/IntroArticleAdapter.astro";
 import ListCollectionAdapter from "@components/cms-adapters/datocms/ListCollectionAdapter.astro";
@@ -52,6 +53,8 @@ const { content, isFontSerif = false } = Astro.props;
 {
   content.map((block) => {
     switch (block.componentName) {
+      case DatoBlockModel.GraphitaliaDashboard:
+        return <GraphitaliaDashboardAdapter block={block} />;
       case DatoBlockModel.Hero:
         return <HeroAdapter block={block} />;
       case DatoBlockModel.NewsFeed:

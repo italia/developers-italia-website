@@ -39,7 +39,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ["dataviz-components"],
+      noExternal: ["graph-italia-components"],
     },
     resolve: {
       alias: {
