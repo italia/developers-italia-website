@@ -1,0 +1,16 @@
+---
+import { CookieManagement } from "@components/organisms/CookieManagement";
+import type { ThirdPartyCookieFragmentType } from "@graphql/fragment/sectionFragments";
+
+type Props = {
+  block: ThirdPartyCookieFragmentType;
+};
+
+const { block } = Astro.props;
+---
+
+<CookieManagement
+  title={block.title}
+  description={block.description}
+  cookiePrefix={block.cookiePrefix}
+/>

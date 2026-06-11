@@ -256,8 +256,11 @@ const flattenHeroSection = (record: HeroFragmentType): string => {
 const flattenActionCard = (record: ActionCardFragmentType): string => {
   const parts: string[] = [];
 
-  parts.push(record.title, record.paragraph, record.cta.label);
-  if (record.cta.description) parts.push(record.cta.description);
+  parts.push(record.title, record.paragraph);
+  if (record.cta) {
+    parts.push(record.cta.label);
+    if (record.cta.description) parts.push(record.cta.description);
+  }
 
   return cleanJoin(parts);
 };

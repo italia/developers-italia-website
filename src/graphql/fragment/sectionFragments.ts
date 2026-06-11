@@ -276,6 +276,23 @@ export type DataSectionRecordFragmentType = FragmentOf<
   typeof DataSectionRecordFragment
 >;
 
+export const GraphitaliaDashboardRecordFragment = graphql(
+  `
+    fragment GraphitaliaDashboardRecordFragment on GraphitaliaDashboardRecord
+    @_unmask {
+      __typename
+      id
+      title
+      dashboardId
+    }
+  `,
+  [],
+);
+
+export type GraphitaliaDashboardRecordFragmentType = FragmentOf<
+  typeof GraphitaliaDashboardRecordFragment
+>;
+
 export const UseCaseContainerFragment = graphql(
   `
     fragment UseCaseContainerFragment on UseCaseContainerRecord @_unmask {
@@ -450,6 +467,7 @@ export const ActionCardFragment = graphql(
       title
       paragraph(markdown: true)
       category
+      videoUrl
       cta {
         ...DownloadLinkFragment
       }
@@ -499,26 +517,6 @@ export const WebinarDescriptionFragment = graphql(
 
 export type WebinarDescriptionFragmentType = FragmentOf<
   typeof WebinarDescriptionFragment
->;
-
-export const WebinarTranscriptionFragment = graphql(
-  `
-    fragment WebinarTranscriptionFragment on WebinarTranscriptRecord @_unmask {
-      id
-      title
-      category
-      paragraph {
-        ...TextBlockFragment
-      }
-      readMoreLabel
-      readLessLabel
-    }
-  `,
-  [TextBlockFragment],
-);
-
-export type WebinarTranscriptionFragmentType = FragmentOf<
-  typeof WebinarTranscriptionFragment
 >;
 
 export const IntroArticleFragment = graphql(
@@ -696,3 +694,16 @@ export const ArticleSTFragment = graphql(
 );
 
 export type ArticleSTFragmentType = FragmentOf<typeof ArticleSTFragment>;
+
+export const ThirdPartyCookieFragment = graphql(`
+  fragment ThirdPartyCookieFragment on ThirdPartyCookieRecord @_unmask {
+    id
+    title
+    description
+    cookiePrefix
+  }
+`);
+
+export type ThirdPartyCookieFragmentType = FragmentOf<
+  typeof ThirdPartyCookieFragment
+>;

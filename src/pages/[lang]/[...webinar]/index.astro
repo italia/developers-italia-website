@@ -9,7 +9,6 @@ import Layout from "@layouts/Layout.astro";
 import { DatoBlockModel } from "@utils/cmsMapper";
 import { createBreadcrumb } from "@utils/createBreadcrumb";
 import { decorateExternalLinks } from "@utils/decorateExternalLinks";
-import { getCtaFields } from "@utils/getCtaFields";
 import { getLocaleValue } from "@utils/getLocaleValue";
 import { extractFaqItems, type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 import { linkResolver } from "@utils/linkResolver";
@@ -95,22 +94,6 @@ const hasHero = (content ?? []).some(
   (block) => block.componentName === DatoBlockModel.Hero,
 );
 const breadcrumbItems = hasHero ? [] : createBreadcrumb(id, lang as SiteLocale);
-
-// L'URL del video (YouTube) per il player arriva dalla CTA della
-// WebinarDescription ("Vai al video"). Viene passato all'ActionCard "Webinar
-// transcript" che, quando riceve un videoUrl, renderizza il VideoPlayer al
-// posto della card.
-const webinarDescription = (content ?? []).find(
-  (block) => block.componentName === DatoBlockModel.WebinarDescription,
-);
-const videoText =
-  webinarDescription && "text" in webinarDescription
-    ? webinarDescription.text
-    : null;
-const { linkTo: videoUrl } = getCtaFields(
-  videoText?.cta ?? null,
-  lang as SiteLocale,
-);
 ---
 
 <Layout pageSeo={seoMeta} datePublished={publishedAt} jsonLd={jsonLd}>
@@ -121,7 +104,7 @@ const { linkTo: videoUrl } = getCtaFields(
       </div>
     )
   }
-  <PageAdapter content={content} videoUrl={videoUrl} />
+  <PageAdapter content={content} />
   {
     eventBody && (
       <section class="container py-5">

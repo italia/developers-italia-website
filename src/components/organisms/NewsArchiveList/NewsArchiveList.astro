@@ -1,0 +1,69 @@
+---
+import Badge from "@components/atoms/Badge/Badge.astro";
+import DateTime from "@components/atoms/DateTime/DateTime.astro";
+import type { CardEditorialStoryProps } from "@components/molecules/CardEditorialStory/types";
+import BaseIcon from "@static/assets/BaseIcon.astro";
+
+type Props = {
+  id: string;
+  title?: string;
+  items: CardEditorialStoryProps[];
+};
+
+const { id, title, items } = Astro.props;
+
+const headingId = `archive-list-${id}`;
+---
+
+<section class="section-editorial my-5 my-lg-80" aria-labelledby={headingId}>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        {
+          title && (
+            <h2 class="border-bottom pb-4" id={headingId}>
+              {title}
+            </h2>
+          )
+        }
+        <div class="it-list-wrapper">
+          <ul class="it-list mt-4 mt-md-3">
+            {
+              items.map((item) => (
+                <li>
+                  <a
+                    class="list-item align-items-start border-bottom-0 pt-3 px-0 px-sm-2 px-md-4 left-icon"
+                    href={item.linkTo}
+                  >
+                    <BaseIcon
+                      name="it-file"
+                      size="sm"
+                      color="primary"
+                      class="mt-1 flex-shrink-0 me-1 me-md-3"
+                    />
+                    <span>
+                      <div class="d-md-flex align-items-center">
+                        <h3 class="h6 mb-0">
+                          <strong>{item.title}</strong>
+                        </h3>
+                        {item.category && (
+                          <div class="mb-2 mt-1 mb-md-0 mt-md-0 ms-md-2">
+                            <Badge label={item.category} />
+                          </div>
+                        )}
+                      </div>
+                      <p class="text-secondary fw-normal d-block mb-3 mt-1 small">
+                        {item.dateTime && <DateTime value={item.dateTime} />}
+                        {item.description && <span> — {item.description}</span>}
+                      </p>
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

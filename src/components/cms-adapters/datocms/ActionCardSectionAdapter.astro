@@ -7,12 +7,14 @@ import { formatAssetInfo } from "@utils/formatAssetInfo";
 
 type Props = {
   block: ActionCardFragmentType;
-  /** Se valorizzato, il blocco renderizza il VideoPlayer (trascrizione ←
-   *  paragraph) invece della card di download. */
-  videoUrl?: string;
 };
 
-const { block, videoUrl } = Astro.props;
+const { block } = Astro.props;
+
+// Quando il blocco "Webinar transcript" (action_card) ha un videoUrl,
+// renderizza il VideoPlayer (trascrizione ← paragraph) invece della card di
+// download.
+const videoUrl = block.videoUrl ?? undefined;
 ---
 
 {
@@ -26,7 +28,7 @@ const { block, videoUrl } = Astro.props;
         />
       </div>
     </section>
-  ) : (
+  ) : block.cta ? (
     <ActionCardSection
       title={block.title}
       paragraph={block.paragraph}
@@ -38,5 +40,5 @@ const { block, videoUrl } = Astro.props;
       labelButtonMore={block.readMoreLabel}
       labelButtonLess={block.readLessLabel}
     />
-  )
+  ) : null
 }
