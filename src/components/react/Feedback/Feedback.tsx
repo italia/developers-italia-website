@@ -196,12 +196,10 @@ function Feedback({ lang }: Feedback) {
       <div className="container-xxl">
         <div className="row d-flex justify-content-center">
           <div className="col-12 col-sm-10 col-md-8 col-lg-6">
-            <div className="card shadow card-wrapper rounded">
-              <div>
-                <div className="card-body p-4 p-md-5">
-                  <div className="step" id="feedbackIntro">
-                    {renderState(feedbackState)}
-                  </div>
+            <div className="it-card shadow-sm card-wrapper rounded">
+              <div className="card-body p-4 p-md-5">
+                <div className="step" id="feedbackIntro">
+                  {renderState(feedbackState)}
                 </div>
               </div>
             </div>
