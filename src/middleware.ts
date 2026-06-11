@@ -1,10 +1,10 @@
 import { defineMiddleware } from "astro/middleware";
 
 export const onRequest = defineMiddleware((context, next) => {
-  const { lang } = context.params;
-  if (lang) {
-    context.locals.lang = lang;
-  }
+  // const { lang } = context.params;
+  // if (lang) {
+  //   context.locals.lang = lang;
+  // }
 
   const expectedUser = import.meta.env.BASIC_AUTH_USER;
   const expectedPassword = import.meta.env.BASIC_AUTH_PASSWORD;
