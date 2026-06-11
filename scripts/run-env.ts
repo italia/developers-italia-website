@@ -14,10 +14,10 @@ const envFile = `.env.${mode}`;
 dotenv.config({ path: envFile, override: true });
 
 const envName = process.env.DATOCMS_ENVIRONMENT;
-let apiUrl = "https://graphql.datocms.com";
-if (envName) {
-  apiUrl = `${apiUrl}/environments/${envName}`;
-}
+const apiUrl = "https://graphql.datocms.com";
+// if (envName) {
+//   apiUrl = `${apiUrl}/environments/${envName}`;
+// }
 
 const schemaToken =
   process.env.DATOCMS_MANAGEMENT_API_TOKEN ?? process.env.DATOCMS_API_TOKEN;
@@ -37,7 +37,7 @@ const schemaResult = spawnSync(
     "schema",
     apiUrl,
     "--header",
-    "X-Exclude-Invalid: true",
+    `X-Environment: ${envName}`,
     "--header",
     `Authorization: ${schemaToken}`,
   ],
