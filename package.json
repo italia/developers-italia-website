@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "dev": "astro dev",
     "staging": "NODE_TLS_REJECT_UNAUTHORIZED=0 bun ./scripts/run-env.ts staging dev",
     "production": "bun ./scripts/run-env.ts production dev",
     "build:staging": "bun ./scripts/run-env.ts staging build",
@@ -17,7 +18,10 @@
     "index:staging": "dotenv -c -- bash -c 'NODE_TLS_REJECT_UNAUTHORIZED=0 bun run ./scripts/index-opensearch.ts staging'",
     "index:production": "dotenv -c -- bash -c 'bun run ./scripts/index-opensearch.ts production'",
     "sync-visual:staging": "dotenv -c staging -- bun ./scripts/sync-visual-select.ts",
-    "sync-visual:production": "dotenv -c production -- bun ./scripts/sync-visual-select.ts"
+    "sync-visual:production": "dotenv -c production -- bun ./scripts/sync-visual-select.ts",
+    "a11y:dev": "axe http://localhost:4321 --tags wcag21aa --exit",
+    "a11y:all": "axe http://localhost:4321 --tags wcag2a,wcag2aa,wcag21a,wcag21aa --exit",
+    "a11y:best": "axe http://localhost:4321 --tags best-practice --exit"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -45,10 +49,12 @@
   },
   "devDependencies": {
     "@datocms/cli": "^3.1.16",
+    "@types/axe-core": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
     "astro-eslint-parser": "^1.4.0",
+    "axe-core": "^4.12.1",
     "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.4",
     "eslint-plugin-astro": "^1.7.0",
