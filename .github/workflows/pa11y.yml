@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: browser-actions/setup-chrome@latest
       - uses: oven-sh/setup-bun@v2
       - name: Fixup git permissions
         # https://github.com/actions/checkout/issues/766
