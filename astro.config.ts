@@ -30,7 +30,9 @@ export default defineConfig({
     }),
     react(),
   ],
-  adapter: vercel(),
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
   redirects: {
     "/": {
       status: 301,
