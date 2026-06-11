@@ -20,9 +20,7 @@
     "index:production": "dotenv -c -- bash -c 'bun run ./scripts/index-opensearch.ts production'",
     "sync-visual:staging": "dotenv -c staging -- bun ./scripts/sync-visual-select.ts",
     "sync-visual:production": "dotenv -c production -- bun ./scripts/sync-visual-select.ts",
-    "a11y:dev": "axe http://localhost:4321 --tags wcag21aa --exit",
-    "a11y:all": "axe http://localhost:4321 --tags wcag2a,wcag2aa,wcag21a,wcag21aa --exit",
-    "a11y:best": "axe http://localhost:4321 --tags best-practice --exit"
+    "a11y": "pa11y --runner axe --runner htmlcs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -62,6 +60,7 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
+    "pa11y": "^9.1.1",
     "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.100.0",
     "typescript": "^5.9.3"

@@ -22,12 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v2
       - name: Fixup git permissions
         # https://github.com/actions/checkout/issues/766
         shell: bash
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 24.x
-      - run: npm install -g pa11y pa11y-ci --unsafe-perm=true
-      - run: pa11y-ci --sitemap ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap-0.xml
+      - run: bun install
+      - run: bun run a11y -- ${{ needs.wait_for_vercel.outputs.preview_url }}
