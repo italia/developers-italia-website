@@ -1,5 +1,5 @@
 import type { KpiFragmentType } from "@graphql/fragment/commonFragments";
-import { KpiItem, type KpiItemType } from "dataviz-components";
+import { KpiItem, type KpiItemType } from "graph-italia-components";
 
 type KpiProps = {
   data: KpiFragmentType;

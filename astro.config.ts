@@ -30,7 +30,9 @@ export default defineConfig({
     }),
     react(),
   ],
-  adapter: vercel(),
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
   redirects: {
     "/": {
       status: 301,
@@ -39,7 +41,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ["dataviz-components"],
+      noExternal: ["graph-italia-components"],
     },
     resolve: {
       alias: {

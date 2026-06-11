@@ -3,6 +3,7 @@ import {
   CardLinkListFragment,
   DataSectionRecordFragment,
   FaqSectionRecordFragment,
+  GraphitaliaDashboardRecordFragment,
   HeroFragment,
   NewsFeedFragment,
   SupportChannelsSectionFragment,
@@ -11,6 +12,7 @@ import {
   TextAndImageFragment,
   TextAndStatisticsFragment,
   TextOnlyFragment,
+  ThirdPartyCookieFragment,
   TopicFilterFragment,
   UseCaseContainerFragment,
 } from "@graphql/fragment/sectionFragments";
@@ -37,6 +39,9 @@ export const PageContentFragment = graphql(
       }
       ... on DataSectionRecord {
         ...DataSectionRecordFragment
+      }
+      ... on GraphitaliaDashboardRecord {
+        ...GraphitaliaDashboardRecordFragment
       }
       ... on UseCaseContainerRecord {
         ...UseCaseContainerFragment
@@ -65,6 +70,9 @@ export const PageContentFragment = graphql(
       ... on TextStatisticRecord {
         ...TextAndStatisticsFragment
       }
+      ... on ThirdPartyCookieRecord {
+        ...ThirdPartyCookieFragment
+      }
     }
   `,
   [
@@ -73,6 +81,7 @@ export const PageContentFragment = graphql(
     SupportChannelsSectionFragment,
     FaqSectionRecordFragment,
     DataSectionRecordFragment,
+    GraphitaliaDashboardRecordFragment,
     UseCaseContainerFragment,
     TopicFilterFragment,
     SupportCTASectionFragment,
@@ -82,6 +91,7 @@ export const PageContentFragment = graphql(
     TextOnlyFragment,
     CardLinkListFragment,
     TextAndStatisticsFragment,
+    ThirdPartyCookieFragment,
   ],
 );
 

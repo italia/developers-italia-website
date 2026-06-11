@@ -3,8 +3,8 @@ import {
   ChartWrapper,
   type FieldDataType,
   type InfosType,
-} from "dataviz-components";
-import "dataviz-components/dist/style.css";
+} from "graph-italia-components";
+import "graph-italia-components/dist/style.css";
 
 type ChartProps = {
   data: ChartFragmentType;
