@@ -13,7 +13,7 @@ const envFile = `.env.${mode}`;
 
 dotenv.config({ path: envFile, override: true });
 
-const envName = process.env.DATOCMS_ENVIRONMENT;
+const envName = process.env.DATOCMS_ENVIRONMENT || "main";
 const apiUrl = "https://graphql.datocms.com";
 // if (envName) {
 //   apiUrl = `${apiUrl}/environments/${envName}`;

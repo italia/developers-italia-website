@@ -18,7 +18,7 @@ type AccordionBlockRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  accordion: AccordionRecord!
+  accordion: AccordionRecord
   id: ItemId!
   title: String
 }
@@ -46,8 +46,8 @@ type AccordionItemRecord implements RecordInterface {
   body(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  header: String!
+  ): String
+  header: String
   id: ItemId!
 }
 
@@ -72,7 +72,7 @@ type AccordionMenuRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
+  label: String
   menu: [MenuArticleItemRecord!]!
 }
 
@@ -127,11 +127,11 @@ type ActionCardRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  readLessLabel: String!
-  readMoreLabel: String!
+  ): String
+  readLessLabel: String
+  readMoreLabel: String
   shareLabel: String
-  title: String!
+  title: String
   videoUrl: String
 }
 
@@ -333,13 +333,13 @@ type ArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicsLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -446,7 +446,7 @@ type ArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -455,7 +455,7 @@ type ArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topics(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -513,7 +513,7 @@ type ArticleTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -542,7 +542,7 @@ type ArticleTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 """Block of type Author list (author_list)"""
@@ -590,12 +590,12 @@ type BlockquoteRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  author: String!
+  author: String
   id: ItemId!
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
+  ): String
 }
 
 """Specifies how to filter Boolean fields"""
@@ -628,9 +628,9 @@ type BrandHeaderRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
-  shortLabel: String!
-  url: String!
+  label: String
+  shortLabel: String
+  url: String
 }
 
 type BrandHeaderRecordListListNonNullMultiLocaleField {
@@ -659,8 +659,8 @@ type BrandRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  logo: FileField!
-  url: String!
+  logo: FileField
+  url: String
 }
 
 type BrandRecordListListNonNullMultiLocaleField {
@@ -689,12 +689,12 @@ type CalloutLinkRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  link: ExternalLinkRecord!
+  link: ExternalLinkRecord
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 """Block of type Note (callout)"""
@@ -721,8 +721,8 @@ type CalloutRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 """Block of type Card editorial with icon (card_editorial_with_icon)"""
@@ -748,10 +748,10 @@ type CardEditorialWithIconRecord implements RecordInterface {
   description(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  iconSelect: String!
+  ): String
+  iconSelect: String
   id: ItemId!
-  title: String!
+  title: String
 }
 
 """Block of type Section card link list  (card_link_list)"""
@@ -774,7 +774,7 @@ type CardLinkListRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: String!
+  backgroundColor: String
   id: ItemId!
   listContent: [CardLinkRecord!]!
   paragraph(
@@ -782,7 +782,7 @@ type CardLinkListRecord implements RecordInterface {
     markdown: Boolean
   ): String
   showInlineCard: BooleanType!
-  title: String!
+  title: String
 }
 
 """Block of type Card Link (card_link)"""
@@ -806,13 +806,13 @@ type CardLinkRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  image: FileField!
-  link: LinkBlockRecord!
+  image: FileField
+  link: LinkBlockRecord
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
   ): String
-  title: String!
+  title: String
 }
 
 """Block of type Card external link (card_service)"""
@@ -835,7 +835,7 @@ type CardServiceRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  card: ExternalLinkRecord!
+  card: ExternalLinkRecord
   id: ItemId!
 }
 
@@ -938,13 +938,13 @@ type CatalogueRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -1000,7 +1000,7 @@ type CatalogueRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -1009,7 +1009,7 @@ type CatalogueRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 """Block of type Catalogue tab (catalogue_tab)"""
@@ -1034,16 +1034,16 @@ type CatalogueTabRecord implements RecordInterface {
   _updatedAt: DateTime!
   elementPerPage: IntType
   filterStory: StoryClassRecord
-  filterTitle: String!
+  filterTitle: String
   id: ItemId!
-  labelForAll: String!
-  newsPageTabType: String!
+  labelForAll: String
+  newsPageTabType: String
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
+  ): String
   storyType: String
-  title: String!
+  title: String
 }
 
 """Block of type Card presentation banner (channel)"""
@@ -1069,11 +1069,11 @@ type ChannelRecord implements RecordInterface {
   description(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  iconSelect: String!
+  ): String
+  iconSelect: String
   id: ItemId!
-  linkTo: String!
-  title: String!
+  linkTo: String
+  title: String
 }
 
 input ChartElementModelFilter {
@@ -1137,7 +1137,7 @@ type ChartElementRecord implements RecordInterface {
   _updatedAt: DateTime!
   chartData: JsonField
   id: ItemId!
-  title: String!
+  title: String
 }
 
 type CollectionMetadata {
@@ -1228,10 +1228,10 @@ type DataContainerRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  iconSelect: String!
+  iconSelect: String
   id: ItemId!
-  info: String!
-  title: String!
+  info: String
+  title: String
 }
 
 """Block of type Data section (data_section)"""
@@ -1254,9 +1254,9 @@ type DataSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  highlights: HighlightRecord!
+  highlights: HighlightRecord
   id: ItemId!
-  panel: PanelRecord!
+  panel: PanelRecord
   result: ResultRecord
 }
 
@@ -1300,11 +1300,6 @@ type DateMultiLocaleField {
   value: Date
 }
 
-type DateNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: Date!
-}
-
 """A ISO 8601 compliant datetime value"""
 scalar DateTime
 
@@ -1329,9 +1324,9 @@ type DownloadLinkRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   description: String
-  doc: FileField!
+  doc: FileField
   id: ItemId!
-  label: String!
+  label: String
 }
 
 """Block of type External link (external_link)"""
@@ -1356,8 +1351,8 @@ type ExternalLinkRecord implements RecordInterface {
   _updatedAt: DateTime!
   description: String
   id: ItemId!
-  label: String!
-  url: String!
+  label: String
+  url: String
 }
 
 type ExternalLinkRecordListListNonNullMultiLocaleField {
@@ -1385,10 +1380,10 @@ type FaqSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  accordion: AccordionRecord!
-  backgroundColor: String!
+  accordion: AccordionRecord
+  backgroundColor: String
   id: ItemId!
-  title: String!
+  title: String
 }
 
 enum FaviconType {
@@ -1624,11 +1619,6 @@ type FileFieldMultiLocaleField {
   value: FileField
 }
 
-type FileFieldNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: FileField!
-}
-
 """Specifies how to filter Single-file/image fields"""
 input FileFilter {
   """
@@ -1673,13 +1663,13 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allLastUpdateLabelLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allLinksLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -1700,13 +1690,13 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -1727,7 +1717,7 @@ type GlobalSettingRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  image: FileField!
+  image: FileField
   labelCta(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -1736,7 +1726,7 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   lastUpdateLabel(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -1745,7 +1735,7 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   links(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -1775,7 +1765,7 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -1784,7 +1774,7 @@ type GlobalSettingRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 """Block of type GraphItalia Dashboard (graphitalia_dashboard)"""
@@ -1807,7 +1797,7 @@ type GraphitaliaDashboardRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  dashboardId: String!
+  dashboardId: String
   id: ItemId!
   title: String
 }
@@ -1844,7 +1834,7 @@ type HeroRecord implements RecordInterface {
     markdown: Boolean
   ): String
   showBreadcrumb: BooleanType!
-  title: String!
+  title: String
   variant: String
 }
 
@@ -1869,13 +1859,13 @@ type HighlightRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  image: FileField!
+  image: FileField
   kpiElement: [KpiElementRecord!]!
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 union HomepageModelContentField = CardLinkListRecord | HeroRecord | NewsFeedRecord | SupportChannelsSectionRecord | TextImageRecord | TextOnlyRecord | TextStatisticRecord | TextUseCaseRecord
@@ -1904,7 +1894,7 @@ type HomepageRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -1951,7 +1941,7 @@ type HomepageRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 """Block of type Icon list block (icon_list_block)"""
@@ -1999,9 +1989,9 @@ type IconListItemRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  iconSelect: String!
+  iconSelect: String
   id: ItemId!
-  label: String!
+  label: String
 }
 
 """Block of type Icon list (icon_list)"""
@@ -2049,7 +2039,7 @@ type ImageBlockRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  image: FileField!
+  image: FileField
   ratio: String
 }
 
@@ -4087,7 +4077,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allContentLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4099,7 +4089,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [FileFieldNonNullMultiLocaleField!]
+  ): [FileFieldMultiLocaleField!]
   _allParentPageLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4117,13 +4107,13 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4160,7 +4150,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   content(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4179,7 +4169,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): FileField!
+  ): FileField
   parentPage(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4206,7 +4196,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4215,7 +4205,7 @@ type InsightRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topic(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4273,7 +4263,7 @@ type InsightTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -4302,7 +4292,7 @@ type InsightTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 type InsightTopicRecordMultiLocaleField {
@@ -4338,8 +4328,8 @@ type InternalLinkRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
-  linkTo: InternalLinkModelLinkToField!
+  label: String
+  linkTo: InternalLinkModelLinkToField
 }
 
 type InternalLinkRecordListListNonNullMultiLocaleField {
@@ -4368,8 +4358,8 @@ type IntroArticleRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  list: IconListBlockRecord!
-  text: TextBlockRecord!
+  list: IconListBlockRecord
+  text: TextBlockRecord
 }
 
 scalar ItemId
@@ -4505,7 +4495,7 @@ type KpiElementRecord implements RecordInterface {
   openDataPath: String
   percentage: String
   showFlow: BooleanType!
-  title: String!
+  title: String
   value: String
   valuePrefix: String
   valueSuffix: String
@@ -4549,7 +4539,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allListNavbarBrandLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4597,7 +4587,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicLinkLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4609,7 +4599,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allUtilityLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -4621,7 +4611,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -4652,7 +4642,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   id: ItemId!
   listNavbarBrand(
     """The locale to use to fetch the field's content"""
@@ -4663,7 +4653,7 @@ type LayoutRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [BrandHeaderRecord!]!
-  logoSelect: String!
+  logoSelect: String
   mailingListForm(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4710,7 +4700,7 @@ type LayoutRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): [BrandRecord!]!
   showSitemapLink: BooleanType!
-  siteName: String!
+  siteName: String
   smallPrint(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4728,7 +4718,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topicLink(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4746,7 +4736,7 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   utility(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4764,8 +4754,8 @@ type LayoutRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
-  variant: String!
+  ): String
+  variant: String
 }
 
 union LinkBlockModelLinkField = ArticleRecord | CatalogueRecord | InsightRecord | PageRecord | StoryItemRecord
@@ -4947,7 +4937,7 @@ type ListCollectionRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String
-  title: String!
+  title: String
 }
 
 """Block of type List external link (list_external_link)"""
@@ -5022,8 +5012,8 @@ type ListItemRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 union ListItemResourceModelLinksField = DownloadLinkRecord | ExternalLinkRecord | InternalLinkRecord
@@ -5053,9 +5043,9 @@ type ListItemResourceRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
+  ): String
   subtitle: String
-  title: String!
+  title: String
 }
 
 """Specifies how to filter by locale"""
@@ -5118,7 +5108,7 @@ type MacroTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -5147,7 +5137,7 @@ type MacroTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 type MacroTopicRecordListListNonNullMultiLocaleField {
@@ -5176,8 +5166,8 @@ type MailingListSignupBlockRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  privacyPolicy: InternalLinkRecord!
-  title: String!
+  privacyPolicy: InternalLinkRecord
+  title: String
 }
 
 type MailingListSignupBlockRecordMultiLocaleField {
@@ -5210,13 +5200,13 @@ type MegaMenuItemRecord implements RecordInterface {
   caption(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
+  ): String
   id: ItemId!
-  image: FileField!
-  pointsTo: MegaMenuItemModelPointsToField!
+  image: FileField
+  pointsTo: MegaMenuItemModelPointsToField
   subMenu: [MenuItemRecord!]!
-  subtitle: String!
-  title: String!
+  subtitle: String
+  title: String
 }
 
 """Block of type Menu article item (menu_article_item)"""
@@ -5240,8 +5230,8 @@ type MenuArticleItemRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
-  pointsTo: ArticleRecord!
+  label: String
+  pointsTo: ArticleRecord
 }
 
 union MenuItemModelPointsToField = CatalogueRecord | PageRecord
@@ -5267,8 +5257,8 @@ type MenuItemRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  pointsTo: MenuItemModelPointsToField!
-  title: String!
+  pointsTo: MenuItemModelPointsToField
+  title: String
 }
 
 scalar MetaTagAttributes
@@ -5307,9 +5297,9 @@ type NewsFeedRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
+  ): String
   tabs: [NewsFeedModelTabsField!]!
-  title: String!
+  title: String
 }
 
 input NewsItemModelFilter {
@@ -5367,13 +5357,13 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [DateNonNullMultiLocaleField!]
+  ): [DateMultiLocaleField!]
   _allLinkLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allParagraphLocales(
     """Process content as markdown"""
     markdown: Boolean
@@ -5382,19 +5372,19 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [NewsTopicRecordNonNullMultiLocaleField!]
+  ): [NewsTopicRecordMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -5422,9 +5412,9 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): Date!
+  ): Date
   id: ItemId!
-  image: FileField!
+  image: FileField
   link(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5433,7 +5423,7 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
@@ -5445,7 +5435,7 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5454,7 +5444,7 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topic(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5463,7 +5453,7 @@ type NewsItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): NewsTopicRecord!
+  ): NewsTopicRecord
 }
 
 """Block of type Tab contenuto esterno (news_tab)"""
@@ -5488,7 +5478,7 @@ type NewsTabRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   news: [NewsItemRecord!]!
-  title: String!
+  title: String
 }
 
 input NewsTopicModelFilter {
@@ -5537,7 +5527,7 @@ type NewsTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -5566,12 +5556,12 @@ type NewsTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
-type NewsTopicRecordNonNullMultiLocaleField {
+type NewsTopicRecordMultiLocaleField {
   locale: SiteLocale
-  value: NewsTopicRecord!
+  value: NewsTopicRecord
 }
 
 union OrderedListModelItemsField = ListItemRecord | ListItemResourceRecord
@@ -5680,13 +5670,13 @@ type PageRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -5736,7 +5726,7 @@ type PageRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5745,7 +5735,7 @@ type PageRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 type PageRecordMultiLocaleField {
@@ -5773,14 +5763,14 @@ type PanelRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  chart: SettingsChartRecord!
-  externalLink: ExternalLinkRecord!
+  chart: SettingsChartRecord
+  externalLink: ExternalLinkRecord
   id: ItemId!
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 """Specifies how to filter by parent (tree-like collections only)"""
@@ -6771,7 +6761,7 @@ type QuickLinkCardRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   linkToResource: [QuickLinkCardModelLinkToResourceField!]!
-  title: String!
+  title: String
 }
 
 interface RecordInterface {
@@ -6819,7 +6809,7 @@ type RelatedArticleRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  relatedBlock: RelatedArticleModelRelatedBlockField!
+  relatedBlock: RelatedArticleModelRelatedBlockField
 }
 
 """Specifies how to filter by upload type"""
@@ -6884,9 +6874,9 @@ enum ResourceModelOrderBy {
 
 union ResourceModelResourceField = DownloadLinkRecord | ExternalLinkRecord
 
-type ResourceModelResourceFieldNonNullMultiLocaleField {
+type ResourceModelResourceFieldMultiLocaleField {
   locale: SiteLocale
-  value: ResourceModelResourceField!
+  value: ResourceModelResourceField
 }
 
 """Record of type Link e risorse (resource)"""
@@ -6902,13 +6892,13 @@ type ResourceRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [ResourceModelResourceFieldNonNullMultiLocaleField!]
+  ): [ResourceModelResourceFieldMultiLocaleField!]
   _allTypeResourceLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [ResourceTopicRecordNonNullMultiLocaleField!]
+  ): [ResourceTopicRecordMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -6946,7 +6936,7 @@ type ResourceRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): ResourceModelResourceField!
+  ): ResourceModelResourceField
   typeResource(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -6955,7 +6945,7 @@ type ResourceRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): ResourceTopicRecord!
+  ): ResourceTopicRecord
 }
 
 input ResourceTopicModelFilter {
@@ -7004,7 +6994,7 @@ type ResourceTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -7033,12 +7023,12 @@ type ResourceTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
-type ResourceTopicRecordNonNullMultiLocaleField {
+type ResourceTopicRecordMultiLocaleField {
   locale: SiteLocale
-  value: ResourceTopicRecord!
+  value: ResourceTopicRecord
 }
 
 type ResponsiveImage {
@@ -7077,8 +7067,8 @@ type ResultRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   items: [ListItemRecord!]!
-  paragraph: String!
-  title: String!
+  paragraph: String
+  title: String
   titleListUseCases: String
   useCases: [ArticleRecord!]!
 }
@@ -7142,7 +7132,7 @@ type SchemaMigrationRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  name: String!
+  name: String
 }
 
 """Block of type Search bar (search_bar)"""
@@ -7166,11 +7156,11 @@ type SearchBarRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  inputPlaceholder: String!
-  labelButton: String!
-  labelForAllResult: String!
-  labelForNoResult: String!
-  title: String!
+  inputPlaceholder: String
+  labelButton: String
+  labelForAllResult: String
+  labelForNoResult: String
+  title: String
 }
 
 union SearchModelContentField = HeroRecord | SearchBarRecord
@@ -7193,7 +7183,7 @@ type SearchRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allSeoLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7205,13 +7195,13 @@ type SearchRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -7250,7 +7240,7 @@ type SearchRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   seo(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -7268,7 +7258,7 @@ type SearchRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -7277,7 +7267,7 @@ type SearchRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 union SectionModelRightField = AccordionBlockRecord | AuthorListRecord | IconListBlockRecord | ImageBlockRecord | QuickLinkCardRecord | StatisticBlockRecord | UseCaseBlockRecord
@@ -7305,11 +7295,11 @@ type SectionRecord implements RecordInterface {
   additionalContent: AdditionalContentRecord
   alignItems: String
   background: String
-  columnLeftSize: IntType!
-  columnRightSize: IntType!
+  columnLeftSize: IntType
+  columnRightSize: IntType
   id: ItemId!
-  left: TextBlockRecord!
-  right: SectionModelRightField!
+  left: TextBlockRecord
+  right: SectionModelRightField
   title: String
 }
 
@@ -7408,7 +7398,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allHeaderLabelLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7426,7 +7416,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -7454,7 +7444,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   headerLabel(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -7482,7 +7472,7 @@ type SidebarForArticleRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 type Site {
@@ -7545,8 +7535,8 @@ type SpeakerRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  list: AuthorListRecord!
-  text: TextBlockRecord!
+  list: AuthorListRecord
+  text: TextBlockRecord
 }
 
 """Block of type Statistic block (statistic_block)"""
@@ -7594,9 +7584,9 @@ type StatisticsBoxRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  description: String!
+  description: String
   id: ItemId!
-  title: String!
+  title: String
 }
 
 """Specifies how to filter by status"""
@@ -7665,7 +7655,7 @@ type StoryClassRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -7694,7 +7684,7 @@ type StoryClassRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   sort: String
 }
 
@@ -7815,13 +7805,13 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -7914,7 +7904,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   storyType: String
   title(
     """The locale to use to fetch the field's content"""
@@ -7924,7 +7914,7 @@ type StoryItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topic(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -7960,7 +7950,7 @@ type StoryTabRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   news: [StoryTabModelNewsField!]!
-  title: String!
+  title: String
 }
 
 input StoryTopicModelFilter {
@@ -8009,7 +7999,7 @@ type StoryTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -8038,7 +8028,7 @@ type StoryTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
 type StoryTopicRecordMultiLocaleField {
@@ -8091,11 +8081,6 @@ input StringMatchesFilter {
 type StringMultiLocaleField {
   locale: SiteLocale
   value: String
-}
-
-type StringNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: String!
 }
 
 """Specifies how to filter Structured Text fields values"""
@@ -8152,7 +8137,7 @@ type StructuredTextRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   backgroundColor: String
-  content: StructuredTextModelContentField!
+  content: StructuredTextModelContentField
   id: ItemId!
 }
 
@@ -8182,8 +8167,8 @@ type SupportChannelsSectionRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 union SupportCtaSectionModelCtaField = ExternalLinkRecord | InternalLinkRecord
@@ -8211,9 +8196,9 @@ type SupportCtaSectionRecord implements RecordInterface {
   backgroundColor: String
   cta: SupportCtaSectionModelCtaField
   id: ItemId!
-  image: FileField!
-  paragraph: String!
-  title: String!
+  image: FileField
+  paragraph: String
+  title: String
 }
 
 """Block of type Supporting brand (supporting_brand)"""
@@ -8236,10 +8221,10 @@ type SupportingBrandRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  brandLogo: String!
+  brandLogo: String
   id: ItemId!
-  label: String!
-  url: String!
+  label: String
+  url: String
 }
 
 type Tag {
@@ -8268,10 +8253,10 @@ type TextAccordionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  accordion: AccordionBlockRecord!
-  backgroundColor: String!
+  accordion: AccordionBlockRecord
+  backgroundColor: String
   id: ItemId!
-  text: TextBlockRecord!
+  text: TextBlockRecord
 }
 
 union TextBlockModelCtaField = ExternalLinkRecord | InternalLinkRecord
@@ -8301,8 +8286,8 @@ type TextBlockRecord implements RecordInterface {
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
+  ): String
+  title: String
 }
 
 """Specifies how to filter text fields"""
@@ -8350,12 +8335,12 @@ type TextImageRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   additionalContent: AdditionalContentRecord
-  backgroundColor: String!
+  backgroundColor: String
   heading: String
   id: ItemId!
   image: FileField
-  text: TextBlockRecord!
-  variant: String!
+  text: TextBlockRecord
+  variant: String
 }
 
 """Block of type Text only (text_only)"""
@@ -8378,10 +8363,10 @@ type TextOnlyRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: String!
+  backgroundColor: String
   heading: String
   id: ItemId!
-  text: TextBlockRecord!
+  text: TextBlockRecord
 }
 
 """Block of type Text + statistics (text_statistic)"""
@@ -8404,11 +8389,11 @@ type TextStatisticRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: String!
+  backgroundColor: String
   id: ItemId!
   showInline: BooleanType!
-  statistics: StatisticBlockRecord!
-  text: TextBlockRecord!
+  statistics: StatisticBlockRecord
+  text: TextBlockRecord
 }
 
 """Block of type Text + cards (text_use_case)"""
@@ -8431,10 +8416,10 @@ type TextUseCaseRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: String!
+  backgroundColor: String
   id: ItemId!
-  text: TextBlockRecord!
-  useCases: UseCaseBlockRecord!
+  text: TextBlockRecord
+  useCases: UseCaseBlockRecord
 }
 
 """Block of type Third Party Cookies (third_party_cookie)"""
@@ -8488,13 +8473,13 @@ type TopicFilterRecord implements RecordInterface {
   _updatedAt: DateTime!
   content: [ListCollectionRecord!]!
   id: ItemId!
-  labelForAll: String!
+  labelForAll: String
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
-  ): String!
-  title: String!
-  titleFilter: String!
+  ): String
+  title: String
+  titleFilter: String
 }
 
 """Block of type Topic (topic)"""
@@ -8518,7 +8503,7 @@ type TopicRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  label: String!
+  label: String
 }
 
 """Block of type Metadata content container (topics_block)"""
@@ -9100,7 +9085,7 @@ type UseCaseBlockRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  title: String!
+  title: String
   useCases: [UseCaseBlockModelUseCasesField!]!
 }
 
@@ -9205,8 +9190,8 @@ type WebinarAuthorRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   id: ItemId!
-  name: String!
-  photo: FileField!
+  name: String
+  photo: FileField
   role(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -9240,8 +9225,8 @@ type WebinarDescriptionRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   resources: QuickLinkCardRecord
-  subjects: FeatureListRecord!
-  text: TextBlockRecord!
+  subjects: FeatureListRecord
+  text: TextBlockRecord
 }
 
 union WebinarItemModelContentField = ActionCardRecord | HeroRecord | IntroArticleRecord | SpeakerRecord | TextBlockRecord | WebinarDescriptionRecord
@@ -9320,7 +9305,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [DateNonNullMultiLocaleField!]
+  ): [DateMultiLocaleField!]
   _allParagraphLocales(
     """Process content as markdown"""
     markdown: Boolean
@@ -9329,7 +9314,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allParentPageLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -9347,19 +9332,19 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTitleLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _allTopicLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [WebinarTopicRecordNonNullMultiLocaleField!]
+  ): [WebinarTopicRecordMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -9396,13 +9381,13 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): Date!
+  ): Date
   eventBody(
     """Process content as markdown"""
     markdown: Boolean
   ): String
   id: ItemId!
-  image: FileField!
+  image: FileField
   paragraph(
     """Process content as markdown"""
     markdown: Boolean
@@ -9414,7 +9399,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   parentPage(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -9441,7 +9426,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -9450,7 +9435,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
   topic(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -9459,7 +9444,7 @@ type WebinarItemRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): WebinarTopicRecord!
+  ): WebinarTopicRecord
 }
 
 input WebinarTopicModelFilter {
@@ -9508,7 +9493,7 @@ type WebinarTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -9537,12 +9522,12 @@ type WebinarTopicRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): String
 }
 
-type WebinarTopicRecordNonNullMultiLocaleField {
+type WebinarTopicRecordMultiLocaleField {
   locale: SiteLocale
-  value: WebinarTopicRecord!
+  value: WebinarTopicRecord
 }
 
 type focalPoint {
