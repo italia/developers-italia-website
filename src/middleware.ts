@@ -6,17 +6,18 @@ export const onRequest = defineMiddleware((context, next) => {
 
   if (expectedUser && expectedPassword) {
     const authHeader = context.request.headers.get("authorization");
-    const isAuthenticated = (() => {
-      if (!authHeader?.startsWith("Basic ")) return false;
-      const [user, password] = atob(authHeader.slice(6)).split(":");
-      return user === expectedUser && password === expectedPassword;
-    })();
-
-    if (!isAuthenticated) {
-      return new Response("Unauthorized", {
-        status: 401,
-        headers: { "WWW-Authenticate": 'Basic realm="Secure Area"' },
-      });
+    if (authHeader) {
+      const authValue = authHeader.split(" ")[1];
+      const decodedAuth = atob(authValue);
+      const [user, password] = decodedAuth.split(":");
+      if (!(user === expectedUser && password === expectedPassword)) {
+        return new Response("Auth Required", {
+          status: 401,
+          headers: {
+            "WWW-Authenticate": 'Basic realm="Secure Staging Area"',
+          },
+        });
+      }
     }
   }
 
