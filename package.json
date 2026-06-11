@@ -7,7 +7,7 @@
     "staging": "NODE_TLS_REJECT_UNAUTHORIZED=0 bun ./scripts/run-env.ts staging dev",
     "production": "bun ./scripts/run-env.ts production dev",
     "build:staging": "bun ./scripts/run-env.ts staging build",
-    "build:production": "bun run generate-schema && bun ./scripts/run-env.ts production build && bun run index:production",
+    "build:production": "bun ./scripts/run-env.ts production build && bun run index:production",
     "migrate": "bun ./scripts/migrate.ts",
     "astro": "dotenv -c -- bash -c 'astro'",
     "generate-output": "gql.tada generate-output",
