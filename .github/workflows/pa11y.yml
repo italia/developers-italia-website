@@ -28,5 +28,9 @@ jobs:
         # https://github.com/actions/checkout/issues/766
         shell: bash
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Disable AppArmor User Namespace Restrictions, required to open
+          Chrome on Ubuntu 23.10+ without --no-sandbox). See
+          https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md.
+        run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
       - run: bun install
       - run: bun run a11y -- ${{ needs.wait_for_vercel.outputs.preview_url }}
