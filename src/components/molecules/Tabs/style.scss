@@ -1,5 +1,24 @@
 @import "@styles/palette";
 
+.navbar-nav {
+  .nav-link {
+    @media (min-width: 992px) {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+
+    @media (min-width: 1050px) {
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
+    }
+
+    @media (min-width: 1200px) {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+}
+
 .nav-tabs {
   .nav-link:hover {
     text-decoration: underline !important;
