@@ -12,14 +12,49 @@ $primary-a10: #036;
 $gray-400: #a3a3a3;
 $primary-dark: #17334f;
 
+// ✅ Versione 3
+:root {
+  --bsi-color-text-base: #1a1a1a;
+
+  --bsi-accent-color: #c8f6e7;
+  --bsi-accent-color-dark: #004d33;
+  --bsi-color-accent: #c8f6e7;
+  --bsi--color-accent-dark: #004d33;
+
+  --bsi-bg-medium: #bfdfff;
+  --bsi-color-bg-medium: #bfdfff;
+
+  --bsi-gray-border: #c4c9cc;
+  --bsi-gray-100: #f5f5f5;
+  --bsi-gray-400: #a3a3a3;
+  --bsi-color-gray-border: #c4c9cc;
+  --bsi-color-gray-100: #f5f5f5;
+  --bsi-color-gray-400: #a3a3a3;
+
+  --bsi-white: #ffffff;
+  --bsi-color-white: #ffffff;
+
+  --bsi-primary: #0066cc;
+  --bsi-primary-a10: #036;
+  --bsi-primary-dark: #17334f;
+  --bsi-primary-darker: #036;
+  --bsi-color-primary-a10: #036;
+  --bsi-color-primary: #0066cc;
+  --bsi-color-primary-dark: #17334f;
+  --bsi-color-primary-darker: #036;
+
+  --bsi-color-text-secondary: #303f4c;
+  --bsi-font-size-base: 1rem;
+}
+
 .bg-medium {
-  background-color: $bg-medium !important;
+  background-color: var(--bsi-bg-medium) !important;
 }
 
 .text-accent {
-  color: $accent-color;
+  color: var(--bsi-color-accent) !important;
 }
 
 .text-accent-dark {
-  color: $accent-color-dark;
+  color: var(--bsi-accent-color-dark);
 }

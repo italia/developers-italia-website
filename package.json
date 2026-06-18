@@ -37,7 +37,7 @@
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.18.2",
-    "bootstrap-italia": "^2.18.1",
+    "bootstrap-italia": "3.0.0-beta.1",
     "datocms-structured-text-to-plain-text": "^5.1.16",
     "dotenv": "^17.4.2",
     "gql.tada": "^1.9.2",
