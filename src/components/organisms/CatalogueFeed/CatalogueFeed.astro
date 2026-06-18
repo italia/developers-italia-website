@@ -17,6 +17,7 @@ import {
   mapStoryToCardEditorialStoryProps,
   mapWebinarToCardEditorialNewsProps,
 } from "@utils/mappers";
+import { sortFeedItems } from "@utils/feedSort";
 import { isNewsStoryClass } from "@utils/storyClassification";
 import type { ElementType, UpdateTabSectionProps } from "./types";
 
@@ -48,7 +49,11 @@ function isValidTabType(val: string): val is ElementType {
   );
 }
 
-function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
+function getFilteredItems(
+  tabType: ElementType,
+  tabCategoryReference?: string,
+  sortMode?: string,
+) {
   switch (tabType) {
     case "story_item":
       const filteredStoryByLang = stories.filter((s) =>
@@ -61,8 +66,12 @@ function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
           )
         : filteredStoryByLang;
 
-      return filteredStories.map((s) =>
-        mapStoryToCardEditorialStoryProps(s.data, lang),
+      return sortFeedItems(
+        filteredStories.map((s) =>
+          mapStoryToCardEditorialStoryProps(s.data, lang),
+        ),
+        sortMode,
+        lang,
       );
 
     case "news_item":
@@ -70,20 +79,30 @@ function getFilteredItems(tabType: ElementType, tabCategoryReference?: string) {
         n.data.allTitleLocales?.some((item) => item.locale === lang),
       );
 
-      return filteredNews.map((n) =>
-        mapNewsToCardEditorialNewsProps(n.data, lang),
+      return sortFeedItems(
+        filteredNews.map((n) => mapNewsToCardEditorialNewsProps(n.data, lang)),
+        sortMode,
+        lang,
       );
 
     case "webinar_item":
       const filteredWebinars = webinars.filter((w) =>
         w.data.allTitleLocales?.some((item) => item.locale === lang),
       );
-      return filteredWebinars.map((w) =>
-        mapWebinarToCardEditorialNewsProps(w.data, lang),
+      return sortFeedItems(
+        filteredWebinars.map((w) =>
+          mapWebinarToCardEditorialNewsProps(w.data, lang),
+        ),
+        sortMode,
+        lang,
       );
 
     case "resource":
-      return resources.map((r) => mapResourceToResourceProps(r.data, lang));
+      return sortFeedItems(
+        resources.map((r) => mapResourceToResourceProps(r.data, lang)),
+        sortMode,
+        lang,
+      );
     default:
       return [];
   }
@@ -110,6 +129,7 @@ const newsArchiveTab =
         getFilteredItems(
           "story_item",
           newsArchiveTab.filterStory,
+          newsArchiveTab.sortMode,
         ) as CardEditorialStoryProps[]
       }
     />
@@ -121,7 +141,11 @@ const newsArchiveTab =
             const tabType = tab.newsPageTabType;
             if (!isValidTabType(tabType)) return null;
 
-            const items = getFilteredItems(tabType, tab.filterStory);
+            const items = getFilteredItems(
+              tabType,
+              tab.filterStory,
+              tab.sortMode,
+            );
 
             return (
               <TabContent tab={tabsItems[index]}>

@@ -8,6 +8,7 @@ export type PageNewsTab = {
   filterStory?: string;
   newsPageTabType: string;
   perPage?: number;
+  sortMode?: string;
 };
 
 export type UpdateTabSectionProps = {
