@@ -864,7 +864,7 @@ type CatalogueFeedRecord implements RecordInterface {
   tabs: [CatalogueTabRecord!]!
 }
 
-union CatalogueModelContentField = CalloutLinkRecord | CatalogueFeedRecord | HeroRecord | TextOnlyRecord
+union CatalogueModelContentField = CalloutLinkRecord | CardLinkListRecord | CatalogueFeedRecord | HeroRecord | SupportCtaSectionRecord | TextOnlyRecord
 
 type CatalogueModelContentFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
