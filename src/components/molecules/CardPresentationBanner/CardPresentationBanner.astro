@@ -10,13 +10,19 @@ const { title, description, icon, linkTo } = Astro.props;
 <div
   class="it-card it-card-banner it-card-inline it-card-height-full bg-transparent text-start"
 >
+  {
+    /* Ordine di lettura corretto (immagine -> testo -> link): l'immagine deve
+      essere prima nel DOM. Il logo resta visivamente a sinistra grazie a
+      `order: -1` di Bootstrap Italia. L'alt riporta il nome della piattaforma,
+      così da introdurre il contenuto a chi naviga con screen reader (issue #43). */
+  }
+  <div class="px-3 it-card-banner-icon-wrapper align-items-start">
+    <img src={icon} alt={title} style="width: 170px;" />
+  </div>
   <div class="it-card-inline-content">
     <div class="it-card-body">
       <Fragment class="fs-5" set:html={description} />
       <Link label={title} url={linkTo} openInNewTab={true} />
     </div>
-  </div>
-  <div class="px-3 it-card-banner-icon-wrapper align-items-start">
-    <img src={icon} alt="" style="width: 170px;" />
   </div>
 </div>
