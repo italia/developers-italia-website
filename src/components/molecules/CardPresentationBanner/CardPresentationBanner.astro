@@ -5,6 +5,17 @@ import type { CardPresentationBannerProps } from "./types";
 type Props = CardPresentationBannerProps;
 
 const { title, description, icon, linkTo } = Astro.props;
+
+// L'alt dell'immagine deve introdurre il canale col solo nome della
+// piattaforma (es. "Forum Italia"), non ripetere la label del link
+// ("Vai a Forum Italia"): altrimenti lo screen reader annuncia due volte la
+// stessa frase e l'immagine non introduce il contenuto (issue #43).
+// Ricaviamo il nome rimuovendo l'eventuale verbo d'azione iniziale del titolo;
+// se il titolo non ha quel prefisso, l'alt resta il titolo stesso.
+const imageAlt = title.replace(
+  /^(?:vai\s+(?:a|su|al|alla|agli|alle|ai)|go\s+to|visit)\s+/i,
+  "",
+);
 ---
 
 <div
@@ -17,7 +28,7 @@ const { title, description, icon, linkTo } = Astro.props;
       così da introdurre il contenuto a chi naviga con screen reader (issue #43). */
   }
   <div class="px-3 it-card-banner-icon-wrapper align-items-start">
-    <img src={icon} alt={title} style="width: 170px;" />
+    <img src={icon} alt={imageAlt} style="width: 170px;" />
   </div>
   <div class="it-card-inline-content">
     <div class="it-card-body">
