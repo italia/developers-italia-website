@@ -4,6 +4,8 @@ import { ShareDropdown } from "@components/molecules/ShareDropdown";
 import { WebinarDescription } from "@components/organisms/WebinarDescription";
 import type { WebinarDescriptionFragmentType } from "@graphql/fragment/sectionFragments";
 import { getCtaFields } from "@utils/getCtaFields";
+import { getLocaleValue } from "@utils/getLocaleValue";
+import { getCollection } from "astro:content";
 import EventsListAdapter from "./EventsListAdapter.astro";
 import LinksTagdAdapter from "./LinksTagdAdapter.astro";
 
@@ -11,7 +13,7 @@ type Props = {
   block: WebinarDescriptionFragmentType;
 };
 const { block } = Astro.props;
-const { lang } = Astro.locals;
+const { lang, recordId } = Astro.locals;
 
 // Il CTA del blocco porta l'URL del video e l'etichetta ("Condividi" dal CMS):
 // al posto del pulsante CTA mostriamo il dropdown di condivisione (come
@@ -19,6 +21,20 @@ const { lang } = Astro.locals;
 // blocco resta com'è.
 const { linkTo, labelButton } = getCtaFields(block.text.cta, lang);
 const videoUrl = linkTo && linkTo !== "#" ? linkTo : undefined;
+
+// Etichetta del topic dell'evento: replichiamo sotto il sottotitolo la stessa
+// informazione mostrata nella card della pagina Community. Il topic vive sul
+// record WebinarItem (non nel blocco), quindi lo recuperiamo dalla collection
+// `webinar_content` tramite l'id del record corrente.
+const webinarContent = await getCollection("webinar_content");
+const currentWebinar = webinarContent.find((w) => w.data.id === recordId);
+const topicValue = getLocaleValue(
+  currentWebinar?.data.allTopicLocales,
+  lang,
+  null,
+);
+const topicLabel =
+  getLocaleValue(topicValue?._allLabelLocales, lang, "") || null;
 ---
 
 <WebinarDescription>
@@ -29,6 +45,7 @@ const videoUrl = linkTo && linkTo !== "#" ? linkTo : undefined;
       heading="h1"
       hideCta={!!videoUrl}
     />
+    {topicLabel && <span class="event-type-tag">{topicLabel}</span>}
     {
       videoUrl && (
         <div class="mt-5 d-flex justify-content-end">
@@ -49,3 +66,20 @@ const videoUrl = linkTo && linkTo !== "#" ? linkTo : undefined;
     )
   }
 </WebinarDescription>
+
+<style>
+  /* Etichetta tipologia evento: replica il "di-tag" di Designers Italia
+     (designers.italia.it) mostrato sotto il sottotitolo nelle pagine evento. */
+  .event-type-tag {
+    display: inline-flex;
+    margin-top: 1rem;
+    padding: 4px 16px;
+    border-radius: 4px;
+    background-color: #5c6f82;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+  }
+</style>
