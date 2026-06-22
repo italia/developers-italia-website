@@ -2,6 +2,7 @@
 import { DateTime } from "@components/atoms/DateTime";
 import { Image } from "@components/atoms/Image";
 import { getI18n } from "@i18n/microcopy";
+import ItExternalLink from "@static/assets/ItExternalLink.astro";
 import type { CardEditorialNewsProps } from "./types";
 
 type Props = CardEditorialNewsProps;
@@ -37,6 +38,7 @@ const rel = isExternal ? "noopener noreferrer" : undefined;
     <a href={linkTo} target={target} rel={rel}>
       {title}
       <span class="visually-hidden">{ariaLabel}</span>
+      {isExternal && <ItExternalLink color="primary" size="sm" />}
     </a>
   </h3>
   {

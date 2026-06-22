@@ -452,6 +452,7 @@ export const CatalogueFeedFragment = graphql(`
         id
       }
       elementPerPage
+      sortMode
     }
   }
 `);

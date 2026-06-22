@@ -24,7 +24,7 @@ const align = variant === "small" ? "center" : "top";
       <NumberContainer content={index.toString()} />
     </div>
     <div class="item-text">
-      <div class=`${titleClass} text-dark`>{title}</div>
+      <h3 class=`${titleClass} text-dark`>{title}</h3>
       <div class=`${textClass} m-0` set:html={paragraph} />
       {
         resources && (
