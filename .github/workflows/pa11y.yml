@@ -33,4 +33,19 @@ jobs:
           https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md.
         run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
       - run: bun install
-      - run: bun run a11y -- ${{ needs.wait_for_vercel.outputs.preview_url }}
+      - run: bun run a11y -- ${{ needs.wait_for_vercel.outputs.preview_url }}/sitemap-0.xml
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Build output
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: ./.pa11y/pa11y-results.md
+          edit-mode: replace

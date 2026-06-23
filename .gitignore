@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# pa11y reports
+.pa11y/
+
 # dependencies
 node_modules/
 
