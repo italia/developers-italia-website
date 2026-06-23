@@ -163,12 +163,16 @@ if (urls) {
     console.log(`- ${url}`);
     const result = await pa11y(url, pa11yOptions);
     results.push(result);
+    markdownReport += `<details>
+        <summary>${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}</summary>
+        <br>`;
     markdownReport += `\n\n## ${result.pageUrl} - ${result.documentTitle}\n\n`;
-    markdownReport += `| code | message | context | selector | description | help | url |\n`;
-    markdownReport += `|------|---------|---------|----------|-------------|------|-----|\n`;
+    markdownReport += `| message | code | context | selector | description | help | url |\n`;
+    markdownReport += `|---------|------|---------|----------|-------------|------|-----|\n`;
     for (const issue of result.issues) {
-      markdownReport += `| ${issue.code} | ${issue.message} | ${escapeHTML(issue.context)} | ${issue.selector} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} | ${escapeHTML(issue.runnerExtras?.helpUrl)} |\n`;
+      markdownReport += `| ${issue.message} | ${issue.code} | ${escapeHTML(issue.context)} | ${issue.selector} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} | ${escapeHTML(issue.runnerExtras?.helpUrl)} |\n`;
     }
+    markdownReport += `</details>\n\n`;
   }
 }
 
