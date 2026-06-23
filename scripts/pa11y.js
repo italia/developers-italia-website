@@ -172,5 +172,9 @@ if (urls) {
   }
 }
 
+if (!fs.existsSync(DIR)) {
+  fs.mkdirSync(DIR);
+}
+
 fs.writeFileSync(`${DIR}/pa11y-results.json`, JSON.stringify(results, null, 2));
 fs.writeFileSync(`${DIR}/pa11y-results.md`, markdownReport);
