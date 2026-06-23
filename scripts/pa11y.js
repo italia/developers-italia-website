@@ -159,7 +159,9 @@ const pa11yOptions = {
 
 const results = [];
 let markdownReport = "# Accessibility Report\n";
-let markdownReportSlim = "# Accessibility Report\n";
+let markdownReportSlim = "# Accessibility Report\n\n";
+markdownReportSlim += `| **Status** | **Url** | **Title** | **N. Issues** |\n`;
+markdownReportSlim += `|------------|---------|-----------|---------------|\n`;
 
 let htmlReportTemplate = `
 <!DOCTYPE html>
@@ -184,7 +186,7 @@ if (urls) {
     markdownReport += `<details>
         <summary>${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}</summary>
         <br>`;
-    markdownReportSlim += `${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}\n`;
+    markdownReportSlim += `| ${result.issues.length > 0 ? "❌" : "✅"} | ${result.pageUrl} | ${result.documentTitle} | ${result.issues.length} |\n`;
     markdownReport += `\n\n`;
     markdownReport += `| **MESSAGE** | **CONTEXT** | **SELECTOR** | **CODE** | **DESCRIPTION** | **HELP** |\n`;
     markdownReport += `|---------|------|---------|----------|-------------|------|\n`;
