@@ -159,7 +159,7 @@ const results = [];
 let markdownReport = "# Accessibility Report\n";
 
 if (urls) {
-  for (const url of urls.splice(0, 2)) {
+  for (const url of urls) {
     console.log(`- ${url}`);
     const result = await pa11y(url, pa11yOptions);
     results.push(result);
@@ -167,10 +167,10 @@ if (urls) {
         <summary>${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}</summary>
         <br>`;
     markdownReport += `\n\n## ${result.pageUrl} - ${result.documentTitle}\n\n`;
-    markdownReport += `| message | code | context | selector | description | help | url |\n`;
-    markdownReport += `|---------|------|---------|----------|-------------|------|-----|\n`;
+    markdownReport += `| message | code | context | selector | description | help |\n`;
+    markdownReport += `|---------|------|---------|----------|-------------|------|\n`;
     for (const issue of result.issues) {
-      markdownReport += `| ${issue.message} | ${issue.code} | ${escapeHTML(issue.context)} | ${issue.selector} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} | ${escapeHTML(issue.runnerExtras?.helpUrl)} |\n`;
+      markdownReport += `| ${issue.message} | ${issue.code} | ${escapeHTML(issue.context)} | ${issue.selector} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} |\n`;
     }
     markdownReport += `</details>\n\n`;
   }
