@@ -40,12 +40,12 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "github-actions[bot]"
-          body-includes: Build output
+          body-includes: Accessibility Report
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v5
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          body-path: ./.pa11y/pa11y-results.md
+          body-path: ./.pa11y/pa11y-results.slim.md
           edit-mode: replace

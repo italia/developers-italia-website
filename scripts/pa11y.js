@@ -17,6 +17,8 @@ import { gunzipSync } from "zlib";
 import fs from "fs";
 import pa11y from "pa11y";
 
+import markdown from "@wcj/markdown-to-html";
+
 const DIR = "./.pa11y";
 
 // ---------------------------------------------------------------------------
@@ -157,20 +159,37 @@ const pa11yOptions = {
 
 const results = [];
 let markdownReport = "# Accessibility Report\n";
+let markdownReportSlim = "# Accessibility Report\n";
+
+let htmlReportTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.18.1/dist/css/bootstrap-italia.min.css" rel="stylesheet">
+  <title>Accessibility report</title>
+</head>
+<body>
+  {{bodyReport}}
+</body>
+</html>`;
 
 if (urls) {
-  for (const url of urls) {
+  for (const url of urls.splice(0, 2)) {
     console.log(`- ${url}`);
     const result = await pa11y(url, pa11yOptions);
     results.push(result);
     markdownReport += `<details>
         <summary>${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}</summary>
         <br>`;
-    markdownReport += `\n\n## ${result.pageUrl} - ${result.documentTitle}\n\n`;
-    markdownReport += `| message | code | context | selector | description | help |\n`;
+    markdownReportSlim += `${result.issues.length > 0 ? "❌" : "✅"} ${result.pageUrl} - ${result.documentTitle}\n`;
+    markdownReport += `\n\n`;
+    markdownReport += `| **MESSAGE** | **CONTEXT** | **SELECTOR** | **CODE** | **DESCRIPTION** | **HELP** |\n`;
     markdownReport += `|---------|------|---------|----------|-------------|------|\n`;
     for (const issue of result.issues) {
-      markdownReport += `| ${issue.message} | ${issue.code} | ${escapeHTML(issue.context)} | ${issue.selector} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} |\n`;
+      markdownReport += `| ${issue.message} | ${escapeHTML(issue.context)} | ${escapeHTML(issue.selector)} | ${issue.code} | ${escapeHTML(issue.runnerExtras?.description)} | ${escapeHTML(issue.runnerExtras?.help)} |\n`;
     }
     markdownReport += `</details>\n\n`;
   }
@@ -180,5 +199,16 @@ if (!fs.existsSync(DIR)) {
   fs.mkdirSync(DIR);
 }
 
+let htmlReport = htmlReportTemplate.replace(
+  "{{bodyReport}}",
+  markdown(markdownReport),
+);
+htmlReport = htmlReport.replace(
+  /<table>/g,
+  '<table class="table table-striped table-bordered">',
+);
+
 fs.writeFileSync(`${DIR}/pa11y-results.json`, JSON.stringify(results, null, 2));
 fs.writeFileSync(`${DIR}/pa11y-results.md`, markdownReport);
+fs.writeFileSync(`${DIR}/pa11y-results.slim.md`, markdownReportSlim);
+fs.writeFileSync(`${DIR}/pa11y-results.html`, htmlReport);
