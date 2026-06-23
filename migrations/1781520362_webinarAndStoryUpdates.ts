@@ -1,56 +1,6 @@
 import { Client } from "@datocms/cli/lib/cma-client-node";
 
 export default async function (client: Client) {
-  // console.log("Update environment's settings");
-  // await client.site.update({ favicon: "RzW8RaTkTdS1itdJF5MbhA" });
-
-  // console.log("Manage upload filters");
-
-  // console.log('Upgrade version of plugin "AI Translations"');
-  // await client.plugins.update("Pe71pAx5Q0yd6_GM95bQAQ", {
-  //   package_version: "3.3.0",
-  // });
-
-  console.log('Update settings of plugin "Web Previews"');
-  await client.plugins.update("WSD86jZDQtqqM0v0QSUefA", {
-    parameters: {
-      frontends: [
-        {
-          name: "Cloud-italia",
-          previewWebhook:
-            "https://cloud-italia.vercel.app/api/preview-links?token=94c50d4d0e95d198f575d041c5e404",
-        },
-        {
-          name: "Local",
-          previewWebhook:
-            "http://localhost:4321/api/preview-links?token=94c50d4d0e95d198f575d041c5e404",
-        },
-        {
-          name: "Developers-Italia",
-          visualEditing: { enableDraftModeUrl: "" },
-          previewWebhook:
-            "https://developers-italia.vercel.app/api/preview-links?token=94c50d4d0e95d198f575d041c5e404",
-        },
-        {
-          name: "Template-PA",
-          disabled: true,
-          visualEditing: { enableDraftModeUrl: "" },
-          previewWebhook:
-            "https://template-pa.vercel.app/api/preview-links?token=94c50d4d0e95d198f575d041c5e404",
-        },
-      ],
-      startOpen: true,
-      defaultViewports: [
-        { icon: "mobile-alt", name: "Mobile", width: 375, height: 667 },
-        { icon: "tablet-alt", name: "Tablet", width: 768, height: 1024 },
-        { icon: "desktop-alt", name: "Desktop", width: 1280, height: 800 },
-      ],
-      defaultSidebarWidth: "900",
-      previewLinksSidebarDisabled: false,
-      previewLinksSidebarPanelDisabled: false,
-    },
-  });
-
   console.log("Create new models/block models");
 
   console.log(
