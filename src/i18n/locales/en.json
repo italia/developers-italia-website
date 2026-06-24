@@ -10,6 +10,7 @@
   "link.download": "Download file",
   "header.logo": "Go to Developers Italia homepage",
   "header.languageSelector": "Select language: selected language",
+  "header.languageSelected": "Selected",
   "header.showHideMenu": "Show/hide navigation",
   "header.hideMenu": "Hide navigation",
   "header.mainNav": "Main navigation",

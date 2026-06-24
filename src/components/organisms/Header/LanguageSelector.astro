@@ -31,8 +31,10 @@ const t = getI18n(currentLocale);
     aria-expanded="false"
     id="languagesDropButton"
   >
-    <span class="visually-hidden">{t["header.languageSelector"]}</span>
-    <span lang={currentLocale}>{t["language.short"]}</span>
+    <span class="visually-hidden"
+      >{`${t["header.languageSelector"]} ${t["language"]}`}</span
+    >
+    <span lang={currentLocale} aria-hidden="true">{t["language.short"]}</span>
     <ItExpand class="d-none d-lg-block" />
   </a>
   <div class="dropdown-menu">
@@ -57,7 +59,9 @@ const t = getI18n(currentLocale);
                       <span>
                         <span>{t["language"].toUpperCase()}</span>
                         {locale === currentLocale && (
-                          <span class="visually-hidden">selezionata</span>
+                          <span class="visually-hidden">
+                            {t["header.languageSelected"]}
+                          </span>
                         )}
                       </span>
                     </a>
