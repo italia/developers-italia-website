@@ -1,0 +1,133 @@
+---
+import { DateTime } from "@components/atoms/DateTime";
+import { TextContainer } from "@components/molecules/TextContainer";
+import { getI18n } from "@i18n/microcopy";
+
+type Props = {
+  title?: string;
+  subtitle?: string;
+  category?: string;
+  readingTime?: number;
+  date?: string | null;
+  topics?: string[];
+};
+
+const {
+  title,
+  subtitle,
+  category,
+  readingTime,
+  date,
+  topics = [],
+} = Astro.props;
+
+const { lang } = Astro.locals;
+const t = getI18n(lang);
+
+const readingTimeLabel =
+  readingTime && readingTime > 0
+    ? `${readingTime} ${readingTime === 1 ? t["news.minute"] : t["news.minutes"]}`
+    : null;
+
+const hasMeta = Boolean(readingTimeLabel) || Boolean(date) || topics.length > 0;
+
+// `TextContainer` renderizza il sottotitolo con set:html (come le pagine
+// evento, dove arriva già come HTML). Il campo della story è testo semplice:
+// lo avvolgiamo in un <p> così eredita lo stile del paragrafo (18px) invece
+// del testo nudo (16px).
+const subtitleHtml = subtitle
+  ? subtitle.trim().startsWith("<")
+    ? subtitle
+    : `<p>${subtitle}</p>`
+  : "";
+---
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      {
+        title && (
+          <TextContainer
+            title={title}
+            paragraph={subtitleHtml}
+            variant="light"
+            heading="h1"
+          />
+        )
+      }
+      {category && <span class="event-type-tag">{category}</span>}
+    </div>
+  </div>
+</div>
+
+{
+  hasMeta && (
+    <div class="border-top border-bottom py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            {readingTimeLabel && (
+              <div class="row">
+                <div class="d-inline-flex align-items-baseline me-lg-5 my tag-small-size">
+                  <span class="text-uppercase text-secondary me-2">
+                    <strong>{t["news.readingTime"]}</strong>
+                  </span>
+                  <div class="ms-3 small">
+                    <p>{readingTimeLabel}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+            {date && (
+              <div class="row">
+                <div class="d-inline-flex align-items-baseline me-lg-5 my tag-small-size">
+                  <span class="text-uppercase text-secondary me-2">
+                    <strong>{t["news.date"]}</strong>
+                  </span>
+                  <div class="ms-3 small">
+                    <p>
+                      <DateTime value={date} />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            {topics.length > 0 && (
+              <div class="row">
+                <div class="d-inline-flex align-items-center me-lg-5 my tag-small-size">
+                  <span class="text-uppercase text-secondary me-2">
+                    <strong>{t["news.topics"]}</strong>
+                  </span>
+                  <div class="ms-3">
+                    {topics.map((topic) => (
+                      <span class="chip chip-primary chip-lg chip-simple">
+                        <span class="chip-label">{topic}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  /* Etichetta tipologia contenuto: replica il "di-tag" mostrato sotto il
+     sottotitolo nelle pagine evento (vedi WebinarDescriptionAdapter). */
+  .event-type-tag {
+    display: inline-flex;
+    margin-top: 1rem;
+    padding: 4px 16px;
+    border-radius: 4px;
+    background-color: #5c6f82;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+  }
+</style>

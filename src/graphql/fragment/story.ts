@@ -70,6 +70,32 @@ export const AllStoriesRecordFragment = graphql(
       locales: _locales
       publishedAt: _publishedAt
       updatedAt: _updatedAt
+      allTitleLocales: _allTitleLocales {
+        locale
+        value
+      }
+      allParagraphLocales: _allParagraphLocales {
+        locale
+        value
+      }
+      dateOfPublication
+      articleClassification {
+        id
+        allLabelLocales: _allLabelLocales {
+          locale
+          value
+        }
+      }
+      allTopicLocales: _allTopicLocales {
+        locale
+        value {
+          id
+          allLabelLocales: _allLabelLocales {
+            locale
+            value
+          }
+        }
+      }
       allContentLocales: _allContentLocales {
         locale
         value {

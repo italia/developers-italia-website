@@ -45,9 +45,11 @@ type ContentType =
 type Props = {
   content: ContentType[];
   isFontSerif?: boolean;
+  /** Centra la colonna dei blocchi StructuredText (pagine evento/notizia). */
+  centeredText?: boolean;
 };
 
-const { content, isFontSerif = false } = Astro.props;
+const { content, isFontSerif = false, centeredText = false } = Astro.props;
 ---
 
 {
@@ -75,7 +77,11 @@ const { content, isFontSerif = false } = Astro.props;
         return <SupportCTASectionAdapter block={block} size="default" />;
       case DatoBlockModel.StructuredText:
         return (
-          <StructuredTextBlockAdapter block={block} isFontSerif={isFontSerif} />
+          <StructuredTextBlockAdapter
+            block={block}
+            isFontSerif={isFontSerif}
+            centered={centeredText}
+          />
         );
       case DatoBlockModel.ListCollection:
         return <ListCollectionAdapter block={block} />;

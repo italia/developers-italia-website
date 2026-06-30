@@ -218,8 +218,8 @@ input ArticleModelFilter {
   paragraph: TextFilter
   descriptionTitle: StringFilter
   description: TextFilter
-  content: StructuredTextFilter
   slug: SlugFilter
+  content: StructuredTextFilter
   OR: [ArticleModelFilter]
   AND: [ArticleModelFilter]
 }
