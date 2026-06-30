@@ -49,7 +49,7 @@
     "react-resizable": "^4.0.1"
   },
   "devDependencies": {
-    "@datocms/cli": "^3.1.16",
+    "@datocms/cli": "^4.0.28",
     "@types/axe-core": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
