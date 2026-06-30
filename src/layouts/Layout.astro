@@ -132,21 +132,21 @@ const isProd = import.meta.env.PROD;
     />
     <main id="main">
       <slot />
+      {
+        datePublished && globalSetting && (
+          <LastUpdate
+            label={globalSetting.lastUpdateLabel}
+            date={datePublished}
+            links={linksPrefooter}
+          />
+        )
+      }
+      <Feedback client:visible lang={lang}>
+        <div slot="fallback">
+          <Loader />
+        </div>
+      </Feedback>
     </main>
-    {
-      datePublished && globalSetting && (
-        <LastUpdate
-          label={globalSetting.lastUpdateLabel}
-          date={datePublished}
-          links={linksPrefooter}
-        />
-      )
-    }
-    <Feedback client:visible lang={lang}>
-      <div slot="fallback">
-        <Loader />
-      </div>
-    </Feedback>
     <FooterAdapter {...footerLayout} />
   </body>
 </html>
