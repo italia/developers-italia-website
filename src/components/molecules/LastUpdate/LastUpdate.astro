@@ -19,20 +19,22 @@ const { label, date, links = [] } = Astro.props;
         <span class="fw-semibold">{label}:</span>
         <DateTime value={date} />
       </div>
-      <div class="col-12 col-lg-6 text-start text-lg-end">
-        <ul
-          class="list-unstyled mb-0 d-flex flex-column flex-md-row px-0 fs-6 justify-content-lg-end"
-          aria-label="Link correlati"
-        >
-          {
-            links.map((link) => (
-              <li class="ms-lg-4 mt-3 mt-lg-0">
-                <Link {...link} openInNewTab={true} isIcon={true} />
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      {
+        links.length > 0 && (
+          <div class="col-12 col-lg-6 text-start text-lg-end">
+            <ul
+              class="list-unstyled mb-0 d-flex flex-column flex-md-row px-0 fs-6 justify-content-lg-end"
+              aria-label="Link correlati"
+            >
+              {links.map((link) => (
+                <li class="ms-lg-4 mt-3 mt-lg-0">
+                  <Link {...link} openInNewTab={true} isIcon={true} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
     </div>
   </div>
 </div>
