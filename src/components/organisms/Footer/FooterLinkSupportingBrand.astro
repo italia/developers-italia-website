@@ -15,8 +15,8 @@ const t = getI18n(lang);
   class="list-item left-icon d-inline-flex align-items-center"
   target="_blank"
   rel="noreferrer"
-  aria-label={t["link.external"]}
 >
   {icon && <Icon icon={icon} className="icon-sm text-white me-2" />}
   <span>{label}</span>
+  <span class="visually-hidden">{t["link.external"]}</span>
 </a>
