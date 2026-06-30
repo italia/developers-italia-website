@@ -105,9 +105,9 @@ function Feedback({ lang }: Feedback) {
       case FeedbackState.Start:
         return (
           <>
-            <p className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
+            <h2 className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
               <span className="feedback-title">{t["feedback.title"]}</span>
-            </p>
+            </h2>
             <form className="mt-3 mt-md-3">
               <fieldset>
                 <legend>
