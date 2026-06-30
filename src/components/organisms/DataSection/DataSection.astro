@@ -1,5 +1,6 @@
 ---
 import { SectionContainer } from "@components/organisms/SectionContainer";
+import { slugify } from "@utils/slugify";
 import Highlights from "./Highlights.astro";
 import Panel from "./Panel.astro";
 import Result from "./Result.astro";
@@ -14,7 +15,7 @@ type Props = {
 const { highlights, panel, result } = Astro.props;
 ---
 
-<SectionContainer sectionTitleId={highlights.title}>
+<SectionContainer sectionTitleId={slugify(highlights.title)}>
   {highlights && <Highlights {...highlights} />}
   {panel && <Panel {...panel} />}
   {result && <Result {...result} />}

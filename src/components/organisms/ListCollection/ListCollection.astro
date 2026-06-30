@@ -4,6 +4,7 @@ import { CardInlineMini } from "@components/molecules/CardInlineMini";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import { getSectionBgClass } from "@utils/background";
+import { slugify } from "@utils/slugify";
 import type { ListCollectionProps } from "./types";
 
 type Props = ListCollectionProps;
@@ -16,17 +17,18 @@ const {
   showInline = false,
 } = Astro.props;
 
+const titleId = slugify(title);
 const textColorClass =
   background === "primary" || background === "dark" ? "text-white" : "";
 ---
 
 <SectionContainer
   className={getSectionBgClass(background)}
-  sectionTitleId={title}
+  sectionTitleId={titleId}
 >
   <div class="row justify-content-between align-items-top">
     <div class="col-lg-8 col-12 pb-lg-5">
-      <h2 class=`${textColorClass}` id={title}>
+      <h2 class=`${textColorClass}` id={titleId}>
         {title}
       </h2>
       {paragraph && <p class={`${textColorClass}`}>{paragraph}</p>}

@@ -9,6 +9,7 @@ import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import ButtonLink from "@components/atoms/Button/ButtonLink.astro";
 import type { CardEditorialStoryProps } from "@components/molecules/CardEditorialStory/types";
 import type { SectionBackground } from "@utils/background";
+import { slugify } from "@utils/slugify";
 
 type NewsTab = {
   title: string;
@@ -71,7 +72,7 @@ const variantButtonLink =
   leftColumns={5}
   background={backgroundColor}
   alignItems="top"
-  sectionTitleId={title}
+  sectionTitleId={slugify(title)}
 >
   <TextContainer
     slot="left"

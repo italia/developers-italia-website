@@ -2,19 +2,21 @@
 import { Accordion } from "@components/molecules/Accordion";
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import { getSectionBgClass } from "@utils/background";
+import { slugify } from "@utils/slugify";
 import type { FAQSectionProps } from "./types";
 
 type Props = FAQSectionProps;
 const { title, accordion, background = "default" } = Astro.props;
+const titleId = slugify(title);
 ---
 
 <SectionContainer
   className={getSectionBgClass(background)}
-  sectionTitleId={title}
+  sectionTitleId={titleId}
 >
   <div class="row align-items-top">
     <div class="col-12">
-      <h2 class="mb-5" id={title}>
+      <h2 class="mb-5" id={titleId}>
         {title}
       </h2>
       <Accordion

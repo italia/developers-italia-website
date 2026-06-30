@@ -1,5 +1,6 @@
 ---
 import { ButtonLink } from "@components/atoms/Button";
+import { slugify } from "@utils/slugify";
 import type { TextContainerProps } from "./types";
 
 type Props = TextContainerProps;
@@ -29,7 +30,7 @@ const variantButton =
   @import "./style.scss";
 </style>
 <div class=`text-container mb-4 mb-lg-0 ${colorClass}`>
-  <TitleTag class="mb-3" id={title}>
+  <TitleTag class="mb-3" id={slugify(title)}>
     {title}
   </TitleTag>
   <Fragment class="mb-4" set:html={paragraph} />

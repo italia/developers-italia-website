@@ -1,17 +1,19 @@
 ---
 import { Link } from "@components/atoms/Link";
 import ItFiles from "@static/assets/ItFiles.astro";
+import { slugify } from "@utils/slugify";
 import type { CalloutLinkSectionProps } from "./types";
 
 type Props = CalloutLinkSectionProps;
 const { title, paragraph, label, url } = Astro.props;
+const titleId = slugify(title);
 ---
 
-<section class="it-section-bg-light" aria-labelledby={title}>
+<section class="it-section-bg-light" aria-labelledby={titleId}>
   <div class="container">
     <div class="callout note">
       <div class="callout-inner">
-        <div class="callout-title" id={title}>
+        <div class="callout-title" id={titleId}>
           <ItFiles />
           <span class="text">{title}</span>
         </div>

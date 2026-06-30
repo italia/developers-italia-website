@@ -5,30 +5,25 @@ import { CardEditorialNews } from "@components/molecules/CardEditorialNews";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import { getI18n } from "@i18n/microcopy";
 import { SelectTopics } from "@components/molecules/SelectTopics";
+import { slugify } from "@utils/slugify";
 
 type Props = TopicFilterProps;
 
 const { title, filterTitle, labelForAll, paragraph, contentCollection } =
   Astro.props;
 
-const slugify = (text: string) =>
-  text
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
-
 const { lang } = Astro.locals;
 const t = getI18n(lang);
+const titleId = slugify(title);
 ---
 
-<SectionContainer className="it-section-bg-light" sectionTitleId={title}>
+<SectionContainer className="it-section-bg-light" sectionTitleId={titleId}>
   <div
     class=`d-flex flex-lg-row flex-column justify-content-between align-items-top`
   >
     <div class=`col-lg-5 col-12`>
       <div class=`text-container mb-4 mb-lg-0`>
-        <h2 class="mb-3" id={title}>
+        <h2 class="mb-3" id={titleId}>
           {title}
         </h2>
         <p>{paragraph}</p>

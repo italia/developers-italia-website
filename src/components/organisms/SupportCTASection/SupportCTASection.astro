@@ -1,6 +1,7 @@
 ---
 import { ButtonLink } from "@components/atoms/Button";
 import { Image } from "@components/atoms/Image";
+import { slugify } from "@utils/slugify";
 import type {
   SupportCTASectionBackgroundProps,
   SupportCTASectionProps,
@@ -19,6 +20,7 @@ const {
   openInNewTab = false,
 } = Astro.props;
 
+const titleId = slugify(title);
 const backgroundColor: Record<SupportCTASectionBackgroundProps, string> = {
   default: "it-section-bg-default",
   lighter: "it-section-bg-light",
@@ -29,13 +31,13 @@ const backgroundColorClass = backgroundColor[background];
 
 <section
   class={`${backgroundColorClass} ${size === "small" ? "rounded-2" : ""}`}
-  aria-labelledby={title}
+  aria-labelledby={titleId}
 >
   <div class={`container py-5  ${size === "small" ? "px-5" : ""}`}>
     <div class={`row align-items-center justify-content-between `}>
       <div class="col-lg-6 col-12">
         <div class=`text-container mb-4 mb-lg-0`>
-          <h3 class="mb-3" id={title}>
+          <h3 class="mb-3" id={titleId}>
             {title}
           </h3>
           <div class="mb-4" set:html={paragraph} />
