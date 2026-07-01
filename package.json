@@ -29,7 +29,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/ts-plugin": "^1.10.9",
-    "@astrojs/vercel": "^9.0.5",
+    "@astrojs/vercel": "^10.0.8",
     "@datocms/astro": "^0.6.12",
     "@datocms/cda-client": "^0.2.10",
     "@datocms/cma-client": "^5.4.21",
