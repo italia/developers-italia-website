@@ -1,14 +1,20 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import { Breadcrumb } from "@components/molecules/Breadcrumb";
+import { StoryHeader } from "@components/molecules/StoryHeader";
 import type { TagFragmentType } from "@graphql/fragment/commonFragments";
 import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
 import type { StoryContentFragmentType } from "@graphql/fragment/story";
 import type { SiteLocale } from "@graphql/types";
 import Layout from "@layouts/Layout.astro";
+import { DatoBlockModel } from "@utils/cmsMapper";
+import { createBreadcrumb } from "@utils/createBreadcrumb";
 import { getLocaleValue } from "@utils/getLocaleValue";
+import { getReadingTime } from "@utils/getReadingTime";
 import { extractFaqItems, type JsonLdPageData } from "@utils/JsonLD/seoJsonLd";
 import { linkResolver } from "@utils/linkResolver";
 import { removeLang } from "@utils/pathHelper";
+import { isNewsStoryClass } from "@utils/storyClassification";
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -24,6 +30,13 @@ export async function getStaticPaths() {
       id: string;
       publishedAt: string;
       updatedAt: string;
+      isNews: boolean;
+      title: string;
+      subtitle: string;
+      category: string;
+      dateOfPublication: string | null;
+      topics: string[];
+      readingTime: number;
     };
   };
 
@@ -43,6 +56,15 @@ export async function getStaticPaths() {
 
         const slug = removeLang(fullPath, lang);
 
+        const topic = getLocaleValue(page.allTopicLocales, lang, null);
+        const topicLabel = getLocaleValue(topic?.allLabelLocales, lang, "");
+
+        const localeContent = getLocaleValue(
+          page.allContentLocales,
+          lang,
+          null,
+        );
+
         return {
           params: {
             story: slug,
@@ -52,9 +74,20 @@ export async function getStaticPaths() {
             seoMeta: seoRes?.metaTags || [],
             seo: seoRes?.seo || null,
             id: page.id,
-            content: getLocaleValue(page.allContentLocales, lang, null),
+            content: localeContent,
             publishedAt: page.publishedAt,
             updatedAt: seoRes?.updatedAt || page.updatedAt,
+            isNews: isNewsStoryClass(page.articleClassification?.id),
+            title: getLocaleValue(page.allTitleLocales, lang, ""),
+            subtitle: getLocaleValue(page.allParagraphLocales, lang, ""),
+            category: getLocaleValue(
+              page.articleClassification?.allLabelLocales,
+              lang,
+              "",
+            ),
+            dateOfPublication: page.dateOfPublication ?? null,
+            topics: topicLabel ? [topicLabel] : [],
+            readingTime: getReadingTime(localeContent),
           },
         };
       });
@@ -65,7 +98,21 @@ export async function getStaticPaths() {
   return paths.filter((path): path is PathItem => !!path.params.lang);
 }
 
-const { id, content, seo, seoMeta, publishedAt, updatedAt } = Astro.props;
+const {
+  id,
+  content,
+  seo,
+  seoMeta,
+  publishedAt,
+  updatedAt,
+  isNews,
+  title,
+  subtitle,
+  category,
+  dateOfPublication,
+  topics,
+  readingTime,
+} = Astro.props;
 const { lang } = Astro.params;
 
 Astro.locals.lang = lang;
@@ -79,8 +126,53 @@ const jsonLd: JsonLdPageData = {
   updatedAt,
   faq: extractFaqItems(content ?? []),
 };
+
+// Sulle Notizie replichiamo l'intestazione delle pagine evento
+// (designers.italia.it), riusando lo stesso impianto di WebinarDescription:
+// breadcrumb, titolo + sottotitolo, tag tipologia, blocco metadati
+// (data + argomenti). Titolo e sottotitolo della notizia vivono nel blocco
+// IntroArticle: lo rimuoviamo dal corpo perché li ridisegniamo nell'header in
+// stile evento, così il look è identico.
+const blocks = content ?? [];
+const hasHero = blocks.some(
+  (block) => block.componentName === DatoBlockModel.Hero,
+);
+const showStoryHeader = isNews;
+
+const introIndex = blocks.findIndex(
+  (block) => block.componentName === DatoBlockModel.IntroArticle,
+);
+const bodyBlocks =
+  introIndex >= 0 ? blocks.filter((_, i) => i !== introIndex) : blocks;
+
+// Un eventuale Hero porta già titolo e breadcrumb: in quel caso non
+// ridisegniamo il titolo nell'header e lasciamo l'Hero nel corpo.
+const renderHeaderTitle = !hasHero;
+const breadcrumbItems =
+  showStoryHeader && !hasHero ? createBreadcrumb(id, lang as SiteLocale) : [];
 ---
 
 <Layout pageSeo={seoMeta} datePublished={publishedAt} jsonLd={jsonLd}>
-  <PageAdapter content={content} />
+  {
+    showStoryHeader ? (
+      <>
+        {breadcrumbItems.length > 0 && (
+          <div class="container pt-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
+        )}
+        <StoryHeader
+          title={renderHeaderTitle ? title : undefined}
+          subtitle={renderHeaderTitle ? subtitle : undefined}
+          category={category || undefined}
+          readingTime={readingTime}
+          date={dateOfPublication}
+          topics={topics}
+        />
+        <PageAdapter content={bodyBlocks} centeredText />
+      </>
+    ) : (
+      <PageAdapter content={content} />
+    )
+  }
 </Layout>
