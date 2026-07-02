@@ -12,7 +12,7 @@
         "@astrojs/vercel": "^9.0.5",
         "@datocms/astro": "^0.6.12",
         "@datocms/cda-client": "^0.2.10",
-        "@datocms/cma-client": "^5.4.21",
+        "@datocms/cma-client": "^5.5.4",
         "@opensearch-project/opensearch": "^3.6.0",
         "@types/react": "^19.2.15",
         "@types/react-dom": "^19.2.3",
@@ -129,7 +129,7 @@
 
     "@datocms/cli-utils": ["@datocms/cli-utils@3.1.16", "https://registry.npmjs.com/@datocms/cli-utils/-/cli-utils-3.1.16.tgz", { "dependencies": { "@datocms/cma-client-node": "^5.1.13", "@oclif/core": "^4", "@whatwg-node/fetch": "^0.10.10", "chalk": "^4", "dotenv": "^17.2.3", "lodash": "^4.17.21", "serialize-error": "^8", "tty-table": "^4.2.3" } }, "sha512-BMWMvYwDzbpkErMPsCkGnSAN8mT6N6sv5dRM/b+tMc9QjQRDbZ4r1FVM/T8PS1NIr1OmdcLwoLtrQ9KB8dqiXw=="],
 
-    "@datocms/cma-client": ["@datocms/cma-client@5.4.21", "https://registry.npmjs.com/@datocms/cma-client/-/cma-client-5.4.21.tgz", { "dependencies": { "@datocms/rest-client-utils": "^5.4.9", "datocms-structured-text-utils": "^5.1.4", "uuid": "^9.0.1" } }, "sha512-s5SZvAYfDrRfPOUROSMZVyoxCp3WTFGYAk++cVE/8GSTmS3FKLopDxpL5BxL6zVRW7Dv+2ofUytKaM3fxzL1VQ=="],
+    "@datocms/cma-client": ["@datocms/cma-client@5.5.4", "", { "dependencies": { "@datocms/rest-client-utils": "^5.4.9", "datocms-structured-text-utils": "^5.1.4", "uuid": "^11.1.1" } }, "sha512-zj882n4j+PgPHILk4vkqr5yooOFhB/XjZsdA8WWvWQlW18TyceicaAvw1uY409CMy6ovtXNhXxcPbsZaCMwcuQ=="],
 
     "@datocms/cma-client-node": ["@datocms/cma-client-node@5.4.21", "https://registry.npmjs.com/@datocms/cma-client-node/-/cma-client-node-5.4.21.tgz", { "dependencies": { "@datocms/cma-client": "^5.4.21", "@datocms/rest-client-utils": "^5.4.9", "mime-types": "^2.1.35", "tmp-promise": "^3.0.3" } }, "sha512-P0BmoJoPkohLXFjX0lIOfFVluEaU/JQR20cJa+rlsFZrnQprBv8lLOis6tWGe4OmXKfZ9ApOLyTiQxLyZH9tiQ=="],
 
@@ -1915,7 +1915,7 @@
 
     "util-deprecate": ["util-deprecate@1.0.2", "https://registry.npmjs.com/util-deprecate/-/util-deprecate-1.0.2.tgz", {}, "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="],
 
-    "uuid": ["uuid@9.0.1", "https://registry.npmjs.com/uuid/-/uuid-9.0.1.tgz", { "bin": { "uuid": "dist/bin/uuid" } }, "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA=="],
+    "uuid": ["uuid@11.1.1", "", { "bin": { "uuid": "dist/esm/bin/uuid" } }, "sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ=="],
 
     "validate-npm-package-name": ["validate-npm-package-name@5.0.1", "https://registry.npmjs.com/validate-npm-package-name/-/validate-npm-package-name-5.0.1.tgz", {}, "sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ=="],
 
@@ -2060,6 +2060,8 @@
     "@datocms/cli/typescript": ["typescript@5.7.2", "https://registry.npmjs.com/typescript/-/typescript-5.7.2.tgz", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg=="],
 
     "@datocms/cma-client/@datocms/rest-client-utils": ["@datocms/rest-client-utils@5.4.9", "https://registry.npmjs.com/@datocms/rest-client-utils/-/rest-client-utils-5.4.9.tgz", { "dependencies": { "async-scheduler": "^1.4.4" } }, "sha512-Gfv7R7pgHKk4oTfjBeQINsRojTEyOWyj8gFYhmuoF49vjfPFUqj27RT9W5HRpSUowJ7vw3DqRXY3yjJrzhovAg=="],
+
+    "@datocms/cma-client-node/@datocms/cma-client": ["@datocms/cma-client@5.4.21", "https://registry.npmjs.com/@datocms/cma-client/-/cma-client-5.4.21.tgz", { "dependencies": { "@datocms/rest-client-utils": "^5.4.9", "datocms-structured-text-utils": "^5.1.4", "uuid": "^9.0.1" } }, "sha512-s5SZvAYfDrRfPOUROSMZVyoxCp3WTFGYAk++cVE/8GSTmS3FKLopDxpL5BxL6zVRW7Dv+2ofUytKaM3fxzL1VQ=="],
 
     "@datocms/cma-client-node/@datocms/rest-client-utils": ["@datocms/rest-client-utils@5.4.9", "https://registry.npmjs.com/@datocms/rest-client-utils/-/rest-client-utils-5.4.9.tgz", { "dependencies": { "async-scheduler": "^1.4.4" } }, "sha512-Gfv7R7pgHKk4oTfjBeQINsRojTEyOWyj8gFYhmuoF49vjfPFUqj27RT9W5HRpSUowJ7vw3DqRXY3yjJrzhovAg=="],
 
@@ -2496,6 +2498,8 @@
     "zrender/tslib": ["tslib@2.3.0", "https://registry.npmjs.com/tslib/-/tslib-2.3.0.tgz", {}, "sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg=="],
 
     "@babel/helper-compilation-targets/lru-cache/yallist": ["yallist@3.1.1", "https://registry.npmjs.com/yallist/-/yallist-3.1.1.tgz", {}, "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g=="],
+
+    "@datocms/cma-client-node/@datocms/cma-client/uuid": ["uuid@9.0.1", "https://registry.npmjs.com/uuid/-/uuid-9.0.1.tgz", { "bin": { "uuid": "dist/bin/uuid" } }, "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA=="],
 
     "@isaacs/cliui/string-width/emoji-regex": ["emoji-regex@9.2.2", "https://registry.npmjs.com/emoji-regex/-/emoji-regex-9.2.2.tgz", {}, "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg=="],
 
