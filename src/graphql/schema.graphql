@@ -1427,11 +1427,11 @@ input FeedbackModelFilter {
   _status: StatusFilter
   _updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  feedback: BooleanFilter
-  reachedFrom: StringFilter
   expertise: StringFilter
   url: StringFilter
   message: TextFilter
+  reachedFrom: StringFilter
+  feedback: StringFilter
   OR: [FeedbackModelFilter]
   AND: [FeedbackModelFilter]
 }
@@ -1455,14 +1455,14 @@ enum FeedbackModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  feedback_ASC
-  feedback_DESC
-  reachedFrom_ASC
-  reachedFrom_DESC
   expertise_ASC
   expertise_DESC
   url_ASC
   url_DESC
+  reachedFrom_ASC
+  reachedFrom_DESC
+  feedback_ASC
+  feedback_DESC
 }
 
 """Record of type Feedback (feedback)"""
@@ -1486,7 +1486,7 @@ type FeedbackRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   expertise: String
-  feedback: BooleanType!
+  feedback: String
   id: ItemId!
   message(
     """Process content as markdown"""
