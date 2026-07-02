@@ -20,6 +20,18 @@ const {
 const titleId = slugify(title);
 const textColorClass =
   background === "primary" || background === "dark" ? "text-white" : "";
+
+const collectionInstanceId = crypto.randomUUID();
+
+const desktopItems = items.map((item, index) => ({
+  ...item,
+  id: `${collectionInstanceId}-desktop-${index}`,
+}));
+
+const mobileItems = items.map((item, index) => ({
+  ...item,
+  id: `${collectionInstanceId}-mobile-${index}`,
+}));
 ---
 
 <SectionContainer
@@ -37,7 +49,7 @@ const textColorClass =
     <div class=` ${!showInline ? 'd-none d-lg-block' : ''}`>
       <ul class="it-card-list row">
         {
-          items.map((item) => {
+          desktopItems.map((item) => {
             return showInline ? (
               <li class="col-12 col-lg-6 mb-3">
                 <CardInlineMini {...item} />
@@ -55,7 +67,7 @@ const textColorClass =
     {
       !showInline && (
         <Carousel>
-          {items.map((item) => (
+          {mobileItems.map((item) => (
             <CarouselItem>
               <CardEditorialNews {...item} />
             </CarouselItem>

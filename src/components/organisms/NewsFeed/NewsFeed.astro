@@ -85,42 +85,89 @@ const variantButtonLink =
       {
         tabs.map((tab, index) => (
           <TabContent tab={tabsItems[index]}>
-            <Carousel>
-              {tab.componentName === "CardEditorialNews" &&
-                tab.news.map((n) => (
-                  <CarouselItem>
-                    <CardEditorialNews {...n} />
-                  </CarouselItem>
-                ))}
+            {tab.componentName === "CardEditorialNews" &&
+              (() => {
+                const tabInstanceId = `${id}-tab-${index}`;
+                const desktopNews: CardEditorialNewsProps[] = tab.news.map(
+                  (item, itemIndex) => ({
+                    ...item,
+                    id: `${tabInstanceId}-desktop-${itemIndex}`,
+                  }),
+                );
+                const mobileNews: CardEditorialNewsProps[] = tab.news.map(
+                  (item, itemIndex) => ({
+                    ...item,
+                    id: `${tabInstanceId}-mobile-${itemIndex}`,
+                  }),
+                );
 
-              {tab.componentName === "CardEditorialStory" &&
-                tab.news.map((n) => (
-                  <CarouselItem>
-                    <CardEditorialStory {...n} />
-                  </CarouselItem>
-                ))}
-            </Carousel>
+                return (
+                  <>
+                    <Carousel>
+                      {mobileNews.map((n) => (
+                        <CarouselItem>
+                          <CardEditorialNews {...n} />
+                        </CarouselItem>
+                      ))}
+                    </Carousel>
 
-            <div class="d-none d-lg-block">
-              <ul
-                class={`it-card-list row ${hasMultipleTabs ? "pt-5" : ""}`}
-                aria-label={tab.title}
-              >
-                {tab.componentName === "CardEditorialNews" &&
-                  tab.news.map((n) => (
-                    <li class="col-12 col-lg-4 mb-3">
-                      <CardEditorialNews {...n} />
-                    </li>
-                  ))}
+                    <div class="d-none d-lg-block">
+                      <ul
+                        class={`it-card-list row ${hasMultipleTabs ? "pt-5" : ""}`}
+                        aria-label={tab.title}
+                      >
+                        {desktopNews.map((n) => (
+                          <li class="col-12 col-lg-4 mb-3">
+                            <CardEditorialNews {...n} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                );
+              })()}
 
-                {tab.componentName === "CardEditorialStory" &&
-                  tab.news.map((n) => (
-                    <li class="col-12 col-lg-4 mb-3">
-                      <CardEditorialStory {...n} />
-                    </li>
-                  ))}
-              </ul>
-            </div>
+            {tab.componentName === "CardEditorialStory" &&
+              (() => {
+                const tabInstanceId = `${id}-tab-${index}`;
+                const desktopNews: CardEditorialStoryProps[] = tab.news.map(
+                  (item, itemIndex) => ({
+                    ...item,
+                    id: `${tabInstanceId}-desktop-${itemIndex}`,
+                  }),
+                );
+                const mobileNews: CardEditorialStoryProps[] = tab.news.map(
+                  (item, itemIndex) => ({
+                    ...item,
+                    id: `${tabInstanceId}-mobile-${itemIndex}`,
+                  }),
+                );
+
+                return (
+                  <>
+                    <Carousel>
+                      {mobileNews.map((n) => (
+                        <CarouselItem>
+                          <CardEditorialStory {...n} />
+                        </CarouselItem>
+                      ))}
+                    </Carousel>
+
+                    <div class="d-none d-lg-block">
+                      <ul
+                        class={`it-card-list row ${hasMultipleTabs ? "pt-5" : ""}`}
+                        aria-label={tab.title}
+                      >
+                        {desktopNews.map((n) => (
+                          <li class="col-12 col-lg-4 mb-3">
+                            <CardEditorialStory {...n} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                );
+              })()}
           </TabContent>
         ))
       }

@@ -60,18 +60,24 @@ const titleId = slugify(title);
 
           <div class="content-desktop d-none d-lg-block">
             <ul class="it-card-list row" aria-label={collection.title}>
-              {collection.items.map((item) => (
+              {collection.items.map((item, itemIndex) => (
                 <li class="col-12 col-lg-4 mb-3">
-                  <CardEditorialNews {...item} />
+                  <CardEditorialNews
+                    {...item}
+                    id={`${slugify(collection.topicSlug)}-${itemIndex}-desktop`}
+                  />
                 </li>
               ))}
             </ul>
           </div>
 
           <Carousel className="content-mobile">
-            {collection.items.map((item) => (
+            {collection.items.map((item, itemIndex) => (
               <CarouselItem>
-                <CardEditorialNews {...item} />
+                <CardEditorialNews
+                  {...item}
+                  id={`${slugify(collection.topicSlug)}-${itemIndex}-mobile`}
+                />
               </CarouselItem>
             ))}
           </Carousel>
