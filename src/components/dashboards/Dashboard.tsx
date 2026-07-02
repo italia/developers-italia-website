@@ -1,4 +1,5 @@
 import { DashboardGridProvider } from "graph-italia-components";
+// import {  DashboardProvider } from "graph-italia-components";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 
@@ -43,6 +44,12 @@ export default function Dashboard({ dashboardId }: { dashboardId?: string }) {
             rowHeight={380}
             margin={16}
             detectUserPrefColorsSchema={false}
+            withWrapper
+            wrapperLabels={{
+              labelDownloadData: "Esporta",
+              labelDownloadImage: "Scarica Immagine",
+            }}
+            showDataTransposed
           />
         )}
       </div>
