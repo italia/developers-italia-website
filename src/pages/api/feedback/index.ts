@@ -3,11 +3,10 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
+const FEEDBACK_API_TOKEN = import.meta.env.FEEDBACK_API_TOKEN || "";
+const FEEDBACK_SCHEMA_ID = import.meta.env.FEEDBACK_SCHEMA_ID || "";
+
 export const POST: APIRoute = async ({ request }) => {
-  const FEEDBACK_API_TOKEN =
-    import.meta.env.FEEDBACK_API_TOKEN || "e26a1d1e6fe6d82bdfaf587167fcc1";
-  const FEEDBACK_SCHEMA_ID =
-    import.meta.env.FEEDBACK_SCHEMA_ID || "SE8fQKDHTWuxmO7BlA73fg";
   try {
     const data = await request.json();
     console.log("Feedback received:", data);
