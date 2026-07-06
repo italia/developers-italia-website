@@ -21,7 +21,7 @@
         "datocms-structured-text-to-plain-text": "^5.1.16",
         "dotenv": "^17.4.2",
         "gql.tada": "^1.11.2",
-        "graph-italia-components": "^0.3.28",
+        "graph-italia-components": "^0.3.29",
         "jsonwebtoken": "^9.0.3",
         "react": "^19.2.7",
         "react-dom": "^19.2.7",
@@ -1049,7 +1049,7 @@
 
     "graceful-fs": ["graceful-fs@4.2.11", "https://registry.npmjs.com/graceful-fs/-/graceful-fs-4.2.11.tgz", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
-    "graph-italia-components": ["graph-italia-components@0.3.28", "", { "peerDependencies": { "dayjs": "^1.11.13", "echarts": "^5.6.0", "echarts-for-react": "^3.0.2", "ol": "^10.5.0", "react": "^19.1.0", "react-data-table-component": "^7.7.0", "react-dom": "^19.1.0", "react-error-boundary": "^6.0.0", "react-grid-layout": "^2.2.2", "react-markdown": "^10.1.0", "remark-gfm": "^4.0.1" } }, "sha512-HU/GY0wfY/riXyA54N55mAsQ30kEI/4e5YruTsbzGcuVV+ImUKvNnwfoNkga2jhMQpH8SRUuq+VPodNB1/+wvw=="],
+    "graph-italia-components": ["graph-italia-components@0.3.29", "", { "peerDependencies": { "dayjs": "^1.11.13", "echarts": "^5.6.0", "echarts-for-react": "^3.0.2", "ol": "^10.5.0", "react": "^19.1.0", "react-data-table-component": "^7.7.0", "react-dom": "^19.1.0", "react-error-boundary": "^6.0.0", "react-grid-layout": "^2.2.2", "react-markdown": "^10.1.0", "remark-gfm": "^4.0.1" } }, "sha512-CoG1RK5KV2IxzrSutsTZDeKE/iJbq+Gpi0XxlJ3sJXgLBEg5kt5/ORL0kx77P9oIrJH39pyBv9EfqW4EFrF0Ig=="],
 
     "grapheme-splitter": ["grapheme-splitter@1.0.4", "https://registry.npmjs.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz", {}, "sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ=="],
 

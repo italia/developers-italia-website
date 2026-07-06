@@ -41,7 +41,7 @@
     "datocms-structured-text-to-plain-text": "^5.1.16",
     "dotenv": "^17.4.2",
     "gql.tada": "^1.11.2",
-    "graph-italia-components": "^0.3.28",
+    "graph-italia-components": "^0.3.29",
     "jsonwebtoken": "^9.0.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
