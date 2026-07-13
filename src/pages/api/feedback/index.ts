@@ -6,7 +6,11 @@ export const prerender = false;
 const FEEDBACK_API_TOKEN = import.meta.env.FEEDBACK_API_TOKEN || "";
 const FEEDBACK_SCHEMA_ID = import.meta.env.FEEDBACK_SCHEMA_ID || "";
 
+console.log("FEEDBACK_API_TOKEN:", FEEDBACK_API_TOKEN);
+console.log("FEEDBACK_SCHEMA_ID:", FEEDBACK_SCHEMA_ID);
+
 export const POST: APIRoute = async ({ request }) => {
+  console.log("FEEDBACK API START");
   try {
     const data = await request.json();
     console.log("Feedback received:", data);
@@ -45,13 +49,16 @@ export const POST: APIRoute = async ({ request }) => {
         "Content-Type": "application/json",
       },
     });
-  } catch (error) {
+  } catch (err) {
+    console.error("Error saving feedback:", err);
     return new Response(
-      JSON.stringify({ message: "Error saving feedback.", error }),
+      JSON.stringify({ message: "Error saving feedback.", err }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
       },
     );
+  } finally {
+    console.log("FEEDBACK API END");
   }
 };
