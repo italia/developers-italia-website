@@ -45,10 +45,13 @@ export const POST: APIRoute = async ({ request }) => {
         "Content-Type": "application/json",
       },
     });
-  } catch (err) {
-    return new Response(JSON.stringify({ error: "Error saving feedback." }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ message: "Error saving feedback.", error }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 };
