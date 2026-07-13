@@ -1,0 +1,49 @@
+---
+import CalloutAdapter from "@components/cms-adapters/datocms/CalloutAdapter.astro";
+import CardServiceAdapter from "@components/cms-adapters/datocms/CardServiceAdapter.astro";
+import DownloadLinkAdapter from "@components/cms-adapters/datocms/DownloadLinkAdapter.astro";
+import ExternalLinkAdapter from "@components/cms-adapters/datocms/ExternalLinkAdapter.astro";
+import ImageBlockRssAdapter from "@components/cms-adapters/datocms/ImageBlockRssAdapter.astro";
+import InternalLinkAdapter from "@components/cms-adapters/datocms/InternalLinkAdapter.astro";
+import LinkInlineAdapter from "@components/cms-adapters/datocms/LinkInlineAdapter.astro";
+import ListBlockquoteAdapter from "@components/cms-adapters/datocms/ListBlockquoteAdapter.astro";
+import ListCardEditorialWithIconAdapter from "@components/cms-adapters/datocms/ListCardEditorialWithIconAdapter.astro";
+import ListCardInfoAdapter from "@components/cms-adapters/datocms/ListCardInfoAdapter.astro";
+import ListExternalLinkAdapter from "@components/cms-adapters/datocms/ListExternalLinkAdapter.astro";
+import OrderedListAdapter from "@components/cms-adapters/datocms/OrderedListAdapter.astro";
+import QuickLinkCardAdapter from "@components/cms-adapters/datocms/QuickLinkCardAdapter.astro";
+import RelatedArticleAdapter from "@components/cms-adapters/datocms/RelatedArticleAdapter.astro";
+import SupportCTASectionAdapter from "@components/cms-adapters/datocms/SupportCTASectionAdapter.astro";
+import TopicsAdapter from "@components/cms-adapters/datocms/TopicsAdapter.astro";
+import { StructuredText } from "@datocms/astro";
+import type { ArticleContentFragmentType } from "@graphql/fragment/article";
+import type { StructuredTextFragmentType } from "@graphql/fragment/sectionFragments";
+
+type Props = {
+  block: StructuredTextFragmentType | ArticleContentFragmentType;
+};
+
+const { block } = Astro.props;
+---
+
+<StructuredText
+  data={block}
+  blockComponents={{
+    ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
+    ExternalLinkRecord: ExternalLinkAdapter,
+    InternalLinkRecord: InternalLinkAdapter,
+    CardServiceRecord: CardServiceAdapter,
+    OrderedListRecord: OrderedListAdapter,
+    CalloutRecord: CalloutAdapter,
+    QuickLinkCardRecord: QuickLinkCardAdapter,
+    SupportCtaSectionRecord: SupportCTASectionAdapter,
+    TopicsBlockRecord: TopicsAdapter,
+    ListCardInfoRecord: ListCardInfoAdapter,
+    ListBlockquoteRecord: ListBlockquoteAdapter,
+    RelatedArticleRecord: RelatedArticleAdapter,
+    ImageBlockRecord: ImageBlockRssAdapter,
+    ListExternalLinkRecord: ListExternalLinkAdapter,
+    DownloadLinkRecord: DownloadLinkAdapter,
+  }}
+  nodeOverrides={{ link: LinkInlineAdapter }}
+/>
