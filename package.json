@@ -37,7 +37,7 @@
     "@opensearch-project/opensearch": "^3.6.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.18.2",
+    "astro": "^7.0.7",
     "bootstrap-italia": "^2.18.1",
     "datocms-structured-text-to-plain-text": "^5.1.16",
     "dotenv": "^17.4.2",
