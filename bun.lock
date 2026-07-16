@@ -19,7 +19,7 @@
         "@types/react-dom": "^19.2.3",
         "astro": "^5.18.2",
         "bootstrap-italia": "^2.18.1",
-        "datocms-structured-text-to-plain-text": "^5.1.16",
+        "datocms-structured-text-to-plain-text": "^6.0.0",
         "dotenv": "^17.4.2",
         "gql.tada": "^1.11.2",
         "graph-italia-components": "^0.3.29",
@@ -816,7 +816,7 @@
 
     "datocms-structured-text-generic-html-renderer": ["datocms-structured-text-generic-html-renderer@5.1.16", "https://registry.npmjs.com/datocms-structured-text-generic-html-renderer/-/datocms-structured-text-generic-html-renderer-5.1.16.tgz", { "dependencies": { "datocms-structured-text-utils": "^5.1.16" } }, "sha512-OD1TST/+uMGqTV5siLgF4QgdXZOPiyrupundueVyoGHCFEWKxgJtIyxx3fRHllgeCnV6oj6OPeuXkj4mggYT2w=="],
 
-    "datocms-structured-text-to-plain-text": ["datocms-structured-text-to-plain-text@5.1.16", "https://registry.npmjs.com/datocms-structured-text-to-plain-text/-/datocms-structured-text-to-plain-text-5.1.16.tgz", { "dependencies": { "datocms-structured-text-generic-html-renderer": "^5.1.16", "datocms-structured-text-utils": "^5.1.16" } }, "sha512-9hoq68WEnvij5+4lFchjmIwSmoTXMUyuZ/4P1+nZO7E9onuQILAkJO4LBiLEkt8TZtVOB2hqaSTvRF7okzAVlA=="],
+    "datocms-structured-text-to-plain-text": ["datocms-structured-text-to-plain-text@6.0.0", "", { "dependencies": { "datocms-structured-text-generic-html-renderer": "^6.0.0", "datocms-structured-text-utils": "^6.0.0" } }, "sha512-gEtCaXj+nKpSShTMDDkX8zfeRGhdJ5a/jJFzcMV++W30Rqg9ghbEyQO0lquYvRd7lK0n75wV6GFS4TDkw6cP3g=="],
 
     "datocms-structured-text-utils": ["datocms-structured-text-utils@5.1.16", "https://registry.npmjs.com/datocms-structured-text-utils/-/datocms-structured-text-utils-5.1.16.tgz", { "dependencies": { "array-flatten": "^3.0.0" } }, "sha512-BcTB1dLtE5q+59BCb3Yu+IgNW31ivjXe1W6VaZzamtvN6KcACdoUaeCQJbJ7aOI7zz/RAZM2yDr+roN6xfzrKg=="],
 
@@ -2147,6 +2147,10 @@
     "csso/css-tree": ["css-tree@2.2.1", "https://registry.npmjs.com/css-tree/-/css-tree-2.2.1.tgz", { "dependencies": { "mdn-data": "2.0.28", "source-map-js": "^1.0.1" } }, "sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA=="],
 
     "datocms/typescript": ["typescript@5.7.2", "https://registry.npmjs.com/typescript/-/typescript-5.7.2.tgz", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg=="],
+
+    "datocms-structured-text-to-plain-text/datocms-structured-text-generic-html-renderer": ["datocms-structured-text-generic-html-renderer@6.0.0", "", { "dependencies": { "datocms-structured-text-utils": "^6.0.0" } }, "sha512-t4VoOmNjFZazdO2I65SnVe7WcKuaaei1mthNbM06/yDTy1uiFwOgHEOItw79nMjFG1AEMsrYRtR7pBvmliN4Sg=="],
+
+    "datocms-structured-text-to-plain-text/datocms-structured-text-utils": ["datocms-structured-text-utils@6.0.0", "", { "dependencies": { "array-flatten": "^3.0.0" } }, "sha512-Ffy5j8UPZcYU4mAcYQzYZB/qoKgekY2U0cANUJc/cgrBXIuEUZaLFuuqiYyfyA4k/QLorGy2RTNJgluRFHwQpQ=="],
 
     "dom-serializer/entities": ["entities@4.5.0", "https://registry.npmjs.com/entities/-/entities-4.5.0.tgz", {}, "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw=="],
 
