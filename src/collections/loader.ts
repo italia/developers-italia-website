@@ -65,14 +65,7 @@ export const storiesLoader = async () => {
 };
 
 export const webinarsLoader = async () => {
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  const dateLimit = oneYearAgo.toISOString();
-  const response = await executeAutoPagingQuery(AllWebinarQuery, {
-    variables: {
-      dateLimit: dateLimit,
-    },
-  });
+  const response = await executeAutoPagingQuery(AllWebinarQuery);
   return response?.allWebinarItems || [];
 };
 
