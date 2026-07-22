@@ -5343,6 +5343,33 @@ type MenuItemRecord implements RecordInterface {
 
 scalar MetaTagAttributes
 
+union MixedTabModelNewsField = ArticleRecord | InsightRecord | NewsItemRecord | StoryItemRecord | WebinarItemRecord
+
+"""Block of type Tab con contenuto interno ed esterno (mixed_tab)"""
+type MixedTabRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  news: [MixedTabModelNewsField!]!
+  title: String
+}
+
 enum MuxThumbnailFitMode {
   preserve
   stretch
@@ -5368,7 +5395,7 @@ enum MuxThumbnailRotation {
   ROTATE_270
 }
 
-union NewsFeedModelTabsField = NewsTabRecord | StoryTabRecord
+union NewsFeedModelTabsField = MixedTabRecord | NewsTabRecord | StoryTabRecord
 
 """Block of type Cards section with tab (news_feed)"""
 type NewsFeedRecord implements RecordInterface {

@@ -77,6 +77,39 @@ const buttonLabel = block.cta?.label;
           }),
         };
 
+      case DatoBlockModel.MixedTab:
+        return {
+          componentName: "CardEditorialStory",
+          title: tab.title,
+          news: tab.news.map((n) => {
+            let allTopicLocales =
+              "allTopicLocales" in n ? n.allTopicLocales : [];
+            const topic = getLocaleValue(allTopicLocales, lang, null);
+            let publishedAt = "publishedAt" in n ? n.publishedAt : undefined;
+
+            const description = getLocaleValue(n.allParagraphLocales, lang, "");
+
+            const externalLink =
+              "allLinkLocales" in n
+                ? getLocaleValue(n.allLinkLocales, lang, "")
+                : "";
+
+            return {
+              id: n.id,
+              title: getLocaleValue(n.allTitleLocales, lang, ""),
+              image: n.image || undefined,
+              linkTo: externalLink || linkResolver(n.id, lang),
+              category: getLocaleValue(
+                topic?._allLabelLocales,
+                lang,
+                undefined,
+              ),
+              description: description || undefined,
+              dateTime: publishedAt || undefined,
+            };
+          }),
+        };
+
       default:
         return {
           componentName: "CardEditorialNews",
