@@ -18,6 +18,7 @@ import TopicsAdapter from "@components/cms-adapters/datocms/TopicsAdapter.astro"
 import { StructuredText } from "@datocms/astro";
 import type { ArticleContentFragmentType } from "@graphql/fragment/article";
 import type { StructuredTextFragmentType } from "@graphql/fragment/sectionFragments";
+import { normalizeStructuredTextSpaces } from "@utils/normalizeSpaces";
 
 type Props = {
   block: StructuredTextFragmentType | ArticleContentFragmentType;
@@ -27,7 +28,7 @@ const { block } = Astro.props;
 ---
 
 <StructuredText
-  data={block}
+  data={normalizeStructuredTextSpaces(block)}
   blockComponents={{
     ListCardEditorialWithIconRecord: ListCardEditorialWithIconAdapter,
     ExternalLinkRecord: ExternalLinkAdapter,
