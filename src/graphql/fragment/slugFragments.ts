@@ -69,6 +69,9 @@ export const AllStoryItemsSlugFragment = graphql(
       id
       modelApiKey: _modelApiKey
       locales: _locales
+      articleClassification {
+        id
+      }
       ...StoryItemLocalesFragment
       parentPage {
         ... on RecordInterface {
