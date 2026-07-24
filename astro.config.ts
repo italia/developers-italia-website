@@ -36,6 +36,10 @@ export default defineConfig({
       status: 301,
       destination: "/it",
     },
+    "/provaredirect": {
+      status: 301,
+      destination: "https://catalogo-software.developers.italia.it/software/" 
+    }
   },
   vite: {
     ssr: {
