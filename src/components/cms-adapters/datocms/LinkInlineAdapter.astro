@@ -13,7 +13,13 @@ const isExternal = target === "_blank";
 const finalLabel = isExternal ? t["link.external"] : t["link.internal"];
 ---
 
-<a href={url} target={target} rel={isExternal ? "noopener noreferrer" : ""}>
-  <slot />
-  <span class="visually-hidden">{finalLabel}</span>
-</a>
+{
+  /* Niente whitespace dentro l'anchor: verrebbe renderizzato (sottolineato)
+  prima/dopo il testo del link e staccherebbe la punteggiatura successiva. */
+}
+<a
+  href={url}
+  target={target}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  ><slot /><span class="visually-hidden"> {finalLabel}</span></a
+>

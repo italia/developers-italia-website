@@ -191,6 +191,7 @@ export type ResourseIndexingFragmentType = FragmentOf<
 
 export const CatalogueIndexingFragment = graphql(`
   fragment CatalogueIndexingFragment on CatalogueRecord @_unmask {
+    id
     allTitleLocales: _allTitleLocales {
       locale
       value
@@ -204,6 +205,9 @@ export const CatalogueIndexingFragment = graphql(`
         tabs {
           newsPageTabType
           title
+          filterStory {
+            id
+          }
         }
       }
     }

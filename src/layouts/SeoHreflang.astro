@@ -14,6 +14,7 @@ const canonicalURL = Astro.url.href.replace(/\/$/, "");
 ---
 
 <link rel="canonical" href={canonicalURL} />
+<meta property="og:url" content={canonicalURL} />
 
 {
   locales.map((t) => {

@@ -1,6 +1,8 @@
 ---
 import PageAdapter from "@components/cms-adapters/datocms/PageAdapter.astro";
+import type { ImageProps } from "@components/atoms/Image/types";
 import { Breadcrumb } from "@components/molecules/Breadcrumb";
+import { ImageContainer } from "@components/molecules/ImageContainer";
 import { StoryHeader } from "@components/molecules/StoryHeader";
 import type { TagFragmentType } from "@graphql/fragment/commonFragments";
 import type { SeoFieldFragmentType } from "@graphql/fragment/seoFragments";
@@ -37,6 +39,7 @@ export async function getStaticPaths() {
       dateOfPublication: string | null;
       topics: string[];
       readingTime: number;
+      image: ImageProps | null;
     };
   };
 
@@ -65,6 +68,16 @@ export async function getStaticPaths() {
           null,
         );
 
+        const coverImage: ImageProps | null = page.image
+          ? {
+              url: page.image.url,
+              width: page.image.width,
+              height: page.image.height,
+              alt: page.image.alt,
+              title: page.image.title,
+            }
+          : null;
+
         return {
           params: {
             story: slug,
@@ -88,6 +101,7 @@ export async function getStaticPaths() {
             dateOfPublication: page.dateOfPublication ?? null,
             topics: topicLabel ? [topicLabel] : [],
             readingTime: getReadingTime(localeContent),
+            image: coverImage,
           },
         };
       });
@@ -112,6 +126,7 @@ const {
   dateOfPublication,
   topics,
   readingTime,
+  image,
 } = Astro.props;
 const { lang } = Astro.params;
 
@@ -169,6 +184,20 @@ const breadcrumbItems =
           date={dateOfPublication}
           topics={topics}
         />
+        {image && (
+          <div class="container pb-4">
+            <div class="row justify-content-center">
+              <div class="col-12 col-lg-8">
+                <figure class="figure img-full mb-0 w-100">
+                  <ImageContainer
+                    ratio="16x9"
+                    image={{ ...image, loading: "eager" }}
+                  />
+                </figure>
+              </div>
+            </div>
+          </div>
+        )}
         <PageAdapter content={bodyBlocks} centeredText />
       </>
     ) : (

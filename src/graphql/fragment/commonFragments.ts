@@ -409,6 +409,45 @@ export const StoryTabFragment = graphql(
 
 export type StoryTabFragmentType = FragmentOf<typeof StoryTabFragment>;
 
+export const MixedTabFragment = graphql(
+  `
+    fragment MixedTabFragment on MixedTabRecord @_unmask {
+      ... on RecordInterface {
+        componentName: __typename
+      }
+      id
+      title
+      news {
+        ... on StoryItemRecord {
+          ...StoryCardFragment
+        }
+        ... on WebinarItemRecord {
+          ...WebinarItemFragment
+        }
+        ... on InsightRecord {
+          ...InsightCardFragment
+        }
+        ... on ArticleRecord {
+          ...ArticleCardPreviewFragment
+        }
+        ... on NewsItemRecord {
+          ...NewsItemFragment
+        }
+      }
+    }
+  `,
+  [
+    StoryCardFragment,
+    WebinarItemFragment,
+    InsightCardFragment,
+    ArticleCardPreviewFragment,
+    NewsItemFragment,
+    InternalLinkFragment,
+  ],
+);
+
+export type MixedTabFragmentType = FragmentOf<typeof MixedTabFragment>;
+
 export const ChannelFragment = graphql(`
   fragment ChannelFragment on ChannelRecord @_unmask {
     id

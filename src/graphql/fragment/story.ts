@@ -1,5 +1,6 @@
 import {
   CalloutFragment,
+  ImageFragment,
   TagFragment,
 } from "@graphql/fragment/commonFragments";
 import {
@@ -79,6 +80,9 @@ export const AllStoriesRecordFragment = graphql(
         value
       }
       dateOfPublication
+      image {
+        ...ImageFragment
+      }
       articleClassification {
         id
         allLabelLocales: _allLabelLocales {
@@ -104,7 +108,7 @@ export const AllStoriesRecordFragment = graphql(
       }
     }
   `,
-  [StoryContentFragment],
+  [StoryContentFragment, ImageFragment],
 );
 
 export type AllStoriesRecordFragmentType = FragmentOf<
