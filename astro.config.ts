@@ -54,6 +54,11 @@ softwareRedirects["/en/software"] = {
   destination: "https://catalogo-software.developers.italia.it/",
 };
 
+softwareRedirects["/it/fse"] = {
+  status: 301,
+  destination: "/it/piattaforme/fascicolo-sanitario-elettronico",
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL,
