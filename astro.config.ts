@@ -44,6 +44,16 @@ softwareRedirects["/"] = {
   destination: "/it",
 };
 
+softwareRedirects["/it/software"] = {
+  status: 301,
+  destination: "https://catalogo-software.developers.italia.it/",
+};
+
+softwareRedirects["/en/software"] = {
+  status: 301,
+  destination: "https://catalogo-software.developers.italia.it/",
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL,
