@@ -31,7 +31,7 @@
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/ts-plugin": "^1.10.9",
-    "@astrojs/vercel": "^9.0.5",
+    "@astrojs/vercel": "^11.0.4",
     "@datocms/astro": "^0.6.13",
     "@datocms/cda-client": "^0.2.10",
     "@datocms/cma-client": "^5.5.4",
