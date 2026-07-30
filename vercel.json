@@ -9,5 +9,37 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/it/api/:path*",
+      "destination": "/it/interoperabilita-e-api",
+      "statusCode": 301
+    },
+    {
+      "source": "/it/news/:path*",
+      "destination": "/it/community/notizie",
+      "statusCode": 301
+    },
+    {
+      "source": "/it/pa/:path*",
+      "destination": "/it/software-open-source",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/api/:path*",
+      "destination": "/en/interoperability-and-apis",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/news/:path*",
+      "destination": "/en/community/news",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/pa/:path*",
+      "destination": "/en/open-source-software",
+      "statusCode": 301
+    }
   ]
 }
