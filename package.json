@@ -46,7 +46,7 @@
     "graph-italia-components": "^0.3.29",
     "jsonwebtoken": "^9.0.3",
     "react": "^19.2.8",
-    "react-dom": "^19.2.7",
+    "react-dom": "^19.2.8",
     "react-grid-layout": "^2.2.3",
     "react-resizable": "^4.0.2"
   },
