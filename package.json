@@ -34,7 +34,7 @@
     "@astrojs/vercel": "^9.0.5",
     "@datocms/astro": "^0.6.13",
     "@datocms/cda-client": "^0.2.10",
-    "@datocms/cma-client": "^5.5.4",
+    "@datocms/cma-client": "^5.6.0",
     "@opensearch-project/opensearch": "^3.6.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
