@@ -5,15 +5,12 @@ import { defineConfig } from "astro/config";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 
-const softwareIdsFilePath = "./software-ids.txt";
-let softwareIds: string[] = [];
+const softwareIdsFilePath = "./software-ids.json";
+let softwareIds: { id: string; url: string | null }[] = [];
 
 try {
   const fileContent = readFileSync(softwareIdsFilePath, "utf-8");
-  softwareIds = fileContent
-    .split("\n")
-    .map((id) => id.trim())
-    .filter(Boolean);
+  softwareIds = JSON.parse(fileContent);
 } catch (error) {
   console.error(
     `Error reading software IDs from ${softwareIdsFilePath}:`,
@@ -22,12 +19,12 @@ try {
 }
 
 const softwareRedirects = softwareIds.reduce(
-  (redirects, id) => {
-    redirects[`/it/software/${id}`] = {
+  (redirects, { id, url }) => {
+    redirects[`/it/software/${url}`] = {
       status: 301 as 301,
       destination: `https://catalogo-software.developers.italia.it/software/${id}`,
     };
-    redirects[`/en/software/${id}`] = {
+    redirects[`/en/software/${url}`] = {
       status: 301 as 301,
       destination: `https://catalogo-software.developers.italia.it/software/${id}`,
     };

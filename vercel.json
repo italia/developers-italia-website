@@ -40,6 +40,16 @@
       "source": "/en/pa/:path*",
       "destination": "/en/open-source-software",
       "statusCode": 301
+    },
+    {
+      "source": "/it/software/:id",
+      "destination": "https://catalogo-software.developers.italia.it/software/:id",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/software/:id",
+      "destination": "https://catalogo-software.developers.italia.it/software/:id",
+      "statusCode": 301
     }
   ]
 }
