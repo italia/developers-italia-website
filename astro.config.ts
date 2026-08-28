@@ -20,14 +20,6 @@ try {
 
 const softwareRedirects = softwareIds.reduce(
   (redirects, { id, url }) => {
-    redirects[`/it/software/${id}`] = {
-      status: 301 as 301,
-      destination: `https://catalogo-software.developers.italia.it/software/${id}`,
-    };
-    redirects[`/en/software/${id}`] = {
-      status: 301 as 301,
-      destination: `https://catalogo-software.developers.italia.it/software/${id}`,
-    };
     redirects[`/it/software/${url}`] = {
       status: 301 as 301,
       destination: `https://catalogo-software.developers.italia.it/software/${id}`,
