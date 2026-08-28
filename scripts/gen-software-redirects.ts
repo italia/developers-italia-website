@@ -69,17 +69,10 @@ async function fetchAllSoftwareIds(): Promise<
     for (const item of data) {
       if (item && item.id) {
         const aliases = Array.isArray(item.aliases) ? item.aliases : [];
-        const newUrl = cleanGitUrl(item.url) ?? null;
-        ids.push({
-          id: item.id,
-          url: newUrl,
-        });
 
         for (const alias of aliases) {
           const newAliasUrl = cleanGitUrl(alias) ?? null;
-          if (newAliasUrl !== newUrl) {
-            ids.push({ id: item.id, url: newAliasUrl });
-          }
+          ids.push({ id: item.id, url: newAliasUrl });
         }
       }
     }
