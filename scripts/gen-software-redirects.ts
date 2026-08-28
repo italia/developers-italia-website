@@ -33,8 +33,20 @@ function resolveNextUrl(
   return new URL(next, currentUrl).toString();
 }
 
-async function fetchAllSoftwareIds(): Promise<string[]> {
-  const ids: string[] = [];
+function cleanGitUrl(url?: string): string | null {
+  const newUrl = url
+    ? url.replace(/\.git$/, ".html").replace(/https?:\/\//, "")
+    : null;
+  if (!newUrl?.endsWith(".html")) {
+    return newUrl + ".html";
+  }
+  return newUrl;
+}
+
+async function fetchAllSoftwareIds(): Promise<
+  { id: string; url: string | null }[]
+> {
+  const ids: { id: string; url: string | null }[] = [];
   let url: string | null = INITIAL_URL;
   let page = 1;
 
@@ -56,7 +68,19 @@ async function fetchAllSoftwareIds(): Promise<string[]> {
     const data = Array.isArray(body.data) ? body.data : [];
     for (const item of data) {
       if (item && item.id) {
-        ids.push(item.id);
+        const aliases = Array.isArray(item.aliases) ? item.aliases : [];
+        const newUrl = cleanGitUrl(item.url) ?? null;
+        ids.push({
+          id: item.id,
+          url: newUrl,
+        });
+
+        for (const alias of aliases) {
+          const newAliasUrl = cleanGitUrl(alias) ?? null;
+          if (newAliasUrl !== newUrl) {
+            ids.push({ id: item.id, url: newAliasUrl });
+          }
+        }
       }
     }
 
@@ -68,13 +92,14 @@ async function fetchAllSoftwareIds(): Promise<string[]> {
   return ids;
 }
 
-const allIds: string[] = await fetchAllSoftwareIds();
+const allIds: { id: string; url: string | null }[] =
+  await fetchAllSoftwareIds();
 
 console.log(`\nTotal IDs collected: ${allIds.length}`);
-console.log(allIds.join("\n"));
+console.log(allIds.map((id) => id.id).join("\n"));
 
-const outputFilePath = "./software-ids.txt";
-writeFileSync(outputFilePath, allIds.join("\n"), "utf-8");
+const outputFilePath = "./software-ids.json";
+writeFileSync(outputFilePath, JSON.stringify(allIds, null, 4), "utf-8");
 console.log(`\nAll IDs saved to ${outputFilePath}`);
 
 export { fetchAllSoftwareIds };
