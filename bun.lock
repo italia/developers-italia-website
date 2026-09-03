@@ -13,7 +13,7 @@
         "@astrojs/vercel": "^9.0.5",
         "@datocms/astro": "^0.6.13",
         "@datocms/cda-client": "^0.2.10",
-        "@datocms/cma-client": "^5.5.4",
+        "@datocms/cma-client": "^5.6.0",
         "@opensearch-project/opensearch": "^3.6.0",
         "@types/react": "^19.2.17",
         "@types/react-dom": "^19.2.3",
@@ -134,7 +134,7 @@
 
     "@datocms/cli-utils": ["@datocms/cli-utils@4.0.25", "https://registry.npmjs.com/@datocms/cli-utils/-/cli-utils-4.0.25.tgz", { "dependencies": { "@datocms/cma-client-node": "^5.4.15", "@datocms/dashboard-client": "^5.4.9", "@oclif/core": "^4", "@whatwg-node/fetch": "^0.10.13", "chalk": "^4", "dotenv": "^17.2.3", "env-paths": "^2.2.1", "lodash": "^4.17.21", "serialize-error": "^8", "tty-table": "^4.2.3" } }, "sha512-72mkWaoyrk6ZII1mXChyJKqdaKtBAVbkiMi0enmFo/OJDes7sAuLYtvYHdWChN9Ue/Fkja3pv5YKb50LkFlZUw=="],
 
-    "@datocms/cma-client": ["@datocms/cma-client@5.5.4", "https://registry.npmjs.com/@datocms/cma-client/-/cma-client-5.5.4.tgz", { "dependencies": { "@datocms/rest-client-utils": "^5.4.9", "datocms-structured-text-utils": "^5.1.4", "uuid": "^11.1.1" } }, "sha512-zj882n4j+PgPHILk4vkqr5yooOFhB/XjZsdA8WWvWQlW18TyceicaAvw1uY409CMy6ovtXNhXxcPbsZaCMwcuQ=="],
+    "@datocms/cma-client": ["@datocms/cma-client@5.6.0", "", { "dependencies": { "@datocms/rest-client-utils": "^5.4.9", "datocms-structured-text-utils": "^5.1.4", "uuid": "^11.1.1" } }, "sha512-xPqCwsK/UGumzumQj+k8q8gDb6fM9EdyTEf3rvy6+imC8GSZOcPtBVv6VbuWxTRs0ycHCVjqtSqRHt8SZQ6i8g=="],
 
     "@datocms/cma-client-analysis": ["@datocms/cma-client-analysis@5.5.4", "https://registry.npmjs.com/@datocms/cma-client-analysis/-/cma-client-analysis-5.5.4.tgz", { "peerDependencies": { "@datocms/cma-client-node": "^5.4.7", "@datocms/rest-api-reference": "^5.4.1", "typescript": ">=5.0.0" } }, "sha512-0TXB0RVGAZ4tgnpkn6avWd3uH3q6C4YukxHCSTe6YybBs5GCzzxmO8JkoZ/pxEF951EA/hzLJmBGQ7jRl+HF2Q=="],
 
