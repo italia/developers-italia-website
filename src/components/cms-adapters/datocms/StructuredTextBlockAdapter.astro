@@ -6,20 +6,24 @@ import { getSectionBgClass, type SectionBackground } from "@utils/background";
 type Props = {
   block: ArticleSTFragmentType;
   isFontSerif?: boolean;
+  /** Centra la colonna di testo (come sulle pagine evento). Default: allineata
+   *  a sinistra, come nel resto del sito. */
+  centered?: boolean;
 };
 
-const { block, isFontSerif = false } = Astro.props;
+const { block, isFontSerif = false, centered = false } = Astro.props;
 
 const background = block.backgroundColor || "default";
 const bgClass = getSectionBgClass(background as SectionBackground);
 
 const fontClass = isFontSerif ? "font-serif-p" : "";
+const rowAlignClass = centered ? "justify-content-center" : "";
 ---
 
 <section class={bgClass}>
   <div class=`structured-text-container ${fontClass}`>
     <div class="container py-5 py-lg-80">
-      <div class="row">
+      <div class={`row ${rowAlignClass}`}>
         <div class="col-12 col-lg-8">
           <StructuredTextAdapter block={block.textContent} />
         </div>

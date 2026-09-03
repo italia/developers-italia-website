@@ -1,13 +1,16 @@
 ---
+import { slugify } from "@utils/slugify";
+
 type Props = {
   className?: string;
   sectionTitleId?: string;
 };
 
 const { className, sectionTitleId } = Astro.props;
+const titleSlugify = sectionTitleId ? slugify(sectionTitleId) : undefined;
 ---
 
-<section class={className} aria-labelledby={sectionTitleId}>
+<section class={className} aria-labelledby={titleSlugify}>
   <div class="container py-5 py-lg-80">
     <slot />
   </div>

@@ -1,6 +1,7 @@
 ---
 import { ButtonLink } from "@components/atoms/Button";
 import { Image } from "@components/atoms/Image";
+import { slugify } from "@utils/slugify";
 import type { HeroProps } from "./types";
 
 type Props = HeroProps;
@@ -19,6 +20,7 @@ const {
   openInNewTab = false,
 } = Astro.props;
 const sizeClass = variant === "small" ? "small-size" : "default-size";
+const titleId = slugify(title);
 ---
 
 <style>
@@ -27,7 +29,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
 
 <section
   class={`it-hero-wrapper ${sizeClass} ${bgClass}`}
-  aria-labelledby={title}
+  aria-labelledby={titleId}
 >
   {
     image && (
@@ -59,7 +61,7 @@ const sizeClass = variant === "small" ? "small-size" : "default-size";
       <div class="col-12 col-lg-7">
         <div class="it-hero-text-wrapper px-0">
           {showBreadcrumb && <slot name="breadcrumb" />}
-          <h1 id={title}>{title}</h1>
+          <h1 id={titleId}>{title}</h1>
           {paragraph && <p class="font-sans-serif">{paragraph}</p>}
           {
             labelButton && linkTo && (

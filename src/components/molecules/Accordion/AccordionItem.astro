@@ -20,7 +20,7 @@ const isFirst = allOpen || index === 0;
 ---
 
 <div class="accordion-item bg-transparent">
-  <p class="accordion-header" id={`heading-${id}`}>
+  <h3 class="accordion-header" id={`heading-${id}`}>
     <button
       class:list={["accordion-button", { collapsed: !isFirst }]}
       type="button"
@@ -31,7 +31,7 @@ const isFirst = allOpen || index === 0;
     >
       {header}
     </button>
-  </p>
+  </h3>
   <div
     id={`collapse-${id}`}
     class:list={["accordion-collapse collapse", { show: isFirst || false }]}

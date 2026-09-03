@@ -49,7 +49,6 @@ export type FooterLinkProps = {
   label: string;
   linkTo?: string;
   url?: string;
-  openInNewTab?: boolean;
   variant?: "dark" | "light";
   titleIcon?: string;
   isIcon?: boolean;

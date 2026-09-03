@@ -218,8 +218,8 @@ input ArticleModelFilter {
   paragraph: TextFilter
   descriptionTitle: StringFilter
   description: TextFilter
-  content: StructuredTextFilter
   slug: SlugFilter
+  content: StructuredTextFilter
   OR: [ArticleModelFilter]
   AND: [ArticleModelFilter]
 }
@@ -1415,6 +1415,85 @@ type FeatureListRecord implements RecordInterface {
   _updatedAt: DateTime!
   id: ItemId!
   items: [ListItemRecord!]!
+}
+
+input FeedbackModelFilter {
+  _createdAt: CreatedAtFilter
+  id: ItemIdFilter
+  _firstPublishedAt: PublishedAtFilter
+  _publicationScheduledAt: PublishedAtFilter
+  _unpublishingScheduledAt: PublishedAtFilter
+  _publishedAt: PublishedAtFilter
+  _status: StatusFilter
+  _updatedAt: UpdatedAtFilter
+  _isValid: BooleanFilter
+  expertise: StringFilter
+  url: StringFilter
+  message: TextFilter
+  reachedFrom: StringFilter
+  feedback: StringFilter
+  OR: [FeedbackModelFilter]
+  AND: [FeedbackModelFilter]
+}
+
+enum FeedbackModelOrderBy {
+  _createdAt_ASC
+  _createdAt_DESC
+  id_ASC
+  id_DESC
+  _firstPublishedAt_ASC
+  _firstPublishedAt_DESC
+  _publicationScheduledAt_ASC
+  _publicationScheduledAt_DESC
+  _unpublishingScheduledAt_ASC
+  _unpublishingScheduledAt_DESC
+  _publishedAt_ASC
+  _publishedAt_DESC
+  _status_ASC
+  _status_DESC
+  _updatedAt_ASC
+  _updatedAt_DESC
+  _isValid_ASC
+  _isValid_DESC
+  expertise_ASC
+  expertise_DESC
+  url_ASC
+  url_DESC
+  reachedFrom_ASC
+  reachedFrom_DESC
+  feedback_ASC
+  feedback_DESC
+}
+
+"""Record of type Feedback (feedback)"""
+type FeedbackRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  expertise: String
+  feedback: String
+  id: ItemId!
+  message(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  reachedFrom: String
+  url: String
 }
 
 type FileField implements FileFieldInterface {
@@ -5264,6 +5343,33 @@ type MenuItemRecord implements RecordInterface {
 
 scalar MetaTagAttributes
 
+union MixedTabModelNewsField = ArticleRecord | InsightRecord | NewsItemRecord | StoryItemRecord | WebinarItemRecord
+
+"""Block of type Tab con contenuto interno ed esterno (mixed_tab)"""
+type MixedTabRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  news: [MixedTabModelNewsField!]!
+  title: String
+}
+
 enum MuxThumbnailFitMode {
   preserve
   stretch
@@ -5289,7 +5395,7 @@ enum MuxThumbnailRotation {
   ROTATE_270
 }
 
-union NewsFeedModelTabsField = NewsTabRecord | StoryTabRecord
+union NewsFeedModelTabsField = MixedTabRecord | NewsTabRecord | StoryTabRecord
 
 """Block of type Cards section with tab (news_feed)"""
 type NewsFeedRecord implements RecordInterface {
@@ -5900,6 +6006,13 @@ type Query {
   ): CollectionMetadata!
 
   """Returns meta information regarding a record collection"""
+  _allFeedbacksMeta(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: FeedbackModelFilter
+  ): CollectionMetadata!
+
+  """Returns meta information regarding a record collection"""
   _allInsightTopicsMeta(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -6104,6 +6217,25 @@ type Query {
     filter: ChartElementModelFilter
     orderBy: [ChartElementModelOrderBy] = [_updatedAt_DESC]
   ): [ChartElementRecord!]!
+
+  """Returns a collection of records"""
+  allFeedbacks(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: FeedbackModelFilter
+    orderBy: [FeedbackModelOrderBy] = [_updatedAt_DESC]
+  ): [FeedbackRecord!]!
 
   """Returns a collection of records"""
   allInsightTopics(
@@ -6479,6 +6611,19 @@ type Query {
     filter: ChartElementModelFilter
     orderBy: [ChartElementModelOrderBy] = [_updatedAt_DESC]
   ): ChartElementRecord
+
+  """Returns a specific record"""
+  feedback(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+    filter: FeedbackModelFilter
+    orderBy: [FeedbackModelOrderBy] = [_updatedAt_DESC]
+  ): FeedbackRecord
 
   """Returns the single instance record"""
   globalSetting(

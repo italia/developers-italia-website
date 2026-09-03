@@ -11,14 +11,13 @@ const {
   titleIcon,
   linkTo,
   url,
-  openInNewTab = false,
   isIcon = false,
   variant = "light",
 } = Astro.props;
 
 const finalHref = url || linkTo || "#";
-const target = openInNewTab ? "_blank" : "_self";
-const rel = openInNewTab ? "noopener noreferrer" : "";
+const target = url ? "_blank" : "_self";
+const rel = url ? "noopener noreferrer" : "";
 
 const colorIcon = variant === "dark" ? "white" : "primary";
 

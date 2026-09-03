@@ -1,0 +1,23 @@
+---
+import type { ImageBlockFragmentType } from "@graphql/fragment/commonFragments";
+
+type Props = {
+  block: ImageBlockFragmentType;
+};
+
+const { block } = Astro.props;
+const { image } = block;
+---
+
+{
+  image?.url && (
+    <img
+      src={image.url}
+      alt={image.alt || ""}
+      title={image.title || undefined}
+      width={image.width || undefined}
+      height={image.height || undefined}
+      loading="lazy"
+    />
+  )
+}

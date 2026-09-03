@@ -9,7 +9,8 @@ const { block } = Astro.props;
 const dashboardId: string = block.dashboardId;
 ---
 
-<div>
-  <h1>Graphitalia Dashboard</h1>
-  <Dashboard client:visible dashboardId={dashboardId} />
-</div>
+<section>
+  <div class="container py-5 py-lg-80">
+    <Dashboard client:visible dashboardId={dashboardId} />
+  </div>
+</section>

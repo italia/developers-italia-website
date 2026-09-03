@@ -22,8 +22,7 @@ const t = getI18n(lang);
           <li class="list-inline-item d-flex align-items-center gap-2">
             <FooterLink
               label={"Mappa del sito"}
-              linkTo={"/sitemap.xml"}
-              openInNewTab={false}
+              linkTo={"/sitemap-index.xml"}
               isIcon={true}
               variant="dark"
             />
@@ -33,12 +32,7 @@ const t = getI18n(lang);
       {
         links.map((link) => (
           <li class="list-inline-item d-flex align-items-center gap-2">
-            <FooterLink
-              {...link}
-              openInNewTab={true}
-              isIcon={true}
-              variant="dark"
-            />
+            <FooterLink {...link} isIcon={true} variant="dark" />
           </li>
         ))
       }

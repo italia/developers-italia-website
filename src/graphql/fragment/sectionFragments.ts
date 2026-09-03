@@ -21,6 +21,7 @@ import {
   ListCardInfoFragment,
   ListCollectionFragment,
   ListItemFragment,
+  MixedTabFragment,
   NewsTabFragment,
   OrderedListFragment,
   QuickLinkCardFragment,
@@ -86,10 +87,13 @@ export const NewsFeedFragment = graphql(
         ... on StoryTabRecord {
           ...StoryTabFragment
         }
+        ... on MixedTabRecord {
+          ...MixedTabFragment
+        }
       }
     }
   `,
-  [StoryTabFragment, NewsTabFragment, InternalLinkFragment],
+  [StoryTabFragment, NewsTabFragment, MixedTabFragment, InternalLinkFragment],
 );
 
 export type NewsFeedFragmentType = FragmentOf<typeof NewsFeedFragment>;

@@ -18,8 +18,8 @@ export const AllWebinarItemsQuery = graphql(
 
 export const AllWebinarQuery = graphql(
   `
-    query AllWebinar($dateLimit: Date) {
-      allWebinarItems(first: 2500, filter: { date: { gt: $dateLimit } }) {
+    query AllWebinar {
+      allWebinarItems(first: 2500) {
         ...WebinarItemFragment
       }
     }

@@ -4,6 +4,7 @@ import { SectionContainer } from "@components/organisms/SectionContainer";
 import { FullTextSearch } from "@components/react/SearchBar";
 import type { SearchBarFragmentType } from "@graphql/fragment/search";
 import { getI18n } from "@i18n/microcopy";
+import { slugify } from "@utils/slugify";
 
 type Props = {
   block: SearchBarFragmentType;
@@ -13,20 +14,17 @@ const { block } = Astro.props;
 const { lang } = Astro.locals;
 
 const t = getI18n(lang);
+const titleId = slugify(block.title);
 ---
 
 <SectionContainer
   className="search-main it-section-bg-light"
-  sectionTitleId={block.title}
+  sectionTitleId={titleId}
 >
   <div class="row">
     <div class="col-12 g-0">
-      <div
-        class="search-main-content"
-        role="search"
-        aria-labelledby="searchHomeTitle"
-      >
-        <h2 id="searchHomeTitle" class="mb-5" id={block.title}>
+      <div class="search-main-content" role="search" aria-labelledby={titleId}>
+        <h2 id={titleId} class="mb-5">
           {block.title}
         </h2>
 

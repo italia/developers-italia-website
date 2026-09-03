@@ -29,6 +29,8 @@ type Feedback = {
   lang: SiteLocale;
 };
 
+const route = import.meta.env.PUBLIC_FEEDBACK_URL ?? "/api/feedback";
+
 function Feedback({ lang }: Feedback) {
   const t = getI18n(lang);
   const [isChecked, setIsChecked] = useState(false);
@@ -41,10 +43,10 @@ function Feedback({ lang }: Feedback) {
   const sendFeedback = useCallback(
     async (result = {}) => {
       setFeedbackState(FeedbackState.Loading);
-      const feedback = choiceVal === "1" ? "+" : "-";
+      const feedback = choiceVal === "1" ? "positivo" : "negativo";
 
       try {
-        await postRequest(import.meta.env.PUBLIC_FEEDBACK_URL, {
+        await postRequest(route, {
           feedback,
           url: window.location.href,
           ...result,
@@ -82,7 +84,6 @@ function Feedback({ lang }: Feedback) {
 
   const onSend = async () => {
     const res = await sendFeedback();
-
     if (res) {
       openModal();
     }
@@ -105,9 +106,9 @@ function Feedback({ lang }: Feedback) {
       case FeedbackState.Start:
         return (
           <>
-            <p className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
+            <h2 className="mb-0 h5 fw-semibold" id="feedbackSectionTitle">
               <span className="feedback-title">{t["feedback.title"]}</span>
-            </p>
+            </h2>
             <form className="mt-3 mt-md-3">
               <fieldset>
                 <legend>

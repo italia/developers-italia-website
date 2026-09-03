@@ -4,6 +4,7 @@ import { CardInlineMini } from "@components/molecules/CardInlineMini";
 import { Carousel, CarouselItem } from "@components/molecules/Carousel";
 import { SectionContainer } from "@components/organisms/SectionContainer";
 import { getSectionBgClass } from "@utils/background";
+import { slugify } from "@utils/slugify";
 import type { ListCollectionProps } from "./types";
 
 type Props = ListCollectionProps;
@@ -16,17 +17,30 @@ const {
   showInline = false,
 } = Astro.props;
 
+const titleId = slugify(title);
 const textColorClass =
   background === "primary" || background === "dark" ? "text-white" : "";
+
+const collectionInstanceId = crypto.randomUUID();
+
+const desktopItems = items.map((item, index) => ({
+  ...item,
+  id: `${collectionInstanceId}-desktop-${index}`,
+}));
+
+const mobileItems = items.map((item, index) => ({
+  ...item,
+  id: `${collectionInstanceId}-mobile-${index}`,
+}));
 ---
 
 <SectionContainer
   className={getSectionBgClass(background)}
-  sectionTitleId={title}
+  sectionTitleId={titleId}
 >
   <div class="row justify-content-between align-items-top">
     <div class="col-lg-8 col-12 pb-lg-5">
-      <h2 class=`${textColorClass}` id={title}>
+      <h2 class=`${textColorClass}` id={titleId}>
         {title}
       </h2>
       {paragraph && <p class={`${textColorClass}`}>{paragraph}</p>}
@@ -35,7 +49,7 @@ const textColorClass =
     <div class=` ${!showInline ? 'd-none d-lg-block' : ''}`>
       <ul class="it-card-list row">
         {
-          items.map((item) => {
+          desktopItems.map((item) => {
             return showInline ? (
               <li class="col-12 col-lg-6 mb-3">
                 <CardInlineMini {...item} />
@@ -53,7 +67,7 @@ const textColorClass =
     {
       !showInline && (
         <Carousel>
-          {items.map((item) => (
+          {mobileItems.map((item) => (
             <CarouselItem>
               <CardEditorialNews {...item} />
             </CarouselItem>
