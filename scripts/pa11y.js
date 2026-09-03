@@ -84,6 +84,26 @@ function extractTextNodes(xml, tag) {
 }
 
 // ---------------------------------------------------------------------------
+// isUrlASitemap
+// Checks if a URL points to a sitemap (or sitemap index) XML file.
+// ---------------------------------------------------------------------------
+async function isUrlASitemap(url) {
+  let xml;
+  try {
+    xml = await fetchXml(url);
+  } catch (err) {
+    process.stderr.write(`Warning: could not fetch ${url} — ${err.message}\n`);
+    return false;
+  }
+
+  // Check if the XML contains <sitemap> or <url> tags
+  const hasSitemapTag = /<sitemap[\s\S]*?<\/sitemap>/i.test(xml);
+  const hasUrlTag = /<url[\s\S]*?<\/url>/i.test(xml);
+
+  return hasSitemapTag || hasUrlTag;
+}
+
+// ---------------------------------------------------------------------------
 // parseSitemap
 // Recursively parses a sitemap (or sitemap index) and prints page URLs.
 // ---------------------------------------------------------------------------
@@ -139,10 +159,18 @@ if (!sitemapUrl) {
   process.exit(1);
 }
 
-const urls = await parseSitemap(sitemapUrl).catch((err) => {
-  process.stderr.write(`Fatal: ${err.message}\n`);
-  process.exit(1);
-});
+const isSitemap = await isUrlASitemap(sitemapUrl);
+
+let urls = [];
+
+if (isSitemap) {
+  urls = await parseSitemap(sitemapUrl).catch((err) => {
+    process.stderr.write(`Fatal: ${err.message}\n`);
+    process.exit(1);
+  });
+} else {
+  urls = [sitemapUrl];
+}
 
 const escapeHTML = (s) => {
   if (!s) return "";
