@@ -21,9 +21,7 @@
     "index:production": "dotenv -c -- bash -c 'bun run ./scripts/index-opensearch.ts production'",
     "sync-visual:staging": "dotenv -c staging -- bun ./scripts/sync-visual-select.ts",
     "sync-visual:production": "dotenv -c production -- bun ./scripts/sync-visual-select.ts",
-    "a11y:dev": "axe http://localhost:4321 --tags wcag21aa --exit",
-    "a11y:all": "axe http://localhost:4321 --tags wcag2a,wcag2aa,wcag21a,wcag21aa --exit",
-    "a11y:best": "axe http://localhost:4321 --tags best-practice --exit"
+    "a11y": "node ./scripts/pa11y.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -54,6 +52,7 @@
     "@datocms/cli": "^4.0.28",
     "@types/axe-core": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "@wcj/markdown-to-html": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.62.1",
     "astro-eslint-parser": "^1.4.0",
@@ -63,6 +62,7 @@
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
+    "pa11y": "^9.1.1",
     "lint-staged": "^17.2.0",
     "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.100.0",
