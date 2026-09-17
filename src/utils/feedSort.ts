@@ -5,11 +5,7 @@ import type { SiteLocale } from "@graphql/types";
  * (campo `sort_mode`, esposto in GraphQL come `sortMode`).
  */
 export type FeedSortMode =
-  | "date_desc"
-  | "date_asc"
-  | "title_asc"
-  | "title_desc"
-  | "updated_desc";
+  "date_desc" | "date_asc" | "title_asc" | "title_desc" | "updated_desc";
 
 /** Valore usato quando il campo CMS è vuoto o non riconosciuto. */
 const DEFAULT_SORT_MODE: FeedSortMode = "date_desc";

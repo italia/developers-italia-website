@@ -19,7 +19,4 @@ export type HeroProps = {
 
 export type HeroSizeProps = "xsmall" | "small" | "default";
 export type HeroVariantProps =
-  | "default"
-  | "small"
-  | "xsmall-full"
-  | "xsmall-compact";
+  "default" | "small" | "xsmall-full" | "xsmall-compact";
