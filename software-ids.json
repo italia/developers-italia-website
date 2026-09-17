@@ -825,7 +825,10 @@
     },
     {
         "id": "597920c7-a202-4920-8a57-f11de50f56b6",
-        "url": "github.com/AgID/ccros-valcomp.html"
+        "url": "github.com/AgID/ccros-valcomp.html",
+        "extra_urls" : [
+            "agid-agid-ccros-valcomp.html"
+        ]
     },
     {
         "id": "45698e78-e124-47bb-83dc-8c56241ae060",

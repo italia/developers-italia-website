@@ -6,7 +6,11 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 
 const softwareIdsFilePath = "./software-ids.json";
-let softwareIds: { id: string; url: string | null }[] = [];
+let softwareIds: {
+  id: string;
+  url: string | null;
+  extra_urls: string[] | null;
+}[] = [];
 
 try {
   const fileContent = readFileSync(softwareIdsFilePath, "utf-8");
@@ -19,7 +23,7 @@ try {
 }
 
 const softwareRedirects = softwareIds.reduce(
-  (redirects, { id, url }) => {
+  (redirects, { id, url, extra_urls }) => {
     redirects[`/it/software/${url}`] = {
       status: 301 as 301,
       destination: `https://catalogo-software.developers.italia.it/software/${id}`,
@@ -28,6 +32,20 @@ const softwareRedirects = softwareIds.reduce(
       status: 301 as 301,
       destination: `https://catalogo-software.developers.italia.it/software/${id}`,
     };
+
+    if (extra_urls) {
+      for (const extra_url of extra_urls) {
+        redirects[`/it/software/${extra_url}`] = {
+          status: 301 as 301,
+          destination: `https://catalogo-software.developers.italia.it/software/${id}`,
+        };
+        redirects[`/en/software/${extra_url}`] = {
+          status: 301 as 301,
+          destination: `https://catalogo-software.developers.italia.it/software/${id}`,
+        };
+      }
+    }
+
     return redirects;
   },
   {} as Record<
