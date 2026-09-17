@@ -16,10 +16,6 @@ export type ButtonProps = ButtonSharedProps & {
 };
 
 export type ButtonVariantProps =
-  | "light"
-  | "dark"
-  | "outline-light"
-  | "outline-dark"
-  | "link";
+  "light" | "dark" | "outline-light" | "outline-dark" | "link";
 
 export type ButtonSizeProps = "mini" | "small" | "large";

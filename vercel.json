@@ -42,12 +42,12 @@
       "statusCode": 301
     },
     {
-      "source": "/it/software/:id",
+      "source": "/it/software/:id([a-z0-9-]+)",
       "destination": "https://catalogo-software.developers.italia.it/software/:id",
       "statusCode": 301
     },
     {
-      "source": "/en/software/:id",
+      "source": "/en/software/:id([a-z0-9-]+)",
       "destination": "https://catalogo-software.developers.italia.it/software/:id",
       "statusCode": 301
     }
